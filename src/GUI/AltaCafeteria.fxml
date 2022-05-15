@@ -27,17 +27,17 @@
             <Label layoutX="27.0" layoutY="174.0" text="Horas de trabajo" />
             <Button layoutX="421.0" layoutY="238.0" mnemonicParsing="false" text="Cancelar" />
             <Button layoutX="525.0" layoutY="238.0" mnemonicParsing="false" text="Registrar" />
-            <TextField layoutX="184.0" layoutY="33.0" prefHeight="25.0" prefWidth="370.0" />
-            <TextField layoutX="184.0" layoutY="123.0" prefHeight="25.0" prefWidth="370.0" />
-            <ComboBox layoutX="183.0" layoutY="76.0" prefHeight="25.0" prefWidth="370.0" />
+            <TextField fx:id="tfNombreCafeteria" layoutX="184.0" layoutY="33.0" prefHeight="25.0" prefWidth="370.0" />
+            <TextField fx:id="tfDireccion" layoutX="184.0" layoutY="123.0" prefHeight="25.0" prefWidth="370.0" />
+            <ComboBox fx:id="cbFacultad" layoutX="183.0" layoutY="76.0" prefHeight="25.0" prefWidth="370.0" />
             <Label layoutX="184.0" layoutY="174.0" text="De" />
             <Label layoutX="270.0" layoutY="174.0" text=":" />
             <Label layoutX="366.0" layoutY="175.0" text="a" />
             <Label layoutX="458.0" layoutY="174.0" text=":" />
-            <ComboBox layoutX="208.0" layoutY="170.0" prefHeight="25.0" prefWidth="15.0" />
-            <ComboBox layoutX="289.0" layoutY="171.0" prefHeight="25.0" prefWidth="6.0" />
-            <ComboBox layoutX="396.0" layoutY="171.0" prefHeight="25.0" prefWidth="37.0" />
-            <ComboBox layoutX="473.0" layoutY="171.0" prefHeight="25.0" prefWidth="44.0" />
+            <ComboBox fx:id="cbHoraInicio" layoutX="208.0" layoutY="170.0" prefHeight="25.0" prefWidth="15.0" />
+            <ComboBox fx:id="cbMinutoInicio" layoutX="289.0" layoutY="171.0" prefHeight="25.0" prefWidth="6.0" />
+            <ComboBox fx:id="cbHoraFin" layoutX="396.0" layoutY="171.0" prefHeight="25.0" prefWidth="37.0" />
+            <ComboBox fx:id="cbMinutoFin" layoutX="473.0" layoutY="171.0" prefHeight="25.0" prefWidth="44.0" />
          </children>
       </Pane>
    </children>
