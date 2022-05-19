@@ -21,19 +21,43 @@
       </Pane>
       <Pane layoutX="6.0" layoutY="48.0" prefHeight="277.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label layoutX="27.0" layoutY="37.0" text="Nombre de la cafetería" />
-            <Label layoutX="27.0" layoutY="80.0" text="Facultad" />
-            <Label layoutX="27.0" layoutY="127.0" text="Dirección" />
-            <Label layoutX="27.0" layoutY="174.0" text="Horas de trabajo" />
-            <Button layoutX="421.0" layoutY="238.0" mnemonicParsing="false" text="Cancelar" />
-            <Button layoutX="525.0" layoutY="238.0" mnemonicParsing="false" text="Registrar" />
-            <TextField fx:id="tfNombreCafeteria" layoutX="184.0" layoutY="33.0" prefHeight="25.0" prefWidth="370.0" />
-            <TextField fx:id="tfDireccion" layoutX="184.0" layoutY="123.0" prefHeight="25.0" prefWidth="370.0" />
+            <Label layoutX="27.0" layoutY="37.0" text="Nombre de la cafetería">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label layoutX="27.0" layoutY="80.0" text="Facultad">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label layoutX="27.0" layoutY="127.0" text="Dirección">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label layoutX="27.0" layoutY="174.0" text="Horas de trabajo">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Button layoutX="421.0" layoutY="238.0" mnemonicParsing="false" onAction="#clicCancelar" text="Cancelar" />
+            <Button layoutX="525.0" layoutY="238.0" mnemonicParsing="false" onAction="#clicRegistrar" text="Registrar" />
+            <TextField fx:id="txfNombreCafeteria" layoutX="184.0" layoutY="33.0" prefHeight="25.0" prefWidth="370.0" />
+            <TextField fx:id="txfDireccion" layoutX="184.0" layoutY="123.0" prefHeight="25.0" prefWidth="370.0" />
             <ComboBox fx:id="cbFacultad" layoutX="183.0" layoutY="76.0" prefHeight="25.0" prefWidth="370.0" />
-            <Label layoutX="184.0" layoutY="174.0" text="De" />
-            <Label layoutX="270.0" layoutY="174.0" text=":" />
-            <Label layoutX="366.0" layoutY="175.0" text="a" />
-            <Label layoutX="458.0" layoutY="174.0" text=":" />
+            <Label layoutX="184.0" layoutY="174.0" text="De">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label layoutX="270.0" layoutY="174.0" text=":">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label layoutX="366.0" layoutY="175.0" text="a">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label layoutX="458.0" layoutY="174.0" text=":">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             <ComboBox fx:id="cbHoraInicio" layoutX="208.0" layoutY="170.0" prefHeight="25.0" prefWidth="15.0" />
             <ComboBox fx:id="cbMinutoInicio" layoutX="289.0" layoutY="171.0" prefHeight="25.0" prefWidth="6.0" />
             <ComboBox fx:id="cbHoraFin" layoutX="396.0" layoutY="171.0" prefHeight="25.0" prefWidth="37.0" />

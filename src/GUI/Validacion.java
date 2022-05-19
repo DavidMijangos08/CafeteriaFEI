@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class Validacion {
     public boolean existeCampoInvalido(String campo){
         boolean valor = false;
-        Pattern pattern = Pattern.compile("[!#$%'*+/=?^_`{|}~]");
+        Pattern pattern = Pattern.compile("[!$%'*+/=?^_`{|}~]");
         Matcher mather = pattern.matcher(campo);
         if(mather.find()){  
             valor=true;
@@ -37,9 +37,39 @@ public class Validacion {
         boolean valor = false;
         int inicio = Integer.parseInt(horaInicio);
         int fin = Integer.parseInt(horaFin);
-        if(fin > inicio){
+        if(inicio > fin){
             valor = true;
         }
         return valor;
+    }
+    
+    public boolean existenHorasIguales(String horaInicio, String horaFin){
+        boolean valor = false;
+        int inicio = Integer.parseInt(horaInicio);
+        int fin = Integer.parseInt(horaFin);
+        if(inicio == fin){
+            valor = true;
+        }
+        return valor;
+    }
+    
+    public boolean existeCorreoInvalido(String correo){
+        boolean existe = false;
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher matcher = pattern.matcher(correo);
+        if(!matcher.find()){
+           existe = true; 
+        }
+        return existe;
+    }
+    
+    public boolean existeContraseniaInvalida(String contrasenia){
+        boolean existe = false;
+        Pattern pattern = Pattern.compile("^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$");
+        Matcher matcher = pattern.matcher(contrasenia);
+        if(!matcher.find()){
+            existe = true;
+        }
+        return existe;
     }
 }

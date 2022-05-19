@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -22,10 +23,6 @@ import javafx.scene.control.TextField;
 public class AltaCafeteriaController implements Initializable {
 
     @FXML
-    private TextField tfNombreCafeteria;
-    @FXML
-    private TextField tfDireccion;
-    @FXML
     private ComboBox<String> cbFacultad;
     @FXML
     private ComboBox<String> cbHoraInicio;
@@ -35,6 +32,10 @@ public class AltaCafeteriaController implements Initializable {
     private ComboBox<String> cbHoraFin;
     @FXML
     private ComboBox<String> cbMinutoFin;
+    @FXML
+    private TextField txfNombreCafeteria;
+    @FXML
+    private TextField txfDireccion;
 
     /**
      * Initializes the controller class.
@@ -52,6 +53,48 @@ public class AltaCafeteriaController implements Initializable {
         cbHoraFin.setItems(listaHoras);
         cbMinutoInicio.setItems(listaMinutos);
         cbMinutoFin.setItems(listaMinutos);
+    }
+
+    @FXML
+    private void clicCancelar(ActionEvent event) {
+    }
+
+    @FXML
+    private void clicRegistrar(ActionEvent event) {
+    }
+    
+    private boolean existenCamposInvalidos(){
+        boolean existe = false;
+        MensajeAlerta mensajeAlerta = new MensajeAlerta();
+        Validacion validacion = new Validacion();
+        
+        if(txfNombreCafeteria.getText().isEmpty() || txfDireccion.getText().isEmpty() || cbFacultad.getSelectionModel().getSelectedItem().isEmpty() || 
+           cbHoraInicio.getSelectionModel().getSelectedItem().isEmpty() || cbMinutoInicio.getSelectionModel().getSelectedItem().isEmpty() ||
+           cbHoraFin.getSelectionModel().getSelectedItem().isEmpty() || cbMinutoFin.getSelectionModel().getSelectedItem().isEmpty()){
+            existe = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("Existen campos vacíos");
+        } 
+        
+        if(validacion.existeCampoInvalido(txfNombreCafeteria.getText()) || validacion.existeCampoInvalido(txfDireccion.getText())){
+            existe = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("Existen caracteres inválidos");
+        }
+        
+        if(validacion.existeHoraInvalida(cbHoraInicio.getSelectionModel().getSelectedItem(), cbHoraFin.getSelectionModel().getSelectedItem())){
+            existe = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("La hora de inicio no puede ser mayor a la hora de fin");
+        }else if(validacion.existenHorasIguales(cbHoraInicio.getSelectionModel().getSelectedItem(), cbHoraFin.getSelectionModel().getSelectedItem())){
+            if(validacion.existeHoraInvalida(cbMinutoInicio.getSelectionModel().getSelectedItem(), cbMinutoFin.getSelectionModel().getSelectedItem())){
+                existe = true;
+                mensajeAlerta.mostrarAlertaInformacionInvalida("La hora de inicio no puede ser mayor a la hora de fin");
+            }
+        }else if(validacion.existenHorasIguales(cbHoraInicio.getSelectionModel().getSelectedItem(), cbHoraFin.getSelectionModel().getSelectedItem()) &&
+                 validacion.existenHorasIguales(cbMinutoInicio.getSelectionModel().getSelectedItem(), cbMinutoFin.getSelectionModel().getSelectedItem())){
+            existe = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("La hora de inicio no puede ser igual a la hora de fin");
+        }
+        
+        return existe;
     }
     
 }

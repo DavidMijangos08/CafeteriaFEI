@@ -20,17 +20,29 @@
       </Pane>
       <Pane layoutX="6.0" layoutY="47.0" prefHeight="249.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label layoutX="27.0" layoutY="25.0" text="Nombre completo" />
-            <Label layoutX="27.0" layoutY="67.0" text="Correo electrónico" />
-            <Button layoutX="419.0" layoutY="205.0" mnemonicParsing="false" text="Cancelar" />
-            <Button layoutX="522.0" layoutY="205.0" mnemonicParsing="false" text="Registrar" />
-            <TextField fx:id="tfNombre" layoutX="184.0" layoutY="21.0" prefHeight="25.0" prefWidth="370.0" />
-            <TextField fx:id="tfCorreoElectronico" layoutX="184.0" layoutY="63.0" prefHeight="25.0" prefWidth="370.0" />
-            <Label layoutX="27.0" layoutY="109.0" text="Contraseña" />
-            <TextField fx:id="tfCodigoVerificacion" layoutX="184.0" layoutY="141.0" prefHeight="25.0" prefWidth="192.0" />
+            <Label layoutX="27.0" layoutY="25.0" text="Nombre completo">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label layoutX="27.0" layoutY="67.0" text="Correo electrónico">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Button layoutX="419.0" layoutY="205.0" mnemonicParsing="false" onAction="#clicCancelar" text="Cancelar" />
+            <Button layoutX="522.0" layoutY="205.0" mnemonicParsing="false" onAction="#clicRegistrar" text="Registrar" />
+            <TextField fx:id="txfNombre" layoutX="184.0" layoutY="21.0" prefHeight="25.0" prefWidth="370.0" />
+            <TextField fx:id="txfCorreoElectronico" layoutX="184.0" layoutY="63.0" prefHeight="25.0" prefWidth="370.0" />
+            <Label layoutX="27.0" layoutY="109.0" text="Contraseña">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <TextField fx:id="txfCodigoVerificacion" layoutX="184.0" layoutY="141.0" prefHeight="25.0" prefWidth="192.0" />
             <PasswordField fx:id="pfContrasenia" layoutX="184.0" layoutY="105.0" prefHeight="25.0" prefWidth="370.0" />
-            <Label layoutX="27.0" layoutY="145.0" text="Código de verificación" />
-            <Button layoutX="403.0" layoutY="141.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Solicitar código" />
+            <Label layoutX="27.0" layoutY="145.0" text="Código de verificación">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Button layoutX="403.0" layoutY="141.0" mnemonicParsing="false" onAction="#clicSolicitarCodigo" prefHeight="25.0" prefWidth="106.0" text="Solicitar código" />
          </children>
       </Pane>
    </children>
