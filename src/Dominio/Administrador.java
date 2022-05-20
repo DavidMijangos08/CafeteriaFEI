@@ -10,5 +10,28 @@ package Dominio;
  * @author david
  */
 public class Administrador {
-    
+    private String correoElectronico;
+    private String contrasenia;
+
+    public Administrador(String correoElectronico, String contrasenia) {
+        this.correoElectronico = correoElectronico;
+        this.contrasenia = contrasenia;
+    }
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+       
 }
