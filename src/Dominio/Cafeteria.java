@@ -8,13 +8,15 @@ public class Cafeteria {
     private String horaInicio;
     private String horaFin;
     private int idCafeteria;
+    private boolean estaActiva;
     
-    public Cafeteria(String nombreCafeteria, String facultadPerteneciente, String direccion, String horaInicio, String horaFin) {
+    public Cafeteria(String nombreCafeteria, String facultadPerteneciente, String direccion, String horaInicio, String horaFin, boolean estaActiva) {
         this.nombreCafeteria = nombreCafeteria;
         this.facultadPerteneciente = facultadPerteneciente;
         this.direccion = direccion;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
+        this.estaActiva = estaActiva;
     }
 
     public String getNombreCafeteria() {
@@ -41,6 +43,10 @@ public class Cafeteria {
         return idCafeteria;
     }
 
+    public boolean isEstaActiva() {
+        return estaActiva;
+    }
+    
     public void setNombreCafeteria(String nombreCafeteria) {
         this.nombreCafeteria = nombreCafeteria;
     }
@@ -63,6 +69,10 @@ public class Cafeteria {
 
     public void setIdCafeteria(int idCafeteria) {
         this.idCafeteria = idCafeteria;
+    }
+
+    public void setEstaActiva(boolean estaActiva) {
+        this.estaActiva = estaActiva;
     }
     
     

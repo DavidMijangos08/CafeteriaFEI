@@ -1,13 +1,14 @@
 
 package Dominio;
 
-public class Reseña {
+public class ReseñaProducto {
     private String titulo;
     private String opinion;
     private int calificacion;
     private int idReseña;
+    private int idProducto;
 
-    public Reseña(String titulo, String opinion, int calificacion) {
+    public ReseñaProducto(String titulo, String opinion, int calificacion) {
         this.titulo = titulo;
         this.opinion = opinion;
         this.calificacion = calificacion;
@@ -28,6 +29,10 @@ public class Reseña {
     public int getIdReseña() {
         return idReseña;
     }
+
+    public int getIdProducto() {
+        return idProducto;
+    }
     
     public void setTitulo(String titulo) {
         this.titulo = titulo;
@@ -43,6 +48,10 @@ public class Reseña {
 
     public void setIdReseña(int idReseña) {
         this.idReseña = idReseña;
+    }
+
+    public void setIdProducto(int idProducto) {
+        this.idProducto = idProducto;
     }
     
 }
