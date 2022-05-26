@@ -75,5 +75,8 @@ public class Cafeteria {
         this.estaActiva = estaActiva;
     }
     
+    public void desactivarCafeteria(){
+        this.estaActiva = false;
+    }
     
 }
