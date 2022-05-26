@@ -9,6 +9,9 @@ public class PersonalCafeteria {
     private String cafeteriaAsociada;
     private int idPersonal;
 
+    public PersonalCafeteria() {
+    }
+
     public PersonalCafeteria(String nombre, String CURP, String correoElectronico, String cargo, String cafeteriaAsociada) {
         this.nombre = nombre;
         this.CURP = CURP;

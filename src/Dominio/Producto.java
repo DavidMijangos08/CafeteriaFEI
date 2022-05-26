@@ -2,17 +2,22 @@
 package Dominio;
 
 public class Producto {
+    private String descripcion;
+    private String rutaImagen;
     private String nombreProducto;
     private float precioProducto;
     private int tiempoRealizacion;
-    private String descripcion;
     private int idProducto;
 
-    public Producto(String nombreProducto, float precioProducto, int tiempoRealizacion, String descripcion) {
-        this.nombreProducto = nombreProducto;
+    public Producto() {
+    }
+    
+    public Producto(String nombreProducto, String descripcionProducto, String rutaI, float precioProducto, int tiempoRealizacion){
         this.precioProducto = precioProducto;
+        this.nombreProducto = nombreProducto;
+        this.rutaImagen = rutaI;
         this.tiempoRealizacion = tiempoRealizacion;
-        this.descripcion = descripcion;
+        this.descripcion = descripcionProducto;
     }
 
     public String getNombreProducto() {
@@ -53,6 +58,14 @@ public class Producto {
 
     public void setIdProducto(int idProducto) {
         this.idProducto = idProducto;
+    }
+
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
     }
     
 }

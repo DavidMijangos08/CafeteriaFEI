@@ -4,14 +4,19 @@ package Dominio;
 public class ReseñaCafeteria {
     private String titulo;
     private String opinion;
+    private String rutaImagen;
     private int calificacion;
     private int idReseña;
     private int idCafeteria;
 
-    public ReseñaCafeteria(String titulo, String opinion, int calificacion) {
+    public ReseñaCafeteria() {
+    }
+
+    public ReseñaCafeteria(String titulo, String opinion, int calificacion, String rutaI) {
         this.titulo = titulo;
         this.opinion = opinion;
         this.calificacion = calificacion;
+        this.rutaImagen = rutaI;
     }
 
     public String getTitulo() {
@@ -52,6 +57,14 @@ public class ReseñaCafeteria {
 
     public void setIdCafeteria(int idCafeteria) {
         this.idCafeteria = idCafeteria;
+    }
+
+    public String getRutaImagen() {
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
     }
     
 }
