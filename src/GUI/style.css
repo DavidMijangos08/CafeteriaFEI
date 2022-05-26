@@ -1,0 +1,94 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 21 may. 2022, 10:17:20
+    Author     : marie
+*/
+/*Diseño general*/
+.primary-color{
+    -fx-background-color: #FDA540;
+}
+.white-color{
+    -fx-background-color: #FFFFFF;
+}
+
+.radius{
+    -fx-background-radius: 30;
+}
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.input{
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #898989
+}
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
+}
+
+.btn-naranja{
+   -fx-background-color: #FDA540;
+    -fx-background-radius:40; 
+}
+
+.btn-blanco{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 40;
+}
+
+.btn-gris{
+    -fx-background-color: #cdcdcd;
+    -fx-background-radius: 40;
+}
+
+.btn-seleccionado{
+    -fx-background-color:  #febd72;
+    -fx-background-radius: 40;
+}
+
+.comboBox-naranja{
+    -fx-background-color: rgba(253, 165, 64,0.4);
+    -fx-background-radius:  40;
+}
+
+.header-titulo{
+    -fx-background-color: #FDA540;
+    -fx-background-radius: 0 0 50 50;
+}
+
+.light-gray-background{
+    -fx-background-color: #F3F3F3;
+}
+
+/*Diseño productos*/
+.item-seleccionado{
+   -fx-background-color: rgba(253, 165, 64,0.3);
+   -fx-background-radius:30;
+}
+
+.producto-item{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius:30;
+}
+
+.text-area {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+

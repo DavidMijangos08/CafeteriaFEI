@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLAñadirProductoController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="80.0" prefWidth="400.0" spacing="15.0" styleClass="header-titulo" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/CafeteriaLogo.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="132.0">
+               <children>
+                  <Label text="Modificar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Label text="Producto" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Nombre del Producto:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txfNombre" stylesheets="@style.css">
+               <styleClass>
+                  <String fx:value="input" />
+                  <String fx:value="transparent" />
+               </styleClass>
+            </TextField>
+            <Label text="Precio">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txfPrecio" stylesheets="@style.css">
+               <styleClass>
+                  <String fx:value="input" />
+                  <String fx:value="transparent" />
+               </styleClass>
+            </TextField>
+            <Label text="Descripción">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="15.0" />
+               </VBox.margin>
+            </Label>
+            <TextArea fx:id="txfDescripcion" prefHeight="80.0" prefWidth="360.0" styleClass="input" stylesheets="@style.css" />
+            <HBox alignment="TOP_CENTER" prefHeight="40.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnAñadirImagen" mnemonicParsing="false" onAction="#clicAñadirImagen" prefHeight="30.0" text="Añadir Imágen" />
+               </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="imgProducto" fitHeight="203.0" fitWidth="262.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="40.0" prefWidth="400.0" spacing="10.0">
+               <children>
+                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="30.0" text="Cancelar" />
+                  <Button fx:id="btnAceptar" mnemonicParsing="false" onAction="#clicAceptar" prefHeight="30.0" text="Aceptar" />
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="15.0" left="25.0" right="25.0" top="15.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+</BorderPane>
