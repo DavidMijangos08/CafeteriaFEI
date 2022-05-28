@@ -12,11 +12,12 @@ public class ReseñaCafeteria {
     public ReseñaCafeteria() {
     }
 
-    public ReseñaCafeteria(String titulo, String opinion, int calificacion, String rutaI) {
+    public ReseñaCafeteria(String titulo, String opinion, int calificacion, String rutaI, int idCafeteria) {
         this.titulo = titulo;
         this.opinion = opinion;
         this.calificacion = calificacion;
         this.rutaImagen = rutaI;
+        this.idCafeteria = idCafeteria;
     }
 
     public String getTitulo() {
