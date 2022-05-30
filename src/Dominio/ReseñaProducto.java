@@ -9,6 +9,9 @@ public class ReseñaProducto {
     private int idReseña;
     private int idProducto;
 
+    public ReseñaProducto() {
+    }
+
     public ReseñaProducto(String titulo, String opinion, int calificacion, String rutaImagen, int idProducto) {
         this.titulo = titulo;
         this.opinion = opinion;
