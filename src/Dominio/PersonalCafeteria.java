@@ -6,18 +6,19 @@ public class PersonalCafeteria {
     private String CURP;
     private String correoElectronico;
     private String cargo;
-    private String cafeteriaAsociada;
+    private int idCafeteria;
+    private String contrasenia;
     private int idPersonal;
 
     public PersonalCafeteria() {
     }
 
-    public PersonalCafeteria(String nombre, String CURP, String correoElectronico, String cargo, String cafeteriaAsociada) {
+    public PersonalCafeteria(String nombre, String CURP, String correoElectronico, String cargo, int idCafeteria) {
         this.nombre = nombre;
         this.CURP = CURP;
         this.correoElectronico = correoElectronico;
         this.cargo = cargo;
-        this.cafeteriaAsociada = cafeteriaAsociada;
+        this.idCafeteria = idCafeteria;
     }
 
     public String getNombre() {
@@ -36,12 +37,16 @@ public class PersonalCafeteria {
         return cargo;
     }
 
-    public String getCafeteriaAsociada() {
-        return cafeteriaAsociada;
+    public int getIdCafeteria() {
+        return idCafeteria;
     }
 
     public int getIdPersonal() {
         return idPersonal;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
     }
     
     public void setNombre(String nombre) {
@@ -60,12 +65,16 @@ public class PersonalCafeteria {
         this.cargo = cargo;
     }
 
-    public void setCafeteriaAsociada(String cafeteriaAsociada) {
-        this.cafeteriaAsociada = cafeteriaAsociada;
+    public void setIdCafeteria(int idCafeteria) {
+        this.idCafeteria = idCafeteria;
     }
 
     public void setIdPersonal(int idPersonal) {
         this.idPersonal = idPersonal;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
       
 }
