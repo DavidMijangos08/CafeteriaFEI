@@ -34,7 +34,7 @@
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="18.0" prefWidth="209.0" text="Cafetería UV" textAlignment="CENTER">
                            <font>
-                              <Font name="Bell MT" size="31.0" />
+                              <Font size="31.0" />
                            </font>
                         </Label>
                      </children>
@@ -55,7 +55,7 @@
                               <String fx:value="input" />
                            </styleClass>
                            <font>
-                              <Font name="Bell MT" size="16.0" />
+                              <Font size="16.0" />
                            </font>
                         </TextField>
                      </children>
@@ -73,12 +73,12 @@
                               <String fx:value="input" />
                            </styleClass>
                            <font>
-                              <Font name="Bell MT" size="20.0" />
+                              <Font size="16.0" />
                            </font>
                         </PasswordField>
                      </children>
                   </HBox>
-                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0" spacing="5.0">
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0" spacing="7.0">
                      <children>
                         <Button fx:id="btnIniciarSesion" alignment="CENTER" mnemonicParsing="false" onAction="#clicIniciarSesion" prefHeight="30.0" prefWidth="125.0" style="-fx-background-color: #FDA540;" stylesheets="@style.css" text="Iniciar Sesión" textAlignment="CENTER" textFill="WHITE">
                            <styleClass>
@@ -107,83 +107,95 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #FDA540;" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" layoutX="25.0" layoutY="70.0" prefHeight="330.0" prefWidth="300.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox alignment="TOP_CENTER" layoutX="25.0" layoutY="70.0" prefHeight="330.0" prefWidth="300.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label text="Crear Cuenta" textFill="WHITE">
                      <font>
-                        <Font name="Bell MT" size="40.0" />
+                        <Font size="31.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
                   </Label>
                   <TextField fx:id="txfNombreCrear" alignment="CENTER" blendMode="ADD" promptText="Nombre Completo" stylesheets="@style.css">
                      <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets left="20.0" right="20.0" top="20.0" />
                      </VBox.margin>
                      <styleClass>
                         <String fx:value="transparent" />
                         <String fx:value="input" />
                      </styleClass>
                      <font>
-                        <Font name="Bell MT" size="17.0" />
+                        <Font size="17.0" />
                      </font>
                   </TextField>
                   <TextField fx:id="txfCorreoCrear" alignment="CENTER" blendMode="ADD" promptText="Correo Electrónico" stylesheets="@style.css">
                      <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets left="20.0" right="20.0" top="10.0" />
                      </VBox.margin>
                      <styleClass>
                         <String fx:value="transparent" />
                         <String fx:value="input" />
                      </styleClass>
                      <font>
-                        <Font name="Bell MT" size="17.0" />
+                        <Font size="17.0" />
                      </font>
                   </TextField>
                   <PasswordField fx:id="pfContraseniaCrear" alignment="CENTER" blendMode="ADD" promptText="Contraseña" stylesheets="@style.css">
                      <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets left="20.0" right="20.0" top="10.0" />
                      </VBox.margin>
                      <styleClass>
                         <String fx:value="transparent" />
                         <String fx:value="input" />
                      </styleClass>
                      <font>
-                        <Font name="Bell MT" size="17.0" />
+                        <Font size="17.0" />
                      </font>
                   </PasswordField>
                   <PasswordField fx:id="pfConfContraseniaCrear" alignment="CENTER" blendMode="ADD" promptText="Confirmar Contraseña" stylesheets="@style.css">
                      <VBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets left="20.0" right="20.0" top="10.0" />
                      </VBox.margin>
                      <styleClass>
                         <String fx:value="transparent" />
                         <String fx:value="input" />
                      </styleClass>
                      <font>
-                        <Font name="Bell MT" size="17.0" />
+                        <Font size="17.0" />
                      </font>
                   </PasswordField>
                   <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="300.0">
                      <children>
                         <Label text="Código de Verificación" textFill="WHITE">
                            <font>
-                              <Font name="Bell MT" size="17.0" />
+                              <Font size="17.0" />
                            </font>
                            <padding>
                               <Insets left="20.0" />
                            </padding>
+                           <VBox.margin>
+                              <Insets top="30.0" />
+                           </VBox.margin>
                         </Label>
-                        <HBox alignment="CENTER" prefHeight="35.0" prefWidth="300.0" spacing="10.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="300.0" spacing="10.0">
                            <children>
-                              <TextField fx:id="pfCodigoCrear" blendMode="ADD" stylesheets="@style.css">
+                              <TextField fx:id="pfCodigoCrear" alignment="CENTER" blendMode="ADD" prefHeight="26.0" prefWidth="270.0" stylesheets="@style.css">
                                  <styleClass>
                                     <String fx:value="transparent" />
                                     <String fx:value="input" />
                                  </styleClass>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin>
                               </TextField>
                               <Button mnemonicParsing="false" onAction="#clicEnviarCodigo" prefHeight="30.0" prefWidth="135.0" style="-fx-background-color: #FFFFFF;" styleClass="radius" stylesheets="@style.css" text="Solicitar código">
                                  <font>
                                     <Font size="15.0" />
-                                 </font></Button>
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" />
+                                 </HBox.margin></Button>
                            </children>
                         </HBox>
                      </children>
@@ -192,6 +204,9 @@
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
                   </RadioButton>
                   <Button fx:id="btnCrearCuenta" mnemonicParsing="false" onAction="#clicCrearCuenta" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css" text="Crear Cuenta">
                      <styleClass>
@@ -200,7 +215,10 @@
                      </styleClass>
                      <font>
                         <Font size="15.0" />
-                     </font></Button>
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></Button>
                </children>
                <padding>
                   <Insets left="15.0" right="15.0" />

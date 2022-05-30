@@ -38,7 +38,7 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnVerCafeteria" mnemonicParsing="false" onAction="#clicVerCafeteria" styleClass="btn-blanco" text="Ver Cafetería">
+                        <Button fx:id="btnVerCafeteria" mnemonicParsing="false" onAction="#clicVerCafeteria" styleClass="btn-blanco" text="Ver Cafetería" textFill="#3d3d3d">
                            <VBox.margin>
                               <Insets bottom="3.0" />
                            </VBox.margin>
@@ -50,17 +50,17 @@
                   </VBox>
                   <VBox fx:id="vbproductoEscogidoCarta" alignment="CENTER" prefHeight="300.0" prefWidth="270.0" spacing="5.0" styleClass="item-seleccionado" stylesheets="@style.css">
                      <VBox.margin>
-                        <Insets left="15.0" right="15.0" />
+                        <Insets left="15.0" right="15.0" top="15.0" />
                      </VBox.margin>
                      <children>
                         <HBox prefHeight="30.0" prefWidth="270.0">
                            <children>
-                              <Label fx:id="lblNombreEscogido" prefHeight="30.0" prefWidth="180.0" text="Enchiladas verdes">
+                              <Label fx:id="lblNombreEscogido" prefHeight="30.0" prefWidth="180.0" text="Enchiladas verdes" textFill="#3d3d3d">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblPrecioEscogido" prefHeight="30.0" prefWidth="70.0" text="\$120.00">
+                              <Label fx:id="lblPrecioEscogido" prefHeight="30.0" prefWidth="70.0" text="\$120.00" textFill="#3d3d3d">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -121,6 +121,7 @@
                   <Button fx:id="btnCerrarSesion" mnemonicParsing="false" onAction="#clicCerrarSesion" prefHeight="30.0" text="Cerrar Sesión">
                      <styleClass>
                         <String fx:value="btn-naranja" />
+                        <String fx:value="btn-gris" />
                         <String fx:value="shadow" />
                      </styleClass></Button>
                   <Pane prefHeight="15.0" prefWidth="200.0" />
@@ -130,14 +131,17 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="15.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" spacing="15.0">
                      <children>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/usuario.png" />
                            </image>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
                         </ImageView>
-                        <Label fx:id="lblNombreUsuario" prefHeight="40.0" prefWidth="340.0" text="María Elena Fernández Castillo" HBox.hgrow="ALWAYS">
+                        <Label fx:id="lblNombreUsuario" prefHeight="40.0" prefWidth="400.0" text="María Elena Fernández Castillo" textFill="#3d3d3d" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -153,7 +157,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <ScrollPane fx:id="scpProductos" prefHeight="470.0" prefWidth="650.0" styleClass="white-color" stylesheets="@style.css">
+                  <ScrollPane fx:id="scpProductos" prefHeight="521.0" prefWidth="650.0" styleClass="white-color" stylesheets="@style.css">
                      <content>
                         <GridPane fx:id="gdProductos" alignment="CENTER" prefHeight="8.0" prefWidth="7.0" styleClass="white-color" stylesheets="@style.css">
                            <rowConstraints>
@@ -162,12 +166,16 @@
                         </GridPane>
                      </content>
                   </ScrollPane>
-                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="TOP_RIGHT" prefHeight="98.0" prefWidth="645.0">
                      <children>
-                        <Button fx:id="btnAñadir" mnemonicParsing="false" onAction="#clicAñadir" prefHeight="30.0" styleClass="btn-naranja" stylesheets="@style.css" text="Añadir Producto" />
+                        <Button fx:id="btnAñadir" mnemonicParsing="false" onAction="#clicAñadir" prefHeight="30.0" stylesheets="@style.css" text="Añadir Producto">
+                           <styleClass>
+                              <String fx:value="btn-naranja" />
+                              <String fx:value="shadow" />
+                           </styleClass></Button>
                      </children>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="30.0" />
                      </VBox.margin>
                   </HBox>
                </children>

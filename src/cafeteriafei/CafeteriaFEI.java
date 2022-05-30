@@ -21,7 +21,7 @@ public class CafeteriaFEI extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
-        URL url = new File("src/GUI/FXMLInicioSesion.fxml").toURI().toURL();
+        URL url = new File("src/GUI/FXMLVerReseñas.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         primaryStage.setResizable(false);

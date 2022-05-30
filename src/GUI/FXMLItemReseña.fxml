@@ -9,23 +9,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="80.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLItemReseñaController">
+<AnchorPane id="AnchorPane" prefHeight="50.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLItemReseñaController">
    <children>
-      <HBox layoutY="7.0" prefHeight="80.0" prefWidth="625.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="625.0">
          <children>
-            <ImageView fx:id="imgReseña" fitHeight="80.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgReseña" fitHeight="50.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
             </ImageView>
-            <VBox prefHeight="80.0" prefWidth="495.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="495.0">
                <children>
-                  <Label fx:id="lblTitulo" prefHeight="30.0" prefWidth="490.0">
+                  <Label fx:id="lblTitulo" prefHeight="20.0" prefWidth="490.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="txaDescripcion" prefHeight="50.0" prefWidth="490.0" stylesheets="@style.css" />
+                  <TextArea fx:id="txaDescripcion" prefHeight="30.0" prefWidth="490.0" stylesheets="@style.css" />
                </children>
             </VBox>
          </children>

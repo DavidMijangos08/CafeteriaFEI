@@ -108,7 +108,7 @@ public class FXMLVerReseñasController implements Initializable {
                 gdProductos.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 gdProductos.setMaxHeight(Region.USE_COMPUTED_SIZE);
                 
-                GridPane.setMargin(acp, new Insets(5));
+                GridPane.setMargin(acp, new Insets(10));
              }
         } catch (IOException ex) {
             Logger.getLogger(FXMLVerReseñasController.class.getName()).log(Level.SEVERE, null, ex);
