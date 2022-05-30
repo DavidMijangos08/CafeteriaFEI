@@ -4,10 +4,15 @@
  */
 package GUI;
 
+import Dominio.PersonalCafeteria;
+import Servicios.ServicioAdministrador;
+import Servicios.ServicioPersonalCafeteria;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,6 +62,26 @@ public class FXMLInicioSesionController implements Initializable {
 
     @FXML
     private void clicIniciarSesion(ActionEvent event) throws IOException {
+        ServicioAdministrador servicioAdministrador = new ServicioAdministrador();
+        ServicioPersonalCafeteria servicioPersonal = new ServicioPersonalCafeteria();
+        String correoElectronico = txfCorreoInicio.getText();
+        String contrasenia = pfContraseniaInicio.getText();
+        if(servicioAdministrador.enviarCredencialesAdministrador(correoElectronico, contrasenia) == 200){
+            enviarAVentanaAdministrador();
+        }else if(servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia) != null){
+            PersonalCafeteria personalCafeteria = servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia);
+            if(personalCafeteria.getCargo().equals("Responsable")){
+                enviarAVentanaResponsable(personalCafeteria);
+            }else{
+                enviarAVentanaRecepcionista(personalCafeteria);
+            }
+        }else{  
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaInformacionInvalida("Credenciales incorrectas");
+        }
+    }
+    
+    private void enviarAVentanaAdministrador(){
         try {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXMLEleccionUsuario.fxml")));
@@ -64,7 +89,45 @@ public class FXMLInicioSesionController implements Initializable {
             stage.setTitle("Inicio");
             stage.show();
         } catch (IOException ex) {
-            System.err.println(ex.getMessage());
+            Logger.getLogger(FXMLInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void enviarAVentanaConsumidor(){
+        try {
+            Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
+            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXMLEleccionUsuario.fxml")));
+            stage.setScene(scenePrincipal);
+            stage.setTitle("Inicio");
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void enviarAVentanaResponsable(PersonalCafeteria personalCafeteria){
+        try {
+            Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
+            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXMLEleccionUsuario.fxml")));
+            stage.setScene(scenePrincipal);
+            stage.setTitle("Inicio");
+            stage.show();
+            System.out.println("El personal es " + personalCafeteria.getNombre() + " y es " + personalCafeteria.getCargo());
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void enviarAVentanaRecepcionista(PersonalCafeteria personalCafeteria){
+        try {
+            Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
+            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXMLEleccionUsuario.fxml")));
+            stage.setScene(scenePrincipal);
+            stage.setTitle("Inicio");
+            stage.show();
+            System.out.println("El personal es " + personalCafeteria.getNombre() + " y es " + personalCafeteria.getCargo());
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

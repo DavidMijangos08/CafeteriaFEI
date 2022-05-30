@@ -20,6 +20,15 @@ public class PersonalCafeteria {
         this.cargo = cargo;
         this.idCafeteria = idCafeteria;
     }
+    
+    public PersonalCafeteria(int idPersonal, String nombre, String CURP, String correoElectronico, String cargo, int idCafeteria) {
+        this.idPersonal = idPersonal;
+        this.nombre = nombre;
+        this.CURP = CURP;
+        this.correoElectronico = correoElectronico;
+        this.cargo = cargo;
+        this.idCafeteria = idCafeteria;
+    }
 
     public String getNombre() {
         return nombre;
