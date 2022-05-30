@@ -17,7 +17,7 @@ public class ServicioAdministrador {
         try {
             URL url = new URL("http://127.0.0.1:9090/administradores/" + correoElectronico);
             HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
-            conexion.setRequestMethod("GET");
+            conexion.setRequestMethod("POST");
             String datos = "{" + "\"contrasenia\":"+ " " + "\"" + contrasenia + "\"" + "}";
             conexion.setRequestProperty("Content-Type", "application/json");
             conexion.setDoOutput(true);

@@ -23,7 +23,7 @@ public class ServicioPersonalCafeteria {
         try {
             URL url = new URL("http://127.0.0.1:9090/personalCafeteria/login/" + correoElectronico);
             HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
-            conexion.setRequestMethod("GET");
+            conexion.setRequestMethod("POST");
             String datos = "{" + 
                             "\"contrasenia\":"+ " " + "\"" + contrasenia + "\"" + 
                             "}";
