@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView;
  *
  * @author marie
  */
-public class FXMLItemReseñaController implements Initializable {
+public class FXMLItemReseñaCafeteriaController implements Initializable {
 
     private ReseñaCafeteria res;
     @FXML
@@ -36,7 +36,7 @@ public class FXMLItemReseñaController implements Initializable {
         // TODO
     }   
     
-    public void setProducto(ReseñaCafeteria p){
+    public void setReseña(ReseñaCafeteria p){
         this.res = p;
         lblTitulo.setText(res.getTitulo());
         txaDescripcion.setText(res.getOpinion());

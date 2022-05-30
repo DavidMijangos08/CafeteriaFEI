@@ -4,7 +4,8 @@
  */
 package GUI;
 
-import Dominio.ReseñaCafeteria;
+
+import Dominio.ReseñaProducto;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -58,19 +59,18 @@ public class FXMLVerReseñasController implements Initializable {
     @FXML
     private ScrollPane scpReseñas;
     @FXML
-    private GridPane gdProductos;
-
-    private List<ReseñaCafeteria> reseñas = new ArrayList<>();
+    private GridPane gdReseñas;
+    private List<ReseñaProducto> reseñas = new ArrayList<>();
     
     /**
      * Initializes the controller class.
      */
     
-    private List<ReseñaCafeteria> obtenerProductos(){
-        List<ReseñaCafeteria> lReseña = new ArrayList<>();
-        ReseñaCafeteria p;
+    private List<ReseñaProducto> obtenerReseñas(){
+        List<ReseñaProducto> lReseña = new ArrayList<>();
+        ReseñaProducto p;
         for(int i=0; i<20; i++){
-                p=new ReseñaCafeteria();
+                p = new ReseñaProducto();
                 p.setTitulo("Muy buen producto " +i);
                 p.setOpinion("siempre pido lo mismo y nunca me decepciona, sigan así :) "+i);
                 p.setRutaImagen("/img/usuario.png");
@@ -83,7 +83,7 @@ public class FXMLVerReseñasController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        reseñas.addAll(obtenerProductos());
+        reseñas.addAll(obtenerReseñas());
         
         int fila = 1;
         try {
@@ -93,22 +93,22 @@ public class FXMLVerReseñasController implements Initializable {
                 
                 AnchorPane acp = fxmlLoader.load();
             
-                FXMLItemReseñaController reseñaController = fxmlLoader.getController();
-                reseñaController.setProducto(reseñas.get(i));
+                FXMLItemReseñaProductoController reseñaController = fxmlLoader.getController();
+                reseñaController.setReseña(reseñas.get(i));
                                 
-                gdProductos.add(acp,0,fila++);
+                gdReseñas.add(acp,0,fila++);
                 
                 //Ajustar el ancho del grid
-                gdProductos.setMinWidth(Region.USE_COMPUTED_SIZE);
-                gdProductos.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                gdProductos.setMaxWidth(Region.USE_COMPUTED_SIZE);
+                gdReseñas.setMinWidth(Region.USE_COMPUTED_SIZE);
+                gdReseñas.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                gdReseñas.setMaxWidth(Region.USE_COMPUTED_SIZE);
                 
                 //Ajustar el alto del grid
-                gdProductos.setMinHeight(Region.USE_COMPUTED_SIZE);
-                gdProductos.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                gdProductos.setMaxHeight(Region.USE_COMPUTED_SIZE);
+                gdReseñas.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gdReseñas.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                gdReseñas.setMaxHeight(Region.USE_COMPUTED_SIZE);
                 
-                GridPane.setMargin(acp, new Insets(5));
+                GridPane.setMargin(acp, new Insets(10));
              }
         } catch (IOException ex) {
             Logger.getLogger(FXMLVerReseñasController.class.getName()).log(Level.SEVERE, null, ex);

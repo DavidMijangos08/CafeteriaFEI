@@ -1,3 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -25,7 +28,7 @@
                         <Image url="@../img/CafeteriaLogo.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="40.0" prefWidth="159.0" text="Cafetería UV" textFill="WHITE">
+                  <Label prefHeight="40.0" prefWidth="159.0" text="Cafetería UV" textFill="#3d3d3d">
                      <font>
                         <Font name="Corbel" size="30.0" />
                      </font>
@@ -33,11 +36,8 @@
                         <Insets bottom="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="btnVerOpinionesC" mnemonicParsing="false" onAction="#clicVerOpinionesC" prefHeight="30.0" prefWidth="110.0" stylesheets="@style.css" text="Ver Opiniones">
-                     <styleClass>
-                        <String fx:value="btn-blanco" />
-                        <String fx:value="shadow" />
-                     </styleClass>
+                  <Button fx:id="btnVerOpinionesC" mnemonicParsing="false" onAction="#clicVerOpinionesC" prefHeight="30.0" prefWidth="110.0" styleClass="btn-blanco" stylesheets="@style.css" text="Ver Opiniones">
+                     
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -50,7 +50,7 @@
             <Pane prefHeight="15.0" />
             <VBox alignment="CENTER" prefHeight="300.0" styleClass="item-seleccionado" stylesheets="@style.css">
                <children>
-                  <Label text="Nombre completo:">
+                  <Label text="Nombre completo:" textFill="#3d3d3d">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -58,11 +58,11 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lblNombrePersonal" text="María Elena Fernández Castillo">
+                  <Label fx:id="lblNombrePersonal" text="María Elena Fernández Castillo" textFill="#3d3d3d">
                      <font>
                         <Font size="15.0" />
                      </font></Label>
-                  <Label text="CURP:">
+                  <Label text="CURP:" textFill="#3d3d3d">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -70,12 +70,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lblCurpPersonal" text="FECE050408FTRS08">
+                  <Label fx:id="lblCurpPersonal" text="FECE050408FTRS08" textFill="#3d3d3d">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Correo Electrónico:">
+                  <Label text="Correo Electrónico:" textFill="#3d3d3d">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -83,11 +83,11 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lblCorreoPersonal" text="mariaelenafdez1@gmail.com">
+                  <Label fx:id="lblCorreoPersonal" text="mariaelenafdez1@gmail.com" textFill="#3d3d3d">
                      <font>
                         <Font size="15.0" />
                      </font></Label>
-                  <Label text="Cargo:">
+                  <Label text="Cargo:" textFill="#3d3d3d">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font>
@@ -95,28 +95,13 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lblCargoPersonal" text="mariaelenafdez1@gmail.com">
+                  <Label fx:id="lblCargoPersonal" text="mariaelenafdez1@gmail.com" textFill="#3d3d3d">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnModificarPersonal" mnemonicParsing="false" onAction="#clicModificarPersonal" prefHeight="30.0" prefWidth="110.0" stylesheets="@style.css" text="Modificar">
-                     <styleClass>
-                        <String fx:value="btn-blanco" />
-                        <String fx:value="shadow" />
-                     </styleClass>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnEliminarPersonal" mnemonicParsing="false" onAction="#clicModificarPersonal" prefHeight="30.0" prefWidth="110.0" stylesheets="@style.css" text="Eliminar">
-                     <styleClass>
-                        <String fx:value="btn-blanco" />
-                        <String fx:value="shadow" />
-                     </styleClass>
+                  <Button fx:id="btnEliminarPersonal" mnemonicParsing="false" onAction="#clicModificarPersonal" prefHeight="30.0" prefWidth="110.0" styleClass="btn-blanco" stylesheets="@style.css" text="Eliminar">
+                     
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -130,11 +115,8 @@
                </VBox.margin>
             </VBox>
             <Pane prefHeight="15.0" />
-            <Button fx:id="btnCerrarSesion" mnemonicParsing="false" onAction="#clicCerrarSesion" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css" text="Cerrar Sesión" textFill="WHITE">
-               <styleClass>
-                  <String fx:value="btn-naranja" />
-                  <String fx:value="shadow" />
-               </styleClass>
+            <Button fx:id="btnCerrarSesion" mnemonicParsing="false" onAction="#clicCerrarSesion" prefHeight="30.0" prefWidth="100.0" styleClass="btn-gris" stylesheets="@style.css" text="Cerrar Sesión" textFill="#3d3d3d">
+               
                <font>
                   <Font size="13.0" />
                </font>
@@ -155,38 +137,43 @@
                         <Image url="@../img/usuario.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lblNombreUsuario" prefHeight="40.0" prefWidth="490.0" text="María Elena Fernández Castillo" HBox.hgrow="ALWAYS">
+                  <Label fx:id="lblNombreUsuario" prefHeight="40.0" prefWidth="490.0" text="María Elena Fernández Castillo" textFill="#3d3d3d" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnModificarCuenta" mnemonicParsing="false" onAction="#clicModificarCuenta" prefHeight="30.0" prefWidth="180.0" styleClass="btn-naranja" stylesheets="@style.css" text="Modificar Cuenta" textFill="WHITE" />
+                  <Button fx:id="btnModificarCuenta" mnemonicParsing="false" onAction="#clicModificarCuenta" prefHeight="30.0" prefWidth="180.0" styleClass="btn-naranja" stylesheets="@style.css" text="Modificar Cuenta" textFill="#3d3d3d">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Button>
                   <ImageView fx:id="imgPregunta" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#clicPreguntas" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/pregunta.png" />
                      </image>
                   </ImageView>
                </children>
+               <VBox.margin>
+                  <Insets top="7.0" />
+               </VBox.margin>
             </HBox>
-            <Pane prefHeight="15.0" prefWidth="682.0" />
             <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="740.0" styleClass="light-gray-background" stylesheets="@style.css">
                <children>
-                  <Label prefHeight="23.0" prefWidth="205.0" text="Nombre">
+                  <Label prefHeight="23.0" prefWidth="205.0" text="Nombre" textFill="#3d3d3d">
                      <font>
                         <Font name="Corbel Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="23.0" prefWidth="145.0" text="CURP">
+                  <Label prefHeight="23.0" prefWidth="145.0" text="CURP" textFill="#3d3d3d">
                      <font>
                         <Font name="Corbel Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="23.0" prefWidth="205.0" text="Correo Electrónico">
+                  <Label prefHeight="23.0" prefWidth="205.0" text="Correo Electrónico" textFill="#3d3d3d">
                      <font>
                         <Font name="Corbel Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="23.0" prefWidth="110.0" text="Cargo">
+                  <Label prefHeight="23.0" prefWidth="110.0" text="Cargo" textFill="#3d3d3d">
                      <font>
                         <Font name="Corbel Bold" size="18.0" />
                      </font>
@@ -198,7 +185,7 @@
             </HBox>
             <ScrollPane prefHeight="305.0" prefWidth="680.0" styleClass="transparent" stylesheets="@style.css">
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets />
                </VBox.margin>
                <content>
                   <GridPane fx:id="gdPersonal" styleClass="white-color" stylesheets="@style.css">
@@ -208,9 +195,9 @@
                   </GridPane>
                </content>
             </ScrollPane>
-            <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="200.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="btnAñadirPersonal" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" styleClass="btn-naranja" stylesheets="@style.css" text="Añadir Personal" textFill="WHITE" />
+                  <Button fx:id="btnAñadirPersonal" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="30.0" styleClass="btn-naranja" stylesheets="@style.css" text="Añadir Personal" textFill="#3d3d3d" />
                </children>
                <VBox.margin>
                   <Insets />
@@ -248,7 +235,7 @@
                               <String fx:value="transparent" />
                            </styleClass>
                         </TextField>
-                        <ComboBox fx:id="cmbCargoAñadir" prefWidth="110.0" styleClass="comboBox-naranja" stylesheets="@style.css">
+                        <ComboBox fx:id="cmbCargoAñadir" prefWidth="110.0" styleClass="btn-gris" stylesheets="@style.css">
                            <HBox.margin>
                               <Insets right="2.0" />
                            </HBox.margin>
@@ -265,23 +252,17 @@
                   </Button>
                </children>
             </VBox>
-            <Pane prefHeight="10.0" prefWidth="682.0" />
+            <Pane prefHeight="15.0" prefWidth="682.0" />
             <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="690.0">
                <children>
-                  <Button fx:id="btnProductos" mnemonicParsing="false" onAction="#clicProductos" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css" text="Ver Productos" textFill="WHITE">
-                     <styleClass>
-                        <String fx:value="btn-naranja" />
-                        <String fx:value="shadow" />
-                     </styleClass>
+                  <Button fx:id="btnProductos" mnemonicParsing="false" onAction="#clicProductos" prefHeight="30.0" prefWidth="100.0" styleClass="btn-naranja" stylesheets="@style.css" text="Ver Productos" textFill="#3d3d3d">
+                     
                      <HBox.margin>
                         <Insets right="15.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnVerPersonal" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css" text="Ver Personal" textFill="WHITE">
-                     <styleClass>
-                        <String fx:value="btn-seleccionado" />
-                        <String fx:value="shadow" />
-                     </styleClass>
+                  <Button fx:id="btnVerPersonal" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" styleClass="btn-seleccionado" stylesheets="@style.css" text="Ver Personal" textFill="#3d3d3d">
+                     
                   </Button>
                </children>
                <VBox.margin>

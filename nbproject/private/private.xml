@@ -3,7 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/cafeteriafei/CafeteriaFEI.java</file>
+=======
+            <file>file:/C:/Users/marie/Documents/NetBeansProjects/CafeteriaFEI/src/GUI/FXMLModificarProducto.fxml</file>
+            <file>file:/C:/Users/marie/Documents/NetBeansProjects/CafeteriaFEI/src/GUI/style.css</file>
+            <file>file:/C:/Users/marie/Documents/NetBeansProjects/CafeteriaFEI/src/GUI/FXMLAñadirProducto.fxml</file>
+            <file>file:/C:/Users/marie/Documents/NetBeansProjects/CafeteriaFEI/src/GUI/FXMLVerReseñasController.java</file>
+            <file>file:/C:/Users/marie/Documents/NetBeansProjects/CafeteriaFEI/src/GUI/FXMLInicioRecepcionistaController.java</file>
+            <file>file:/C:/Users/marie/Documents/NetBeansProjects/CafeteriaFEI/src/GUI/FXMLInicioUsuarioController.java</file>
+>>>>>>> 95f1e970c1dc11365edc3650cf213ea566d21ea5
         </group>
     </open-files>
 </project-private>
