@@ -18,6 +18,16 @@ public class Cafeteria {
         this.horaFin = horaFin;
         this.activo = activo;
     }
+    
+    public Cafeteria(int idCafeteria, String nombreCafeteria, String facultadPerteneciente, String direccion, String horaInicio, String horaFin, boolean activo) {
+        this.idCafeteria = idCafeteria;
+        this.nombreCafeteria = nombreCafeteria;
+        this.facultadPerteneciente = facultadPerteneciente;
+        this.direccion = direccion;
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.activo = activo;
+    }
 
     public String getNombreCafeteria() {
         return nombreCafeteria;
