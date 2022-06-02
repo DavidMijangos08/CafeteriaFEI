@@ -19,8 +19,7 @@ jobs:
     - name: Set up JDK 8
       uses: actions/setup-java@v3
       with:
-        java-version: '11'
-        distribution: 'temurin'
+        java-version: '8'
         javafx: true
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml
