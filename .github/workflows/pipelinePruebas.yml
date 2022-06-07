@@ -15,7 +15,6 @@ jobs:
 
       - name: Ejecutando pruebas de validacion del Cliente
         run: 
-          java CafeteriaFEI
           java Validacion
           java ValidacionGUITest
 
