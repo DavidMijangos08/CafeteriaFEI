@@ -43,8 +43,8 @@ public class FXMLItemProductoController implements Initializable {
     public void setProducto(Producto p, MyListenerProducto ml){
         this.product=p;
         this.myListener = ml;
-        lblNombre.setText(product.getNombreProducto());
-        lblPrecio.setText(Float.toString(product.getPrecioProducto()));
+        lblNombre.setText(product.getNombre());
+        lblPrecio.setText(Float.toString(product.getPrecio()));
         Image img = new Image(getClass().getResourceAsStream(product.getRutaImagen()));
         imgProducto.setImage(img);
     }

@@ -4,32 +4,43 @@ package Dominio;
 public class Producto {
     private String descripcion;
     private String rutaImagen;
-    private String nombreProducto;
-    private float precioProducto;
-    private int tiempoRealizacion;
+    private String nombre;
+    private int precio;
+    private int tiempoAproximado;
     private int idProducto;
+    private int idCafeteria;
 
     public Producto() {
     }
     
-    public Producto(String nombreProducto, String descripcionProducto, String rutaI, float precioProducto, int tiempoRealizacion){
-        this.precioProducto = precioProducto;
-        this.nombreProducto = nombreProducto;
+    public Producto(String nombreProducto, String descripcionProducto, String rutaI, int precioProducto, int tiempoRealizacion){
+        this.precio = precioProducto;
+        this.nombre = nombreProducto;
         this.rutaImagen = rutaI;
-        this.tiempoRealizacion = tiempoRealizacion;
+        this.tiempoAproximado = tiempoRealizacion;
         this.descripcion = descripcionProducto;
     }
 
-    public String getNombreProducto() {
-        return nombreProducto;
+    public Producto(int idProducto, String nombreProducto, String descripcionProducto, String rutaI, int precioProducto, int tiempoRealizacion, int idCafeteria){
+        this.idProducto = idProducto;
+        this.precio = precioProducto;
+        this.nombre = nombreProducto;
+        this.rutaImagen = rutaI;
+        this.tiempoAproximado = tiempoRealizacion;
+        this.descripcion = descripcionProducto;
+        this.idCafeteria = idCafeteria;
+    }
+    
+    public String getNombre() {
+        return nombre;
     }
 
-    public float getPrecioProducto() {
-        return precioProducto;
+    public int getPrecio() {
+        return precio;
     }
 
-    public int getTiempoRealizacion() {
-        return tiempoRealizacion;
+    public int getTiempoAproximado() {
+        return tiempoAproximado;
     }
 
     public String getDescripcion() {
@@ -39,17 +50,21 @@ public class Producto {
     public int getIdProducto() {
         return idProducto;
     }
+
+    public int getIdCafeteria() {
+        return idCafeteria;
+    }
     
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public void setPrecioProducto(float precioProducto) {
-        this.precioProducto = precioProducto;
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 
-    public void setTiempoRealizacion(int tiempoRealizacion) {
-        this.tiempoRealizacion = tiempoRealizacion;
+    public void setTiempoAproximado(int tiempoAproximado) {
+        this.tiempoAproximado = tiempoAproximado;
     }
 
     public void setDescripcion(String descripcion) {
@@ -66,6 +81,10 @@ public class Producto {
 
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
+    }
+
+    public void setIdCafeteria(int idCafeteria) {
+        this.idCafeteria = idCafeteria;
     }
     
 }

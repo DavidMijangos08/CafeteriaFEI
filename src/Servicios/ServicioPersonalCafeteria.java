@@ -155,15 +155,47 @@ public class ServicioPersonalCafeteria {
         return respuesta;
     }
     
-    public int modificarPersonalCafeteria(int idPersonal){
+    public int modificarPersonalCafeteria(PersonalCafeteria personalCafeteria, int idPersonal){
         int respuesta = 0;
-        
+         try{
+            URL url = new URL("http://127.0.0.1:9090/personalCafeteria/idPersonal/" + idPersonal);
+            HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+            conexion.setRequestMethod("PUT");
+            String datos = "{" + 
+                            "\"nombre\":"+ " " + "\"" + personalCafeteria.getNombre() + "\"" + ", " +
+                            "\"CURP\":"+ " " + "\"" + personalCafeteria.getCURP() + "\"" + ", " +
+                            "\"correoElectronico\":"+ " " + "\"" + personalCafeteria.getCorreoElectronico() + "\"" + ", " +
+                            "\"cargo\":"+ " " + "\"" + personalCafeteria.getCargo() + "\"" + ", " +
+                            "\"idCafeteria\":" + personalCafeteria.getIdCafeteria() + ", " +
+                            "\"contrasenia\":"+ " " + "\"" + personalCafeteria.getContrasenia()+ "\"" + 
+                            "}";
+            conexion.setRequestProperty("Content-Type", "application/json");
+            conexion.setDoOutput(true);
+            OutputStream output = conexion.getOutputStream();
+            output.write(datos.getBytes("UTF-8"));
+            output.flush();
+            output.close();
+            respuesta = conexion.getResponseCode(); 
+        }catch (MalformedURLException ex) {
+            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return respuesta;
     }
     
     public int eliminarPersonalCafeteria(int idPersonal){
         int respuesta = 0;
-        
+        try{
+            URL url = new URL("http://127.0.0.1:9090/personalCafeteria/idPersonal/" + idPersonal);
+            HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+            conexion.setRequestMethod("DELETE");
+            respuesta = conexion.getResponseCode();
+        }catch (MalformedURLException ex) {
+            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return respuesta;
     }
     

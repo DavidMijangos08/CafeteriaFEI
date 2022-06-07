@@ -19,7 +19,16 @@ public class ReseñaProducto {
         this.rutaImagen = rutaImagen;
         this.idProducto = idProducto;
     }
-
+    
+    public ReseñaProducto(int idReseña, String titulo, String opinion, int calificacion, String rutaImagen, int idProducto) {
+        this.idReseña = idReseña;
+        this.titulo = titulo;
+        this.opinion = opinion;
+        this.calificacion = calificacion;
+        this.rutaImagen = rutaImagen;
+        this.idProducto = idProducto;
+    }
+    
     public String getTitulo() {
         return titulo;
     }

@@ -82,8 +82,8 @@ public class FXMLInicioRecepcionistaController implements Initializable {
         Producto p;
         for(int i=0; i<25; i++){
                 p=new Producto();
-                p.setNombreProducto("Sandwich de Pollo");
-                p.setPrecioProducto(i);
+                p.setNombre("Sandwich de Pollo");
+                p.setPrecio(i);
                 p.setRutaImagen("/img/Productos/SandwichJamon.png");
                 p.setDescripcion("Delicioso sandwich relleno de pechuga de pollo deshebrada (la foto es de jamon hshs)");
                 
@@ -95,8 +95,8 @@ public class FXMLInicioRecepcionistaController implements Initializable {
     
     private void setProductoElegido(Producto p){
         //precioP = p.getPrecio();
-        lblNombreEscogido.setText(p.getNombreProducto());
-        lblPrecioEscogido.setText(Float.toString(p.getPrecioProducto()));
+        lblNombreEscogido.setText(p.getNombre());
+        lblPrecioEscogido.setText(Float.toString(p.getPrecio()));
         Image img = new Image(getClass().getResourceAsStream(p.getRutaImagen()));
         imgProductoEscogido.setImage(img);
         txaDescripcionEscogido.setText(p.getDescripcion());
