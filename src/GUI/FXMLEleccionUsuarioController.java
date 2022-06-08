@@ -4,9 +4,18 @@
  */
 package GUI;
 
+import Dominio.Cafeteria;
+import Servicios.ServicioCafeteria;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +35,7 @@ public class FXMLEleccionUsuarioController implements Initializable {
     @FXML
     private ComboBox<String> cbFacultad;
     @FXML
-    private ComboBox<String> cbCafeteria;
+    private ComboBox<Cafeteria> cbCafeteria;
     @FXML
     private Button btnCerrarSesion;
     @FXML
@@ -37,7 +46,9 @@ public class FXMLEleccionUsuarioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        ObservableList<String> facultades = FXCollections.observableArrayList("Facultad de Estadística e Informática", 
+                                                                              "Facultad de Medicina", "Prueba");
+        cbFacultad.setItems(facultades);
     }    
 
     @FXML
@@ -48,6 +59,12 @@ public class FXMLEleccionUsuarioController implements Initializable {
     @FXML
     private void clicContinuar(ActionEvent event) {
         cambiarVentana("/GUI/FXMLInicioUsuario.fxml", "Productos");
+    }
+    
+    @FXML
+    private void seleccionFacultad(ActionEvent event) {
+        String facultadPerteneciente = cbFacultad.getValue();
+        llenarCafeteriasDeFacultad(facultadPerteneciente);
     }
     
     private void cambiarVentana(String ruta, String titulo){
@@ -62,12 +79,19 @@ public class FXMLEleccionUsuarioController implements Initializable {
         }
     }
     
+    private void llenarCafeteriasDeFacultad(String facultadPerteneciente){
+        ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
+        ArrayList<Cafeteria> cafeterias = servicioCafeteria.obtenerCafeteriasDeFacultad(facultadPerteneciente);
+        ObservableList<Cafeteria> listaCafeterias = FXCollections.observableArrayList(cafeterias);
+        
+        cbCafeteria.setItems(listaCafeterias);
+    }
+    
     private boolean existenCamposVacios(){
         boolean existen = false;
         MensajeAlerta mensajeAlerta = new MensajeAlerta();
         
-        //VERIFICARÁ QUE SEA NULL CUANDO SE PONGAN LOS DOMINIOS
-        if(cbFacultad.getSelectionModel().getSelectedItem().isEmpty() || cbCafeteria.getSelectionModel().getSelectedItem().isEmpty()){
+        if(cbFacultad.getSelectionModel().getSelectedItem().isEmpty() || cbCafeteria.getSelectionModel().getSelectedItem() == null){
             existen = true;
             mensajeAlerta.mostrarAlertaInformacionInvalida("Existen campos vacíos");
         }

@@ -151,8 +151,7 @@ public class ServicioCafeteria {
     }
     
     private String convertirCadenaConEspacios(String cadena){
-        String facultadCorregida = cadena.replace(" ", "%20");
-        System.out.println(facultadCorregida);
-        return facultadCorregida;
+        String facultadCorregidaEspacios = cadena.replace(" ", "%20");
+        return facultadCorregidaEspacios;
     }
 }

@@ -29,7 +29,7 @@ public class ServicioCafeteriaTest {
     public void obtenerCafeteriasDeFacultad(){
         ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
         ArrayList<Cafeteria> cafeterias = servicioCafeteria.obtenerCafeteriasDeFacultad("Facultad de Estadística e Informática");
-        int numeroCafeteriasEsperadas = 3;
+        int numeroCafeteriasEsperadas = 1;
         int numeroCafeteriasObtenidas = cafeterias.size();
         assertEquals(numeroCafeteriasObtenidas, numeroCafeteriasEsperadas);
     }

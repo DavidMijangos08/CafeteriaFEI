@@ -89,4 +89,9 @@ public class Cafeteria {
         this.activo = false;
     }
     
+    @Override
+    public String toString(){
+        return nombreCafeteria;
+    }
+    
 }
