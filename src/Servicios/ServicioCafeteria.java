@@ -56,6 +56,7 @@ public class ServicioCafeteria {
     
     public int agregarNuevaCafeteria(Cafeteria cafeteria){
         int respuesta = 0;
+        cafeteria.setFacultadPerteneciente(buscarAbreviacion(cafeteria.getFacultadPerteneciente()));
         try{
             URL url = new URL("http://127.0.0.1:9090/cafeterias");
             HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
@@ -84,9 +85,9 @@ public class ServicioCafeteria {
     
     public ArrayList<Cafeteria> obtenerCafeteriasDeFacultad(String facultadPerteneciente){
         ArrayList<Cafeteria> cafeterias = new ArrayList<Cafeteria>();
-        String facultadCorregida = convertirCadenaConEspacios(facultadPerteneciente);
+        String abreviacionFacultad = buscarAbreviacion(facultadPerteneciente);
         try{
-            URL url = new URL("http://127.0.0.1:9090/cafeterias/" + facultadCorregida);
+            URL url = new URL("http://127.0.0.1:9090/cafeterias/" + abreviacionFacultad);
             HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
             conexion.setRequestMethod("GET");
             if(conexion.getResponseCode() == 200){
@@ -150,8 +151,14 @@ public class ServicioCafeteria {
         return cafeteria;
     }
     
-    private String convertirCadenaConEspacios(String cadena){
-        String facultadCorregidaEspacios = cadena.replace(" ", "%20");
-        return facultadCorregidaEspacios;
+    private String buscarAbreviacion(String facultad){
+        String abreviacion = "";
+        if(facultad.equals("Facultad de Estadística e Informática")){
+            abreviacion = "FEI";
+        }else if(facultad.equals("Facultad de Medicina")){
+            abreviacion = "FMEDICINA";
+        }
+        
+        return abreviacion;
     }
 }

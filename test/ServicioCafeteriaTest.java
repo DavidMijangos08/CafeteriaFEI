@@ -9,7 +9,7 @@ public class ServicioCafeteriaTest {
     @Test
     public void agregarNuevaCafeteriaTest(){
         ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
-        Cafeteria cafeteria = new Cafeteria("El doc sazón", "Medicina", "Calle Medicos y odontologos s/n Col. Unidad del Bosque",
+        Cafeteria cafeteria = new Cafeteria("El doc sazón", "Facultad de Medicina", "Calle Medicos y odontologos s/n Col. Unidad del Bosque",
                                             "8:00", "20:00", true);
         int respuesta = servicioCafeteria.agregarNuevaCafeteria(cafeteria);
         int respuestaEsperada = 201;

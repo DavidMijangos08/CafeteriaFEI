@@ -47,7 +47,7 @@ public class FXMLEleccionUsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> facultades = FXCollections.observableArrayList("Facultad de Estadística e Informática", 
-                                                                              "Facultad de Medicina", "Prueba");
+                                                                              "Facultad de Medicina");
         cbFacultad.setItems(facultades);
     }    
 
