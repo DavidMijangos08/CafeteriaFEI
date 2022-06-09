@@ -36,22 +36,16 @@ import javafx.stage.Stage;
  *
  * @author marie
  */
-public class FXMLInicioRecepcionistaController implements Initializable {
+public class FXMLInicioUsuarioController implements Initializable {
 
-    @FXML
-    private Button btnVerCafeteria;
     @FXML
     private VBox vbproductoEscogidoCarta;
     @FXML
-    private Label lblNombreEscogido;
+    private ScrollPane scpProductos;
     @FXML
-    private Label lblPrecioEscogido;
+    private GridPane gdProductos;
     @FXML
-    private ImageView imgProductoEscogido;
-    @FXML
-    private TextArea txaDescripcionEscogido;
-    @FXML
-    private Button btnVerOpiniones;
+    private Button btnDejarOpinion;
     @FXML
     private Button btnCerrarSesion;
     @FXML
@@ -59,33 +53,42 @@ public class FXMLInicioRecepcionistaController implements Initializable {
     @FXML
     private Button btnModificarCuenta;
     @FXML
+    private Button btnVerOpiniones;
+    @FXML
     private ImageView imgPregunta;
     @FXML
-    private ScrollPane scpProductos;
+    private Button btnVerCafeteria;
     @FXML
-    private GridPane gdProductos;
-    
+    private Label lblNombreEscogido;
+    @FXML
+    private ImageView imgProductoEscogido;
+    @FXML
+    private TextArea txaDescripcionEscogido;
+    @FXML
+    private Label lblPrecioEscogido;
+
+    @FXML
+    private Button btnEliminarProducto;
+
+    @FXML
+    private Button btnModificarProducto;
+
     private MyListenerProducto myListener;
     private List<Producto> productos = new ArrayList<>();
-    @FXML
-    private Button btnModificar;
-    @FXML
-    private Button btnEliminar;
-    @FXML
-    private Button btnAñadir;
-
+    
     /**
      * Initializes the controller class.
      */
+    
     private List<Producto> obtenerProductos(){
         List<Producto> lproductos = new ArrayList<>();
         Producto p;
         for(int i=0; i<25; i++){
                 p=new Producto();
-                p.setNombre("Sandwich de Pollo");
+                p.setNombre("Enchiladas rojas");
                 p.setPrecio(i);
-                p.setRutaImagen("/img/Productos/SandwichJamon.png");
-                p.setDescripcion("Delicioso sandwich relleno de pechuga de pollo deshebrada (la foto es de jamon hshs)");
+                p.setRutaImagen("/img/Productos/enchiladasRojas.png");
+                p.setDescripcion("Deliciosas tortillas dobladas en forma de flautas rellenas de pollo bañanas en salsa roja");
                 
                 lproductos.add(p);
         }
@@ -147,43 +150,35 @@ public class FXMLInicioRecepcionistaController implements Initializable {
                 GridPane.setMargin(acp, new Insets(10));
              }
         } catch (IOException ex) {
-            Logger.getLogger(FXMLInicioRecepcionistaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLInicioUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }   
-
+    }    
+    
     @FXML
-    private void clicVerCafeteria(ActionEvent event) {
+    private void clicDejarOpinion(ActionEvent event) {
+        cambiarVentana("/GUI/FXMLEscribirOpinion.fxml", "Escribe una opinión");
     }
-
-    @FXML
-    private void clicVerOpiniones(ActionEvent event) {
-    }
-
 
     @FXML
     private void clicCerrarSesion(ActionEvent event) {
+        cambiarVentana("/GUI/GInicioSesion.fxml", "Inicio de sesión");
     }
 
     @FXML
     private void clicModificarCuenta(ActionEvent event) {
+        
+        //cambiarVentana("/GUI/FXMLModificarCuenta.fxml", "Modificar Cuenta");
+    }
+
+    @FXML
+    private void clicVerOpiniones(ActionEvent event) {
+        
     }
 
     @FXML
     private void clicPreguntas(MouseEvent event) {
-    }
-    
-    @FXML
-    private void clicModificar(ActionEvent event) {
-        cambiarVentana("/GUI/FXMLModificarProducto.fxml", "Inicio de Sesion");
-    }
-
-    @FXML
-    private void clicEliminar(ActionEvent event) {
-    }
-
-    @FXML
-    private void clicAñadir(ActionEvent event) {
+        //cambiarVentana("/GUI/FXMLPreguntasFrecuentes.fxml", "Preguntas Frecuentes");
     }
     
     private void cambiarVentana(String ruta, String titulo){
@@ -197,4 +192,18 @@ public class FXMLInicioRecepcionistaController implements Initializable {
             System.err.println(ex.getMessage());
         }
     }
+
+    @FXML
+    private void clicVerCafeteria(ActionEvent event) {
+    }
+    @FXML
+    void clicEliminarProducto(ActionEvent event) {
+
+    }
+
+    @FXML
+    void clicModificarProducto(ActionEvent event) {
+
+    }
+    
 }

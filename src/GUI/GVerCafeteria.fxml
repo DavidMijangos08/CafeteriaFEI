@@ -36,7 +36,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="vbCafeteria" alignment="CENTER_LEFT" prefHeight="300.0" prefWidth="300.0" spacing="5.0" styleClass="item-seleccionado" stylesheets="@style.css">
+            <VBox fx:id="vbCafeteria" alignment="CENTER_LEFT" prefHeight="326.0" prefWidth="285.0" spacing="5.0" styleClass="item-seleccionado" stylesheets="@style.css">
                <children>
                   <Label fx:id="lblNombreCafeteria" prefHeight="30.0" prefWidth="301.0" text="Enchiladas verdes" textFill="#3d3d3d">
                      <font>
@@ -116,7 +116,7 @@
                   <Font size="13.0" />
                </font>
                <VBox.margin>
-                  <Insets top="15.0" />
+                  <Insets top="7.0" />
                </VBox.margin>
             </Button>
          </children>
@@ -151,21 +151,30 @@
                   <Insets left="5.0" right="10.0" top="10.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <ScrollPane fx:id="scpReseñasCafeteria" prefHeight="530.0" prefWidth="630.0" stylesheets="@style.css">
+               <content>
+                  <GridPane fx:id="gdReseñas" alignment="CENTER" prefHeight="1.0" prefWidth="1.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+               <VBox.margin>
+                  <Insets right="5.0" />
+               </VBox.margin>
+            </ScrollPane>
+            <HBox alignment="CENTER_RIGHT" prefHeight="90.0" prefWidth="650.0">
                <children>
-                  <ScrollPane fx:id="scpReseñasCafeteria" prefHeight="530.0" prefWidth="630.0" stylesheets="@style.css" HBox.hgrow="ALWAYS">
-                     <content>
-                        <GridPane fx:id="gdReseñas" alignment="CENTER" prefHeight="1.0" prefWidth="1.0">
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                           </rowConstraints>
-                        </GridPane>
-                     </content>
-                     <HBox.margin>
-                        <Insets bottom="15.0" left="5.0" right="15.0" top="15.0" />
-                     </HBox.margin>
-                  </ScrollPane>
+                  <Button fx:id="btnDejarOpinion" mnemonicParsing="false" onAction="#clicDejarOpinion" prefHeight="30.0" stylesheets="@style.css" text="Dejar Opinión">
+                     <styleClass>
+                        <String fx:value="btn-naranja" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </Button>
                </children>
+               <padding>
+                  <Insets right="5.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>

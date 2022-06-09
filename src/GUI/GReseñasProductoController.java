@@ -60,6 +60,8 @@ public class FXMLVerReseñasController implements Initializable {
     private ScrollPane scpReseñas;
     @FXML
     private GridPane gdReseñas;
+    @FXML
+    private Button btnDejarOpinion;
     private List<ReseñaProducto> reseñas = new ArrayList<>();
     
     /**
@@ -130,5 +132,9 @@ public class FXMLVerReseñasController implements Initializable {
     @FXML
     private void clicPreguntas(MouseEvent event) {
     }
-    
+
+    @FXML
+    void clicDejarOpinion(ActionEvent event) {
+
+    }
 }

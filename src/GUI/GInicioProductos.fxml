@@ -17,15 +17,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLVerReseñasController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLInicioUsuarioController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="300.0" spacing="5.0" styleClass="white-color" stylesheets="@style.css" BorderPane.alignment="CENTER">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="219.0" prefWidth="300.0" spacing="2.0" styleClass="header-titulo" stylesheets="@style.css">
+                  <VBox alignment="TOP_CENTER" prefHeight="168.0" prefWidth="300.0" spacing="2.0" styleClass="header-titulo" stylesheets="@style.css">
                      <children>
-                        <ImageView fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="84.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/CafeteriaLogo.png" />
                            </image>
@@ -33,7 +33,7 @@
                               <Insets top="3.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Label text="Cafetería FEI" textFill="WHITE">
+                        <Label text="Cafetería FEI" textFill="#3d3d3d">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -48,19 +48,19 @@
                         <Insets />
                      </VBox.margin>
                   </VBox>
-                  <VBox fx:id="vbproducto" alignment="CENTER" prefHeight="300.0" prefWidth="270.0" spacing="5.0" styleClass="item-seleccionado" stylesheets="@style.css">
+                  <VBox fx:id="vbproductoEscogidoCarta" alignment="CENTER" prefHeight="372.0" prefWidth="270.0" spacing="5.0" styleClass="item-seleccionado" stylesheets="@style.css">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" top="15.0" />
                      </VBox.margin>
                      <children>
                         <HBox prefHeight="30.0" prefWidth="270.0">
                            <children>
-                              <Label fx:id="lblNombreProducto" prefHeight="30.0" prefWidth="180.0" text="Enchiladas verdes">
+                              <Label fx:id="lblNombreEscogido" prefHeight="30.0" prefWidth="180.0" text="Enchiladas verdes" textFill="#3d3d3d">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblPrecioProducto" prefHeight="30.0" prefWidth="70.0" text="\$120.00">
+                              <Label fx:id="lblPrecioEscogido" prefHeight="30.0" prefWidth="70.0" text="\$120.00" textFill="#3d3d3d">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -70,12 +70,12 @@
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <ImageView fx:id="imgProducto" fitHeight="120.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imgProductoEscogido" fitHeight="120.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/Productos/enchiladasVerdes.png" />
                            </image>
                         </ImageView>
-                        <TextArea fx:id="txaDescripcionProducto" editable="false" prefHeight="90.0" prefWidth="250.0" stylesheets="@style.css" wrapText="true">
+                        <TextArea fx:id="txaDescripcionEscogido" editable="false" prefHeight="60.0" prefWidth="200.0" stylesheets="@style.css" wrapText="true">
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </VBox.margin>
@@ -84,32 +84,65 @@
                               <String fx:value="text-area" />
                            </styleClass>
                         </TextArea>
+                        <Button fx:id="btnDejarOpinion" mnemonicParsing="false" onAction="#clicDejarOpinion" prefHeight="30.0" prefWidth="110.0" stylesheets="@style.css" text="Dejar Opinión">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="btn-blanco" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btnVerOpiniones" mnemonicParsing="false" onAction="#clicVerOpiniones" prefHeight="30.0" prefWidth="110.0" text="Ver Opiniones">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="btn-blanco" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </Button>
+                        <HBox alignment="CENTER" prefHeight="37.0" prefWidth="270.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="btnModificarProducto" mnemonicParsing="false" onAction="#clicModificarProducto" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css" text="Modificar">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="btn-blanco" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="btnEliminarProducto" mnemonicParsing="false" onAction="#clicEliminarProducto" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css" text="Eliminar">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="btn-blanco" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
-                  <Pane prefHeight="15.0" prefWidth="200.0" />
-                  <Button fx:id="btnRegresar" mnemonicParsing="false" onAction="#clicRegresar" prefHeight="30.0" prefWidth="90.0" text="Regresar">
+                  <Button fx:id="btnCerrarSesion" mnemonicParsing="false" onAction="#clicCerrarSesion" text="Cerrar Sesión">
                      <styleClass>
                         <String fx:value="btn-naranja" />
                         <String fx:value="shadow" />
-                     </styleClass></Button>
+                     </styleClass>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></Button>
                   <Pane prefHeight="15.0" prefWidth="200.0" />
                </children>
-               <BorderPane.margin>
-                  <Insets right="5.0" />
-               </BorderPane.margin>
             </VBox>
          </left>
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0" spacing="15.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" spacing="15.0">
                      <children>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/usuario.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="lblNombreUsuario" prefHeight="40.0" prefWidth="340.0" text="María Elena Fernández Castillo" HBox.hgrow="ALWAYS">
+                        <Label fx:id="lblNombreUsuario" prefHeight="40.0" prefWidth="390.0" text="María Elena Fernández Castillo" textFill="#3d3d3d" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -125,29 +158,32 @@
                         <Insets left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-                     <children>
-                        <ScrollPane fx:id="scpReseñas" prefHeight="530.0" prefWidth="630.0" stylesheets="@style.css">
-                           <content>
-                              <GridPane fx:id="gdReseñas" alignment="CENTER" prefHeight="1.0" prefWidth="1.0" styleClass="white-color" stylesheets="@style.css">
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                                 </rowConstraints>
-                              </GridPane>
-                           </content>
-                           <HBox.margin>
-                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
-                           </HBox.margin>
-                        </ScrollPane>
-                     </children>
+                  <ScrollPane fx:id="scpProductos" prefHeight="530.0" prefWidth="630.0" stylesheets="@style.css">
+                     <content>
+                        <GridPane fx:id="gdProductos" alignment="CENTER" prefHeight="1.0" prefWidth="1.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                           </rowConstraints>
+                        </GridPane>
+                     </content>
                      <VBox.margin>
-                        <Insets />
+                        <Insets right="5.0" />
                      </VBox.margin>
+                  </ScrollPane>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="90.0" prefWidth="650.0">
+                     <children>
+                        <Button fx:id="btnAñadir1" mnemonicParsing="false" onAction="#clicAñadir" prefHeight="30.0" stylesheets="@style.css" text="Añadir Producto">
+                           <styleClass>
+                              <String fx:value="btn-naranja" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
                   </HBox>
                </children>
-               <BorderPane.margin>
-                  <Insets right="5.0" />
-               </BorderPane.margin>
             </VBox>
          </center>
       </BorderPane>

@@ -60,6 +60,8 @@ public class FXMLVerCafeteriaController implements Initializable {
     private List<ReseñaCafeteria> reseñas = new ArrayList<>();
     @FXML
     private GridPane gdReseñas;
+    @FXML
+    private Button btnDejarOpinion;
 
     /**
      * Initializes the controller class.
@@ -125,5 +127,9 @@ public class FXMLVerCafeteriaController implements Initializable {
     @FXML
     private void clicRegresar(ActionEvent event) {
     }
-    
+
+    @FXML
+    void clicDejarOpinion(ActionEvent event) {
+
+    }
 }

@@ -7,13 +7,10 @@ package GUI;
 import Dominio.Cafeteria;
 import Servicios.ServicioCafeteria;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,12 +50,12 @@ public class FXMLEleccionUsuarioController implements Initializable {
 
     @FXML
     private void clicCerrarSesion(ActionEvent event) throws IOException {
-        cambiarVentana("/GUI/FXMLInicioSesion.fxml", "Inicio de Sesión");
+        cambiarVentana("/GUI/GInicioSesion.fxml", "Inicio de Sesión");
     }
 
     @FXML
     private void clicContinuar(ActionEvent event) {
-        cambiarVentana("/GUI/FXMLInicioUsuario.fxml", "Productos");
+        cambiarVentana("/GUI/GInicioProductos.fxml", "Productos");
     }
     
     @FXML
