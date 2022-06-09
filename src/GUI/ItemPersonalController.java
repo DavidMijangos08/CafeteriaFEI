@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author marie
  */
-public class FXMLItemPersonalController implements Initializable {
+public class ItemPersonalController implements Initializable {
 
     @FXML
     private Label lblNombre;

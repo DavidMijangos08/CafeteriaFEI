@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView;
  *
  * @author marie
  */
-public class FXMLItemReseñaProductoController implements Initializable {
+public class ItemReseñaProductoController implements Initializable {
 
     private ReseñaProducto res;
     @FXML

@@ -19,7 +19,7 @@ import javafx.scene.image.ImageView;
  *
  * @author marie
  */
-public class FXMLModificarProductoController implements Initializable {
+public class RCModificarProductoController implements Initializable {
 
     @FXML
     private TextField txfPrecio;

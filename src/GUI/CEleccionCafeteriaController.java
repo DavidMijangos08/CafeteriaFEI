@@ -27,7 +27,7 @@ import javafx.stage.Stage;
  *
  * @author marie
  */
-public class FXMLEleccionUsuarioController implements Initializable {
+public class CEleccionCafeteriaController implements Initializable {
 
     @FXML
     private ComboBox<String> cbFacultad;

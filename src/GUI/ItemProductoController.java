@@ -7,7 +7,7 @@ package GUI;
 import Dominio.Producto;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -20,7 +20,7 @@ import javafx.scene.input.MouseEvent;
  *
  * @author marie
  */
-public class FXMLItemProductoController implements Initializable {
+public class ItemProductoController implements Initializable {
 
     @FXML
     private Label lblNombre;
@@ -28,7 +28,8 @@ public class FXMLItemProductoController implements Initializable {
     private Label lblPrecio;
     @FXML
     private ImageView imgProducto;
-    
+    @FXML
+    private Label lblTiempoAprox;
     private Producto product;
     private MyListenerProducto myListener;
     
@@ -44,9 +45,11 @@ public class FXMLItemProductoController implements Initializable {
         this.product=p;
         this.myListener = ml;
         lblNombre.setText(product.getNombre());
-        lblPrecio.setText(Float.toString(product.getPrecio()));
+        lblPrecio.setText("$" + Float.toString(product.getPrecio()));
         Image img = new Image(getClass().getResourceAsStream(product.getRutaImagen()));
         imgProducto.setImage(img);
+        lblTiempoAprox.setText(Integer.toString(product.getTiempoAproximado()) + " min");
+
     }
     
     @FXML

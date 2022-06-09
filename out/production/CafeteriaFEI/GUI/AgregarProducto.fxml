@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="650.0" style="-fx-background-color: #E0E0E0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AltaCafeteriaController">
+   <children>
+      <Pane prefHeight="40.0" prefWidth="650.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Label layoutX="14.0" layoutY="2.0" text="Agregar producto">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="6.0" layoutY="48.0" prefHeight="343.0" prefWidth="637.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Label layoutX="27.0" layoutY="37.0" text="Nombre del producto">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="325.0" layoutY="172.0" text="Precio">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="319.0" layoutY="219.0" text="Tiempo aproximado (min)">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="27.0" layoutY="80.0" text="Descripción">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="432.0" layoutY="296.0" mnemonicParsing="false" onAction="#clicCancelar" text="Cancelar" />
+            <Button layoutX="536.0" layoutY="296.0" mnemonicParsing="false" onAction="#clicAgregar" text="Agregar" />
+            <TextField fx:id="txfNombreProducto" layoutX="179.0" layoutY="35.0" prefHeight="25.0" prefWidth="370.0" />
+            <TextField fx:id="txfPrecio" layoutX="479.0" layoutY="172.0" prefHeight="25.0" prefWidth="72.0" />
+            <Label layoutX="469.0" layoutY="174.0" text="\$">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txfTiempoAproximado" layoutX="487.0" layoutY="217.0" prefHeight="25.0" prefWidth="72.0" />
+            <TextField fx:id="txfDescripcion" layoutX="181.0" layoutY="80.0" prefHeight="73.0" prefWidth="370.0" />
+            <ImageView fx:id="imgProducto" fitHeight="107.0" fitWidth="211.0" layoutX="66.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Downloads/descargar.jpg" />
+               </image>
+            </ImageView>
+            <Button layoutX="117.0" layoutY="296.0" mnemonicParsing="false" onAction="#clicElegirImagen" text="Elegir imagen" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

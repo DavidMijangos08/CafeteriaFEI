@@ -13,7 +13,7 @@ import javafx.fxml.Initializable;
  *
  * @author marie
  */
-public class FXMLAltaCafeteriaController implements Initializable {
+public class ADAltaCafeteriaController implements Initializable {
 
     /**
      * Initializes the controller class.

@@ -39,10 +39,10 @@ public class ServicioProductoTest {
     @Test
     public void modificarProductoTest(){
         ServicioProducto servicioProducto = new ServicioProducto();
-        Producto producto = new Producto(4, "Torta de milanesa de pollo", "Rica torta de milanesa de pollo acompañada de vegetales", 
-                                         "c://users//david//imagenes//tortaMilanesaPollo.png", 20, 6, 1);
+        Producto producto = new Producto(3, "Chilaquiles verdes", "Totopos en salsa de tomate verde acompañados de queso y crema", 
+                                         "/img/Productos/chilaquilesVerdes.png", 35, 15, 2);
         int respuestaEseperada = 200;
-        int respuestaObtenida = servicioProducto.modificarProducto(producto, 4);
+        int respuestaObtenida = servicioProducto.modificarProducto(producto, 3);
         assertEquals(respuestaEseperada, respuestaObtenida);
     }
     

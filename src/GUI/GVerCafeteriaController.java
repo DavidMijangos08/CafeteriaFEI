@@ -33,7 +33,7 @@ import javafx.scene.layout.VBox;
  *
  * @author marie
  */
-public class FXMLVerCafeteriaController implements Initializable {
+public class GVerCafeteriaController implements Initializable {
 
     @FXML
     private Label lblNombreUsuario;
@@ -89,11 +89,11 @@ public class FXMLVerCafeteriaController implements Initializable {
         try {
             for(int i = 0; i < reseñas.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("FXMLItemReseñaCafeteria.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("ItemReseñaCafeteria.fxml"));
                 
                 AnchorPane acp = fxmlLoader.load();
             
-                FXMLItemReseñaCafeteriaController reseñaController = fxmlLoader.getController();
+                ItemReseñaCafeteriaController reseñaController = fxmlLoader.getController();
                 reseñaController.setReseña(reseñas.get(i));
                                 
                 gdReseñas.add(acp,0,fila++);
@@ -111,7 +111,7 @@ public class FXMLVerCafeteriaController implements Initializable {
                 GridPane.setMargin(acp, new Insets(10));
              }
         } catch (IOException ex) {
-            Logger.getLogger(FXMLVerReseñasController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GReseñasProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
 

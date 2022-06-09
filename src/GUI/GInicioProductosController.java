@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import Dominio.Cafeteria;
 import Dominio.Producto;
 import java.io.IOException;
 import java.net.URL;
@@ -12,6 +13,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Servicios.ServicioCafeteria;
+import Servicios.ServicioProducto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +42,7 @@ import javafx.stage.Stage;
  *
  * @author marie
  */
-public class FXMLInicioUsuarioController implements Initializable {
+public class GInicioProductosController implements Initializable {
 
     @FXML
     private VBox vbproductoEscogidoCarta;
@@ -50,6 +56,8 @@ public class FXMLInicioUsuarioController implements Initializable {
     private Button btnCerrarSesion;
     @FXML
     private Label lblNombreUsuario;
+    @FXML
+    private Label lblNombreCafeteria;
     @FXML
     private Button btnModificarCuenta;
     @FXML
@@ -66,12 +74,14 @@ public class FXMLInicioUsuarioController implements Initializable {
     private TextArea txaDescripcionEscogido;
     @FXML
     private Label lblPrecioEscogido;
-
+    @FXML
+    private Label lblTiempoAprox;
     @FXML
     private Button btnEliminarProducto;
-
     @FXML
     private Button btnModificarProducto;
+    @FXML
+    private Button btnAñadirProducto;
 
     private MyListenerProducto myListener;
     private List<Producto> productos = new ArrayList<>();
@@ -79,35 +89,24 @@ public class FXMLInicioUsuarioController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
-    private List<Producto> obtenerProductos(){
-        List<Producto> lproductos = new ArrayList<>();
-        Producto p;
-        for(int i=0; i<25; i++){
-                p=new Producto();
-                p.setNombre("Enchiladas rojas");
-                p.setPrecio(i);
-                p.setRutaImagen("/img/Productos/enchiladasRojas.png");
-                p.setDescripcion("Deliciosas tortillas dobladas en forma de flautas rellenas de pollo bañanas en salsa roja");
-                
-                lproductos.add(p);
-        }
-        
+
+    private List<Producto> obtenerProductos(int idCafeteria){
+        ServicioProducto servicioProducto = new ServicioProducto();
+        List<Producto> lproductos = servicioProducto.obtenerListaProductos(idCafeteria);
         return lproductos;
     }
-    
     private void setProductoElegido(Producto p){
-        //precioP = p.getPrecio();
         lblNombreEscogido.setText(p.getNombre());
-        lblPrecioEscogido.setText(Float.toString(p.getPrecio()));
+        lblPrecioEscogido.setText("$" + Float.toString(p.getPrecio()));
         Image img = new Image(getClass().getResourceAsStream(p.getRutaImagen()));
         imgProductoEscogido.setImage(img);
         txaDescripcionEscogido.setText(p.getDescripcion());
+        lblTiempoAprox.setText(Integer.toString(p.getTiempoAproximado()) + " min");
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        productos.addAll(obtenerProductos());
+        productos.addAll(obtenerProductos(2));
         if(productos.size()>0){
             setProductoElegido(productos.get(0));
             myListener = new MyListenerProducto(){
@@ -123,11 +122,10 @@ public class FXMLInicioUsuarioController implements Initializable {
         try {
             for(int i = 0; i < productos.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("FXMLItemProducto.fxml"));
-                
+                fxmlLoader.setLocation(getClass().getResource("ItemProducto.fxml"));
                 AnchorPane acp = fxmlLoader.load();
             
-                FXMLItemProductoController productoController = fxmlLoader.getController();
+                ItemProductoController productoController = fxmlLoader.getController();
                 productoController.setProducto(productos.get(i), myListener);
                 
                 if(columna == 3){
@@ -147,17 +145,17 @@ public class FXMLInicioUsuarioController implements Initializable {
                 gdProductos.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 gdProductos.setMaxHeight(Region.USE_COMPUTED_SIZE);
                 
-                GridPane.setMargin(acp, new Insets(10));
+                GridPane.setMargin(acp, new Insets(7));
              }
         } catch (IOException ex) {
-            Logger.getLogger(FXMLInicioUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }    
+    }
     
     @FXML
     private void clicDejarOpinion(ActionEvent event) {
-        cambiarVentana("/GUI/FXMLEscribirOpinion.fxml", "Escribe una opinión");
+        cambiarVentana("/GUI/CDejarOpinion.fxml", "Escribe una opinión");
     }
 
     @FXML
@@ -168,7 +166,7 @@ public class FXMLInicioUsuarioController implements Initializable {
     @FXML
     private void clicModificarCuenta(ActionEvent event) {
         
-        //cambiarVentana("/GUI/FXMLModificarCuenta.fxml", "Modificar Cuenta");
+        //cambiarVentana("/GUI/GModificarCuenta.fxml", "Modificar Cuenta");
     }
 
     @FXML
@@ -205,5 +203,8 @@ public class FXMLInicioUsuarioController implements Initializable {
     void clicModificarProducto(ActionEvent event) {
 
     }
-    
+    @FXML
+    void clicAñadirProducto(ActionEvent event) {
+
+    }
 }

@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
  *
  * @author marie
  */
-public class FXMLAltaResponsableCafeteria implements Initializable {
+public class ADAltaResponsableCafeteria implements Initializable {
 
     @FXML
     private ComboBox<String> cbCafeteria;

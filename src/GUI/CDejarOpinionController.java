@@ -23,7 +23,7 @@ import javafx.stage.Stage;
  * @author marie
  */
 
-public class FXMLEscribirOpinionController implements Initializable {
+public class CDejarOpinionController implements Initializable {
 
     @FXML
     private ToggleGroup tgSeleccion;

@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author marie
  */
-public class FXMLModificarCuentaController implements Initializable {
+public class GModificarCuentaController implements Initializable {
 
     @FXML
     private Button btnSolicitarCodigo;

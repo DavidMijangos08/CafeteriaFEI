@@ -29,7 +29,7 @@ import javafx.stage.Stage;
  *
  * @author marie
  */
-public class FXMLInicioSesionController implements Initializable {
+public class GInicioSesionController implements Initializable {
 
     @FXML
     private TextField txfCorreoInicio;
@@ -84,50 +84,50 @@ public class FXMLInicioSesionController implements Initializable {
     private void enviarAVentanaAdministrador(){
         try {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXMLEleccionUsuario.fxml")));
+            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXMLEleccionCafeteria.fxml")));
             stage.setScene(scenePrincipal);
             stage.setTitle("Inicio");
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(FXMLInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     private void enviarAVentanaConsumidor(){
         try {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXMLEleccionUsuario.fxml")));
+            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/CEleccionCafeteria.fxml")));
             stage.setScene(scenePrincipal);
             stage.setTitle("Inicio");
             stage.show();
         } catch (IOException ex) {
-            Logger.getLogger(FXMLInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     private void enviarAVentanaResponsable(PersonalCafeteria personalCafeteria){
         try {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXMLEleccionUsuario.fxml")));
+            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/GInicioProductos.fxml")));
             stage.setScene(scenePrincipal);
             stage.setTitle("Inicio");
             stage.show();
             System.out.println("El personal es " + personalCafeteria.getNombre() + " y es " + personalCafeteria.getCargo());
         } catch (IOException ex) {
-            Logger.getLogger(FXMLInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     private void enviarAVentanaRecepcionista(PersonalCafeteria personalCafeteria){
         try {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXMLEleccionUsuario.fxml")));
+            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/CEleccionCafeteria.fxml")));
             stage.setScene(scenePrincipal);
             stage.setTitle("Inicio");
             stage.show();
             System.out.println("El personal es " + personalCafeteria.getNombre() + " y es " + personalCafeteria.getCargo());
         } catch (IOException ex) {
-            Logger.getLogger(FXMLInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

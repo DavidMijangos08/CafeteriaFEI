@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="411.0" prefWidth="622.0" style="-fx-background-color: #E0E0E0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AltaPersonalCafeteriaController">
+   <children>
+      <Pane prefHeight="40.0" prefWidth="622.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Label layoutX="14.0" layoutY="2.0" text="Alta de personal de cafetería">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="6.0" layoutY="48.0" prefHeight="353.0" prefWidth="610.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Button layoutX="426.0" layoutY="313.0" mnemonicParsing="false" onAction="#clicCancelar" text="Cancelar" />
+            <Button layoutX="520.0" layoutY="313.0" mnemonicParsing="false" onAction="#clicRegistrar" text="Registrar" />
+            <TableView fx:id="tablaPersonal" layoutX="7.0" layoutY="14.0" prefHeight="200.0" prefWidth="575.0">
+              <columns>
+                <TableColumn fx:id="columnaNombre" prefWidth="160.0" text="Nombre" />
+                <TableColumn fx:id="columnaCURP" prefWidth="127.0" text="CURP" />
+                  <TableColumn fx:id="columnaCorreo" prefWidth="181.0" text="Correo electrónico" />
+                  <TableColumn fx:id="columnaCargo" prefWidth="106.0" text="Cargo" />
+              </columns>
+            </TableView>
+            <TextField fx:id="txfNombre" layoutX="7.0" layoutY="227.0" prefHeight="25.0" prefWidth="156.0" promptText="Nombre completo" />
+            <TextField fx:id="txfCURP" layoutX="170.0" layoutY="227.0" prefHeight="25.0" prefWidth="132.0" promptText="CURP" />
+            <TextField fx:id="txfCorreo" layoutX="306.0" layoutY="227.0" prefHeight="25.0" prefWidth="167.0" promptText="correo@correo.com" />
+            <ComboBox fx:id="cbCargo" layoutX="482.0" layoutY="227.0" prefHeight="25.0" prefWidth="99.0" />
+            <Button layoutX="518.0" layoutY="263.0" mnemonicParsing="false" onAction="#clicAñadir" prefHeight="25.0" prefWidth="61.0" text="Añadir" />
+            <Button layoutX="584.0" layoutY="43.0" mnemonicParsing="false" onAction="#clicX" prefHeight="25.0" prefWidth="23.0" text="X" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
