@@ -10,17 +10,17 @@ pipeline {
         }
         stage('install') {
             steps {
-                bat "mvn install -f Software Solutions - Cliente Pipeline"
+                bat "mvn install -f CafeteriaFEI"
             }
         }
         stage('test') {
             steps {
-                bat "mvn test -f Software Solutions - Cliente Pipeline"
+                bat "mvn test -f CafeteriaFEI"
             }
         }
         stage('package') {
             steps {
-                bat "mvn package -f Software Solutions - Cliente Pipeline"
+                bat "mvn package -f CafeteriaFEI"
             }
         }
     }
