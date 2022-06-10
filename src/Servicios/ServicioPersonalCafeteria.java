@@ -49,7 +49,9 @@ public class ServicioPersonalCafeteria {
                 String CURP = miRespuesta.getString("CURP");
                 String cargo = miRespuesta.getString("cargo");
                 int idCafeteria = miRespuesta.getInt("idCafeteria"); 
+                String token = miRespuesta.getString("token");
                 personalCafeteria = new PersonalCafeteria(idPersonal, nombre, CURP, correoElectronico, cargo, idCafeteria);
+                personalCafeteria.setToken(token);
             }
         } catch (MalformedURLException ex) {
             Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,7 +82,9 @@ public class ServicioPersonalCafeteria {
                 String correoElectronico = miRespuesta.getString("correoElectronico");
                 String cargo = miRespuesta.getString("cargo");
                 int idCafeteria = miRespuesta.getInt("idCafeteria"); 
+                String token = miRespuesta.getString("token");
                 personalCafeteria = new PersonalCafeteria(idPersonal, nombre, CURP, correoElectronico, cargo, idCafeteria);
+                personalCafeteria.setToken(token);
             }
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
@@ -167,7 +171,8 @@ public class ServicioPersonalCafeteria {
                             "\"correoElectronico\":"+ " " + "\"" + personalCafeteria.getCorreoElectronico() + "\"" + ", " +
                             "\"cargo\":"+ " " + "\"" + personalCafeteria.getCargo() + "\"" + ", " +
                             "\"idCafeteria\":" + personalCafeteria.getIdCafeteria() + ", " +
-                            "\"contrasenia\":"+ " " + "\"" + personalCafeteria.getContrasenia()+ "\"" + 
+                            "\"contrasenia\":" + personalCafeteria.getContrasenia() + ", " +
+                            "\"token\":"+ " " + "\"" + personalCafeteria.getToken() + "\"" + 
                             "}";
             conexion.setRequestProperty("Content-Type", "application/json");
             conexion.setDoOutput(true);

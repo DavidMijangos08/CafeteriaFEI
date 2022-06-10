@@ -9,6 +9,7 @@ public class PersonalCafeteria {
     private int idCafeteria;
     private String contrasenia;
     private int idPersonal;
+    private String token;
 
     public PersonalCafeteria() {
     }
@@ -84,6 +85,14 @@ public class PersonalCafeteria {
 
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
       
 }

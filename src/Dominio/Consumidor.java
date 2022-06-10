@@ -6,8 +6,16 @@ public class Consumidor {
     private String correoElectronico;
     private String contrasenia;
     private int idConsumidor;
+    private String token;
 
     public Consumidor(String nombre, String correoElectronico, String contrasenia) {
+        this.nombre = nombre;
+        this.correoElectronico = correoElectronico;
+        this.contrasenia = contrasenia;
+    }
+    
+    public Consumidor(int idConsumidor, String nombre, String correoElectronico, String contrasenia) {
+        this.idConsumidor = idConsumidor;
         this.nombre = nombre;
         this.correoElectronico = correoElectronico;
         this.contrasenia = contrasenia;
@@ -44,5 +52,13 @@ public class Consumidor {
     public void setIdConsumidor(int idConsumidor) {
         this.idConsumidor = idConsumidor;
     }
-   
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+    
 }
