@@ -3,16 +3,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'make'
+                bat "mvn -Dmaven.test.failure.ignore=true clean package" 
                 archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
         
          stage('Test') {
             steps {
-                /* `make check` returns non-zero on test failures,
-                * using `true` to allow the Pipeline to continue nonetheless
-                */
                 bat 'make check || true' 
                 junit '**/target/*.xml' 
             }
