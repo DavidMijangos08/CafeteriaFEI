@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GInicioProductosController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="300.0" spacing="5.0" styleClass="white-color" stylesheets="@style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="168.0" prefWidth="300.0" spacing="2.0" styleClass="header-titulo" stylesheets="@style.css">
+                     <children>
+                        <ImageView fitHeight="84.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/CafeteriaLogo.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Label fx:id="lblNombreCafeteria" text="Cafetería FEI" textFill="#3d3d3d">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnVerCafeteria" mnemonicParsing="false" onAction="#clicVerCafeteria" styleClass="btn-blanco" text="Ver Cafetería">
+                           <VBox.margin>
+                              <Insets bottom="3.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </VBox>
+                  <VBox fx:id="vbproductoEscogidoCarta" alignment="CENTER" prefHeight="372.0" prefWidth="270.0" spacing="5.0" styleClass="item-seleccionado" stylesheets="@style.css">
+                     <VBox.margin>
+                        <Insets left="15.0" right="15.0" top="15.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox prefHeight="30.0" prefWidth="270.0">
+                           <children>
+                              <Label fx:id="lblNombreEscogido" prefHeight="30.0" prefWidth="180.0" textFill="#3d3d3d">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblPrecioEscogido" prefHeight="30.0" prefWidth="70.0" textFill="#3d3d3d">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="imgProductoEscogido" fitHeight="100.0" fitWidth="100.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" />
+                           </children>
+                        </HBox>
+                        <TextArea fx:id="txaDescripcionEscogido" editable="false" prefHeight="45.0" prefWidth="250.0" stylesheets="@style.css" wrapText="true">
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </VBox.margin>
+                           <styleClass>
+                              <String fx:value="content" />
+                              <String fx:value="centeredTextArea" />
+                           </styleClass>
+                        </TextArea>
+                        <HBox alignment="CENTER" prefHeight="23.0" prefWidth="150.0">
+                           <children>
+                              <ImageView fx:id="imgProducto1" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/reloj.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                              <Label fx:id="lblTiempoAprox" prefHeight="23.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Button fx:id="btnDejarOpinion" mnemonicParsing="false" onAction="#clicDejarOpinion" prefHeight="30.0" prefWidth="110.0" stylesheets="@style.css" text="Dejar Opinión">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="btn-blanco" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="btnVerOpiniones" mnemonicParsing="false" onAction="#clicVerOpiniones" prefHeight="30.0" prefWidth="110.0" text="Ver Opiniones">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="btn-blanco" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </Button>
+                        <HBox alignment="CENTER" prefHeight="37.0" prefWidth="270.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="btnModificarProducto" mnemonicParsing="false" onAction="#clicModificarProducto" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css" text="Modificar">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="btn-blanco" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="btnEliminarProducto" mnemonicParsing="false" onAction="#clicEliminarProducto" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css" text="Eliminar">
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="btn-blanco" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Button fx:id="btnCerrarSesion" mnemonicParsing="false" onAction="#clicCerrarSesion" text="Cerrar Sesión">
+                     <styleClass>
+                        <String fx:value="btn-naranja" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin></Button>
+                  <Pane prefHeight="15.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" spacing="15.0">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/usuario.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="lblNombreUsuario" prefHeight="40.0" prefWidth="390.0" text="María Elena Fernández Castillo" textFill="#3d3d3d" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnModificarCuenta" mnemonicParsing="false" onAction="#clicModificarCuenta" prefHeight="30.0" prefWidth="116.0" styleClass="btn-naranja" stylesheets="@style.css" text="Modificar Cuenta" />
+                        <ImageView fx:id="imgPregunta" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#clicPreguntas" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/pregunta.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="529.0" prefWidth="650.0" styleClass="transparent" stylesheets="@style.css" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fx:id="scpProductos" prefHeight="530.0" prefWidth="630.0" styleClass="white-color" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+                           <content>
+                              <GridPane fx:id="gdProductos">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </ScrollPane>
+                     </children>
+                     <VBox.margin>
+                        <Insets right="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="90.0" prefWidth="650.0">
+                     <children>
+                        <Button fx:id="btnAñadirProducto" mnemonicParsing="false" onAction="#clicAñadirProducto" prefHeight="30.0" stylesheets="@style.css" text="Añadir Producto">
+                           <styleClass>
+                              <String fx:value="btn-naranja" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets right="5.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

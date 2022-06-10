@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CafeteriaFEI">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/CafeteriaFEI.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

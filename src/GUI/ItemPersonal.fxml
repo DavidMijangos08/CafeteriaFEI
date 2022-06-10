@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane id="Anchor Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#click" prefHeight="35.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ItemPersonalController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="665.0" spacing="5.0">
+         <children>
+            <Label fx:id="lblNombre" prefWidth="200.0" text="mariaelenafdezcastillo" />
+            <Label fx:id="lblCurp" prefWidth="145.0" text="CUPLHDFLADLSFHDSJ," />
+            <Label fx:id="lblCorreo" prefWidth="200.0" text="MARIEISMYNAME1@GMAIL.COM" />
+            <Label fx:id="lblCargo" prefWidth="100.0" text="SECRETARIO" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

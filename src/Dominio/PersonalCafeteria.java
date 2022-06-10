@@ -14,6 +14,15 @@ public class PersonalCafeteria {
     public PersonalCafeteria() {
     }
 
+    public PersonalCafeteria(String nombre, String CURP, String correoElectronico, String cargo) {
+        this.idPersonal = idPersonal;
+        this.nombre = nombre;
+        this.CURP = CURP;
+        this.correoElectronico = correoElectronico;
+        this.cargo = cargo;
+        this.idCafeteria = idCafeteria;
+    }
+
     public PersonalCafeteria(String nombre, String CURP, String correoElectronico, String cargo, int idCafeteria) {
         this.nombre = nombre;
         this.CURP = CURP;
