@@ -1,26 +1,31 @@
 pipeline {
     agent any
     stages {
-        stage('git repo & clean') {
+        stage('Build') {
             steps {
-               bat "rmdir  /s /q Software Solutions - Cliente Pipeline"
-                bat "git clone https://github.com/DavidMijangos08/CafeteriaFEI.git"
-                bat "mvn clean -f Software Solutions - Cliente Pipeline"
+                bat 'make'
+                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
             }
         }
-        stage('install') {
+        
+         stage('Test') {
             steps {
-                bat "mvn install -f CafeteriaFEI"
+                /* `make check` returns non-zero on test failures,
+                * using `true` to allow the Pipeline to continue nonetheless
+                */
+                bat 'make check || true' 
+                junit '**/target/*.xml' 
             }
         }
-        stage('test') {
-            steps {
-                bat "mvn test -f CafeteriaFEI"
+        
+         stage('Deploy') {
+            when {
+              expression {
+                currentBuild.result == null || currentBuild.result == 'SUCCESS'
+              }
             }
-        }
-        stage('package') {
             steps {
-                bat "mvn package -f CafeteriaFEI"
+                sh 'make publish'
             }
         }
     }
