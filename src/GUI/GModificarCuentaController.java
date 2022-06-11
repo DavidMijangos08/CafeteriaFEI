@@ -52,12 +52,12 @@ public class GModificarCuentaController implements Initializable {
 
     @FXML
     private void clicRegresar(ActionEvent event) {
-        cambiarVentana("/GUI/FXMLInicioUsuarioProductos.fxml");
+        cambiarVentana("/GUI/GInicioProductos.fxml");
     }
 
     @FXML
     private void clicCrearCuenta(ActionEvent event) {
-        cambiarVentana("/GUI/FXMLInicioUsuarioProductos.fxml");
+        cambiarVentana("/GUI/GInicioProductos.fxml");
     }
     
      private void cambiarVentana(String ruta){

@@ -134,7 +134,6 @@ public class GInicioProductosController implements Initializable {
                 }
                 
                 gdProductos.add(acp,columna++,fila);
-                
                 //Ajustar el ancho del grid
                 gdProductos.setMinWidth(Region.USE_COMPUTED_SIZE);
                 gdProductos.setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -165,13 +164,12 @@ public class GInicioProductosController implements Initializable {
 
     @FXML
     private void clicModificarCuenta(ActionEvent event) {
-        
-        //cambiarVentana("/GUI/GModificarCuenta.fxml", "Modificar Cuenta");
+        cambiarVentana("/GUI/GModificarCuenta.fxml", "Modificar Cuenta");
     }
 
     @FXML
     private void clicVerOpiniones(ActionEvent event) {
-        
+        cambiarVentana("/GUI/GReseñasProducto.fxml", "Reseñas");
     }
 
     @FXML
@@ -193,6 +191,7 @@ public class GInicioProductosController implements Initializable {
 
     @FXML
     private void clicVerCafeteria(ActionEvent event) {
+        cambiarVentana("/GUI/GVerCafeteria.fxml", "Cafetería");
     }
     @FXML
     void clicEliminarProducto(ActionEvent event) {
@@ -201,10 +200,10 @@ public class GInicioProductosController implements Initializable {
 
     @FXML
     void clicModificarProducto(ActionEvent event) {
-
+        cambiarVentana("/GUI/RCModificarProducto.fxml", "Modificar Producto");
     }
     @FXML
     void clicAñadirProducto(ActionEvent event) {
-
+        cambiarVentana("/GUI/RCAgregarProducto.fxml", "Agregar Producto");
     }
 }

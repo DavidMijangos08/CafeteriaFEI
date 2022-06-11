@@ -48,12 +48,12 @@ public class CDejarOpinionController implements Initializable {
 
     @FXML
     private void clicAgregarImagen(ActionEvent event) {
-        cambiarVentana("/GUI/FXMLInicioUsuarioProductos.fxml");
+        cambiarVentana("/GUI/GInicioProductos.fxml");
     }
 
     @FXML
     private void clicRegresar(ActionEvent event) {
-        cambiarVentana("/GUI/FXMLInicioUsuarioProductos.fxml");
+        cambiarVentana("/GUI/GInicioProductos.fxml");
     }
 
     @FXML

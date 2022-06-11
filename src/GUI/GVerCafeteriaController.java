@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import Dominio.Producto;
 import Dominio.ReseñaCafeteria;
 import java.io.IOException;
 import java.net.URL;
@@ -12,6 +13,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Servicios.ServicioProducto;
+import Servicios.ServicioReseñasCafeteria;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,7 +70,7 @@ public class GVerCafeteriaController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    private List<ReseñaCafeteria> obtenerReseñas(){
+    /*private List<ReseñaCafeteria> obtenerReseñas(){
         List<ReseñaCafeteria> lReseña = new ArrayList<>();
         ReseñaCafeteria p;
         for(int i=0; i<20; i++){
@@ -79,15 +83,21 @@ public class GVerCafeteriaController implements Initializable {
         }
         
         return lReseña;
+    }*/
+    private List<ReseñaCafeteria> obtenerReseñas(int idCafeteria){
+    //private void obtenerReseñas(int idCafeteria){
+        ServicioReseñasCafeteria servicioReseña = new ServicioReseñasCafeteria();
+        List<ReseñaCafeteria> lr = servicioReseña.obtenerReseñasDeCafeteria(idCafeteria);
+        return lr;
     }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        reseñas.addAll(obtenerReseñas());
-        
+        //reseñas.addAll(obtenerReseñas(2));
+        obtenerReseñas(2);
         int fila = 1;
         try {
             for(int i = 0; i < reseñas.size(); i++){
+                System.out.println(reseñas.get(i).getOpinion());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("ItemReseñaCafeteria.fxml"));
                 
@@ -118,6 +128,7 @@ public class GVerCafeteriaController implements Initializable {
 
     @FXML
     private void clicModificarCuenta(ActionEvent event) {
+
     }
 
     @FXML
@@ -126,6 +137,7 @@ public class GVerCafeteriaController implements Initializable {
 
     @FXML
     private void clicRegresar(ActionEvent event) {
+
     }
 
     @FXML

@@ -36,7 +36,7 @@
                                 <Insets bottom="5.0" />
                             </VBox.margin>
                         </Label>
-                        <Button fx:id="btnVerOpinionesC" mnemonicParsing="false" onAction="#clicVerOpinionesC" prefHeight="30.0" prefWidth="110.0" styleClass="btn-blanco" stylesheets="@style.css" text="Ver Opiniones">
+                        <Button fx:id="btnVerCafeteria" mnemonicParsing="false" onAction="#clicVerCafeteria" prefHeight="30.0" prefWidth="110.0" styleClass="btn-blanco" stylesheets="@style.css" text="Ver Cafeteria">
 
                             <VBox.margin>
                                 <Insets />

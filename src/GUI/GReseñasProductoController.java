@@ -63,7 +63,7 @@ public class GReseñasProductoController implements Initializable {
     @FXML
     private Button btnDejarOpinion;
     private List<ReseñaProducto> reseñas = new ArrayList<>();
-    
+
     /**
      * Initializes the controller class.
      */
