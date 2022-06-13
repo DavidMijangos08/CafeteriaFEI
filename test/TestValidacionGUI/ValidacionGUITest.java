@@ -1,11 +1,3 @@
-/********************************************************************/
-/* Archivo: ValidacionGUITest.java                                  */
-/* Programador: David Alexander                                     */
-/* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
-/* Descripción: Archivo donde se crean los test para los            */
-/*              metodos de validacion                               */
-/********************************************************************/
 
 package TestValidacionGUI;
 
@@ -56,5 +48,6 @@ public class ValidacionGUITest {
         Validacion validacion = new Validacion();
         String contraseniaInvalida = "1234";
         assertTrue(validacion.existeContraseniaInvalida(contraseniaInvalida));
-    } 
+    }
+    
 }

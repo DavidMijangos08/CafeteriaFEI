@@ -1,12 +1,7 @@
-/********************************************************************/
-/* Archivo: CEleccionCafeteriaController.java                       */
-/* Programador: David Alexander                                     */
-/* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
-/* Descripción: Archivo donde se inicializa la ventana              */
-/*              "Eleccion cafeteria" con sus metodos                */
-/********************************************************************/
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package GUI;
 
 import Dominio.Cafeteria;
@@ -27,6 +22,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
+/**
+ * FXML Controller class
+ *
+ * @author marie
+ */
 public class CEleccionCafeteriaController implements Initializable {
 
     @FXML
@@ -38,6 +38,9 @@ public class CEleccionCafeteriaController implements Initializable {
     @FXML
     private Button btnContinuar;
 
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ObservableList<String> facultades = FXCollections.observableArrayList("Facultad de Estadística e Informática", 

@@ -1,12 +1,7 @@
-/********************************************************************/
-/* Archivo: RSVerPersonalController.java                            */
-/* Programador: David Alexander                                     */
-/* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
-/* Descripción: Archivo donde se inicializa la ventana              */
-/*              "Ver personal" con sus metodos                      */
-/********************************************************************/
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package GUI;
 
 import Dominio.PersonalCafeteria;
@@ -38,6 +33,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author marie
+ */
 public class RSVerPersonalController implements Initializable{
     @FXML
     private Button btnModificarCuenta;
@@ -66,7 +65,6 @@ public class RSVerPersonalController implements Initializable{
 
     private MyListenerPersonal myListener;
     private List<PersonalCafeteria> lPersonal = new ArrayList<>();
-
     @FXML
     private Label lblNombrePersonal;
     @FXML
@@ -97,6 +95,7 @@ public class RSVerPersonalController implements Initializable{
                 }
             };
         }
+
 
         int fila = 0;
         try {
@@ -178,6 +177,7 @@ public class RSVerPersonalController implements Initializable{
             System.err.println(ex.getMessage());
         }
     }
+
 
     @FXML
     private void clicModificarPersonal(ActionEvent event) {

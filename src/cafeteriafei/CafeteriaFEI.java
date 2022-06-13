@@ -1,12 +1,13 @@
-/********************************************************************/
-/* Archivo: CafeteriaFEI.java                                       */
-/* Programador: Maria Elena                                         */
-/* Fecha de creación: 18/May/2022                                   */
-/* Fecha modificación:  20/May/2022                                 */
-/* Descripción: Archivo principal donde se decide direcciona        */
-/*              a la ventana "Inicio de Sesion"                     */
-/********************************************************************/
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package cafeteriafei;
 
 import java.io.File;
@@ -17,6 +18,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ *
+ * @author david
+ */
 public class CafeteriaFEI extends Application {
 
     @Override
@@ -30,6 +35,9 @@ public class CafeteriaFEI extends Application {
         primaryStage.show();
     }
 
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

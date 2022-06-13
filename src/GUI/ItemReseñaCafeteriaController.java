@@ -1,12 +1,7 @@
-/********************************************************************/
-/* Archivo: ItemReseñaCafeteriaController.java                      */
-/* Programador: Maria Elena                                         */
-/* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
-/* Descripción: Archivo donde se inicializa la visualizacion        */
-/*              de los datos de las reseñas                         */
-/********************************************************************/
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package GUI;
 
 import Dominio.ReseñaCafeteria;
@@ -19,6 +14,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * FXML Controller class
+ *
+ * @author marie
+ */
 public class ItemReseñaCafeteriaController implements Initializable {
 
     private ReseñaCafeteria res;
@@ -28,7 +28,9 @@ public class ItemReseñaCafeteriaController implements Initializable {
     private Label lblTitulo;
     @FXML
     private TextArea txaDescripcion;
-
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

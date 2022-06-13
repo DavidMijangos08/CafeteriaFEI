@@ -1,12 +1,7 @@
-/********************************************************************/
-/* Archivo: VerCafeteriasController.java                            */
-/* Programador: Maria Elena                                         */
-/* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
-/* Descripción: Archivo donde se inicializa la ventana              */
-/*              "Ver cafeteria" con sus metodos                     */
-/********************************************************************/
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package GUI;
 
 import Dominio.Cafeteria;
@@ -39,6 +34,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
+/**
+ * FXML Controller class
+ *
+ * @author marie
+ */
 public class GVerCafeteriaController implements Initializable {
 
     @FXML
@@ -69,32 +69,12 @@ public class GVerCafeteriaController implements Initializable {
     @FXML
     private Button btnDejarOpinion;
 
-    /*private List<ReseñaCafeteria> obtenerReseñas(){
-        List<ReseñaCafeteria> lReseña = new ArrayList<>();
-        ReseñaCafeteria p;
-        for(int i=0; i<20; i++){
-                p = new ReseñaCafeteria();
-                p.setTitulo("Muy buen producto " +i);
-                p.setOpinion("siempre pido lo mismo y nunca me decepciona, sigan así :) "+i);
-                p.setRutaImagen("/img/usuario.png");
-                
-                lReseña.add(p);
-        }
-        
-        return lReseña;
-    }*/
-    
-    private List<ReseñaCafeteria> obtenerReseñas(int idCafeteria){
-    //private void obtenerReseñas(int idCafeteria){
-        ServicioReseñasCafeteria servicioReseña = new ServicioReseñasCafeteria();
-        List<ReseñaCafeteria> lr = servicioReseña.obtenerReseñasDeCafeteria(idCafeteria);
     private int idCafeteria = 1;
     private List<ReseñaCafeteria> obtenerReseñas(){
         ServicioReseñasCafeteria servicioReseñas = new ServicioReseñasCafeteria();
         List<ReseñaCafeteria> lr = servicioReseñas.obtenerReseñasDeCafeteria(idCafeteria);
         return lr;
     }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         obtenerInfoCafeteria(idCafeteria);

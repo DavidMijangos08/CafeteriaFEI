@@ -1,12 +1,7 @@
-/********************************************************************/
-/* Archivo: CDejarOpinionController.java                            */
-/* Programador: Maria Elena                                         */
-/* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  10/Jun/2022                                 */
-/* Descripción: Archivo donde se inicializa la ventana              */
-/*              "Dejar opinion" con sus metodos                     */
-/********************************************************************/
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package GUI;
 
 import java.io.File;
@@ -21,6 +16,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+/**
+ * FXML Controller class
+ *
+ * @author marie
+ */
 
 public class CDejarOpinionController implements Initializable {
 
@@ -55,7 +56,9 @@ public class CDejarOpinionController implements Initializable {
     @FXML
     private RadioButton rbCalif5;
     FileChooser fc = new FileChooser();
-
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

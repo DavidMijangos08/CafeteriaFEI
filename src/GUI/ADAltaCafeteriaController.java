@@ -1,20 +1,23 @@
-/********************************************************************/
-/* Archivo: ADAltaCafeteriaController.java                          */
-/* Programador: Maria Elena                                         */
-/* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
-/* Descripción: Archivo donde se inicializa la ventana              */
-/*              "Alta de cafeteria"                                 */
-/********************************************************************/
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package GUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
+/**
+ * FXML Controller class
+ *
+ * @author marie
+ */
 public class ADAltaCafeteriaController implements Initializable {
 
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

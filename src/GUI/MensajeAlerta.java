@@ -1,16 +1,17 @@
-/********************************************************************/
-/* Archivo: MensajeAlerta.java                                      */
-/* Programador: Eder Ivan                                           */
-/* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  30/May/2022                                 */
-/* Descripción: Archivo donde se inicializa los mensajes de alerta  */
-/********************************************************************/
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package GUI;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
+/**
+ *
+ * @author david
+ */
 public class MensajeAlerta {
     @FXML
     public  void mostrarAlertaInformacionInvalida(String mensaje) {

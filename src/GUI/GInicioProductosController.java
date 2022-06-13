@@ -1,12 +1,7 @@
-/********************************************************************/
-/* Archivo: GInicioProductosController.java                         */
-/* Programador: Maria Elena                                         */
-/* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
-/* Descripción: Archivo donde se inicializa la ventana              */
-/*              "Cafeteria" con sus metodos                         */
-/********************************************************************/
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package GUI;
 
 import Dominio.Cafeteria;
@@ -45,8 +40,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 import javax.imageio.ImageIO;
 
+/**
+ * FXML Controller class
+ *
+ * @author marie
+ */
 public class GInicioProductosController implements Initializable {
 
     @FXML
@@ -91,6 +92,10 @@ public class GInicioProductosController implements Initializable {
     private MyListenerProducto myListener;
     private List<Producto> productos = new ArrayList<>();
     
+    /**
+     * Initializes the controller class.
+     */
+
     private List<Producto> obtenerProductos(int idCafeteria){
         ServicioProducto servicioProducto = new ServicioProducto();
         List<Producto> lproductos = servicioProducto.obtenerProductosDeCafeteria(idCafeteria);

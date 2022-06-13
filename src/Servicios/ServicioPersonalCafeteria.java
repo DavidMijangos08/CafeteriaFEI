@@ -1,11 +1,3 @@
-/********************************************************************/
-/* Archivo: ServicioPersonalCafeteria.java                          */
-/* Programador: David Alexander                                     */
-/* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  10/Jun/2022                                 */
-/* Descripción: Archivo donde se crean los metodos para             */
-/*              llamarlos los request del servidor                  */
-/********************************************************************/
 
 package Servicios;
 
@@ -24,6 +16,7 @@ import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 public class ServicioPersonalCafeteria {
     
@@ -260,5 +253,7 @@ public class ServicioPersonalCafeteria {
         }
         return respuesta;
     }
-
+    
+    
+    
 }

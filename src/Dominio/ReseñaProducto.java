@@ -1,11 +1,3 @@
-/********************************************************************/
-/* Archivo: ReseñaProducto.java                                     */
-/* Programador: Maria Elena                                         */
-/* Fecha de creación: 18/May/2022                                   */
-/* Fecha modificación:  20/May/2022                                 */
-/* Descripción: Archivo donde se tiene la clase ReseñaProducto      */
-/*              con sus metodos y atributos                         */
-/********************************************************************/
 
 package Dominio;
 

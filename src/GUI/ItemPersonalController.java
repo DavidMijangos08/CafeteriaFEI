@@ -1,12 +1,7 @@
-/********************************************************************/
-/* Archivo: ItemPersonalController.java                             */
-/* Programador: Maria Elena                                         */
-/* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
-/* Descripción: Archivo donde se inicializa la visualizacion        */
-/*              de los datos del personal                           */
-/********************************************************************/
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ */
 package GUI;
 
 import Dominio.PersonalCafeteria;
@@ -17,6 +12,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * FXML Controller class
+ *
+ * @author marie
+ */
 public class ItemPersonalController implements Initializable {
 
     @FXML
@@ -31,6 +31,9 @@ public class ItemPersonalController implements Initializable {
     private PersonalCafeteria personal;
     private MyListenerPersonal myListener;
     
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

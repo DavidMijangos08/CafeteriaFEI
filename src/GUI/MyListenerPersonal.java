@@ -1,15 +1,15 @@
-/********************************************************************/
-/* Archivo: MyListenerPersonal.java                                 */
-/* Programador: Maria Elena                                         */
-/* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
-/* Descripción: Archivo donde se escuchan los clics                 */
-/********************************************************************/
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ */
 package GUI;
 
 import Dominio.PersonalCafeteria;
 
+/**
+ *
+ * @author marie
+ */
 public interface MyListenerPersonal {
     public void onClickListener(PersonalCafeteria p);
 }

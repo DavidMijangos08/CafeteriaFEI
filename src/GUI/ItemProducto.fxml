@@ -1,12 +1,3 @@
-<!--
-   Archivo: ItemProducto.fxml                                                  
-   Programador: Maria Elena                                                
-   Fecha de creación: 30/May/2022                                        
-   Fecha modificación:  02/Jun/2022                                 
-   Descripción: Archivo con las etiquetas para la
-   visualizacion de los datos del producto  
--->
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>

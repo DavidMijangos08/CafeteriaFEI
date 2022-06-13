@@ -1,11 +1,3 @@
-/********************************************************************/
-/* Archivo: ServicioProducto.java                                   */
-/* Programador: Eder Ivan                                           */
-/* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  10/Jun/2022                                 */
-/* Descripción: Archivo donde se crean los metodos para             */
-/*              llamarlos los request del servidor                  */
-/********************************************************************/
 
 package Servicios;
 
@@ -23,6 +15,7 @@ import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 public class ServicioProducto {
     
@@ -62,41 +55,6 @@ public class ServicioProducto {
         return productos;
     }
 
-    public ArrayList<Producto> obtenerListaProductos(int idCafeteria){
-        ArrayList<Producto> productos = new ArrayList<Producto>();
-        try{
-            URL url = new URL("http://127.0.0.1:9090/productos/" + idCafeteria);
-            HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
-            conexion.setRequestMethod("GET");
-            if(conexion.getResponseCode() == 200){
-                BufferedReader entrada = new BufferedReader(
-                        new InputStreamReader(conexion.getInputStream()));
-                String linea;
-                StringBuilder respuesta = new StringBuilder();
-                while((linea = entrada.readLine()) != null){
-                    respuesta.append(linea);
-                }
-                entrada.close();
-                JSONArray arregloDatos = new JSONArray(respuesta.toString());
-                for(int i = 0; i < arregloDatos.length(); i++){
-                    JSONObject producto = arregloDatos.getJSONObject(i);
-                    String nombre = producto.getString("nombre");
-                    String descripcion = producto.getString("descripcion");
-                    int precio = producto.getInt("precio");
-                    int tiempoAproximado = producto.getInt("tiempoAproximado");
-                    String rutaImagen = producto.getString("rutaImagen");
-                    Producto productoCafeteria = new Producto(nombre, descripcion, rutaImagen, precio, tiempoAproximado);
-                    productos.add(productoCafeteria);
-                }
-            }
-        }catch (MalformedURLException ex) {
-            Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException | JSONException ex) {
-            Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return productos;
-    }
-    
     public int agregarNuevoProducto(Producto producto, int idCafeteria){
         int respuesta = 0;
         try{
