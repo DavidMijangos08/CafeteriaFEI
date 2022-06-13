@@ -3,9 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/ADAltaCafeteriaController.java</file>
-            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/cafeteriafei/CafeteriaFEI.java</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/CEleccionCafeteria.fxml</file>
             <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/ADAltaCafeteria.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/GVerCafeteria.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/GModificarCuenta.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/GInicioProductos.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/ItemPersonal.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/RSVerPersonal.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/ItemReseñaCafeteria.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/GReseñasProducto.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/RCModificarProducto.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/ADAltaCafeteriaController.java</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/CDejarOpinion.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/cafeteriafei/CafeteriaFEI.java</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/RCAgregarProducto.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/ADAltaResponsable.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/GInicioSesion.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/ItemReseñaProducto.fxml</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/ItemProducto.fxml</file>
         </group>
     </open-files>
 </project-private>
