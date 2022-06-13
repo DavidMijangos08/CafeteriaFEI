@@ -22,12 +22,20 @@ public class MensajeAlerta {
     }
     
     @FXML
-     public  void mostrarAlertaGuardado(String mensaje){    
-    
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    public  void mostrarAlertaGuardado(String mensaje){    
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("Información guardada");
         alert.setContentText(mensaje + " ha sido guardado con exito");
+        alert.showAndWait();
+    }
+     
+    @FXML
+    public  void mostrarAlertaError(String mensaje){    
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Error");
+        alert.setContentText(mensaje);
         alert.showAndWait();
     }
 }

@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class Validacion {
     public boolean existeCampoInvalido(String campo){
         boolean valor = false;
-        Pattern pattern = Pattern.compile("[!$%'*+/=?^_`{|}~]");
+        Pattern pattern = Pattern.compile("[!$%'*+=?^_`{|}~]");
         Matcher mather = pattern.matcher(campo);
         if(mather.find()){  
             valor=true;

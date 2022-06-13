@@ -161,12 +161,25 @@ public class ServicioCafeteria {
     
     private String buscarAbreviacion(String facultad){
         String abreviacion = "";
-        if(facultad.equals("Facultad de Estadística e Informática")){
-            abreviacion = "FEI";
-        }else if(facultad.equals("Facultad de Medicina")){
-            abreviacion = "FMEDICINA";
+        switch (facultad) {
+            case "Facultad de Estadística e Informática":
+                abreviacion = "FEI";
+                break;
+            case "Facultad de Medicina":
+                abreviacion = "FMEDICINA";
+                break;
+            case "Facultad de Humanidades":
+                abreviacion = "FHUMANIDADES";
+                break;
+            case "Facultad de Derecho":
+                abreviacion = "FDERECHO";
+                break;
+            case "Facultad de Ciencias Administrativas y Sociales":
+                abreviacion = "FCAS";
+                break;
+            default:
+                break;
         }
-        
         return abreviacion;
     }
 }

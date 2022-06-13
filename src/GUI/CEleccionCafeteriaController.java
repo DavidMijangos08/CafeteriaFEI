@@ -40,9 +40,7 @@ public class CEleccionCafeteriaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<String> facultades = FXCollections.observableArrayList("Facultad de Estadística e Informática", 
-                                                                              "Facultad de Medicina");
-        cbFacultad.setItems(facultades);
+        llenarComboBoxFacultades();
     }    
 
     @FXML
@@ -73,6 +71,15 @@ public class CEleccionCafeteriaController implements Initializable {
         }
     }
     
+    private void llenarComboBoxFacultades(){
+        ObservableList<String> facultades = FXCollections.observableArrayList("Facultad de Estadística e Informática", 
+                                                                              "Facultad de Medicina", 
+                                                                              "Facultad de Derecho",
+                                                                              "Facultad de Humanidades",
+                                                                              "Facultad de Ciencias Administrativas y Sociales");
+        cbFacultad.setItems(facultades);
+    }
+    
     private void llenarCafeteriasDeFacultad(String facultadPerteneciente){
         ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
         ArrayList<Cafeteria> cafeterias = servicioCafeteria.obtenerCafeteriasDeFacultad(facultadPerteneciente);
@@ -85,7 +92,7 @@ public class CEleccionCafeteriaController implements Initializable {
         boolean existen = false;
         MensajeAlerta mensajeAlerta = new MensajeAlerta();
         
-        if(cbFacultad.getSelectionModel().getSelectedItem().isEmpty() || cbCafeteria.getSelectionModel().getSelectedItem() == null){
+        if(cbFacultad.getValue() == null || cbCafeteria.getSelectionModel().getSelectedItem() == null){
             existen = true;
             mensajeAlerta.mostrarAlertaInformacionInvalida("Existen campos vacíos");
         }

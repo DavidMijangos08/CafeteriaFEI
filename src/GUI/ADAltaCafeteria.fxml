@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -143,25 +149,25 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cbHoraInicio" prefHeight="25.0" prefWidth="24.0" styleClass="btn-gris" stylesheets="@style.css" />
+                  <ComboBox fx:id="cbHoraInicio" prefHeight="25.0" prefWidth="65.0" styleClass="btn-gris" stylesheets="@style.css" />
                   <Label prefHeight="30.0" text=":">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cbMinutoInicio" prefHeight="25.0" prefWidth="14.0" styleClass="btn-gris" stylesheets="@style.css" />
+                  <ComboBox fx:id="cbMinutoInicio" prefHeight="25.0" prefWidth="65.0" styleClass="btn-gris" stylesheets="@style.css" />
                   <Label prefHeight="30.0" text="a">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cbHoraFin" prefHeight="25.0" prefWidth="13.0" styleClass="btn-gris" stylesheets="@style.css" />
+                  <ComboBox fx:id="cbHoraFin" prefHeight="25.0" prefWidth="65.0" styleClass="btn-gris" stylesheets="@style.css" />
                   <Label prefHeight="30.0" text=":">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cbMinutoFin" prefHeight="25.0" prefWidth="0.0" styleClass="btn-gris" stylesheets="@style.css" />
+                  <ComboBox fx:id="cbMinutoFin" prefHeight="25.0" prefWidth="65.0" styleClass="btn-gris" stylesheets="@style.css" />
                </children>
                <VBox.margin>
                   <Insets right="25.0" />
