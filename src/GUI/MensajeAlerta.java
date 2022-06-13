@@ -26,13 +26,13 @@ public class MensajeAlerta {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("Información guardada");
-        alert.setContentText(mensaje + " ha sido guardado con exito");
+        alert.setContentText(mensaje);
         alert.showAndWait();
     }
      
     @FXML
     public  void mostrarAlertaError(String mensaje){    
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle("Error");
         alert.setContentText(mensaje);

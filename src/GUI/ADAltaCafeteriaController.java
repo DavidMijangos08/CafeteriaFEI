@@ -20,6 +20,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class ADAltaCafeteriaController implements Initializable {
 
@@ -37,6 +39,8 @@ public class ADAltaCafeteriaController implements Initializable {
     private ComboBox<String> cbHoraFin;
     @FXML
     private ComboBox<String> cbMinutoFin;
+    @FXML
+    private Button btnCancelar;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -68,6 +72,7 @@ public class ADAltaCafeteriaController implements Initializable {
                 mensajeAlerta.mostrarAlertaInformacionInvalida("Datos existentes, verifica el nombre de la cafetería");
             }else if(respuesta >= 500){
                 mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+                cerrarVentana();
             }
         }
     }
@@ -123,5 +128,10 @@ public class ADAltaCafeteriaController implements Initializable {
         }
 
         return existe;
+    }
+    
+     private void cerrarVentana(){
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
     }
 }

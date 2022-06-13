@@ -15,8 +15,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.SocketException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -188,7 +190,7 @@ public class ServicioPersonalCafeteria {
         return personalCafeteria;
     }
     
-    public int agregarNuevoPersonalCafeteria(int idCafeteria, PersonalCafeteria personalCafeteria){
+    public int agregarNuevoPersonalCafeteria(int idCafeteria, PersonalCafeteria personalCafeteria) throws IOException{
         int respuesta = 0;
         try{
             URL url = new URL("http://127.0.0.1:9090/personalCafeteria/" + idCafeteria);
@@ -212,7 +214,8 @@ public class ServicioPersonalCafeteria {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return respuesta;
     }

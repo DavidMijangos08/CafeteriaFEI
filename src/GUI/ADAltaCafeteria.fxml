@@ -175,7 +175,7 @@
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="35.0" prefWidth="400.0" spacing="100.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#clicCancelar" stylesheets="@style.css" text="Cancelar" textFill="#3d3d3d">
+                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#clicCancelar" stylesheets="@style.css" text="Cancelar" textFill="#3d3d3d">
                      <font>
                         <Font size="15.0" />
                      </font>

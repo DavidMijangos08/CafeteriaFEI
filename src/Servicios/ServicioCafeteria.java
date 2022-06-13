@@ -14,8 +14,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.SocketException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,7 +28,7 @@ import org.json.JSONObject;
 
 public class ServicioCafeteria {
     
-    public ArrayList<Cafeteria> obtenerTodasLasCafeterias(){
+    public ArrayList<Cafeteria> obtenerTodasLasCafeterias() throws IOException{
         ArrayList<Cafeteria> cafeterias = new ArrayList<Cafeteria>();
         try{
             URL url = new URL("http://127.0.0.1:9090/cafeterias");
@@ -58,6 +60,7 @@ public class ServicioCafeteria {
             Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | JSONException ex) {
             Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         } 
         return cafeterias;
     }

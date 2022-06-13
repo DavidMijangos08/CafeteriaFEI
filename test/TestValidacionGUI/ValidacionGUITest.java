@@ -2,7 +2,7 @@
 /* Archivo: ValidacionGUITest.java                                  */
 /* Programador: David Alexander                                     */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
+/* Fecha modificación:  13/Jun/2022                                 */
 /* Descripción: Archivo donde se crean los test para los            */
 /*              metodos de validacion                               */
 /********************************************************************/
@@ -56,5 +56,12 @@ public class ValidacionGUITest {
         Validacion validacion = new Validacion();
         String contraseniaInvalida = "1234";
         assertTrue(validacion.existeContraseniaInvalida(contraseniaInvalida));
+    }  
+    
+    @Test
+    public void existeCURPInvalidaTest(){
+        Validacion validacion = new Validacion();
+        String CURPInvalida = "MIP05JJDJDJDJMDD";
+        assertTrue(validacion.existeCurpInvalida(CURPInvalida));
     }  
 }
