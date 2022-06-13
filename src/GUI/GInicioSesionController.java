@@ -53,6 +53,7 @@ public class GInicioSesionController implements Initializable {
     private Button btnCrearCuenta;
     @FXML
     private Button btnIniciarSesion;
+    private String codigoEnviado = "";
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -136,11 +137,46 @@ public class GInicioSesionController implements Initializable {
 
     @FXML
     private void clicEnviarCodigo(ActionEvent event) {
+        if(!existenCamposInvalidosEnviarCodigo()){
+            try {
+                ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
+                this.codigoEnviado = servicioConsumidor.enviarCodigoAlCorreo(txfCorreoCrear.getText());
+                MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                mensajeAlerta.mostrarAlertaEnvioCorreo();
+            } catch (IOException ex) {
+                Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+                cerrarVentana();
+            }
+            
+        }
     }
 
     @FXML
-    private void clicCrearCuenta(ActionEvent event) throws MalformedURLException, IOException {
-        
+    private void clicCrearCuenta(ActionEvent event){
+        if(!existenCamposInvalidosEnviarCodigo() && !existenCamposInvalidosRegistrar()){
+            try {
+                ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
+                String nombre = txfNombreCrear.getText();
+                String correo = txfCorreoCrear.getText();
+                String contrasenia = pfContraseniaCrear.getText();
+                Consumidor consumidor = new Consumidor(nombre, correo, contrasenia);
+                int respuesta = servicioConsumidor.agregarNuevoConsumidor(consumidor);
+                MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                if(respuesta == 201){
+                    mensajeAlerta.mostrarAlertaGuardado("Tu cuenta ha sido registrada con éxito, por favor inicia sesión");
+                    limpiarCamposRegistro();
+                }else if(respuesta == 400){
+                    mensajeAlerta.mostrarAlertaInformacionInvalida("Datos ya registrados, es probable que el nombre o correo electrónico ya se encuentren en el sistema");
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+                cerrarVentana();
+            }
+        }
     }
     
     private boolean existenCamposVaciosInicioSesion(){
@@ -153,15 +189,74 @@ public class GInicioSesionController implements Initializable {
         return existe;
     }
     
-    private boolean existenCrearCuenta(){
+    private boolean existenCamposInvalidosEnviarCodigo(){
         boolean existe = false;
         MensajeAlerta mensajeAlerta = new MensajeAlerta();
         if(txfNombreCrear.getText().isEmpty()|| txfCorreoCrear.getText().isEmpty() || pfContraseniaCrear.getText().isEmpty() || pfConfContraseniaCrear.getText().isEmpty()){
             existe = true;
             mensajeAlerta.mostrarAlertaInformacionInvalida("Existen campos vacíos");
         }
+        
+        Validacion validacion = new Validacion();
+        
+        if(!existe && validacion.existeCampoInvalido(txfNombreCrear.getText())){
+            existe = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("Existen caracteres inválidos en el nombre");
+        }
+
+        if(!existe && validacion.existeCorreoInvalido(txfCorreoCrear.getText())){
+            existe = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("Existen caracteres inválidos en el correo electrónico");
+        }
+
+        if(!existe && validacion.existeContraseniaInvalida(pfContraseniaCrear.getText())){
+            existe = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("Contraseña inválida \n"
+                    + "La contraseña debe tener por lo menos 8 caracteres \n"
+                           + "La contraseña debe tener por lo menos un digito \n"
+                                 + "La contraseña debe tener por lo menos una letra mayúscula \n"
+                                 + "La contraseña debe tener por lo menos una letra minúscula");
+        }
+        
+        if(!existe && !pfContraseniaCrear.getText().equals(pfConfContraseniaCrear.getText())){
+            existe = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("Las contraseñas no coinciden, revisa por favor");
+        }
         return existe;
     }
     
-    //Validar campos invalidos
+    private boolean existenCamposInvalidosRegistrar(){
+        boolean existe = false;
+        MensajeAlerta mensajeAlerta = new MensajeAlerta();
+        if(pfCodigoCrear.getText().isEmpty()){
+            existe = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("Por favor ingresa el código de verificación que llegó a tu correo, revisa en correo no deseado");
+        }
+        
+        if(!existe && !rbtTerminos.isSelected()){
+            existe = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("Por favor acepta los términos y condiciones");
+        }
+        
+        if(!existe && !this.codigoEnviado.equals(pfCodigoCrear.getText())){
+            existe = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("Código de verificación inválido");
+        }
+        
+        return existe;
+    }
+    
+    private void cerrarVentana(){
+        Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
+        stage.close();
+    }
+    
+    private void limpiarCamposRegistro(){
+        txfNombreCrear.clear();
+        txfCorreoCrear.clear();
+        pfContraseniaCrear.clear();
+        pfConfContraseniaCrear.clear();
+        pfCodigoCrear.clear();
+        rbtTerminos.setSelected(false);
+    }
 }

@@ -9,13 +9,15 @@
 
 import Dominio.Consumidor;
 import Servicios.ServicioConsumidor;
+import java.io.IOException;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 public class ServicioConsumidorTest {
  
     @Test
-    public void agregarNuevoConsumidorTest(){
+    public void agregarNuevoConsumidorTest() throws IOException{
         ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
         Consumidor consumidor = new Consumidor("Mario Alberto Castillo Gonzalez", "MarioAlbert@gmail.com", "Mario123");
         int respuestaEsperada = 201;
@@ -49,5 +51,12 @@ public class ServicioConsumidorTest {
         int respuestaEsperada = 200;
         int respuestaObtenida = servicioConsumidor.modificarConsumidor(consumidor, 2);
         assertEquals(respuestaObtenida, respuestaEsperada);
+    }
+    
+    @Test
+    public void enviarCodigoAlCorreoTest() throws IOException{
+        ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
+        String codigoGenerado = servicioConsumidor.enviarCodigoAlCorreo("zs19014045@estudiantes.uv.mx");
+        assertTrue(!codigoGenerado.isEmpty());
     }
 }

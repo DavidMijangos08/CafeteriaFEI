@@ -9,6 +9,7 @@
 
 import Dominio.PersonalCafeteria;
 import Servicios.ServicioPersonalCafeteria;
+import java.io.IOException;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -16,7 +17,7 @@ import org.junit.Test;
 public class ServicioPersonalCafeteriaTest {
     
     @Test
-    public void agregarNuevoPersonalCafeteriaTest(){
+    public void agregarNuevoPersonalCafeteriaTest() throws IOException{
         ServicioPersonalCafeteria servicioPersonalCafeteria = new ServicioPersonalCafeteria();
         PersonalCafeteria personalCafeteria = new PersonalCafeteria("Ramon Vargas Velarde", "VAVR950821MOCJRVA3", "ramon@gmail.com", 
                                                                     "Responsable", 3);

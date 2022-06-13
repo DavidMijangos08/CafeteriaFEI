@@ -38,4 +38,13 @@ public class MensajeAlerta {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
+    
+    @FXML
+    public  void mostrarAlertaEnvioCorreo(){    
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Código enviado");
+        alert.setContentText("El código ha sido enviado a tu correo, revisa por favor");
+        alert.showAndWait();
+    }
 }

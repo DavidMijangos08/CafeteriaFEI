@@ -25,7 +25,7 @@ import org.json.JSONObject;
 
 public class ServicioConsumidor {
     
-    public int agregarNuevoConsumidor(Consumidor consumidor){
+    public int agregarNuevoConsumidor(Consumidor consumidor) throws IOException{
         int respuesta = 0;
         try{
             URL url = new URL("http://127.0.0.1:9090/consumidores");
@@ -46,7 +46,7 @@ public class ServicioConsumidor {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return respuesta;
     }
@@ -161,5 +161,45 @@ public class ServicioConsumidor {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
         return respuesta;
+    }
+    
+    public String enviarCodigoAlCorreo(String correoElectronico) throws IOException{
+        String codigoGenerado = generarCodigoAleatorio();
+        try{
+            URL url = new URL("http://127.0.0.1:9090/servicioCorreo");
+            HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+            conexion.setRequestMethod("POST");
+            String datos = "{" + 
+                            "\"correoElectronico\":"+ " " + "\"" + correoElectronico + "\"" + ", " +
+                            "\"codigo\":"+ " " + "\"" + codigoGenerado + "\"" + 
+                            "}";
+            conexion.setRequestProperty("Content-Type", "application/json");
+            conexion.setDoOutput(true);
+            OutputStream output = conexion.getOutputStream();
+            output.write(datos.getBytes("UTF-8"));
+            output.flush();
+            output.close();
+            if(conexion.getResponseCode() != 200){
+                codigoGenerado = "";
+            }
+        }catch (MalformedURLException ex) {
+            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            throw new IOException();
+        }
+        
+        return codigoGenerado;
+    }
+    
+    private String generarCodigoAleatorio(){
+        String codigoGenerado = "";
+        String alfanumericos = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789";
+        StringBuilder stringBuilder = new StringBuilder(6);
+        for(int i = 0; i < 6; i++){
+            int indiceAlfa = (int) (alfanumericos.length() * Math.random());
+            stringBuilder.append(alfanumericos.charAt(indiceAlfa));
+        }
+        codigoGenerado = stringBuilder.toString();
+        return codigoGenerado;
     }
 }

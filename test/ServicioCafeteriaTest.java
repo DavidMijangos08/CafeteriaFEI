@@ -9,6 +9,7 @@
 
 import Dominio.Cafeteria;
 import Servicios.ServicioCafeteria;
+import java.io.IOException;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -26,7 +27,7 @@ public class ServicioCafeteriaTest {
     }
     
     @Test
-    public void obtenerTodasLasCafeterias(){
+    public void obtenerTodasLasCafeterias() throws IOException{
         ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
         ArrayList<Cafeteria> cafeterias = servicioCafeteria.obtenerTodasLasCafeterias();
         int numeroCafeteriasEsperadas = 6;

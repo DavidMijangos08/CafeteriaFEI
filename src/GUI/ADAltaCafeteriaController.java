@@ -130,7 +130,7 @@ public class ADAltaCafeteriaController implements Initializable {
         return existe;
     }
     
-     private void cerrarVentana(){
+    private void cerrarVentana(){
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
     }
