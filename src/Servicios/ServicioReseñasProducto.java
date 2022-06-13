@@ -26,7 +26,7 @@ import org.json.JSONObject;
 
 public class ServicioReseñasProducto {
     
-    public ArrayList<ReseñaProducto> obtenerReseñasDeProducto(int idProducto){
+    public ArrayList<ReseñaProducto> obtenerReseñasDeProducto(int idProducto) throws IOException{
         ArrayList<ReseñaProducto> reseñas = new ArrayList<ReseñaProducto>();
         try{
             URL url = new URL("http://127.0.0.1:9090/reseniasProducto/" + idProducto);
@@ -61,12 +61,12 @@ public class ServicioReseñasProducto {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | JSONException ex) {
-            Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         } 
         return reseñas;
     }
     
-    public int agregarNuevaReseñaProducto(ReseñaProducto reseña, int idProducto){
+    public int agregarNuevaReseñaProducto(ReseñaProducto reseña, int idProducto) throws IOException{
         int respuesta = 0;
         try{
             URL url = new URL("http://127.0.0.1:9090/reseniasProducto/" + idProducto);
@@ -89,7 +89,7 @@ public class ServicioReseñasProducto {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return respuesta;
     }

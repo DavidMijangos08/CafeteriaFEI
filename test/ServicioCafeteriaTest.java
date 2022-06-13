@@ -17,7 +17,7 @@ import org.junit.Test;
 public class ServicioCafeteriaTest {
     
     @Test
-    public void agregarNuevaCafeteriaTest(){
+    public void agregarNuevaCafeteriaTest() throws IOException{
         ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
         Cafeteria cafeteria = new Cafeteria("El doc sazón", "Facultad de Medicina", "Calle Medicos y odontologos s/n Col. Unidad del Bosque",
                                             "8:00", "20:00", true);
@@ -36,7 +36,7 @@ public class ServicioCafeteriaTest {
     }
     
     @Test
-    public void obtenerCafeteriasDeFacultad(){
+    public void obtenerCafeteriasDeFacultad() throws IOException{
         ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
         ArrayList<Cafeteria> cafeterias = servicioCafeteria.obtenerCafeteriasDeFacultad("Facultad de Estadística e Informática");
         int numeroCafeteriasEsperadas = 1;
@@ -45,7 +45,7 @@ public class ServicioCafeteriaTest {
     }
     
     @Test
-    public void obtenerCafeteriaPorId(){
+    public void obtenerCafeteriaPorId() throws IOException{
         ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
         Cafeteria cafeteria = servicioCafeteria.obtenerCafeteriaPorId(2);
         String nombreCafeteriaEsperada = "La FEICAF";

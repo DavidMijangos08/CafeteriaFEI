@@ -9,6 +9,7 @@
 
 import Dominio.Producto;
 import Servicios.ServicioProducto;
+import java.io.IOException;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -17,7 +18,7 @@ import org.junit.Test;
 public class ServicioProductoTest {
     
     @Test
-    public void obtenerProductosDeCafeteriaTest(){
+    public void obtenerProductosDeCafeteriaTest() throws IOException{
         ServicioProducto servicioProducto = new ServicioProducto();
         ArrayList<Producto> productos = servicioProducto.obtenerProductosDeCafeteria(2);
         int numeroProductosEsperado = 2;
@@ -26,7 +27,7 @@ public class ServicioProductoTest {
     }
     
     @Test
-    public void agregarNuevoProductoTest(){
+    public void agregarNuevoProductoTest() throws IOException{
         ServicioProducto servicioProducto = new ServicioProducto();
         Producto producto = new Producto("Torta de milanesa", "Rica torta de milanesa de pollo acompañada de vegetales", 
                                          "c://users//david//imagenes//tortaMilanesa.png", 20, 6);
@@ -36,7 +37,7 @@ public class ServicioProductoTest {
     }
     
     @Test
-    public void obtenerProductoPorIdTest(){
+    public void obtenerProductoPorIdTest() throws IOException{
         ServicioProducto servicioProducto = new ServicioProducto();
         Producto producto = servicioProducto.obtenerProductoPorId(2);
         String nombreProductoEsperado = "Chilaquiles rojos";
@@ -45,7 +46,7 @@ public class ServicioProductoTest {
     }
     
     @Test
-    public void modificarProductoTest(){
+    public void modificarProductoTest() throws IOException{
         ServicioProducto servicioProducto = new ServicioProducto();
         Producto producto = new Producto(8, "Cheeseburger", "Hamburguesa acompañados de los quesos más exquisitos",
                                          "/img/Productos/cheeseburger.png", 18, 20, 1);
@@ -55,7 +56,7 @@ public class ServicioProductoTest {
     }
     
     @Test
-    public void eliminarProductoTest(){
+    public void eliminarProductoTest() throws IOException{
         ServicioProducto servicioProducto = new ServicioProducto();
         int respuestaEseperada = 200;
         int respuestaObtenida = servicioProducto.eliminarProducto(4);

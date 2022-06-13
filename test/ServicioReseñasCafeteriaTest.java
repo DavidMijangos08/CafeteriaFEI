@@ -9,6 +9,7 @@
 
 import Dominio.ReseñaCafeteria;
 import Servicios.ServicioReseñasCafeteria;
+import java.io.IOException;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -17,7 +18,7 @@ import org.junit.Test;
 public class ServicioReseñasCafeteriaTest {
     
     @Test
-    public void obtenerReseñasDeCafeteria(){
+    public void obtenerReseñasDeCafeteria() throws IOException{
         ServicioReseñasCafeteria servicioReseñasCafeteria = new ServicioReseñasCafeteria();
         ArrayList<ReseñaCafeteria> reseñas = servicioReseñasCafeteria.obtenerReseñasDeCafeteria(2);
         int numeroReseñasEsperada = 2;
@@ -26,7 +27,7 @@ public class ServicioReseñasCafeteriaTest {
     }
     
     @Test
-    public void agregarNuevaReseñaCafeteria(){
+    public void agregarNuevaReseñaCafeteria() throws IOException{
         ServicioReseñasCafeteria servicioReseñasCafeteria = new ServicioReseñasCafeteria();
         ReseñaCafeteria reseña = new ReseñaCafeteria("Reseña dani", "La cafetería es muy buena, de las mejores en la fac", 
                                                     5, "", 2);

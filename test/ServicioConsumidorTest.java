@@ -26,7 +26,7 @@ public class ServicioConsumidorTest {
     }
     
     @Test
-    public void obtenerConsumidorPorCredencialTest(){
+    public void obtenerConsumidorPorCredencialTest() throws IOException{
         ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
         Consumidor consumidor = servicioConsumidor.obtenerConsumidorPorCredencial("Rodrigo@gmail.com", "Rodrigo123");
         String nombreCosumidorEsperado = "Rodrigo Sánchez Hernández";
@@ -35,7 +35,7 @@ public class ServicioConsumidorTest {
     }
     
     @Test
-    public void obtenerConsumidorPorIdTest(){
+    public void obtenerConsumidorPorIdTest() throws IOException{
         ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
         Consumidor consumidor = servicioConsumidor.obtenerConsumidorPorId(2);
         String nombreCosumidorEsperado = "Rodrigo Sánchez Hernández";
@@ -44,7 +44,7 @@ public class ServicioConsumidorTest {
     }
     
     @Test
-    public void modificarConsumidorTest(){
+    public void modificarConsumidorTest() throws IOException{
         ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
         Consumidor consumidor = new Consumidor("Rodrigo Sánchez Hernández", "Rodrigo@gmail.com", "Rodrigo123");
         consumidor.setToken("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZENvbnN1bWlkb3IiOjIsIm5vbWJyZSI6IlJvZHJpZ28gU1x1MDBlMW5jaGV6IEhlcm5cdTAwZTFuZGV6IiwiY29ycmVvRWxlY3Ryb25pY28iOiJSb2RyaWdvQGdtYWlsLmNvbSJ9.kIuhGYVjTSRHJaVRgCq80mYe1oVTIupuCSlT7rXySus");

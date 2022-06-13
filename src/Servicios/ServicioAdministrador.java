@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 public class ServicioAdministrador {
     
-    public int enviarCredencialesAdministrador(String correoElectronico, String contrasenia){
+    public int enviarCredencialesAdministrador(String correoElectronico, String contrasenia) throws IOException{
         int respuesta = 0;
         try {
             URL url = new URL("http://127.0.0.1:9090/administradores/" + correoElectronico);
@@ -37,6 +37,7 @@ public class ServicioAdministrador {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return respuesta;
     } 

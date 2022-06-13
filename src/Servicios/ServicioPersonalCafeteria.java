@@ -15,10 +15,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Reader;
-import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.SocketException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -30,7 +28,7 @@ import org.json.JSONObject;
 
 public class ServicioPersonalCafeteria {
     
-    public PersonalCafeteria obtenerPersonalPorCredencial(String correoElectronico, String contrasenia){
+    public PersonalCafeteria obtenerPersonalPorCredencial(String correoElectronico, String contrasenia) throws IOException{
         PersonalCafeteria personalCafeteria = null;
         try {
             URL url = new URL("http://127.0.0.1:9090/personalCafeteria/login/" + correoElectronico);
@@ -66,12 +64,12 @@ public class ServicioPersonalCafeteria {
         } catch (MalformedURLException ex) {
             Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | JSONException ex) {
-            Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return personalCafeteria;
     }
     
-    public int cerrarSesionPersonal(String correoElectronico){
+    public int cerrarSesionPersonal(String correoElectronico) throws IOException{
         int respuesta = 0;
          try{
             URL url = new URL("http://127.0.0.1:9090/personalCafeteria/login/" + correoElectronico);
@@ -81,12 +79,12 @@ public class ServicioPersonalCafeteria {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return respuesta;
     }
     
-    public PersonalCafeteria obtenerPersonalPorId(int idPersonal){
+    public PersonalCafeteria obtenerPersonalPorId(int idPersonal) throws IOException{
         PersonalCafeteria personalCafeteria = null;
         try {
             URL url = new URL("http://127.0.0.1:9090/personalCafeteria/idPersonal/" + idPersonal);
@@ -114,12 +112,12 @@ public class ServicioPersonalCafeteria {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | JSONException ex) {
-            Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }    
         return personalCafeteria;
     }   
         
-    public ArrayList<PersonalCafeteria> obtenerPersonalDeCafeteria(int idCafeteria){
+    public ArrayList<PersonalCafeteria> obtenerPersonalDeCafeteria(int idCafeteria) throws IOException{
         ArrayList<PersonalCafeteria> personalCafeteria = new ArrayList<PersonalCafeteria>();
         try{
             URL url = new URL("http://127.0.0.1:9090/personalCafeteria/" + idCafeteria);
@@ -150,12 +148,12 @@ public class ServicioPersonalCafeteria {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | JSONException ex) {
-            Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         } 
         return personalCafeteria;
     }
 
-    public ArrayList<PersonalCafeteria> obtenerListaPersonal(int idCafeteria){
+    public ArrayList<PersonalCafeteria> obtenerListaPersonal(int idCafeteria) throws IOException{
         ArrayList<PersonalCafeteria> personalCafeteria = new ArrayList<PersonalCafeteria>();
         try{
             URL url = new URL("http://127.0.0.1:9090/personalCafeteria/" + idCafeteria);
@@ -185,7 +183,7 @@ public class ServicioPersonalCafeteria {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | JSONException ex) {
-            Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return personalCafeteria;
     }
@@ -220,7 +218,7 @@ public class ServicioPersonalCafeteria {
         return respuesta;
     }
     
-    public int modificarPersonalCafeteria(PersonalCafeteria personalCafeteria, int idPersonal){
+    public int modificarPersonalCafeteria(PersonalCafeteria personalCafeteria, int idPersonal) throws IOException{
         int respuesta = 0;
          try{
             URL url = new URL("http://127.0.0.1:9090/personalCafeteria/idPersonal/" + idPersonal);
@@ -245,12 +243,12 @@ public class ServicioPersonalCafeteria {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return respuesta;
     }
     
-    public int eliminarPersonalCafeteria(int idPersonal){
+    public int eliminarPersonalCafeteria(int idPersonal) throws IOException{
         int respuesta = 0;
         try{
             URL url = new URL("http://127.0.0.1:9090/personalCafeteria/idPersonal/" + idPersonal);
@@ -260,7 +258,7 @@ public class ServicioPersonalCafeteria {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return respuesta;
     }  

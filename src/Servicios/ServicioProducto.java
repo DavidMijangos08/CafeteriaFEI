@@ -26,7 +26,7 @@ import org.json.JSONObject;
 
 public class ServicioProducto {
     
-    public ArrayList<Producto> obtenerProductosDeCafeteria(int idCafeteria){
+    public ArrayList<Producto> obtenerProductosDeCafeteria(int idCafeteria) throws IOException{
         ArrayList<Producto> productos = new ArrayList<Producto>();
         try{
             URL url = new URL("http://127.0.0.1:9090/productos/" + idCafeteria);
@@ -57,12 +57,12 @@ public class ServicioProducto {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | JSONException ex) {
-            Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         } 
         return productos;
     }
 
-    public int agregarNuevoProducto(Producto producto, int idCafeteria){
+    public int agregarNuevoProducto(Producto producto, int idCafeteria) throws IOException{
         int respuesta = 0;
         try{
             URL url = new URL("http://127.0.0.1:9090/productos/" + idCafeteria);
@@ -86,12 +86,12 @@ public class ServicioProducto {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return respuesta;
     }
     
-    public Producto obtenerProductoPorId(int idProducto){
+    public Producto obtenerProductoPorId(int idProducto) throws IOException{
         Producto producto = null;
         try{
             URL url = new URL("http://127.0.0.1:9090/productos/idProducto/" + idProducto);
@@ -118,12 +118,12 @@ public class ServicioProducto {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | JSONException ex) {
-            Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return producto;
     }
     
-    public int modificarProducto(Producto producto, int idProducto){
+    public int modificarProducto(Producto producto, int idProducto) throws IOException{
         int respuesta = 0;
         try{
             URL url = new URL("http://127.0.0.1:9090/productos/idProducto/" + idProducto);
@@ -147,12 +147,12 @@ public class ServicioProducto {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return respuesta;
     }
     
-    public int eliminarProducto(int idProducto){
+    public int eliminarProducto(int idProducto) throws IOException{
         int respuesta = 0;
         try{
             URL url = new URL("http://127.0.0.1:9090/productos/idProducto/" + idProducto);
@@ -162,7 +162,7 @@ public class ServicioProducto {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return respuesta;
     }

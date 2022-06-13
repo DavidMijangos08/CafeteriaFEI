@@ -28,21 +28,21 @@ public class ServicioPersonalCafeteriaTest {
     }
     
     @Test
-    public void obtenerPersonalPorCredencialTest(){
+    public void obtenerPersonalPorCredencialTest() throws IOException{
         ServicioPersonalCafeteria servicioPersonalCafeteria = new ServicioPersonalCafeteria();
         PersonalCafeteria personalCafeteria = servicioPersonalCafeteria.obtenerPersonalPorCredencial("LauraHernandez@gmail.com", "MAHL990411MOCJRVA9");
         assertEquals(personalCafeteria.getNombre(), "Laura Martinez Hernandez");
     }
     
     @Test
-    public void obtenerPersonalPorIdTest(){
+    public void obtenerPersonalPorIdTest() throws IOException{
         ServicioPersonalCafeteria servicioPersonalCafeteria = new ServicioPersonalCafeteria();
         PersonalCafeteria personalCafeteria = servicioPersonalCafeteria.obtenerPersonalPorId(2);
         assertEquals(personalCafeteria.getNombre(), "Laura Martinez Hernandez");
     }
     
     @Test
-    public void obtenerPersonalDeCafeteriaTest(){
+    public void obtenerPersonalDeCafeteriaTest() throws IOException{
         ServicioPersonalCafeteria servicioPersonalCafeteria = new ServicioPersonalCafeteria();
         ArrayList<PersonalCafeteria> personalCafeteria = servicioPersonalCafeteria.obtenerPersonalDeCafeteria(2);
         int tamanioEsperado = 2;
@@ -50,7 +50,7 @@ public class ServicioPersonalCafeteriaTest {
     }
     
     @Test
-    public void modificarPersonalCafeteriaTest(){
+    public void modificarPersonalCafeteriaTest() throws IOException{
         ServicioPersonalCafeteria servicioPersonalCafeteria = new ServicioPersonalCafeteria();
         PersonalCafeteria personalCafeteria = new PersonalCafeteria("Ramón Vargas Velarde", "VAVR950821MOCJRVA3", "ramon@gmail.com", 
                                                                     "Responsable", 3);
@@ -61,7 +61,7 @@ public class ServicioPersonalCafeteriaTest {
     }
     
     @Test
-    public void eliminarPersonalCafeteriaTest(){
+    public void eliminarPersonalCafeteriaTest() throws IOException{
         ServicioPersonalCafeteria servicioPersonalCafeteria = new ServicioPersonalCafeteria();
         int respuestaEseperada = 200;
         int respuestaObtenida = servicioPersonalCafeteria.eliminarPersonalCafeteria(3);

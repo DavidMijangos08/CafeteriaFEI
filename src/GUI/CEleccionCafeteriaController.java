@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,7 +52,9 @@ public class CEleccionCafeteriaController implements Initializable {
 
     @FXML
     private void clicContinuar(ActionEvent event) {
-        cambiarVentana("/GUI/GInicioProductos.fxml", "Productos");
+        if(!existenCamposVacios()){
+            cambiarVentana("/GUI/GInicioProductos.fxml", "Productos");
+        }
     }
     
     @FXML
@@ -81,11 +85,17 @@ public class CEleccionCafeteriaController implements Initializable {
     }
     
     private void llenarCafeteriasDeFacultad(String facultadPerteneciente){
-        ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
-        ArrayList<Cafeteria> cafeterias = servicioCafeteria.obtenerCafeteriasDeFacultad(facultadPerteneciente);
-        ObservableList<Cafeteria> listaCafeterias = FXCollections.observableArrayList(cafeterias);
-        
-        cbCafeteria.setItems(listaCafeterias);
+        try {
+            ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
+            ArrayList<Cafeteria> cafeterias = servicioCafeteria.obtenerCafeteriasDeFacultad(facultadPerteneciente);
+            ObservableList<Cafeteria> listaCafeterias = FXCollections.observableArrayList(cafeterias);          
+            cbCafeteria.setItems(listaCafeterias);
+        } catch (IOException ex) {
+            Logger.getLogger(CEleccionCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
+        }
     }
     
     private boolean existenCamposVacios(){
@@ -98,5 +108,10 @@ public class CEleccionCafeteriaController implements Initializable {
         }
         
         return existen;
+    }
+    
+    private void cerrarVentana(){
+        Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
+        stage.close();
     }
 }

@@ -11,8 +11,11 @@ package GUI;
 
 import Dominio.Cafeteria;
 import Servicios.ServicioCafeteria;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -55,22 +58,26 @@ public class ADAltaCafeteriaController implements Initializable {
     @FXML
     private void clicRegistrar(ActionEvent event) { 
         if(!existenCamposInvalidos()){
-            String nombreCafeteria = txfNombreCafeteria.getText();
-            String facultadPerteneciente = cbFacultad.getValue();
-            String direccion = txfDireccion.getText();
-            String horaInicio = cbHoraInicio.getValue() + ":" + cbMinutoInicio.getValue();
-            String horaFin = cbHoraFin.getValue() + ":" + cbMinutoFin.getValue();
-            boolean activa = true;
-            Cafeteria cafeteria = new Cafeteria(nombreCafeteria, facultadPerteneciente, direccion, horaInicio, horaFin, activa);
-            ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
-            int respuesta = servicioCafeteria.agregarNuevaCafeteria(cafeteria);
-            MensajeAlerta mensajeAlerta = new MensajeAlerta();
-            if(respuesta == 201){
-                mensajeAlerta.mostrarAlertaGuardado("La cafetería se registró con éxito");
-                //REGRESA A LA VENTANA ANTERIOR
-            }else if(respuesta == 400){
-                mensajeAlerta.mostrarAlertaInformacionInvalida("Datos existentes, verifica el nombre de la cafetería");
-            }else if(respuesta >= 500){
+            try {
+                String nombreCafeteria = txfNombreCafeteria.getText();
+                String facultadPerteneciente = cbFacultad.getValue();
+                String direccion = txfDireccion.getText();
+                String horaInicio = cbHoraInicio.getValue() + ":" + cbMinutoInicio.getValue();
+                String horaFin = cbHoraFin.getValue() + ":" + cbMinutoFin.getValue();
+                boolean activa = true;
+                Cafeteria cafeteria = new Cafeteria(nombreCafeteria, facultadPerteneciente, direccion, horaInicio, horaFin, activa);
+                ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
+                int respuesta = servicioCafeteria.agregarNuevaCafeteria(cafeteria);
+                MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                if(respuesta == 201){
+                    mensajeAlerta.mostrarAlertaGuardado("La cafetería se registró con éxito");
+                    //REGRESA A LA VENTANA ANTERIOR
+                }else if(respuesta == 400){
+                    mensajeAlerta.mostrarAlertaInformacionInvalida("Datos existentes, verifica el nombre de la cafetería");
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+                MensajeAlerta mensajeAlerta = new MensajeAlerta();
                 mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
                 cerrarVentana();
             }

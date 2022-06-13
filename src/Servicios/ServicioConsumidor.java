@@ -51,7 +51,7 @@ public class ServicioConsumidor {
         return respuesta;
     }
     
-    public int cerrarSesionConsumidor(String correoElectronico){
+    public int cerrarSesionConsumidor(String correoElectronico) throws IOException{
         int respuesta = 0;
          try{
             URL url = new URL("http://127.0.0.1:9090/consumidor/login/" + correoElectronico);
@@ -61,12 +61,12 @@ public class ServicioConsumidor {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return respuesta;
     }
     
-    public Consumidor obtenerConsumidorPorCredencial(String correoElectronico, String contrasenia){
+    public Consumidor obtenerConsumidorPorCredencial(String correoElectronico, String contrasenia) throws IOException{
         Consumidor consumidor = null;
         try{
             URL url = new URL("http://127.0.0.1:9090/consumidor/login/" + correoElectronico);
@@ -99,12 +99,12 @@ public class ServicioConsumidor {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | JSONException ex) {
-            Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return consumidor;
     }
     
-    public Consumidor obtenerConsumidorPorId(int idConsumidor){
+    public Consumidor obtenerConsumidorPorId(int idConsumidor) throws IOException{
         Consumidor consumidor = null;
         try{
             URL url = new URL("http://127.0.0.1:9090/consumidor/idConsumidor/" + idConsumidor);
@@ -131,12 +131,12 @@ public class ServicioConsumidor {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | JSONException ex) {
-            Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }  
         return consumidor;
     }
     
-    public int modificarConsumidor(Consumidor consumidor, int idConsumidor){
+    public int modificarConsumidor(Consumidor consumidor, int idConsumidor) throws IOException{
         int respuesta = 0;
         try{
             URL url = new URL("http://127.0.0.1:9090/consumidor/idConsumidor/" + idConsumidor);
@@ -158,7 +158,7 @@ public class ServicioConsumidor {
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+            throw new IOException();
         }
         return respuesta;
     }
