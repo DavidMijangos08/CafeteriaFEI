@@ -1,7 +1,16 @@
+/********************************************************************/
+/* Archivo: PersonalCafeteria.java                                  */
+/* Programador: David Alexander                                     */
+/* Fecha de creación: 18/May/2022                                   */
+/* Fecha modificación:  20/May/2022                                 */
+/* Descripción: Archivo donde se tiene la clase PersonalCafeteria   */
+/*              con sus metodos y atributos                         */
+/********************************************************************/
 
 package Dominio;
 
 public class PersonalCafeteria {
+
     private String nombre;
     private String CURP;
     private String correoElectronico;
@@ -103,5 +112,4 @@ public class PersonalCafeteria {
     public void setToken(String token) {
         this.token = token;
     }
-      
 }

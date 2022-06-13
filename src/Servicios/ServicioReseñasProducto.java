@@ -1,3 +1,11 @@
+/********************************************************************/
+/* Archivo: ServicioReseñaProducto.java                             */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  10/Jun/2022                                 */
+/* Descripción: Archivo donde se crean los metodos para             */
+/*              llamarlos los request del servidor                  */
+/********************************************************************/
 
 package Servicios;
 
@@ -17,7 +25,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ServicioReseñasProducto {
-    
     
     public ArrayList<ReseñaProducto> obtenerReseñasDeProducto(int idProducto){
         ArrayList<ReseñaProducto> reseñas = new ArrayList<ReseñaProducto>();

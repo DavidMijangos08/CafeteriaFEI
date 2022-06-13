@@ -1,15 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/********************************************************************/
+/* Archivo: Administrador.java                                      */
+/* Programador: David Alexander                                     */
+/* Fecha de creación: 18/May/2022                                   */
+/* Fecha modificación:  20/May/2022                                 */
+/* Descripción: Archivo donde se tiene la clase Administrador       */
+/*              con sus metodos y atributos                         */
+/********************************************************************/
+
 package Dominio;
 
-/**
- *
- * @author david
- */
 public class Administrador {
+
     private String correoElectronico;
     private String contrasenia;
 
@@ -33,5 +34,4 @@ public class Administrador {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-       
 }

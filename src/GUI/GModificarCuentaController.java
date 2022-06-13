@@ -1,7 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+/********************************************************************/
+/* Archivo: GModificarCuentaController.java                         */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se inicializa la ventana              */
+/*              "Modificar cuenta" con sus metodos                  */
+/********************************************************************/
+
 package GUI;
 
 import java.io.IOException;
@@ -17,11 +22,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author marie
- */
 public class GModificarCuentaController implements Initializable {
 
     @FXML
@@ -41,14 +41,10 @@ public class GModificarCuentaController implements Initializable {
     @FXML
     private TextField txfCodigoVerificacion;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }     
-
 
     @FXML
     private void clicRegresar(ActionEvent event) {
@@ -60,7 +56,7 @@ public class GModificarCuentaController implements Initializable {
         cambiarVentana("/GUI/GInicioProductos.fxml");
     }
     
-     private void cambiarVentana(String ruta){
+    private void cambiarVentana(String ruta){
         try {
             Stage stage = (Stage) btnRegresar.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(ruta)));

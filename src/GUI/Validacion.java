@@ -1,17 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/********************************************************************/
+/* Archivo: Validacion.java                                         */
+/* Programador: David Alexander                                     */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se inicializa los metodos             */
+/*              para las validaciones                               */
+/********************************************************************/
+
 package GUI;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- *
- * @author david
- */
 public class Validacion {
     public boolean existeCampoInvalido(String campo){
         boolean valor = false;

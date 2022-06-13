@@ -1,7 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+/********************************************************************/
+/* Archivo: ItemProductoController.java                             */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se inicializa la visualizacion        */
+/*              de los datos del producto                           */
+/********************************************************************/
+
 package GUI;
 
 import Dominio.Producto;
@@ -17,11 +22,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-/**
- * FXML Controller class
- *
- * @author marie
- */
 public class ItemProductoController implements Initializable {
 
     @FXML
@@ -34,10 +34,7 @@ public class ItemProductoController implements Initializable {
     private Label lblTiempoAprox;
     private Producto product;
     private MyListenerProducto myListener;
-    
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -57,7 +54,5 @@ public class ItemProductoController implements Initializable {
     @FXML
     private void click(MouseEvent actionEvent){
         myListener.onClickListener(product);
-    }
-    
-    
+    }    
 }

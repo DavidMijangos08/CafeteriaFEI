@@ -1,9 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
-package GUI;
+/********************************************************************/
+/* Archivo: GReseñasProductosController.java                        */
+/* Programador: Eder Ivan                                           */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se inicializa la ventana              */
+/*              "Reseñas productos" con sus metodos                 */
+/********************************************************************/
 
+package GUI;
 
 import Dominio.ReseñaProducto;
 import java.io.IOException;
@@ -29,11 +33,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-/**
- * FXML Controller class
- *
- * @author marie
- */
 public class GReseñasProductoController implements Initializable {
 
     @FXML
@@ -61,13 +60,10 @@ public class GReseñasProductoController implements Initializable {
     @FXML
     private GridPane gdReseñas;
     @FXML
+
     private Button btnDejarOpinion;
     private List<ReseñaProducto> reseñaProductos = new ArrayList<>();
-
-    /**
-     * Initializes the controller class.
-     */
-
+    
     private List<ReseñaProducto> obtenerReseñas(){
         List<ReseñaProducto> lReseña = new ArrayList<>();
         ReseñaProducto p;

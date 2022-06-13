@@ -1,9 +1,16 @@
+/********************************************************************/
+/* Archivo: ServicioConsumidorTest.java                             */
+/* Programador: David Alexander                                     */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se crean los test para las            */
+/*              llamadas realizadas al servidor                     */
+/********************************************************************/
 
 import Dominio.Consumidor;
 import Servicios.ServicioConsumidor;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-
 
 public class ServicioConsumidorTest {
  

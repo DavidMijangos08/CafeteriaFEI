@@ -1,7 +1,16 @@
+/********************************************************************/
+/* Archivo: ReseñaCafeteria.java                                    */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 18/May/2022                                   */
+/* Fecha modificación:  20/May/2022                                 */
+/* Descripción: Archivo donde se tiene la clase ReseñaCafeteria     */
+/*              con sus metodos y atributos                         */
+/********************************************************************/
 
 package Dominio;
 
 public class ReseñaCafeteria {
+
     private String titulo;
     private String opinion;
     private String rutaImagen;
@@ -75,6 +84,5 @@ public class ReseñaCafeteria {
 
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
-    }
-    
+    } 
 }

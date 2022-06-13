@@ -1,7 +1,16 @@
+/********************************************************************/
+/* Archivo: Cafeteria.java                                          */
+/* Programador: David Alexander                                     */
+/* Fecha de creación: 18/May/2022                                   */
+/* Fecha modificación:  20/May/2022                                 */
+/* Descripción: Archivo donde se tiene la clase Cafeteria           */
+/*              con sus metodos y atributos                         */
+/********************************************************************/
 
 package Dominio;
 
 public class Cafeteria {
+
     private String nombreCafeteria;
     private String facultadPerteneciente;
     private String direccion;
@@ -92,6 +101,5 @@ public class Cafeteria {
     @Override
     public String toString(){
         return nombreCafeteria;
-    }
-    
+    } 
 }

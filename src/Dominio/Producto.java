@@ -1,7 +1,16 @@
+/********************************************************************/
+/* Archivo: Producto.java                                           */
+/* Programador: Eder Ivan                                           */
+/* Fecha de creación: 18/May/2022                                   */
+/* Fecha modificación:  20/May/2022                                 */
+/* Descripción: Archivo donde se tiene la clase Producto            */
+/*              con sus metodos y atributos                         */
+/********************************************************************/
 
 package Dominio;
 
 public class Producto {
+
     private String descripcion;
     private String rutaImagen;
     private String nombre;
@@ -12,12 +21,14 @@ public class Producto {
 
     public Producto() {
     }
+
     public Producto(String nombreProducto, String descripcionProducto, String rutaI, int precioProducto){
         this.precio = precioProducto;
         this.nombre = nombreProducto;
         this.rutaImagen = rutaI;
         this.descripcion = descripcionProducto;
     }
+
     public Producto(String nombreProducto, String descripcionProducto, String rutaI, int precioProducto, int tiempoRealizacion){
         this.precio = precioProducto;
         this.nombre = nombreProducto;
@@ -90,6 +101,5 @@ public class Producto {
 
     public void setIdCafeteria(int idCafeteria) {
         this.idCafeteria = idCafeteria;
-    }
-    
+    }  
 }

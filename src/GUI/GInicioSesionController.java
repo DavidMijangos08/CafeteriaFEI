@@ -1,7 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+/********************************************************************/
+/* Archivo: GInicioSesionController.java                            */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  10/Jun/2022                                 */
+/* Descripción: Archivo donde se inicializa la ventana              */
+/*              "Inicio sesion" con sus metodos                     */
+/********************************************************************/
+
 package GUI;
 
 import Dominio.Consumidor;
@@ -26,11 +31,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author marie
- */
 public class GInicioSesionController implements Initializable {
 
     @FXML
@@ -54,9 +54,6 @@ public class GInicioSesionController implements Initializable {
     @FXML
     private Button btnIniciarSesion;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

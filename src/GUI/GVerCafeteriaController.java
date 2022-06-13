@@ -1,7 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+/********************************************************************/
+/* Archivo: VerCafeteriasController.java                            */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se inicializa la ventana              */
+/*              "Ver cafeteria" con sus metodos                     */
+/********************************************************************/
+
 package GUI;
 
 import Dominio.Cafeteria;
@@ -34,11 +39,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-/**
- * FXML Controller class
- *
- * @author marie
- */
 public class GVerCafeteriaController implements Initializable {
 
     @FXML
@@ -63,18 +63,22 @@ public class GVerCafeteriaController implements Initializable {
     private Button btnRegresar;
     @FXML
     private ScrollPane scpReseñasCafeteria;
+
     private List<ReseñaCafeteria> reseñas = new ArrayList<>();
+
     @FXML
     private GridPane gdReseñas;
     @FXML
     private Button btnDejarOpinion;
 
     private int idCafeteria = 1;
+
     private List<ReseñaCafeteria> obtenerReseñas(){
         ServicioReseñasCafeteria servicioReseñas = new ServicioReseñasCafeteria();
         List<ReseñaCafeteria> lr = servicioReseñas.obtenerReseñasDeCafeteria(idCafeteria);
         return lr;
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         obtenerInfoCafeteria(idCafeteria);
@@ -112,7 +116,6 @@ public class GVerCafeteriaController implements Initializable {
             Logger.getLogger(GVerCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
-
 
     @FXML
     private void clicModificarCuenta(ActionEvent event) {

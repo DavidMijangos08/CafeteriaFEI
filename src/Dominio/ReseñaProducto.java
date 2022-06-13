@@ -1,7 +1,16 @@
+/********************************************************************/
+/* Archivo: ReseñaProducto.java                                     */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 18/May/2022                                   */
+/* Fecha modificación:  20/May/2022                                 */
+/* Descripción: Archivo donde se tiene la clase ReseñaProducto      */
+/*              con sus metodos y atributos                         */
+/********************************************************************/
 
 package Dominio;
 
 public class ReseñaProducto {
+
     private String titulo;
     private String opinion;
     private String rutaImagen;
@@ -76,5 +85,4 @@ public class ReseñaProducto {
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
     }
-    
 }

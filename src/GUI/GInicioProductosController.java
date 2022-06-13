@@ -1,7 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+/********************************************************************/
+/* Archivo: GInicioProductosController.java                         */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se inicializa la ventana              */
+/*              "Cafeteria" con sus metodos                         */
+/********************************************************************/
+
 package GUI;
 
 import Dominio.Cafeteria;
@@ -40,14 +45,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import javax.imageio.ImageIO;
 
-/**
- * FXML Controller class
- *
- * @author marie
- */
+
 public class GInicioProductosController implements Initializable {
 
     @FXML
@@ -91,16 +91,13 @@ public class GInicioProductosController implements Initializable {
 
     private MyListenerProducto myListener;
     private List<Producto> productos = new ArrayList<>();
-    
-    /**
-     * Initializes the controller class.
-     */
 
     private List<Producto> obtenerProductos(int idCafeteria){
         ServicioProducto servicioProducto = new ServicioProducto();
         List<Producto> lproductos = servicioProducto.obtenerProductosDeCafeteria(idCafeteria);
         return lproductos;
     }
+
     private void setProductoElegido(Producto p){
         lblNombreEscogido.setText(p.getNombre());
         lblPrecioEscogido.setText("$" + Float.toString(p.getPrecio()));
@@ -155,7 +152,6 @@ public class GInicioProductosController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
     
     @FXML
@@ -208,13 +204,9 @@ public class GInicioProductosController implements Initializable {
     void clicModificarProducto(ActionEvent event) {
         cambiarVentana("/GUI/RCModificarProducto.fxml", "Modificar Producto");
     }
+    
     @FXML
     void clicAñadirProducto(ActionEvent event) {
         cambiarVentana("/GUI/RCAgregarProducto.fxml", "Agregar Producto");
     }
-
-
-
-
-
 }

@@ -1,7 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+/********************************************************************/
+/* Archivo: ADAltaResponsableController.java                        */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se inicializa la ventana              */
+/*              "Alta responsable" con sus metodos                  */
+/********************************************************************/
+
 package GUI;
 
 import java.net.URL;
@@ -12,11 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author marie
- */
 public class ADAltaResponsableCafeteria implements Initializable {
 
     @FXML
@@ -28,9 +28,6 @@ public class ADAltaResponsableCafeteria implements Initializable {
     @FXML
     private TextField txfCurp;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
