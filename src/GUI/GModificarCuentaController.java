@@ -101,4 +101,9 @@ public class GModificarCuentaController implements Initializable {
     @FXML
     private void clicSolicitarCodigo(ActionEvent event) {
     }
+    
+    private void cerrarVentana(){
+        Stage stage = (Stage) btnRegresar.getScene().getWindow();
+        stage.close();
+    }
 }

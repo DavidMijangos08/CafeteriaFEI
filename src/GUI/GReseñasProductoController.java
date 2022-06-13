@@ -32,6 +32,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class GReseñasProductoController implements Initializable {
 
@@ -132,5 +133,10 @@ public class GReseñasProductoController implements Initializable {
     @FXML
     void clicDejarOpinion(ActionEvent event) {
 
+    }
+    
+    private void cerrarVentana(){
+        Stage stage = (Stage) btnRegresar.getScene().getWindow();
+        stage.close();
     }
 }

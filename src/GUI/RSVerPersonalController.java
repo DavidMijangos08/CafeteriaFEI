@@ -225,4 +225,9 @@ public class RSVerPersonalController implements Initializable{
 
         return existen;
     }
+    
+    private void cerrarVentana(){
+        Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
+        stage.close();
+    }
 }

@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class RCAgregarProductoController implements Initializable {
 
@@ -70,5 +71,10 @@ public class RCAgregarProductoController implements Initializable {
         }
         
         return existe;
+    }
+    
+    private void cerrarVentana(){
+        Stage stage = (Stage) btnCancelar.getScene().getWindow();
+        stage.close();
     }
 }

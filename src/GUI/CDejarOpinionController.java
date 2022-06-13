@@ -127,4 +127,9 @@ public class CDejarOpinionController implements Initializable {
             return -1;
         }
     }
+    
+    private void cerrarVentana(){
+        Stage stage = (Stage) btnRegresar.getScene().getWindow();
+        stage.close();
+    }
 }

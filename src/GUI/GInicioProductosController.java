@@ -96,18 +96,32 @@ public class GInicioProductosController implements Initializable {
     private MyListenerProducto myListener;
     ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
 
-    public void recibirParametrosConsumidor(int tipoUsuario, Consumidor c, int idCafeteria1) throws IOException {
-        this.consumidor = c;
-        lblTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria1).getNombreCafeteria());
-        obtenerProductos(idCafeteria1);
-        iniciarVentana(tipoUsuario);
+    public void recibirParametrosConsumidor(int tipoUsuario, Consumidor c, int idCafeteria1){
+        try {
+            this.consumidor = c;
+            lblTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria1).getNombreCafeteria());
+            obtenerProductos(idCafeteria1);
+            iniciarVentana(tipoUsuario);
+        } catch (IOException ex) {
+            Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
+        }
     }
 
-    public void recibirParametrosPersonal(int tipoUsuario, PersonalCafeteria p) throws IOException {
-        personalCafeteria = p;
-        lblTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(p.getIdCafeteria()).getNombreCafeteria());
-        obtenerProductos(p.getIdCafeteria());
-        iniciarVentana(tipoUsuario);
+    public void recibirParametrosPersonal(int tipoUsuario, PersonalCafeteria p){
+        try {
+            personalCafeteria = p;
+            lblTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(p.getIdCafeteria()).getNombreCafeteria());
+            obtenerProductos(p.getIdCafeteria());
+            iniciarVentana(tipoUsuario);
+        } catch (IOException ex) {
+            Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
+        }
     }
 
     private void obtenerProductos(int idCafeteria){
@@ -246,5 +260,10 @@ public class GInicioProductosController implements Initializable {
             btnVerCafeteria.setVisible(false);
             btnVerOpiniones.setVisible(false);
         }
+    }
+    
+    private void cerrarVentana(){
+        Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
+        stage.close();
     }
 }

@@ -12,6 +12,7 @@ package GUI;
 import Dominio.Cafeteria;
 import Dominio.Consumidor;
 import Servicios.ServicioCafeteria;
+import Servicios.ServicioConsumidor;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -49,14 +50,18 @@ public class CEleccionCafeteriaController implements Initializable {
     }
 
     @FXML
-    private void clicCerrarSesion(ActionEvent event) throws IOException {
+    private void clicCerrarSesion(ActionEvent event){
         try {
+            ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
+            servicioConsumidor.cerrarSesionConsumidor(consumidor.getCorreoElectronico());
             Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/GInicioSesion.fxml")));
             stage.setScene(scenePrincipal);
             stage.show();
         } catch (IOException ex) {
-            System.err.println(ex.getMessage());
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
         }
     }
 

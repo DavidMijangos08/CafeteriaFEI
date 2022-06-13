@@ -16,7 +16,6 @@ import Servicios.ServicioAdministrador;
 import Servicios.ServicioConsumidor;
 import Servicios.ServicioPersonalCafeteria;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -65,32 +64,39 @@ public class GInicioSesionController implements Initializable {
     }
 
     @FXML
-    private void clicIniciarSesion(ActionEvent event) throws IOException {
-        ServicioAdministrador servicioAdministrador = new ServicioAdministrador();
-        ServicioPersonalCafeteria servicioPersonal = new ServicioPersonalCafeteria();
-        ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
-        String correoElectronico = txfCorreoInicio.getText();
-        String contrasenia = pfContraseniaInicio.getText();
-        if(servicioAdministrador.enviarCredencialesAdministrador(correoElectronico, contrasenia) == 200){
-            //cambiarVentana("/GUI/CDejarOpinion.fxml",1);
-            //falta ventana para inicio de admin
-            tipoUsuario = 1;
-        }else if(servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia) != null){
-            personalCafeteria = servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia);
-            if(personalCafeteria.getCargo().equals("Responsable")){
-                tipoUsuario = 2;
-                cambiarVentana("GInicioProductos.fxml");
+    private void clicIniciarSesion(ActionEvent event){
+        try {
+            ServicioAdministrador servicioAdministrador = new ServicioAdministrador();
+            ServicioPersonalCafeteria servicioPersonal = new ServicioPersonalCafeteria();
+            ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
+            String correoElectronico = txfCorreoInicio.getText();
+            String contrasenia = pfContraseniaInicio.getText();
+            if(servicioAdministrador.enviarCredencialesAdministrador(correoElectronico, contrasenia) == 200){
+                //cambiarVentana("/GUI/CDejarOpinion.fxml",1);
+                //falta ventana para inicio de admin
+                tipoUsuario = 1;
+            }else if(servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia) != null){
+                personalCafeteria = servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia);
+                if(personalCafeteria.getCargo().equals("Responsable")){
+                    tipoUsuario = 2;
+                    cambiarVentana("GInicioProductos.fxml");
+                }else{
+                    tipoUsuario = 3;
+                    cambiarVentana("GInicioProductos.fxml");
+                }
+            }else if (servicioConsumidor.obtenerConsumidorPorCredencial(correoElectronico,contrasenia) != null){
+                consumidor = servicioConsumidor.obtenerConsumidorPorCredencial(correoElectronico,contrasenia);
+                tipoUsuario = 4;
+                cambiarVentana("CEleccionCafeteria.fxml");
             }else{
-                tipoUsuario = 3;
-                cambiarVentana("GInicioProductos.fxml");
+                MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                mensajeAlerta.mostrarAlertaInformacionInvalida("Credenciales incorrectas");
             }
-        }else if (servicioConsumidor.obtenerConsumidorPorCredencial(correoElectronico,contrasenia) != null){
-            consumidor = servicioConsumidor.obtenerConsumidorPorCredencial(correoElectronico,contrasenia);
-            tipoUsuario = 4;
-            cambiarVentana("CEleccionCafeteria.fxml");
-        }else{
+        } catch (IOException ex) {
+            Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
-            mensajeAlerta.mostrarAlertaInformacionInvalida("Credenciales incorrectas");
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
         }
     }
     

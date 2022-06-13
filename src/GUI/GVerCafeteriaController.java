@@ -38,6 +38,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class GVerCafeteriaController implements Initializable {
 
@@ -145,5 +146,10 @@ public class GVerCafeteriaController implements Initializable {
         lblHoraFinal.setText(c.getHoraFin());
         txaFacultad.setText(c.getFacultadPerteneciente());
         txaDireccion.setText(c.getDireccion());
+    }
+    
+    private void cerrarVentana(){
+        Stage stage = (Stage) btnRegresar.getScene().getWindow();
+        stage.close();
     }
 }
