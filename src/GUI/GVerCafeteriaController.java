@@ -1,9 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+/********************************************************************/
+/* Archivo: VerCafeteriasController.java                            */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se inicializa la ventana              */
+/*              "Ver cafeteria" con sus metodos                     */
+/********************************************************************/
+
 package GUI;
 
+import Dominio.Cafeteria;
 import Dominio.Producto;
 import Dominio.ReseñaCafeteria;
 import java.io.IOException;
@@ -14,13 +20,14 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import Servicios.ServicioProducto;
+import Servicios.ServicioCafeteria;
 import Servicios.ServicioReseñasCafeteria;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -32,11 +39,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-/**
- * FXML Controller class
- *
- * @author marie
- */
 public class GVerCafeteriaController implements Initializable {
 
     @FXML
@@ -67,9 +69,6 @@ public class GVerCafeteriaController implements Initializable {
     @FXML
     private Button btnDejarOpinion;
 
-    /**
-     * Initializes the controller class.
-     */
     /*private List<ReseñaCafeteria> obtenerReseñas(){
         List<ReseñaCafeteria> lReseña = new ArrayList<>();
         ReseñaCafeteria p;
@@ -84,31 +83,38 @@ public class GVerCafeteriaController implements Initializable {
         
         return lReseña;
     }*/
+    
     private List<ReseñaCafeteria> obtenerReseñas(int idCafeteria){
     //private void obtenerReseñas(int idCafeteria){
         ServicioReseñasCafeteria servicioReseña = new ServicioReseñasCafeteria();
         List<ReseñaCafeteria> lr = servicioReseña.obtenerReseñasDeCafeteria(idCafeteria);
+    private int idCafeteria = 1;
+    private List<ReseñaCafeteria> obtenerReseñas(){
+        ServicioReseñasCafeteria servicioReseñas = new ServicioReseñasCafeteria();
+        List<ReseñaCafeteria> lr = servicioReseñas.obtenerReseñasDeCafeteria(idCafeteria);
         return lr;
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //reseñas.addAll(obtenerReseñas(2));
-        obtenerReseñas(2);
+        obtenerInfoCafeteria(idCafeteria);
+        reseñas.addAll(obtenerReseñas());
         int fila = 1;
         try {
             for(int i = 0; i < reseñas.size(); i++){
-                System.out.println(reseñas.get(i).getOpinion());
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("ItemReseñaCafeteria.fxml"));
                 
                 AnchorPane acp = fxmlLoader.load();
-            
+                acp.setMaxHeight(50);
+                acp.setPrefWidth(600);
                 ItemReseñaCafeteriaController reseñaController = fxmlLoader.getController();
                 reseñaController.setReseña(reseñas.get(i));
                                 
                 gdReseñas.add(acp,0,fila++);
                 
                 //Ajustar el ancho del grid
+                gdReseñas.setMinWidth(Region.USE_COMPUTED_SIZE);
                 gdReseñas.setMinWidth(Region.USE_COMPUTED_SIZE);
                 gdReseñas.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 gdReseñas.setMaxWidth(Region.USE_COMPUTED_SIZE);
@@ -117,11 +123,13 @@ public class GVerCafeteriaController implements Initializable {
                 gdReseñas.setMinHeight(Region.USE_COMPUTED_SIZE);
                 gdReseñas.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 gdReseñas.setMaxHeight(Region.USE_COMPUTED_SIZE);
+
+                gdReseñas.setAlignment(Pos.CENTER);
                 
                 GridPane.setMargin(acp, new Insets(10));
              }
         } catch (IOException ex) {
-            Logger.getLogger(GReseñasProductoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GVerCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
 
@@ -143,5 +151,15 @@ public class GVerCafeteriaController implements Initializable {
     @FXML
     void clicDejarOpinion(ActionEvent event) {
 
+    }
+
+    public void obtenerInfoCafeteria(int idCafeteria){
+        ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
+        Cafeteria c = servicioCafeteria.obtenerCafeteriaPorId(idCafeteria);
+        lblNombreCafeteria.setText(c.getNombreCafeteria());
+        lblHoraInicio.setText(c.getHoraInicio());
+        lblHoraFinal.setText(c.getHoraFin());
+        txaFacultad.setText(c.getFacultadPerteneciente());
+        txaDireccion.setText(c.getDireccion());
     }
 }

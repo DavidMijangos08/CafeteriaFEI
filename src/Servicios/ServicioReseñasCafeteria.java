@@ -1,3 +1,11 @@
+/********************************************************************/
+/* Archivo: ServicioReseñaCafeteria.java                            */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  10/Jun/2022                                 */
+/* Descripción: Archivo donde se crean los metodos para             */
+/*              llamarlos los request del servidor                  */
+/********************************************************************/
 
 package Servicios;
 
@@ -21,7 +29,7 @@ public class ServicioReseñasCafeteria {
     public ArrayList<ReseñaCafeteria> obtenerReseñasDeCafeteria(int idCafeteria){
         ArrayList<ReseñaCafeteria> reseñas = new ArrayList<ReseñaCafeteria>();
         try{
-            URL url = new URL("http://127.0.0.1:9090/reseñasCafeteria/" + idCafeteria);
+            URL url = new URL("http://127.0.0.1:9090/reseniasCafeteria/" + idCafeteria);
             HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
             conexion.setRequestMethod("GET");
             if(conexion.getResponseCode() == 200){
@@ -61,7 +69,7 @@ public class ServicioReseñasCafeteria {
     public int agregarNuevaReseñaCafeteria(ReseñaCafeteria reseña, int idCafeteria){
         int respuesta = 0;
         try{
-            URL url = new URL("http://127.0.0.1:9090/reseñasCafeteria/" + idCafeteria);
+            URL url = new URL("http://127.0.0.1:9090/reseniasCafeteria/" + idCafeteria);
             HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
             conexion.setRequestMethod("POST");
             String datos = "{" + 

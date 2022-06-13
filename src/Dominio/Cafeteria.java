@@ -1,3 +1,11 @@
+/********************************************************************/
+/* Archivo: Cafeteria.java                                          */
+/* Programador: David Alexander                                     */
+/* Fecha de creación: 18/May/2022                                   */
+/* Fecha modificación:  20/May/2022                                 */
+/* Descripción: Archivo donde se tiene la clase Cafeteria           */
+/*              con sus metodos y atributos                         */
+/********************************************************************/
 
 package Dominio;
 

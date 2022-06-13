@@ -1,3 +1,11 @@
+/********************************************************************/
+/* Archivo: ServicioReseñaProducto.java                             */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  10/Jun/2022                                 */
+/* Descripción: Archivo donde se crean los metodos para             */
+/*              llamarlos los request del servidor                  */
+/********************************************************************/
 
 package Servicios;
 
@@ -18,11 +26,10 @@ import org.json.JSONObject;
 
 public class ServicioReseñasProducto {
     
-    
     public ArrayList<ReseñaProducto> obtenerReseñasDeProducto(int idProducto){
         ArrayList<ReseñaProducto> reseñas = new ArrayList<ReseñaProducto>();
         try{
-            URL url = new URL("http://127.0.0.1:9090/reseñasProducto/" + idProducto);
+            URL url = new URL("http://127.0.0.1:9090/reseniasProducto/" + idProducto);
             HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
             conexion.setRequestMethod("GET");
             if(conexion.getResponseCode() == 200){
@@ -62,7 +69,7 @@ public class ServicioReseñasProducto {
     public int agregarNuevaReseñaProducto(ReseñaProducto reseña, int idProducto){
         int respuesta = 0;
         try{
-            URL url = new URL("http://127.0.0.1:9090/reseñasProducto/" + idProducto);
+            URL url = new URL("http://127.0.0.1:9090/reseniasProducto/" + idProducto);
             HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
             conexion.setRequestMethod("POST");
             String datos = "{" + 

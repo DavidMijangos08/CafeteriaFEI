@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,26 +9,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="50.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ItemReseñaCafeteriaController">
+<AnchorPane id="AnchorPane" maxHeight="50.0" maxWidth="650.0" prefHeight="50.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ItemReseñaCafeteriaController">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="625.0">
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
          <children>
-            <ImageView fx:id="imgReseña" fitHeight="50.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </ImageView>
-            <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="495.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="450.0">
                <children>
-                  <Label fx:id="lblTitulo" prefHeight="20.0" prefWidth="490.0">
+                  <Label fx:id="lblTitulo" prefHeight="15.0" prefWidth="490.0">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="16.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="txaDescripcion" prefHeight="30.0" prefWidth="490.0" stylesheets="@style.css" />
+                  <TextArea fx:id="txaDescripcion" editable="false" prefHeight="35.0" stylesheets="@style.css" wrapText="true" />
                </children>
             </VBox>
+            <HBox alignment="CENTER" prefHeight="62.0" prefWidth="94.0">
+               <children>
+                  <ImageView fx:id="imgReseña" fitHeight="50.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </HBox>
          </children>
       </HBox>
+      <Separator layoutX="150.0" layoutY="66.0" prefHeight="2.0" prefWidth="300.0" />
    </children>
 </AnchorPane>

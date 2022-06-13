@@ -3,10 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/FXMLEleccionUsuarioController.java</file>
-            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/cafeteriafei/CafeteriaFEI.java</file>
-            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/test/ServicioCafeteriaTest.java</file>
-            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/Servicios/ServicioCafeteria.java</file>
+<<<<<<< HEAD
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/Servicios/ServicioConsumidor.java</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/test/ServicioConsumidorTest.java</file>
+=======
+            <file>file:/C:/Users/marie/Documents/NetBeansProjects/CafeteriaFEI/src/cafeteriafei/CafeteriaFEI.java</file>
+            <file>file:/C:/Users/marie/Documents/NetBeansProjects/CafeteriaFEI/test/TestValidacionGUI/ValidacionGUITest.java</file>
+            <file>file:/C:/Users/marie/Documents/NetBeansProjects/CafeteriaFEI/src/GUI/style.css</file>
+            <file>file:/C:/Users/marie/Documents/NetBeansProjects/CafeteriaFEI/test/ServicioProductoTest.java</file>
+            <file>file:/C:/Users/marie/Documents/NetBeansProjects/CafeteriaFEI/src/Dominio/Producto.java</file>
+>>>>>>> 707d7b35fef62142c97e7e9a8eafc4907fcb8726
         </group>
     </open-files>
 </project-private>

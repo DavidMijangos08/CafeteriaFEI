@@ -1,3 +1,11 @@
+/********************************************************************/
+/* Archivo: Consumidor.java                                         */
+/* Programador: Eder Ivan                                           */
+/* Fecha de creación: 18/May/2022                                   */
+/* Fecha modificación:  20/May/2022                                 */
+/* Descripción: Archivo donde se tiene la clase Consumidor          */
+/*              con sus metodos y atributos                         */
+/********************************************************************/
 
 package Dominio;
 

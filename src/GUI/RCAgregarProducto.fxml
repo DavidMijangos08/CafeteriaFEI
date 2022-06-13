@@ -1,3 +1,12 @@
+<!--
+   Archivo: RCAgregarProducto.fxml                                                  
+   Programador: Eder Ivan                                               
+   Fecha de creación: 30/May/2022                                        
+   Fecha modificación:  02/Jun/2022                                 
+   Descripción: Archivo con las etiquetas para la
+   ventana "Agregar producto"
+-->
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
@@ -13,18 +22,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RCAgregarProductoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RCAgregarProductoController">
    <center>
-      <VBox prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="120.0" prefWidth="400.0">
+            <VBox alignment="CENTER" prefHeight="120.0" prefWidth="400.0">
                <children>
                   <ImageView fitHeight="80.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/LogoUV.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="200.0" text="Agregar Producto" textFill="#3d3d3d">
+                  <Label fx:id="lblNombreVentana" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="200.0" text="Agregar Producto" textFill="#3d3d3d">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -89,27 +98,53 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </HBox>
-            <Label text="Descripción:" textFill="#3d3d3d">
-               <font>
-                  <Font size="15.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="5.0" />
-               </VBox.margin>
-            </Label>
-            <TextArea fx:id="txfDescripcion" prefHeight="50.0" prefWidth="360.0" styleClass="input" stylesheets="@style.css" wrapText="true">
-               <VBox.margin>
-                  <Insets left="15.0" right="10.0" />
-               </VBox.margin></TextArea>
-            <HBox alignment="BOTTOM_LEFT" prefHeight="80.0" prefWidth="400.0" spacing="15.0">
+            <HBox prefHeight="30.0" prefWidth="400.0">
                <children>
-                  <ImageView fx:id="imgProducto" fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="btnAñadirImagen" mnemonicParsing="false" onAction="#clicAñadirImagen" prefHeight="20.0" styleClass="btn-gris" stylesheets="@style.css" text="Añadir Imágen" textFill="#3d3d3d" />
+                  <Label text="Tiempo de entraga aproximado:" textFill="#3d3d3d">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txfTiempoAprox" prefWidth="60.0" stylesheets="@style.css">
+                     <styleClass>
+                        <String fx:value="input" />
+                        <String fx:value="transparent" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </TextField>
                </children>
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
             </HBox>
+            <HBox prefHeight="25.0" prefWidth="200.0">
+               <children>
+                  <Label text="Descripción:" textFill="#3d3d3d">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <TextArea fx:id="txfDescripcion" prefHeight="50.0" prefWidth="360.0" styleClass="inputtext" stylesheets="@style.css" wrapText="true">
+               <VBox.margin>
+                  <Insets left="15.0" right="10.0" />
+               </VBox.margin></TextArea>
+            <Button fx:id="btnAñadirImagen" mnemonicParsing="false" onAction="#clicAñadirImagen" prefHeight="20.0" styleClass="btn-gris" stylesheets="@style.css" text="Añadir Imágen" textFill="#3d3d3d">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Button>
+            <ImageView fx:id="imgProducto" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </ImageView>
             <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="400.0" spacing="20.0">
                <children>
                   <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="30.0" prefWidth="80.0" stylesheets="@style.css" text="Cancelar">
@@ -141,7 +176,7 @@
                   <Image url="@../img/CafeteriaLogo.png" />
                </image>
             </ImageView>
-            <Label text="Agregar" textFill="#3d3d3d">
+            <Label fx:id="lblNombreVentana" text="Agregar" textFill="#3d3d3d">
                <font>
                   <Font size="25.0" />
                </font>

@@ -1,11 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+/********************************************************************/
+/* Archivo: GInicioSesionController.java                            */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  10/Jun/2022                                 */
+/* Descripción: Archivo donde se inicializa la ventana              */
+/*              "Inicio sesion" con sus metodos                     */
+/********************************************************************/
+
 package GUI;
 
+import Dominio.Consumidor;
 import Dominio.PersonalCafeteria;
 import Servicios.ServicioAdministrador;
+import Servicios.ServicioConsumidor;
 import Servicios.ServicioPersonalCafeteria;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -24,11 +31,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author marie
- */
 public class GInicioSesionController implements Initializable {
 
     @FXML
@@ -52,9 +54,6 @@ public class GInicioSesionController implements Initializable {
     @FXML
     private Button btnIniciarSesion;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -64,6 +63,7 @@ public class GInicioSesionController implements Initializable {
     private void clicIniciarSesion(ActionEvent event) throws IOException {
         ServicioAdministrador servicioAdministrador = new ServicioAdministrador();
         ServicioPersonalCafeteria servicioPersonal = new ServicioPersonalCafeteria();
+        ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
         String correoElectronico = txfCorreoInicio.getText();
         String contrasenia = pfContraseniaInicio.getText();
         if(servicioAdministrador.enviarCredencialesAdministrador(correoElectronico, contrasenia) == 200){
@@ -75,7 +75,10 @@ public class GInicioSesionController implements Initializable {
             }else{
                 enviarAVentanaRecepcionista(personalCafeteria);
             }
-        }else{  
+        }else if (servicioConsumidor.obtenerConsumidorPorCredencial(correoElectronico,contrasenia) != null){
+            Consumidor consumidor = servicioConsumidor.obtenerConsumidorPorCredencial(correoElectronico,contrasenia);
+            enviarAVentanaConsumidor(consumidor);
+        }else{
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaInformacionInvalida("Credenciales incorrectas");
         }
@@ -93,7 +96,7 @@ public class GInicioSesionController implements Initializable {
         }
     }
     
-    private void enviarAVentanaConsumidor(){
+    private void enviarAVentanaConsumidor(Consumidor consumidor){
         try {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/CEleccionCafeteria.fxml")));

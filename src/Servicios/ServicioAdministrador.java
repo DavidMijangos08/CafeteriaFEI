@@ -1,3 +1,11 @@
+/********************************************************************/
+/* Archivo: ServicioAdministrador.java                              */
+/* Programador: David Alexander                                     */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se crean los metodos para             */
+/*              llamarlos los request del servidor                  */
+/********************************************************************/
 
 package Servicios;
 
@@ -9,9 +17,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class ServicioAdministrador {
-    
     public int enviarCredencialesAdministrador(String correoElectronico, String contrasenia){
         int respuesta = 0;
         try {

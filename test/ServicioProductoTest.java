@@ -1,10 +1,17 @@
+/********************************************************************/
+/* Archivo: ServicioProductoTest.java                               */
+/* Programador: David Alexander                                     */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se crean los test para las            */
+/*              llamadas realizadas al servidor                     */
+/********************************************************************/
 
 import Dominio.Producto;
 import Servicios.ServicioProducto;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-
 
 public class ServicioProductoTest {
     
@@ -39,10 +46,10 @@ public class ServicioProductoTest {
     @Test
     public void modificarProductoTest(){
         ServicioProducto servicioProducto = new ServicioProducto();
-        Producto producto = new Producto(3, "Chilaquiles verdes", "Totopos en salsa de tomate verde acompañados de queso y crema", 
-                                         "/img/Productos/chilaquilesVerdes.png", 35, 15, 2);
+        Producto producto = new Producto(8, "Cheeseburger", "Hamburguesa acompañados de los quesos más exquisitos",
+                                         "/img/Productos/cheeseburger.png", 18, 20, 1);
         int respuestaEseperada = 200;
-        int respuestaObtenida = servicioProducto.modificarProducto(producto, 3);
+        int respuestaObtenida = servicioProducto.modificarProducto(producto, 8);
         assertEquals(respuestaEseperada, respuestaObtenida);
     }
     

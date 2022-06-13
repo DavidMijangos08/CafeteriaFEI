@@ -1,7 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+/********************************************************************/
+/* Archivo: GReseñasProductosController.java                        */
+/* Programador: Eder Ivan                                           */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se inicializa la ventana              */
+/*              "Reseñas productos" con sus metodos                 */
+/********************************************************************/
+
 package GUI;
 
 
@@ -29,11 +34,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-/**
- * FXML Controller class
- *
- * @author marie
- */
 public class GReseñasProductoController implements Initializable {
 
     @FXML
@@ -62,60 +62,58 @@ public class GReseñasProductoController implements Initializable {
     private GridPane gdReseñas;
     @FXML
     private Button btnDejarOpinion;
-    private List<ReseñaProducto> reseñas = new ArrayList<>();
 
-    /**
-     * Initializes the controller class.
-     */
-    
+    private List<ReseñaProducto> reseñas = new ArrayList<>();
+    private List<ReseñaProducto> reseñaProductos = new ArrayList<>();
+
     private List<ReseñaProducto> obtenerReseñas(){
         List<ReseñaProducto> lReseña = new ArrayList<>();
         ReseñaProducto p;
         for(int i=0; i<20; i++){
-                p = new ReseñaProducto();
-                p.setTitulo("Muy buen producto " +i);
-                p.setOpinion("siempre pido lo mismo y nunca me decepciona, sigan así :) "+i);
-                p.setRutaImagen("/img/usuario.png");
-                
-                lReseña.add(p);
+            p = new ReseñaProducto();
+            p.setTitulo("Muy buen producto " +i);
+            p.setOpinion("siempre pido lo mismo y nunca me decepciona, sigan así :) "+i);
+            p.setRutaImagen("/img/usuario.png");
+
+            lReseña.add(p);
         }
-        
+
         return lReseña;
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        reseñas.addAll(obtenerReseñas());
-        
+        reseñaProductos.addAll(obtenerReseñas());
+
         int fila = 1;
         try {
-            for(int i = 0; i < reseñas.size(); i++){
+            for(int i = 0; i < reseñaProductos.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("FXMLItemReseña.fxml"));
-                
+                fxmlLoader.setLocation(getClass().getResource("ItemReseñaProducto.fxml"));
+
                 AnchorPane acp = fxmlLoader.load();
-            
+
                 ItemReseñaProductoController reseñaController = fxmlLoader.getController();
-                reseñaController.setReseña(reseñas.get(i));
-                                
+                reseñaController.setReseña(reseñaProductos.get(i));
+
                 gdReseñas.add(acp,0,fila++);
-                
+
                 //Ajustar el ancho del grid
                 gdReseñas.setMinWidth(Region.USE_COMPUTED_SIZE);
                 gdReseñas.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 gdReseñas.setMaxWidth(Region.USE_COMPUTED_SIZE);
-                
+
                 //Ajustar el alto del grid
                 gdReseñas.setMinHeight(Region.USE_COMPUTED_SIZE);
                 gdReseñas.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 gdReseñas.setMaxHeight(Region.USE_COMPUTED_SIZE);
-                
+
                 GridPane.setMargin(acp, new Insets(10));
-             }
+            }
         } catch (IOException ex) {
             Logger.getLogger(GReseñasProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
 
     @FXML
     private void clicVerCafeteria(ActionEvent event) {

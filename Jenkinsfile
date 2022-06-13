@@ -3,9 +3,8 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat "ant clean compile test package war" 
-                archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
-            }
+                bat "ant clean compile test package war"
+               }
         }
         
          stage('Test') {

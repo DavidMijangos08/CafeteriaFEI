@@ -1,7 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+/********************************************************************/
+/* Archivo: RCAgregarProductoController.java                        */
+/* Programador: Eder Ivan                                           */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se inicializa la ventana              */
+/*              "Agregar producto" con sus metodos                  */
+/********************************************************************/
+
 package GUI;
 
 import java.net.URL;
@@ -14,11 +19,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-/**
- * FXML Controller class
- *
- * @author marie
- */
 public class RCAgregarProductoController implements Initializable {
 
     @FXML
@@ -36,9 +36,6 @@ public class RCAgregarProductoController implements Initializable {
     @FXML
     private TextField txfNombre;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

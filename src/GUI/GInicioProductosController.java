@@ -1,13 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+/********************************************************************/
+/* Archivo: GInicioProductosController.java                         */
+/* Programador: Maria Elena                                         */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  02/Jun/2022                                 */
+/* Descripción: Archivo donde se inicializa la ventana              */
+/*              "Cafeteria" con sus metodos                         */
+/********************************************************************/
+
 package GUI;
 
 import Dominio.Cafeteria;
 import Dominio.Producto;
+
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -36,12 +45,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 
-/**
- * FXML Controller class
- *
- * @author marie
- */
 public class GInicioProductosController implements Initializable {
 
     @FXML
@@ -86,13 +91,9 @@ public class GInicioProductosController implements Initializable {
     private MyListenerProducto myListener;
     private List<Producto> productos = new ArrayList<>();
     
-    /**
-     * Initializes the controller class.
-     */
-
     private List<Producto> obtenerProductos(int idCafeteria){
         ServicioProducto servicioProducto = new ServicioProducto();
-        List<Producto> lproductos = servicioProducto.obtenerListaProductos(idCafeteria);
+        List<Producto> lproductos = servicioProducto.obtenerProductosDeCafeteria(idCafeteria);
         return lproductos;
     }
     private void setProductoElegido(Producto p){
@@ -106,7 +107,7 @@ public class GInicioProductosController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        productos.addAll(obtenerProductos(2));
+        productos.addAll(obtenerProductos(5));
         if(productos.size()>0){
             setProductoElegido(productos.get(0));
             myListener = new MyListenerProducto(){
@@ -128,7 +129,7 @@ public class GInicioProductosController implements Initializable {
                 ItemProductoController productoController = fxmlLoader.getController();
                 productoController.setProducto(productos.get(i), myListener);
                 
-                if(columna == 3){
+                if(columna == 4){
                     columna = 0;
                     fila++;
                 }
@@ -144,7 +145,7 @@ public class GInicioProductosController implements Initializable {
                 gdProductos.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 gdProductos.setMaxHeight(Region.USE_COMPUTED_SIZE);
                 
-                GridPane.setMargin(acp, new Insets(7));
+                GridPane.setMargin(acp, new Insets(5));
              }
         } catch (IOException ex) {
             Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
@@ -206,4 +207,9 @@ public class GInicioProductosController implements Initializable {
     void clicAñadirProducto(ActionEvent event) {
         cambiarVentana("/GUI/RCAgregarProducto.fxml", "Agregar Producto");
     }
+
+
+
+
+
 }

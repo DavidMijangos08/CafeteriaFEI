@@ -26,6 +26,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-border-color: #898989
 }
 
+.inputtext{
+    -fx-border-width: 1 1 1 1;
+    -fx-border-color: #898989
+}
+
 .shadow{
     -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10.0, 0.0, 0.0, 10.0);
 }

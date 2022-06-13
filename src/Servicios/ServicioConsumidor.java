@@ -1,3 +1,11 @@
+/********************************************************************/
+/* Archivo: ServicioCaferia.java                                    */
+/* Programador: Eder Ivan                                           */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  10/Jun/2022                                 */
+/* Descripción: Archivo donde se crean los metodos para             */
+/*              llamarlos los request del servidor                  */
+/********************************************************************/
 
 package Servicios;
 
@@ -35,6 +43,21 @@ public class ServicioConsumidor {
             output.write(datos.getBytes("UTF-8"));
             output.flush();
             output.close();
+            respuesta = conexion.getResponseCode(); 
+        }catch (MalformedURLException ex) {
+            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return respuesta;
+    }
+    
+    public int cerrarSesionConsumidor(String correoElectronico){
+        int respuesta = 0;
+         try{
+            URL url = new URL("http://127.0.0.1:9090/consumidor/login/" + correoElectronico);
+            HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
+            conexion.setRequestMethod("PUT");
             respuesta = conexion.getResponseCode(); 
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);

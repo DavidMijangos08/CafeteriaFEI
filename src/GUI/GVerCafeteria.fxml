@@ -1,3 +1,12 @@
+<!--
+   Archivo: GVerCafeteria.fxml                                                  
+   Programador: Maria Elena                                                
+   Fecha de creación: 30/May/2022                                        
+   Fecha modificación:  02/Jun/2022                                 
+   Descripción: Archivo con las etiquetas para la
+   ventana "Ver cafeteria"  
+-->
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
@@ -38,7 +47,7 @@
             </VBox>
             <VBox fx:id="vbCafeteria" alignment="CENTER_LEFT" prefHeight="326.0" prefWidth="285.0" spacing="5.0" styleClass="item-seleccionado" stylesheets="@style.css">
                <children>
-                  <Label fx:id="lblNombreCafeteria" prefHeight="30.0" prefWidth="301.0" text="Enchiladas verdes" textFill="#3d3d3d">
+                  <Label fx:id="lblNombreCafeteria" alignment="CENTER" prefHeight="30.0" prefWidth="301.0" text="Enchiladas verdes" textFill="#3d3d3d">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -84,7 +93,7 @@
                         <Insets left="15.0" right="15.0" />
                      </VBox.margin>
                   </Label>
-                  <TextArea fx:id="txaFacultad" editable="false" prefHeight="50.0" prefWidth="300.0" wrapText="true">
+                  <TextArea fx:id="txaFacultad" editable="false" prefWidth="300.0" wrapText="true">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" />
                      </VBox.margin>
@@ -97,7 +106,7 @@
                         <Insets left="15.0" right="15.0" />
                      </VBox.margin>
                   </Label>
-                  <TextArea fx:id="txaDireccion" editable="false" prefHeight="50.0" prefWidth="300.0">
+                  <TextArea fx:id="txaDireccion" editable="false" prefWidth="300.0" wrapText="true">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" />
                      </VBox.margin>

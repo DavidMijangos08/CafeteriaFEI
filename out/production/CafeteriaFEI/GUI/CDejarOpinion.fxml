@@ -62,18 +62,18 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="200.0" spacing="40.0" stylesheets="@style.css">
                <children>
-                  <RadioButton mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="1">
+                  <RadioButton fx:id="rbCalif1" mnemonicParsing="false" prefHeight="20.0" prefWidth="20.0" text="1">
                      <toggleGroup>
                         <ToggleGroup fx:id="tgSeleccion" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton mnemonicParsing="false" text="2" toggleGroup="$tgSeleccion" />
-                  <RadioButton mnemonicParsing="false" text="3" toggleGroup="$tgSeleccion" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" stylesheets="@style.css" text="4" toggleGroup="$tgSeleccion" />
-                  <RadioButton contentDisplay="CENTER" mnemonicParsing="false" text="5" toggleGroup="$tgSeleccion" />
+                  <RadioButton fx:id="rbCalif2" mnemonicParsing="false" text="2" toggleGroup="$tgSeleccion" />
+                  <RadioButton fx:id="rbCalif3" mnemonicParsing="false" text="3" toggleGroup="$tgSeleccion" />
+                  <RadioButton fx:id="rbCalif4" contentDisplay="CENTER" mnemonicParsing="false" stylesheets="@style.css" text="4" toggleGroup="$tgSeleccion" />
+                  <RadioButton fx:id="rbCalif5" contentDisplay="CENTER" mnemonicParsing="false" text="5" toggleGroup="$tgSeleccion" />
                </children>
             </HBox>
-            <TextField prefWidth="200.0" promptText="Escribe un título para tu opinión" stylesheets="@style.css">
+            <TextField fx:id="txfTituloOpinion" prefWidth="200.0" promptText="Escribe un título para tu opinión" stylesheets="@style.css">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
@@ -82,15 +82,15 @@
                   <String fx:value="input" />
                </styleClass>
             </TextField>
-            <TextArea fx:id="txaOpinion" prefHeight="100.0" prefWidth="450.0" promptText="Escribe tu opinión" styleClass="input" stylesheets="@style.css" wrapText="true">
+            <TextArea fx:id="txaOpinion" prefHeight="90.0" prefWidth="450.0" promptText="Escribe tu opinión" styleClass="inputtext" stylesheets="@style.css" wrapText="true">
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
                </VBox.margin>
             </TextArea>
-            <HBox alignment="CENTER" prefHeight="35.0" prefWidth="200.0" spacing="20.0">
+            <HBox alignment="TOP_CENTER" prefHeight="45.0" prefWidth="200.0" spacing="20.0">
                <children>
                   <Button fx:id="btnAgregarImagen" mnemonicParsing="false" onAction="#clicAgregarImagen" prefHeight="25.0" prefWidth="124.0" style="-fx-background-color: #cdcdcd;" styleClass="radius" stylesheets="@style.css" text="Agregar Imagen" />
-                  <Label prefHeight="25.0" prefWidth="211.0" text="Imagen no seleccionada" textFill="#3d3d3d" />
+                  <TextArea fx:id="txaRutaImagen" editable="false" prefHeight="30.0" prefWidth="200.0" styleClass="centeredTextArea" stylesheets="@style.css" text="Imagen no seleccionada" wrapText="true" />
                </children>
             </HBox>
             <HBox alignment="BOTTOM_RIGHT" prefHeight="30.0" prefWidth="200.0" spacing="30.0">

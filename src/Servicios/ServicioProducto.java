@@ -1,3 +1,11 @@
+/********************************************************************/
+/* Archivo: ServicioProducto.java                                   */
+/* Programador: Eder Ivan                                           */
+/* Fecha de creación: 30/May/2022                                   */
+/* Fecha modificación:  10/Jun/2022                                 */
+/* Descripción: Archivo donde se crean los metodos para             */
+/*              llamarlos los request del servidor                  */
+/********************************************************************/
 
 package Servicios;
 
@@ -15,7 +23,6 @@ import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 
 public class ServicioProducto {
     
@@ -54,6 +61,7 @@ public class ServicioProducto {
         } 
         return productos;
     }
+
     public ArrayList<Producto> obtenerListaProductos(int idCafeteria){
         ArrayList<Producto> productos = new ArrayList<Producto>();
         try{
@@ -88,6 +96,7 @@ public class ServicioProducto {
         }
         return productos;
     }
+    
     public int agregarNuevoProducto(Producto producto, int idCafeteria){
         int respuesta = 0;
         try{
