@@ -9,6 +9,7 @@
 
 package GUI;
 
+import Dominio.Administrador;
 import Dominio.Consumidor;
 import Dominio.PersonalCafeteria;
 import Servicios.ServicioAdministrador;
@@ -54,11 +55,14 @@ public class GInicioSesionController implements Initializable {
     @FXML
     private Button btnIniciarSesion;
     private String codigoEnviado = "";
-
+    private int tipoUsuario;
+    private PersonalCafeteria personalCafeteria = new PersonalCafeteria();
+    private Administrador administrador = new Administrador();
+    private Consumidor consumidor = new Consumidor();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void clicIniciarSesion(ActionEvent event) throws IOException {
@@ -68,17 +72,22 @@ public class GInicioSesionController implements Initializable {
         String correoElectronico = txfCorreoInicio.getText();
         String contrasenia = pfContraseniaInicio.getText();
         if(servicioAdministrador.enviarCredencialesAdministrador(correoElectronico, contrasenia) == 200){
-            enviarAVentanaAdministrador();
+            //cambiarVentana("/GUI/CDejarOpinion.fxml",1);
+            //falta ventana para inicio de admin
+            tipoUsuario = 1;
         }else if(servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia) != null){
-            PersonalCafeteria personalCafeteria = servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia);
+            personalCafeteria = servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia);
             if(personalCafeteria.getCargo().equals("Responsable")){
-                enviarAVentanaResponsable(personalCafeteria);
+                tipoUsuario = 2;
+                cambiarVentana("GInicioProductos.fxml");
             }else{
-                enviarAVentanaRecepcionista(personalCafeteria);
+                tipoUsuario = 3;
+                cambiarVentana("GInicioProductos.fxml");
             }
         }else if (servicioConsumidor.obtenerConsumidorPorCredencial(correoElectronico,contrasenia) != null){
-            Consumidor consumidor = servicioConsumidor.obtenerConsumidorPorCredencial(correoElectronico,contrasenia);
-            enviarAVentanaConsumidor(consumidor);
+            consumidor = servicioConsumidor.obtenerConsumidorPorCredencial(correoElectronico,contrasenia);
+            tipoUsuario = 4;
+            cambiarVentana("CEleccionCafeteria.fxml");
         }else{
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaInformacionInvalida("Credenciales incorrectas");
@@ -258,5 +267,25 @@ public class GInicioSesionController implements Initializable {
         pfConfContraseniaCrear.clear();
         pfCodigoCrear.clear();
         rbtTerminos.setSelected(false);
+    }
+
+    private void cambiarVentana(String ruta) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource(ruta));
+        Scene scene = new Scene(fxmlLoader.load());
+        Stage stage = new Stage();
+        stage.setScene(scene);
+
+        if(tipoUsuario == 1){
+            //aqui falta
+        }else if (tipoUsuario == 2 || tipoUsuario == 3){
+            GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
+            controlador.recibirParametrosPersonal(tipoUsuario, personalCafeteria);
+        }else if(tipoUsuario == 4){
+            CEleccionCafeteriaController controlador = (CEleccionCafeteriaController) fxmlLoader.getController();
+            controlador.recibirParametros(tipoUsuario, consumidor);
+        }
+        cerrarVentana();
+        stage.show();
     }
 }

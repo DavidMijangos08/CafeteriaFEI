@@ -14,6 +14,7 @@ public class Administrador {
     private String correoElectronico;
     private String contrasenia;
 
+    public Administrador(){    }
     public Administrador(String correoElectronico, String contrasenia) {
         this.correoElectronico = correoElectronico;
         this.contrasenia = contrasenia;

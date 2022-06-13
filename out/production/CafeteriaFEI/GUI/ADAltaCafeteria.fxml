@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -13,7 +19,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FXMLAltaCafeteríaController">
+<!--
+   Archivo: ADAltaCafeteria.fxml                                                  
+   Programador: Maria Elena                                                
+   Fecha de creación: 30/May/2022                                        
+   Fecha modificación:  02/Jun/2022                                 
+   Descripción: Archivo con las etiquetas para la
+   ventana "Alta de Cafeteria"  
+-->
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ADAltaCafeteriaController">
    <left>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" styleClass="primary-color" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
@@ -134,25 +149,25 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cbHoraInicio" prefHeight="25.0" prefWidth="24.0" styleClass="btn-gris" stylesheets="@style.css" />
+                  <ComboBox fx:id="cbHoraInicio" prefHeight="25.0" prefWidth="65.0" styleClass="btn-gris" stylesheets="@style.css" />
                   <Label prefHeight="30.0" text=":">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cbMinutoInicio" prefHeight="25.0" prefWidth="14.0" styleClass="btn-gris" stylesheets="@style.css" />
+                  <ComboBox fx:id="cbMinutoInicio" prefHeight="25.0" prefWidth="65.0" styleClass="btn-gris" stylesheets="@style.css" />
                   <Label prefHeight="30.0" text="a">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cbHoraFin" prefHeight="25.0" prefWidth="13.0" styleClass="btn-gris" stylesheets="@style.css" />
+                  <ComboBox fx:id="cbHoraFin" prefHeight="25.0" prefWidth="65.0" styleClass="btn-gris" stylesheets="@style.css" />
                   <Label prefHeight="30.0" text=":">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cbMinutoFin" prefHeight="25.0" prefWidth="0.0" styleClass="btn-gris" stylesheets="@style.css" />
+                  <ComboBox fx:id="cbMinutoFin" prefHeight="25.0" prefWidth="65.0" styleClass="btn-gris" stylesheets="@style.css" />
                </children>
                <VBox.margin>
                   <Insets right="25.0" />
@@ -160,7 +175,7 @@
             </HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="35.0" prefWidth="400.0" spacing="100.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#clicCancelar" stylesheets="@style.css" text="Cancelar" textFill="#3d3d3d">
+                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#clicCancelar" stylesheets="@style.css" text="Cancelar" textFill="#3d3d3d">
                      <font>
                         <Font size="15.0" />
                      </font>

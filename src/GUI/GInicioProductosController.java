@@ -9,8 +9,7 @@
 
 package GUI;
 
-import Dominio.Cafeteria;
-import Dominio.Producto;
+import Dominio.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -83,19 +82,80 @@ public class GInicioProductosController implements Initializable {
     @FXML
     private Label lblTiempoAprox;
     @FXML
+    private Label lblTituloCafeteria;
+    @FXML
     private Button btnEliminarProducto;
     @FXML
     private Button btnModificarProducto;
     @FXML
     private Button btnAñadirProducto;
-
+    //private int tipoUsuario;
+    //private int idCafeteria;
+    private Consumidor consumidor = new Consumidor();
+    private PersonalCafeteria personalCafeteria = new PersonalCafeteria();
     private MyListenerProducto myListener;
-    private List<Producto> productos = new ArrayList<>();
+    ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
 
-    private List<Producto> obtenerProductos(int idCafeteria){
-        ServicioProducto servicioProducto = new ServicioProducto();
-        List<Producto> lproductos = servicioProducto.obtenerProductosDeCafeteria(idCafeteria);
-        return lproductos;
+    public void recibirParametrosConsumidor(int tipoUsuario, Consumidor c, int idCafeteria1) throws IOException {
+        this.consumidor = c;
+        lblTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria1).getNombreCafeteria());
+        obtenerProductos(idCafeteria1);
+        iniciarVentana(tipoUsuario);
+    }
+
+    public void recibirParametrosPersonal(int tipoUsuario, PersonalCafeteria p) throws IOException {
+        personalCafeteria = p;
+        lblTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(p.getIdCafeteria()).getNombreCafeteria());
+        obtenerProductos(p.getIdCafeteria());
+        iniciarVentana(tipoUsuario);
+    }
+
+    private void obtenerProductos(int idCafeteria){
+        try {
+            ServicioProducto servicioProducto = new ServicioProducto();
+            List<Producto> productos = servicioProducto.obtenerProductosDeCafeteria(idCafeteria);
+
+            if(productos.size()>0){
+                setProductoElegido(productos.get(0));
+                myListener = new MyListenerProducto(){
+                    @Override
+                    public void onClickListener(Producto p){
+                        setProductoElegido(p);
+                    }
+                };
+            }
+            int columna=0;
+            int fila=1;
+
+            for(int i = 0; i < productos.size(); i++){
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("ItemProducto.fxml"));
+                AnchorPane acp = fxmlLoader.load();
+
+                ItemProductoController productoController = fxmlLoader.getController();
+                productoController.setProducto(productos.get(i), myListener);
+
+                if(columna == 4){
+                    columna = 0;
+                    fila++;
+                }
+
+                gdProductos.add(acp,columna++,fila);
+                //Ajustar el ancho del grid
+                gdProductos.setMinWidth(Region.USE_COMPUTED_SIZE);
+                gdProductos.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                gdProductos.setMaxWidth(Region.USE_COMPUTED_SIZE);
+
+                //Ajustar el alto del grid
+                gdProductos.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gdProductos.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                gdProductos.setMaxHeight(Region.USE_COMPUTED_SIZE);
+
+                GridPane.setMargin(acp, new Insets(5));
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     private void setProductoElegido(Producto p){
@@ -109,49 +169,8 @@ public class GInicioProductosController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        productos.addAll(obtenerProductos(5));
-        if(productos.size()>0){
-            setProductoElegido(productos.get(0));
-            myListener = new MyListenerProducto(){
-                @Override
-                public void onClickListener(Producto p){
-                    setProductoElegido(p);
-                }
-            };
-        }
-        
-        int columna=0;
-        int fila=1;
-        try {
-            for(int i = 0; i < productos.size(); i++){
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("ItemProducto.fxml"));
-                AnchorPane acp = fxmlLoader.load();
-            
-                ItemProductoController productoController = fxmlLoader.getController();
-                productoController.setProducto(productos.get(i), myListener);
-                
-                if(columna == 4){
-                    columna = 0;
-                    fila++;
-                }
-                
-                gdProductos.add(acp,columna++,fila);
-                //Ajustar el ancho del grid
-                gdProductos.setMinWidth(Region.USE_COMPUTED_SIZE);
-                gdProductos.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                gdProductos.setMaxWidth(Region.USE_COMPUTED_SIZE);
-                
-                //Ajustar el alto del grid
-                gdProductos.setMinHeight(Region.USE_COMPUTED_SIZE);
-                gdProductos.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                gdProductos.setMaxHeight(Region.USE_COMPUTED_SIZE);
-                
-                GridPane.setMargin(acp, new Insets(5));
-             }
-        } catch (IOException ex) {
-            Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //productos.addAll(obtenerProductos());
+
     }
     
     @FXML
@@ -208,5 +227,24 @@ public class GInicioProductosController implements Initializable {
     @FXML
     void clicAñadirProducto(ActionEvent event) {
         cambiarVentana("/GUI/RCAgregarProducto.fxml", "Agregar Producto");
+    }
+
+    private void iniciarVentana(int tipoUsuario){
+        if(tipoUsuario == 2){
+            btnAñadirProducto.setVisible(false);
+            btnModificarProducto.setVisible(false);
+            btnEliminarProducto.setVisible(false);
+            btnDejarOpinion.setVisible(false);
+        }else if(tipoUsuario == 3){
+            btnVerCafeteria.setVisible(false);
+            btnVerOpiniones.setVisible(false);
+            btnDejarOpinion.setVisible(false);
+        }else if(tipoUsuario == 4){
+            btnAñadirProducto.setVisible(false);
+            btnModificarProducto.setVisible(false);
+            btnEliminarProducto.setVisible(false);
+            btnVerCafeteria.setVisible(false);
+            btnVerOpiniones.setVisible(false);
+        }
     }
 }

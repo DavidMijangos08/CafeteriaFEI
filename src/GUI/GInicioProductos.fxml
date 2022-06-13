@@ -27,7 +27,7 @@
    ventana "Cafeteria"  
 -->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GInicioProductosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GInicioProductosController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
@@ -43,7 +43,7 @@
                               <Insets top="3.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Label text="Cafetería FEI" textFill="#3d3d3d">
+                        <Label fx:id="lblTituloCafeteria" text="Cafetería FEI" textFill="#3d3d3d">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -65,12 +65,12 @@
                      <children>
                         <HBox prefHeight="30.0" prefWidth="270.0">
                            <children>
-                              <Label fx:id="lblNombreEscogido" prefHeight="30.0" prefWidth="180.0" text="Enchiladas verdes" textFill="#3d3d3d">
+                              <Label fx:id="lblNombreEscogido" prefHeight="30.0" prefWidth="180.0" textFill="#3d3d3d">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lblPrecioEscogido" prefHeight="30.0" prefWidth="70.0" text="\$120.00" textFill="#3d3d3d">
+                              <Label fx:id="lblPrecioEscogido" prefHeight="30.0" prefWidth="70.0" textFill="#3d3d3d">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -82,11 +82,7 @@
                         </HBox>
                         <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <ImageView fx:id="imgProductoEscogido" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/Productos/enchiladasVerdes.png" />
-                                 </image>
-                              </ImageView>
+                              <ImageView fx:id="imgProductoEscogido" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </HBox>
                         <TextArea fx:id="txaDescripcionEscogido" editable="false" prefHeight="50.0" prefWidth="200.0" stylesheets="@style.css" wrapText="true">

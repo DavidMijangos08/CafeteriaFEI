@@ -13,7 +13,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RCAgregarProductoController">
+<!--
+   Archivo: RCAgregarProducto.fxml                                                  
+   Programador: Eder Ivan                                               
+   Fecha de creación: 30/May/2022                                        
+   Fecha modificación:  02/Jun/2022                                 
+   Descripción: Archivo con las etiquetas para la
+   ventana "Agregar producto"
+-->
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RCAgregarProductoController">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>

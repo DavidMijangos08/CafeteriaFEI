@@ -10,6 +10,7 @@
 package GUI;
 
 import Dominio.Cafeteria;
+import Dominio.Consumidor;
 import Servicios.ServicioCafeteria;
 import java.io.IOException;
 import java.net.URL;
@@ -39,21 +40,39 @@ public class CEleccionCafeteriaController implements Initializable {
     private Button btnCerrarSesion;
     @FXML
     private Button btnContinuar;
-
+    private GInicioSesionController inicioSesionController;
+    private int tipoUsuario;
+    private Consumidor consumidor;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         llenarComboBoxFacultades();
-    }    
-
-    @FXML
-    private void clicCerrarSesion(ActionEvent event) throws IOException {
-        cambiarVentana("/GUI/GInicioSesion.fxml", "Inicio de Sesión");
     }
 
     @FXML
-    private void clicContinuar(ActionEvent event) {
-        if(!existenCamposVacios()){
-            cambiarVentana("/GUI/GInicioProductos.fxml", "Productos");
+    private void clicCerrarSesion(ActionEvent event) throws IOException {
+        try {
+            Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
+            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/GInicioSesion.fxml")));
+            stage.setScene(scenePrincipal);
+            stage.show();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void clicContinuar(ActionEvent event) throws IOException {
+        if (!existenCamposVacios()){
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/GUI/GInicioProductos.fxml"));
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stageHijo = new Stage();
+            stageHijo.setScene(scene);
+            GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
+            controlador.recibirParametrosConsumidor(tipoUsuario, consumidor, cbCafeteria.getValue().getIdCafeteria());
+            Stage stagePadre = (Stage) btnContinuar.getScene().getWindow();
+            stagePadre.close();
+            stageHijo.show();
         }
     }
     
@@ -113,5 +132,10 @@ public class CEleccionCafeteriaController implements Initializable {
     private void cerrarVentana(){
         Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
         stage.close();
+    }
+
+    public void recibirParametros(int tipoUsuario1, Consumidor consumidor1){
+        tipoUsuario = tipoUsuario1;
+        consumidor = consumidor1;
     }
 }

@@ -20,8 +20,7 @@ public class PersonalCafeteria {
     private int idPersonal;
     private String token;
 
-    public PersonalCafeteria() {
-    }
+    public PersonalCafeteria() {    }
 
     public PersonalCafeteria(String nombre, String CURP, String correoElectronico, String cargo) {
         this.idPersonal = idPersonal;

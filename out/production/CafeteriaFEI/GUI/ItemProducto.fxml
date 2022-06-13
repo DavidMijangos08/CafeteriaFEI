@@ -11,7 +11,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onMousePressed="#click" prefHeight="180.0" prefWidth="150.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ItemProductoController">
+<!--
+   Archivo: ItemProducto.fxml                                                  
+   Programador: Maria Elena                                                
+   Fecha de creación: 30/May/2022                                        
+   Fecha modificación:  02/Jun/2022                                 
+   Descripción: Archivo con las etiquetas para la
+   visualizacion de los datos del producto  
+-->
+
+<AnchorPane id="AnchorPane" onMousePressed="#click" prefHeight="180.0" prefWidth="150.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ItemProductoController">
    <children>
       <VBox alignment="CENTER" layoutX="76.0" prefHeight="150.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

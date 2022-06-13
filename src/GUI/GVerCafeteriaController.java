@@ -73,7 +73,7 @@ public class GVerCafeteriaController implements Initializable {
 
     private int idCafeteria = 1;
 
-    private List<ReseñaCafeteria> obtenerReseñas(){
+    private List<ReseñaCafeteria> obtenerReseñas() throws IOException {
         ServicioReseñasCafeteria servicioReseñas = new ServicioReseñasCafeteria();
         List<ReseñaCafeteria> lr = servicioReseñas.obtenerReseñasDeCafeteria(idCafeteria);
         return lr;
@@ -81,10 +81,11 @@ public class GVerCafeteriaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        obtenerInfoCafeteria(idCafeteria);
-        reseñas.addAll(obtenerReseñas());
-        int fila = 1;
         try {
+            obtenerInfoCafeteria(idCafeteria);
+            reseñas.addAll(obtenerReseñas());
+
+            int fila = 1;
             for(int i = 0; i < reseñas.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("ItemReseñaCafeteria.fxml"));
@@ -136,7 +137,7 @@ public class GVerCafeteriaController implements Initializable {
 
     }
 
-    public void obtenerInfoCafeteria(int idCafeteria){
+    public void obtenerInfoCafeteria(int idCafeteria) throws IOException {
         ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
         Cafeteria c = servicioCafeteria.obtenerCafeteriaPorId(idCafeteria);
         lblNombreCafeteria.setText(c.getNombreCafeteria());

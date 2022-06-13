@@ -4,7 +4,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane id="Anchor Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#click" prefHeight="35.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ItemPersonalController">
+<!--
+   Archivo: ItemPersonal.fxml                                                  
+   Programador: Maria Elena                                                
+   Fecha de creación: 30/May/2022                                        
+   Fecha modificación:  02/Jun/2022                                 
+   Descripción: Archivo con las etiquetas para la
+   visualizacion de los datos del personal  
+-->
+
+<AnchorPane id="Anchor Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#click" prefHeight="35.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ItemPersonalController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="665.0" spacing="5.0">
          <children>

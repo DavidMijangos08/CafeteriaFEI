@@ -86,19 +86,19 @@ public class RSVerPersonalController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lPersonal.addAll(obtenerPersonal(2));
-        if(lPersonal.size()>0){
-            setPersonalElegido(lPersonal.get(0));
-            myListener = new MyListenerPersonal(){
-                @Override
-                public void onClickListener(PersonalCafeteria p){
-                    setPersonalElegido(p);
-                }
-            };
-        }
-
-        int fila = 0;
         try {
+            lPersonal.addAll(obtenerPersonal(2));
+            if(lPersonal.size()>0){
+                setPersonalElegido(lPersonal.get(0));
+                myListener = new MyListenerPersonal(){
+                    @Override
+                    public void onClickListener(PersonalCafeteria p){
+                        setPersonalElegido(p);
+                    }
+                };
+            }
+
+            int fila = 0;
             for(int i = 0; i < lPersonal.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("ItemPersonal.fxml"));
@@ -127,7 +127,7 @@ public class RSVerPersonalController implements Initializable{
         }
     }
 
-    private List<PersonalCafeteria> obtenerPersonal(int idCafeteria){
+    private List<PersonalCafeteria> obtenerPersonal(int idCafeteria) throws IOException {
         ServicioPersonalCafeteria servicioProducto = new ServicioPersonalCafeteria();
         List<PersonalCafeteria> lpersonal = servicioProducto.obtenerListaPersonal(idCafeteria);
         return lpersonal;

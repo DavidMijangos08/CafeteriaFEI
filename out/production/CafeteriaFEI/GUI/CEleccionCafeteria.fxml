@@ -15,6 +15,15 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
+<!--
+   Archivo: CEleccionCafeteria.fxml                                                  
+   Programador: David Alexander                                                
+   Fecha de creación: 30/May/2022                                        
+   Fecha modificación:  02/Jun/2022                                 
+   Descripción: Archivo con las etiquetas para la
+   ventana "Eleccion cafeteria"  
+-->
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CEleccionCafeteriaController">
    <left>
       <AnchorPane prefHeight="300.0" prefWidth="200.0" styleClass="primary-color" stylesheets="@style.css" BorderPane.alignment="CENTER">

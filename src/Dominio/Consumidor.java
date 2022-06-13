@@ -17,6 +17,8 @@ public class Consumidor {
     private int idConsumidor;
     private String token;
 
+    public Consumidor(){    }
+
     public Consumidor(String nombre, String correoElectronico, String contrasenia) {
         this.nombre = nombre;
         this.correoElectronico = correoElectronico;
