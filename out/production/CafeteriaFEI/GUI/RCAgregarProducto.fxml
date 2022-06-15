@@ -100,20 +100,28 @@
             </HBox>
             <HBox prefHeight="30.0" prefWidth="400.0">
                <children>
-                  <Label text="Tiempo de entraga aproximado:" textFill="#3d3d3d">
+                  <Label text="Tiempo de entrega aproximado:" textFill="#3d3d3d">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txfTiempoAproximado" prefWidth="60.0" stylesheets="@style.css">
+                  <TextField fx:id="txfTiempoAproximado" prefWidth="40.0" stylesheets="@style.css">
                      <styleClass>
                         <String fx:value="input" />
                         <String fx:value="transparent" />
                      </styleClass>
                      <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="15.0" />
                      </HBox.margin>
                   </TextField>
+                  <Label text="min.">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets top="5.0" />

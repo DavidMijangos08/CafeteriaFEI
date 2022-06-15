@@ -9,6 +9,7 @@
 
 package GUI;
 
+import Dominio.Administrador;
 import Dominio.Cafeteria;
 import Servicios.ServicioCafeteria;
 import java.io.IOException;
@@ -23,6 +24,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -44,6 +47,7 @@ public class ADAltaCafeteriaController implements Initializable {
     private ComboBox<String> cbMinutoFin;
     @FXML
     private Button btnCancelar;
+    private Administrador administrador = new Administrador();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -53,6 +57,7 @@ public class ADAltaCafeteriaController implements Initializable {
     
     @FXML
     private void clicCancelar(ActionEvent event) {
+        regresarVentana();
     }
 
     @FXML
@@ -137,6 +142,25 @@ public class ADAltaCafeteriaController implements Initializable {
         return existe;
     }
     
+    public void recibirParametros(Administrador a){
+        this.administrador = a;
+    }
+    private void regresarVentana(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("ADInicio.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            ADInicioController controlador = (ADInicioController) fxmlLoader.getController();
+            controlador.recibirParametros(administrador);
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     private void cerrarVentana(){
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();

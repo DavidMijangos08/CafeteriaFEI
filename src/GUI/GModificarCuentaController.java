@@ -35,7 +35,7 @@ public class GModificarCuentaController implements Initializable {
     @FXML
     private Button btnRegresar;
     @FXML
-    private Button btnCrearCuenta;
+    private Button btnAceptar;
     @FXML
     private TextField txfNombre;
     @FXML
@@ -61,13 +61,16 @@ public class GModificarCuentaController implements Initializable {
     @FXML
     private void clicRegresar(ActionEvent event) {
         String ruta ="";
-        if(idVentana == 9) {
-            ruta = "GVerCafeteria.fxml";
-        }else if(idVentana == 5){
+        if(idVentana == 5){
             ruta = "GInicioProductos.fxml";
         }else if(idVentana == 8){
             ruta = "GReseñasProducto.fxml";
+        }else if(idVentana == 9) {
+            ruta = "GVerCafeteria.fxml";
+        }else if(idVentana == 15){
+            ruta = "RSVerPersonal.fxml";
         }
+        System.out.println("idventana regresar modifcuenta " + idVentana);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource(ruta));
@@ -85,6 +88,9 @@ public class GModificarCuentaController implements Initializable {
                 }else if(idVentana == 8){
                     GReseñasProductoController controlador = (GReseñasProductoController) fxmlLoader.getController();
                     controlador.recibirParametros(tipoUsuario, null, personalCafeteria, personalCafeteria.getIdCafeteria(), idProducto);
+                }else if(idVentana == 15){
+                    RSVerPersonalController controlador = (RSVerPersonalController) fxmlLoader.getController();
+                    controlador.recibirParametros(personalCafeteria, personalCafeteria.getIdCafeteria());
                 }
             }else if(tipoUsuario == 4){
                 if(idVentana == 9) {
@@ -106,7 +112,7 @@ public class GModificarCuentaController implements Initializable {
     }
 
     @FXML
-    private void clicCrearCuenta(ActionEvent event) {
+    private void clicAceptar(ActionEvent event) {
         cambiarVentana("/GUI/GInicioProductos.fxml");
     }
     
@@ -141,7 +147,7 @@ public class GModificarCuentaController implements Initializable {
             existen = true;
             mensajeAlerta.mostrarAlertaInformacionInvalida("Existen caracteres inválidos en el correo electrónico");
         }
-        
+
         if(validacion.existeContraseniaInvalida(pfContrasenia.getText())){
             existen = true;
             mensajeAlerta.mostrarAlertaInformacionInvalida("Contraseña inválida \n"
@@ -160,7 +166,6 @@ public class GModificarCuentaController implements Initializable {
         Stage stage = (Stage) btnRegresar.getScene().getWindow();
         stage.close();
     }
-
     private void iniciarVentana(int tipoUsuario1, Consumidor c, PersonalCafeteria p, int idCafeteria1, int idVentana1, int idProducto1){
         this.tipoUsuario = tipoUsuario1;
         this.consumidor = c;
@@ -180,7 +185,6 @@ public class GModificarCuentaController implements Initializable {
         iniciarVentana(tipoUsuario1, c, p, idCafeteria1, idVentana1, -1);
     }
     public void recibirParametrosProducto(int tipoUsuario1, Consumidor c, PersonalCafeteria p,  int idCafeteria1, int idVentana1, int idProducto1){
-
         if(p != null){
             txfNombre.setText(p.getNombre());
             txfCorreoElectronico.setText(p.getCorreoElectronico());
@@ -189,7 +193,6 @@ public class GModificarCuentaController implements Initializable {
             txfCorreoElectronico.setText(c.getCorreoElectronico());
         }
         iniciarVentana(tipoUsuario1, c, p, idCafeteria1, idVentana1, idProducto1);
-
     }
 
 }

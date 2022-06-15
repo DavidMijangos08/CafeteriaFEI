@@ -72,8 +72,7 @@ public class GInicioSesionController implements Initializable {
             String correoElectronico = txfCorreoInicio.getText();
             String contrasenia = pfContraseniaInicio.getText();
             if(servicioAdministrador.enviarCredencialesAdministrador(correoElectronico, contrasenia) == 200){
-                //cambiarVentana("/GUI/CDejarOpinion.fxml",1);
-                //falta ventana para inicio de admin
+                cambiarVentana("/GUI/ADInicio.fxml");
                 tipoUsuario = 1;
             }else if(servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia) != null){
                 personalCafeteria = servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia);
@@ -103,9 +102,8 @@ public class GInicioSesionController implements Initializable {
     private void enviarAVentanaAdministrador(){
         try {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/FXMLEleccionCafeteria.fxml")));
+            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/ADInicio.fxml")));
             stage.setScene(scenePrincipal);
-            stage.setTitle("Inicio");
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -117,7 +115,6 @@ public class GInicioSesionController implements Initializable {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/CEleccionCafeteria.fxml")));
             stage.setScene(scenePrincipal);
-            stage.setTitle("Inicio");
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -129,7 +126,6 @@ public class GInicioSesionController implements Initializable {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/GInicioProductos.fxml")));
             stage.setScene(scenePrincipal);
-            stage.setTitle("Inicio");
             stage.show();
             System.out.println("El personal es " + personalCafeteria.getNombre() + " y es " + personalCafeteria.getCargo());
         } catch (IOException ex) {
@@ -142,7 +138,6 @@ public class GInicioSesionController implements Initializable {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/CEleccionCafeteria.fxml")));
             stage.setScene(scenePrincipal);
-            stage.setTitle("Inicio");
             stage.show();
             System.out.println("El personal es " + personalCafeteria.getNombre() + " y es " + personalCafeteria.getCargo());
         } catch (IOException ex) {

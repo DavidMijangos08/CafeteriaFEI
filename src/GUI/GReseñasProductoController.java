@@ -208,9 +208,10 @@ public class GReseñasProductoController implements Initializable {
     }
     public void recibirParametros(int tipoUsuario1, Consumidor c, PersonalCafeteria p, int idCafeteria1, int idProducto1){
         try {
-            if(tipoUsuario < 4){
+            if(p != null){
                 btnDejarOpinion.setVisible(false);
-                lblNombreUsuario.setText(p.getNombre());
+                System.out.println(p.getNombre());
+                this.lblNombreUsuario.setText(p.getNombre());
             }else{
                 lblNombreUsuario.setText(c.getNombre());
             }

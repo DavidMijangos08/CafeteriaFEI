@@ -9,6 +9,7 @@
 
 package GUI;
 
+import Dominio.Administrador;
 import Dominio.Cafeteria;
 import Dominio.PersonalCafeteria;
 import Servicios.ServicioCafeteria;
@@ -21,13 +22,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ADAltaResponsableCafeteria implements Initializable {
+public class ADAltaResponsableController implements Initializable {
 
     @FXML
     private ComboBox<Cafeteria> cbCafeteria;
@@ -39,7 +42,8 @@ public class ADAltaResponsableCafeteria implements Initializable {
     private TextField txfCurp;
     @FXML
     private Button btnCancelar;
-
+    private Administrador administrador;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         llenarComboBoxCafeterias();
@@ -47,6 +51,7 @@ public class ADAltaResponsableCafeteria implements Initializable {
 
     @FXML
     private void clicCancelar(ActionEvent event) {
+        regresarVentana();
     }
 
     @FXML
@@ -65,7 +70,7 @@ public class ADAltaResponsableCafeteria implements Initializable {
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
                 if(respuesta == 201){
                     mensajeAlerta.mostrarAlertaGuardado("El responsable de la cafetería " + cbCafeteria.getValue().getNombreCafeteria() + " se registró con éxito");
-                    //REGRESA A LA VENTANA ANTERIOR
+                    regresarVentana();
                 }else if(respuesta == 400){
                     mensajeAlerta.mostrarAlertaInformacionInvalida("Datos existentes, verifica que el nombre, CURP o correo electrónico no estén registrados");
                 }
@@ -117,6 +122,27 @@ public class ADAltaResponsableCafeteria implements Initializable {
         }
         
         return existen;
+    }
+    
+    public void recibirParametros(Administrador a){
+        this.administrador = a;
+    }
+    
+    private void regresarVentana(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("ADInicio.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            ADInicioController controlador = (ADInicioController) fxmlLoader.getController();
+            controlador.recibirParametros(administrador);
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     
     private void cerrarVentana(){

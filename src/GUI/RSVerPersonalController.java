@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import Dominio.Producto;
+import Servicios.ServicioCafeteria;
 import Servicios.ServicioPersonalCafeteria;
 import Servicios.ServicioProducto;
 import javafx.event.ActionEvent;
@@ -30,6 +31,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -42,13 +44,7 @@ public class RSVerPersonalController implements Initializable{
     @FXML
     private Button btnModificarCuenta;
     @FXML
-    private Button btnProductos;
-    @FXML
-    private Button btnVerPersonal;
-    @FXML
     private Button btnCerrarSesion;
-    @FXML
-    private Button btnModificarPersonal;
     @FXML
     private Button btnEliminarPersonal;
     @FXML
@@ -65,13 +61,11 @@ public class RSVerPersonalController implements Initializable{
     private Button btnAceptar;
 
     private MyListenerPersonal myListener;
-    private List<PersonalCafeteria> lPersonal = new ArrayList<>();
+    //private List<PersonalCafeteria> lPersonal = new ArrayList<>();
 
-    @FXML
     private Label lblNombrePersonal;
     @FXML
     private Label lblCurpPersonal;
-    @FXML
     private Label lblCorreoPersonal;
     @FXML
     private Label lblCargoPersonal;
@@ -83,11 +77,27 @@ public class RSVerPersonalController implements Initializable{
     private TextField txfCurpAñadir;
     @FXML
     private TextField txfCorreoAñadir;
+    @FXML
+    private TextArea txaNombrePersonal;
+    @FXML
+    private TextArea txaCorreoPersonal;
+    @FXML
+    private Button btnVerProductos;
+    PersonalCafeteria personalCafeteria = new PersonalCafeteria();
+    @FXML
+    private TextArea txaTituloCafeteria;
 
+    private int idCafeteria;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+    }
+
+    private void obtenerPersonal(int idCafeteria) {
         try {
-            lPersonal.addAll(obtenerPersonal(2));
+            ServicioPersonalCafeteria servicioProducto = new ServicioPersonalCafeteria();
+            List<PersonalCafeteria> lPersonal = servicioProducto.obtenerListaPersonal(idCafeteria);
+            //lPersonal.addAll(obtenerPersonal(idCafeteria));
             if(lPersonal.size()>0){
                 setPersonalElegido(lPersonal.get(0));
                 myListener = new MyListenerPersonal(){
@@ -125,45 +135,24 @@ public class RSVerPersonalController implements Initializable{
         } catch (IOException ex) {
             Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
-
-    private List<PersonalCafeteria> obtenerPersonal(int idCafeteria) throws IOException {
-        ServicioPersonalCafeteria servicioProducto = new ServicioPersonalCafeteria();
-        List<PersonalCafeteria> lpersonal = servicioProducto.obtenerListaPersonal(idCafeteria);
-        return lpersonal;
-    }
-
-    /*private List<PersonalCafeteria> obtenerPersonal(){
-        List<PersonalCafeteria> lp = new ArrayList<>();
-
-        for (int i = 0; i<25;i++){
-            //En cada iteración se crea un nnuevo objeto de tipo persona
-            PersonalCafeteria persona = new PersonalCafeteria();
-            persona.setNombre("mario antonio martinez ocasio");
-            persona.setCURP("FECG040587HTGSRLK04");
-            persona.setCorreoElectronico("juanmartinez@gmail.com");
-            persona.setCargo(String.valueOf(i));
-            //Se guarda el objeto en la lista
-            lp.add(persona);
-        }
-        return lp;
-
-    }*/
 
     @FXML
     private void clicModificarCuenta(ActionEvent event) {
-    }
-
-    @FXML
-    private void clicProductos(ActionEvent event) {
         try {
-            Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/GInicioProductos.fxml")));
-            stage.setScene(scenePrincipal);
-            stage.setTitle("Inicio");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("GModificarCuenta.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            GModificarCuentaController controlador = (GModificarCuentaController) fxmlLoader.getController();
+            controlador.recibirParametros(2, null, personalCafeteria,idCafeteria, 15);
+            cerrarVentana();
             stage.show();
-        } catch (IOException ex) {
-            System.err.println(ex.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -182,6 +171,7 @@ public class RSVerPersonalController implements Initializable{
 
     @FXML
     private void clicModificarPersonal(ActionEvent event) {
+
     }
 
     @FXML
@@ -190,6 +180,20 @@ public class RSVerPersonalController implements Initializable{
 
     @FXML
     private void clicVerCafeteria(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("GVerCafeteria.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            GVerCafeteriaController controlador = (GVerCafeteriaController) fxmlLoader.getController();
+            controlador.recibirParametros(2,null, personalCafeteria, idCafeteria, 15);
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -197,10 +201,10 @@ public class RSVerPersonalController implements Initializable{
     }
 
     private void setPersonalElegido(PersonalCafeteria p){
-        lblNombrePersonal.setText(p.getNombre());
-        lblCurpPersonal.setText(p.getCURP());
-        lblCorreoPersonal.setText(p.getCorreoElectronico());
-        lblCargoPersonal.setText(p.getCargo());
+        this.txaNombrePersonal.setText(p.getNombre());
+        this.lblCurpPersonal.setText(p.getCURP());
+        this.txaCorreoPersonal.setText(p.getCorreoElectronico());
+        this.lblCargoPersonal.setText(p.getCargo());
     }
 
     private boolean existenCamposInvalidos(){
@@ -226,8 +230,41 @@ public class RSVerPersonalController implements Initializable{
         return existen;
     }
     
+    public void recibirParametros(PersonalCafeteria p, int idCafeteria1){
+        try {
+            ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
+            this.personalCafeteria = p;
+            this.idCafeteria = idCafeteria1;
+            this.lblNombreUsuario.setText(p.getNombre());
+            txaTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria1).getNombreCafeteria());
+            obtenerPersonal(idCafeteria1);
+            //iniciarVentana(tipoUsuario1);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
     private void cerrarVentana(){
         Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void clicVerProductos(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/GUI/GInicioProductos.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
+            controlador.recibirParametros(2, null, personalCafeteria, idCafeteria);
+
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

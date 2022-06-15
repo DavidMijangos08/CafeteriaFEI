@@ -11,12 +11,8 @@ package GUI;
 
 import Dominio.*;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.sql.Blob;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -24,8 +20,6 @@ import java.util.logging.Logger;
 
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioProducto;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +38,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javax.imageio.ImageIO;
 
 
 public class GInicioProductosController implements Initializable {
@@ -82,13 +75,13 @@ public class GInicioProductosController implements Initializable {
     @FXML
     private Label lblTiempoAprox;
     @FXML
-    private Label lblTituloCafeteria;
-    @FXML
     private Button btnEliminarProducto;
     @FXML
     private Button btnModificarProducto;
     @FXML
     private Button btnAñadirProducto;
+    @FXML
+    private Button btnVerPersonal;
     private int tipoUsuario;
     private int idCafeteria;
     private int idProductoElegido;
@@ -97,6 +90,7 @@ public class GInicioProductosController implements Initializable {
     private MyListenerProducto myListener;
     ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
     ServicioProducto servicioProducto = new ServicioProducto();
+    
 
     public void recibirParametros(int tipoUsuario1, Consumidor c, PersonalCafeteria p, int idCafeteria1){
         try {
@@ -361,25 +355,49 @@ public class GInicioProductosController implements Initializable {
 
     private void iniciarVentana(int tipoUsuario1){
         tipoUsuario = tipoUsuario1;
-        if(tipoUsuario1 == 2){
-            btnAñadirProducto.setVisible(false);
-            btnModificarProducto.setVisible(false);
-            btnEliminarProducto.setVisible(false);
-            btnDejarOpinion.setVisible(false);
-        }else if(tipoUsuario1 == 3){
-            btnVerCafeteria.setVisible(false);
-            btnVerOpiniones.setVisible(false);
-            btnDejarOpinion.setVisible(false);
-        }else if(tipoUsuario1 == 4){
-            btnAñadirProducto.setVisible(false);
-            btnModificarProducto.setVisible(false);
-            btnEliminarProducto.setVisible(false);
+        switch (tipoUsuario1) {
+            case 2:
+                btnAñadirProducto.setVisible(false);
+                btnModificarProducto.setVisible(false);
+                btnEliminarProducto.setVisible(false);
+                btnDejarOpinion.setVisible(false);
+                break;
+            case 3:
+                btnVerCafeteria.setVisible(false);
+                btnVerOpiniones.setVisible(false);
+                btnDejarOpinion.setVisible(false);
+                btnVerPersonal.setVisible(false);
+                break;
+            case 4:
+                btnAñadirProducto.setVisible(false);
+                btnModificarProducto.setVisible(false);
+                btnEliminarProducto.setVisible(false);
+                btnVerPersonal.setVisible(false);
+                break;
         }
     }
 
     private void cerrarVentana(){
         Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    private void clicVerPersonal(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("RSVerPersonal.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            RSVerPersonalController controlador = (RSVerPersonalController) fxmlLoader.getController();
+            controlador.recibirParametros(personalCafeteria, idCafeteria);
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

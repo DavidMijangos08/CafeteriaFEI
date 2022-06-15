@@ -119,6 +119,8 @@ public class GVerCafeteriaController implements Initializable {
             ruta = "GInicioProductos.fxml";
         }else if(idVentanaOrigen == 8){
             ruta = "GReseñasProducto.fxml";
+        }else if(idVentanaOrigen == 15){
+            ruta = "RSVerPersonal.fxml";
         }
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -133,6 +135,9 @@ public class GVerCafeteriaController implements Initializable {
             }else if(idVentanaOrigen == 8){
                 GReseñasProductoController controlador = (GReseñasProductoController) fxmlLoader.getController();
                 controlador.recibirParametros(tipoUsuario, consumidor, personalCafeteria, idCafeteria, idProducto);
+            }else if(idVentanaOrigen == 15){
+                RSVerPersonalController controlador = (RSVerPersonalController) fxmlLoader.getController();
+                controlador.recibirParametros(personalCafeteria, personalCafeteria.getIdCafeteria());
             }
 
             cerrarVentana();

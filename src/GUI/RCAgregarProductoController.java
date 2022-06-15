@@ -63,6 +63,7 @@ public class RCAgregarProductoController implements Initializable {
     private void clicAñadirImagen(ActionEvent event) {
     }
 
+
     @FXML
     private void clicCancelar(ActionEvent event) {
         cambiarVentana();

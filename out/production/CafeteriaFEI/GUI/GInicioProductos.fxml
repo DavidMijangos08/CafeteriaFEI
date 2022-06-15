@@ -164,19 +164,20 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" spacing="15.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0" spacing="10.0">
                      <children>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/usuario.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="lblNombreUsuario" prefHeight="40.0" prefWidth="390.0" textFill="#3d3d3d" HBox.hgrow="ALWAYS">
+                        <Label fx:id="lblNombreUsuario" prefHeight="40.0" prefWidth="300.0" textFill="#3d3d3d" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnModificarCuenta" mnemonicParsing="false" onAction="#clicModificarCuenta" prefHeight="30.0" prefWidth="116.0" styleClass="btn-naranja" stylesheets="@style.css" text="Modificar Cuenta" />
+                        <Button fx:id="btnVerPersonal" mnemonicParsing="false" onAction="#clicVerPersonal" prefHeight="30.0" prefWidth="110.0" styleClass="btn-naranja" stylesheets="@style.css" text="Ver Personal" />
+                        <Button fx:id="btnModificarCuenta" mnemonicParsing="false" onAction="#clicModificarCuenta" prefHeight="30.0" prefWidth="110.0" styleClass="btn-naranja" stylesheets="@style.css" text="Modificar Cuenta" />
                         <ImageView fx:id="imgPregunta" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#clicPreguntas" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/pregunta.png" />
