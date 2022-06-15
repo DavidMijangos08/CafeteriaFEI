@@ -22,7 +22,7 @@
    ventana "Agregar producto"
 -->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RCAgregarProductoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RCAgregarProductoController">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
@@ -33,7 +33,7 @@
                         <Image url="@../img/LogoUV.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lblNombreVentana" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="200.0" text="Agregar Producto" textFill="#3d3d3d">
+                  <Label fx:id="lblNombreVentana" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="383.0" text="Agregar Producto" textFill="#3d3d3d">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -105,7 +105,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txfTiempoAprox" prefWidth="60.0" stylesheets="@style.css">
+                  <TextField fx:id="txfTiempoAproximado" prefWidth="60.0" stylesheets="@style.css">
                      <styleClass>
                         <String fx:value="input" />
                         <String fx:value="transparent" />
@@ -176,7 +176,7 @@
                   <Image url="@../img/CafeteriaLogo.png" />
                </image>
             </ImageView>
-            <Label fx:id="lblNombreVentana" text="Agregar" textFill="#3d3d3d">
+            <Label fx:id="lblNombreVentana1" alignment="CENTER" prefHeight="36.0" prefWidth="183.0" text="Agregar" textFill="#3d3d3d">
                <font>
                   <Font size="25.0" />
                </font>

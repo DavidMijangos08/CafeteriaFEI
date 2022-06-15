@@ -74,7 +74,7 @@ public class CEleccionCafeteriaController implements Initializable {
             Stage stageHijo = new Stage();
             stageHijo.setScene(scene);
             GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
-            controlador.recibirParametrosConsumidor(tipoUsuario, consumidor, cbCafeteria.getValue().getIdCafeteria());
+            controlador.recibirParametros(tipoUsuario, consumidor, null, cbCafeteria.getValue().getIdCafeteria());
             Stage stagePadre = (Stage) btnContinuar.getScene().getWindow();
             stagePadre.close();
             stageHijo.show();

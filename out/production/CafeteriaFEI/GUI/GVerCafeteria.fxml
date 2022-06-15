@@ -24,37 +24,34 @@
    ventana "Ver cafeteria"  
 -->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GVerCafeteriaController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.GVerCafeteriaController">
     <left>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="300.0" spacing="5.0" styleClass="white-color" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0" spacing="2.0" styleClass="header-titulo" stylesheets="@style.css">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="300.0" spacing="2.0" styleClass="header-titulo" stylesheets="@style.css">
                <children>
-                  <ImageView fitHeight="110.0" fitWidth="110.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="84.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/CafeteriaLogo.png" />
                      </image>
-                     <VBox.margin>
-                        <Insets top="3.0" />
-                     </VBox.margin>
                   </ImageView>
-                  <Label text="Cafetería UV" textFill="#3d3d3d">
+                  <TextArea fx:id="txaTituloCafeteriaEncab" editable="false" prefHeight="44.0" prefWidth="280.0" styleClass="centeredTextArea" stylesheets="@style.css" wrapText="true">
                      <font>
-                        <Font size="30.0" />
+                        <Font size="22.0" />
                      </font>
-                  </Label>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                     </VBox.margin>
+                  </TextArea>
                </children>
             </VBox>
             <VBox fx:id="vbCafeteria" alignment="CENTER_LEFT" prefHeight="326.0" prefWidth="285.0" spacing="5.0" styleClass="item-seleccionado" stylesheets="@style.css">
                <children>
-                  <Label fx:id="lblNombreCafeteria" alignment="CENTER" prefHeight="30.0" prefWidth="301.0" text="Enchiladas verdes" textFill="#3d3d3d">
+                  <TextArea fx:id="txaTituloCafeteria" editable="false" prefHeight="44.0" prefWidth="280.0" styleClass="centeredTextArea" stylesheets="@style.css" wrapText="true">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font size="22.0" />
                      </font>
-                     <VBox.margin>
-                        <Insets left="15.0" right="15.0" />
-                     </VBox.margin>
-                  </Label>
+                  </TextArea>
                   <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="300.0">
                      <children>
                         <Label prefHeight="30.0" prefWidth="80.0" text="Abierto de:" textFill="#3d3d3d">
@@ -93,7 +90,7 @@
                         <Insets left="15.0" right="15.0" />
                      </VBox.margin>
                   </Label>
-                  <TextArea fx:id="txaFacultad" editable="false" prefWidth="300.0" wrapText="true">
+                  <TextArea fx:id="txaFacultad" editable="false" prefHeight="100.0" prefWidth="300.0" wrapText="true">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" />
                      </VBox.margin>
@@ -106,7 +103,7 @@
                         <Insets left="15.0" right="15.0" />
                      </VBox.margin>
                   </Label>
-                  <TextArea fx:id="txaDireccion" editable="false" prefWidth="300.0" wrapText="true">
+                  <TextArea fx:id="txaDireccion" editable="false" prefWidth="100.0" wrapText="true">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" />
                      </VBox.margin>
@@ -144,12 +141,11 @@
                         <Image url="@../img/usuario.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lblNombreUsuario" prefHeight="40.0" prefWidth="390.0" text="María Elena Fernández Castillo" textFill="#3d3d3d" HBox.hgrow="ALWAYS">
+                  <Label fx:id="lblNombreUsuario" prefHeight="40.0" prefWidth="525.0" textFill="#3d3d3d" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnModificarCuenta" mnemonicParsing="false" onAction="#clicModificarCuenta" prefHeight="30.0" prefWidth="116.0" styleClass="btn-naranja" stylesheets="@style.css" text="Modificar Cuenta" />
                   <ImageView fx:id="imgPregunta" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#clicPreguntas" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/pregunta.png" />

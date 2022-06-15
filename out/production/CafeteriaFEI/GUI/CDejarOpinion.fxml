@@ -24,7 +24,7 @@
    ventana "Dejar opinion"  
 -->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CDejarOpinionController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CDejarOpinionController">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="560.0" prefWidth="500.0" spacing="10.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
@@ -38,18 +38,18 @@
             </Label>
             <HBox alignment="TOP_CENTER" prefHeight="86.0" prefWidth="332.0">
                <children>
-                  <ImageView fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgImagen" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/Cafeteria.png" />
                      </image></ImageView>
                   <VBox prefHeight="150.0" prefWidth="280.0">
                      <children>
-                        <Label text="Cafetería FEI" textFill="#3d3d3d">
+                        <Label fx:id="lblNombre" prefHeight="25.0" prefWidth="278.0" text="Cafetería FEI" textFill="#3d3d3d">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <TextArea fx:id="txaDescripcionProducto" editable="false" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css" wrapText="true">
+                        <TextArea fx:id="txaDescripcion" editable="false" prefHeight="200.0" prefWidth="200.0" stylesheets="@style.css" wrapText="true">
                            <VBox.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" />
                            </VBox.margin>

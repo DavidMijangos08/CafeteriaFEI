@@ -62,7 +62,7 @@ public class GInicioProductosController implements Initializable {
     @FXML
     private Label lblNombreUsuario;
     @FXML
-    private Label lblNombreCafeteria;
+    private TextArea txaTituloCafeteria;
     @FXML
     private Button btnModificarCuenta;
     @FXML
@@ -89,31 +89,38 @@ public class GInicioProductosController implements Initializable {
     private Button btnModificarProducto;
     @FXML
     private Button btnAñadirProducto;
-    //private int tipoUsuario;
-    //private int idCafeteria;
+    private int tipoUsuario;
+    private int idCafeteria;
+    private int idProductoElegido;
     private Consumidor consumidor = new Consumidor();
     private PersonalCafeteria personalCafeteria = new PersonalCafeteria();
     private MyListenerProducto myListener;
     ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
+    ServicioProducto servicioProducto = new ServicioProducto();
 
-    public void recibirParametrosConsumidor(int tipoUsuario, Consumidor c, int idCafeteria1){
+    public void recibirParametros(int tipoUsuario1, Consumidor c, PersonalCafeteria p, int idCafeteria1){
         try {
             this.consumidor = c;
-            lblTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria1).getNombreCafeteria());
+            this.personalCafeteria = p;
+            if(c != null){
+                lblNombreUsuario.setText(c.getNombre());
+            }
+            if(p != null){
+                lblNombreUsuario.setText(p.getNombre());
+            }
+            txaTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria1).getNombreCafeteria());
             obtenerProductos(idCafeteria1);
-            iniciarVentana(tipoUsuario);
-        } catch (IOException ex) {
-            Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
-            MensajeAlerta mensajeAlerta = new MensajeAlerta();
-            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            iniciarVentana(tipoUsuario1);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public void recibirParametrosPersonal(int tipoUsuario, PersonalCafeteria p){
         try {
             personalCafeteria = p;
-            lblTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(p.getIdCafeteria()).getNombreCafeteria());
+            lblNombreUsuario.setText(p.getNombre());
+            txaTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(p.getIdCafeteria()).getNombreCafeteria());
             obtenerProductos(p.getIdCafeteria());
             iniciarVentana(tipoUsuario);
         } catch (IOException ex) {
@@ -124,10 +131,11 @@ public class GInicioProductosController implements Initializable {
         }
     }
 
-    private void obtenerProductos(int idCafeteria){
+    private void obtenerProductos(int idCafeteria1){
+        this.idCafeteria = idCafeteria1;
         try {
             ServicioProducto servicioProducto = new ServicioProducto();
-            List<Producto> productos = servicioProducto.obtenerProductosDeCafeteria(idCafeteria);
+            List<Producto> productos = servicioProducto.obtenerProductosDeCafeteria(idCafeteria1);
 
             if(productos.size()>0){
                 setProductoElegido(productos.get(0));
@@ -140,7 +148,6 @@ public class GInicioProductosController implements Initializable {
             }
             int columna=0;
             int fila=1;
-
             for(int i = 0; i < productos.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("ItemProducto.fxml"));
@@ -159,7 +166,6 @@ public class GInicioProductosController implements Initializable {
                 gdProductos.setMinWidth(Region.USE_COMPUTED_SIZE);
                 gdProductos.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 gdProductos.setMaxWidth(Region.USE_COMPUTED_SIZE);
-
                 //Ajustar el alto del grid
                 gdProductos.setMinHeight(Region.USE_COMPUTED_SIZE);
                 gdProductos.setPrefHeight(Region.USE_COMPUTED_SIZE);
@@ -173,11 +179,12 @@ public class GInicioProductosController implements Initializable {
     }
 
     private void setProductoElegido(Producto p){
-        lblNombreEscogido.setText(p.getNombre());
-        lblPrecioEscogido.setText("$" + Float.toString(p.getPrecio()));
+        this.idProductoElegido = p.getIdProducto();
+        this.lblNombreEscogido.setText(p.getNombre());
+        this.lblPrecioEscogido.setText("$" + Float.toString(p.getPrecio()));
         Image img = new Image(getClass().getResourceAsStream(p.getRutaImagen()));
-        imgProductoEscogido.setImage(img);
-        txaDescripcionEscogido.setText(p.getDescripcion());
+        this.imgProductoEscogido.setImage(img);
+        this.txaDescripcionEscogido.setText(p.getDescripcion());
         lblTiempoAprox.setText(Integer.toString(p.getTiempoAproximado()) + " min");
     }
     
@@ -189,22 +196,82 @@ public class GInicioProductosController implements Initializable {
     
     @FXML
     private void clicDejarOpinion(ActionEvent event) {
-        cambiarVentana("/GUI/CDejarOpinion.fxml", "Escribe una opinión");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/GUI/CDejarOpinion.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            if (tipoUsuario == 4) {
+                CDejarOpinionController controlador = (CDejarOpinionController) fxmlLoader.getController();
+                controlador.recibirParametros(consumidor, idProductoElegido, idCafeteria, 1);
+            }
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     private void clicCerrarSesion(ActionEvent event) {
-        cambiarVentana("/GUI/GInicioSesion.fxml", "Inicio de sesión");
+        //cambiarVentana("/GUI/GInicioSesion.fxml", "Inicio de sesión");
+        try {
+            Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
+            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("GInicioSesion.fxml")));
+            stage.setScene(scenePrincipal);
+            stage.show();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
+        }
     }
 
     @FXML
     private void clicModificarCuenta(ActionEvent event) {
-        cambiarVentana("/GUI/GModificarCuenta.fxml", "Modificar Cuenta");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("GModificarCuenta.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            if (tipoUsuario == 2 || tipoUsuario == 3){
+                GModificarCuentaController controlador = (GModificarCuentaController) fxmlLoader.getController();
+                controlador.recibirParametros(tipoUsuario, null, personalCafeteria,idCafeteria, 5);
+            }else if(tipoUsuario == 4){
+                GModificarCuentaController controlador = (GModificarCuentaController) fxmlLoader.getController();
+                controlador.recibirParametros(tipoUsuario, consumidor, null,  idCafeteria, 5);
+            }
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     private void clicVerOpiniones(ActionEvent event) {
-        cambiarVentana("/GUI/GReseñasProducto.fxml", "Reseñas");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("GReseñasProducto.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            if (tipoUsuario == 2) {
+                GReseñasProductoController controlador = (GReseñasProductoController) fxmlLoader.getController();
+                controlador.recibirParametros(tipoUsuario, consumidor, personalCafeteria, personalCafeteria.getIdCafeteria(), idProductoElegido);
+            } else if (tipoUsuario == 4) {
+                GReseñasProductoController controlador = (GReseñasProductoController) fxmlLoader.getController();
+                controlador.recibirParametros(tipoUsuario, consumidor, personalCafeteria, idCafeteria, idProductoElegido);
+            }
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -226,7 +293,26 @@ public class GInicioProductosController implements Initializable {
 
     @FXML
     private void clicVerCafeteria(ActionEvent event) {
-        cambiarVentana("/GUI/GVerCafeteria.fxml", "Cafetería");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("GVerCafeteria.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            if (tipoUsuario == 2 || tipoUsuario == 3) {
+                GVerCafeteriaController controlador = (GVerCafeteriaController) fxmlLoader.getController();
+                controlador.recibirParametros(tipoUsuario,null, personalCafeteria, idCafeteria, 5);
+            } else if (tipoUsuario == 4) {
+                GVerCafeteriaController controlador = (GVerCafeteriaController) fxmlLoader.getController();
+                controlador.recibirParametros(tipoUsuario, consumidor, null, idCafeteria, 5);
+            }
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     @FXML
     void clicEliminarProducto(ActionEvent event) {
@@ -235,35 +321,65 @@ public class GInicioProductosController implements Initializable {
 
     @FXML
     void clicModificarProducto(ActionEvent event) {
-        cambiarVentana("/GUI/RCModificarProducto.fxml", "Modificar Producto");
-    }
-    
-    @FXML
-    void clicAñadirProducto(ActionEvent event) {
-        cambiarVentana("/GUI/RCAgregarProducto.fxml", "Agregar Producto");
-    }
-
-    private void iniciarVentana(int tipoUsuario){
-        if(tipoUsuario == 2){
-            btnAñadirProducto.setVisible(false);
-            btnModificarProducto.setVisible(false);
-            btnEliminarProducto.setVisible(false);
-            btnDejarOpinion.setVisible(false);
-        }else if(tipoUsuario == 3){
-            btnVerCafeteria.setVisible(false);
-            btnVerOpiniones.setVisible(false);
-            btnDejarOpinion.setVisible(false);
-        }else if(tipoUsuario == 4){
-            btnAñadirProducto.setVisible(false);
-            btnModificarProducto.setVisible(false);
-            btnEliminarProducto.setVisible(false);
-            btnVerCafeteria.setVisible(false);
-            btnVerOpiniones.setVisible(false);
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("RCAgregarProducto.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            if (tipoUsuario == 3) {
+                RCAgregarProductoController controlador = (RCAgregarProductoController) fxmlLoader.getController();
+                controlador.recibirParametros(personalCafeteria, idCafeteria, idProductoElegido);
+            }
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
-    
+
+    @FXML
+    void clicAñadirProducto(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("RCAgregarProducto.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            if (tipoUsuario == 3) {
+                RCAgregarProductoController controlador = (RCAgregarProductoController) fxmlLoader.getController();
+                controlador.recibirParametros(personalCafeteria, idCafeteria, -1);
+            }
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void iniciarVentana(int tipoUsuario1){
+        tipoUsuario = tipoUsuario1;
+        if(tipoUsuario1 == 2){
+            btnAñadirProducto.setVisible(false);
+            btnModificarProducto.setVisible(false);
+            btnEliminarProducto.setVisible(false);
+            btnDejarOpinion.setVisible(false);
+        }else if(tipoUsuario1 == 3){
+            btnVerCafeteria.setVisible(false);
+            btnVerOpiniones.setVisible(false);
+            btnDejarOpinion.setVisible(false);
+        }else if(tipoUsuario1 == 4){
+            btnAñadirProducto.setVisible(false);
+            btnModificarProducto.setVisible(false);
+            btnEliminarProducto.setVisible(false);
+        }
+    }
+
     private void cerrarVentana(){
         Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
         stage.close();
     }
+
 }

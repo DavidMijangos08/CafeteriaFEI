@@ -286,7 +286,7 @@ public class GInicioSesionController implements Initializable {
             //aqui falta
         }else if (tipoUsuario == 2 || tipoUsuario == 3){
             GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
-            controlador.recibirParametrosPersonal(tipoUsuario, personalCafeteria);
+            controlador.recibirParametros(tipoUsuario, consumidor, personalCafeteria, personalCafeteria.getIdCafeteria());
         }else if(tipoUsuario == 4){
             CEleccionCafeteriaController controlador = (CEleccionCafeteriaController) fxmlLoader.getController();
             controlador.recibirParametros(tipoUsuario, consumidor);

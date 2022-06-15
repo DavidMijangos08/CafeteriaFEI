@@ -9,6 +9,9 @@
 
 package GUI;
 
+import Dominio.Consumidor;
+import Dominio.PersonalCafeteria;
+import Dominio.ReseñaCafeteria;
 import Dominio.ReseñaProducto;
 import java.io.IOException;
 import java.net.URL;
@@ -17,15 +20,22 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Servicios.ServicioCafeteria;
+import Servicios.ServicioProducto;
+import Servicios.ServicioReseñasCafeteria;
+import Servicios.ServicioReseñasProducto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -45,9 +55,13 @@ public class GReseñasProductoController implements Initializable {
     @FXML
     private Label lblPrecioProducto;
     @FXML
+    private Label lblTiempoAprox;
+    @FXML
     private ImageView imgProducto;
     @FXML
     private TextArea txaDescripcionProducto;
+    @FXML
+    private TextArea txaNombreCafeteria;
     @FXML
     private Button btnRegresar;
     @FXML
@@ -63,67 +77,125 @@ public class GReseñasProductoController implements Initializable {
     @FXML
 
     private Button btnDejarOpinion;
-    private List<ReseñaProducto> reseñaProductos = new ArrayList<>();
+    //private List<ReseñaProducto> reseñaProductos = new ArrayList<>();
+    ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
+    private int tipoUsuario = 0;
+    private int idCafeteria;
+    private int idProducto;
+    PersonalCafeteria personalCafeteria;
+    Consumidor consumidor;
     
-    private List<ReseñaProducto> obtenerReseñas(){
-        List<ReseñaProducto> lReseña = new ArrayList<>();
-        ReseñaProducto p;
-        for(int i=0; i<20; i++){
-            p = new ReseñaProducto();
-            p.setTitulo("Muy buen producto " +i);
-            p.setOpinion("siempre pido lo mismo y nunca me decepciona, sigan así :) "+i);
-            p.setRutaImagen("/img/usuario.png");
+    private void obtenerReseñas(int idProducto1){
+        try {
+            ServicioReseñasProducto servicioReseñas = new ServicioReseñasProducto();
+            List<ReseñaProducto> reseñas = servicioReseñas.obtenerReseñasDeProducto(idProducto1);
+            int fila = 1;
 
-            lReseña.add(p);
+            try {
+                for(int i = 0; i < reseñas.size(); i++){
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("ItemReseñaProducto.fxml"));
+
+                    AnchorPane acp = fxmlLoader.load();
+
+                    ItemReseñaProductoController reseñaController = fxmlLoader.getController();
+                    reseñaController.setReseña(reseñas.get(i));
+
+                    gdReseñas.add(acp,0,fila++);
+
+                    //Ajustar el ancho del grid
+                    gdReseñas.setMinWidth(Region.USE_COMPUTED_SIZE);
+                    gdReseñas.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    gdReseñas.setMaxWidth(Region.USE_COMPUTED_SIZE);
+
+                    //Ajustar el alto del grid
+                    gdReseñas.setMinHeight(Region.USE_COMPUTED_SIZE);
+                    gdReseñas.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                    gdReseñas.setMaxHeight(Region.USE_COMPUTED_SIZE);
+
+                    GridPane.setMargin(acp, new Insets(10));
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(GReseñasProductoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
-        return lReseña;
+
     }
 
+    private void obtenerInfoProducto(int idProducto){
+        try {
+            ServicioProducto p = new ServicioProducto();
+            this.lblNombreProducto.setText(p.obtenerProductoPorId(idProducto).getNombre());
+            this.lblPrecioProducto.setText("$" + p.obtenerProductoPorId(idProducto).getPrecio());
+            this.lblTiempoAprox.setText(Integer.toString(p.obtenerProductoPorId(idProducto).getTiempoAproximado()));
+            this.txaDescripcionProducto.setText(p.obtenerProductoPorId(idProducto).getDescripcion());
+            Image img = new Image(getClass().getResourceAsStream(p.obtenerProductoPorId(idProducto).getRutaImagen()));
+            imgProducto.setImage(img);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        reseñaProductos.addAll(obtenerReseñas());
-
-        int fila = 1;
-        try {
-            for(int i = 0; i < reseñaProductos.size(); i++){
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("ItemReseñaProducto.fxml"));
-
-                AnchorPane acp = fxmlLoader.load();
-
-                ItemReseñaProductoController reseñaController = fxmlLoader.getController();
-                reseñaController.setReseña(reseñaProductos.get(i));
-
-                gdReseñas.add(acp,0,fila++);
-
-                //Ajustar el ancho del grid
-                gdReseñas.setMinWidth(Region.USE_COMPUTED_SIZE);
-                gdReseñas.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                gdReseñas.setMaxWidth(Region.USE_COMPUTED_SIZE);
-
-                //Ajustar el alto del grid
-                gdReseñas.setMinHeight(Region.USE_COMPUTED_SIZE);
-                gdReseñas.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                gdReseñas.setMaxHeight(Region.USE_COMPUTED_SIZE);
-
-                GridPane.setMargin(acp, new Insets(10));
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(GReseñasProductoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     @FXML
     private void clicVerCafeteria(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("GVerCafeteria.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            GVerCafeteriaController controlador = (GVerCafeteriaController) fxmlLoader.getController();
+            controlador.recibirParametrosProducto(tipoUsuario, consumidor, personalCafeteria, idCafeteria,idProducto, 8);
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     private void clicRegresar(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("GInicioProductos.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
+            controlador.recibirParametros(tipoUsuario, consumidor, personalCafeteria, idCafeteria);
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     private void clicModificarCuenta(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("GModificarCuenta.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            GModificarCuentaController controlador = (GModificarCuentaController) fxmlLoader.getController();
+            controlador.recibirParametrosProducto(tipoUsuario, consumidor, personalCafeteria, idCafeteria, 8, idProducto);
+            cerrarVentana();
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -134,7 +206,47 @@ public class GReseñasProductoController implements Initializable {
     void clicDejarOpinion(ActionEvent event) {
 
     }
-    
+    public void recibirParametros(int tipoUsuario1, Consumidor c, PersonalCafeteria p, int idCafeteria1, int idProducto1){
+        try {
+            if(tipoUsuario < 4){
+                btnDejarOpinion.setVisible(false);
+                lblNombreUsuario.setText(p.getNombre());
+            }else{
+                lblNombreUsuario.setText(c.getNombre());
+            }
+            txaNombreCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria1).getNombreCafeteria());
+            this.tipoUsuario = tipoUsuario1;
+            this.idCafeteria = idCafeteria1;
+            this.consumidor = c;
+            this.personalCafeteria = p;
+            this.idProducto =  idProducto1;
+            obtenerReseñas(idProducto1);
+            obtenerInfoProducto(idProducto1);
+        } catch (IOException ex) {
+            Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
+        }
+    }
+
+    public void recibirParametrosPersonal(int tipoUsuario1, PersonalCafeteria p, int idProducto1){
+        try {
+            lblNombreUsuario.setText(p.getNombre());
+            txaNombreCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(p.getIdCafeteria()).getNombreCafeteria());
+            this.tipoUsuario = tipoUsuario1;
+            this.idCafeteria = p.getIdCafeteria();
+            this.personalCafeteria = p;
+            obtenerReseñas(idProducto1);
+            obtenerInfoProducto(idProducto1);
+        } catch (IOException ex) {
+            Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
+        }
+    }
+
     private void cerrarVentana(){
         Stage stage = (Stage) btnRegresar.getScene().getWindow();
         stage.close();
