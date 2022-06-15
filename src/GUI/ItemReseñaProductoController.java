@@ -2,7 +2,7 @@
 /* Archivo: ItemReseñaProductoController.java                       */
 /* Programador: Maria Elena                                         */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa la visualizacion        */
 /*              de los datos de las reseñas                         */
 /********************************************************************/
@@ -31,7 +31,6 @@ public class ItemReseñaProductoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }   
     
     public void setReseña(ReseñaProducto p){

@@ -2,7 +2,7 @@
 /* Archivo: CEleccionCafeteriaController.java                       */
 /* Programador: David Alexander                                     */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa la ventana              */
 /*              "Eleccion cafeteria" con sus metodos                */
 /********************************************************************/
@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,9 +40,11 @@ public class CEleccionCafeteriaController implements Initializable {
     private Button btnCerrarSesion;
     @FXML
     private Button btnContinuar;
+    
     private GInicioSesionController inicioSesionController;
     private int tipoUsuario;
     private Consumidor consumidor;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         llenarComboBoxFacultades();
@@ -57,6 +58,8 @@ public class CEleccionCafeteriaController implements Initializable {
             Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/GInicioSesion.fxml")));
             stage.setScene(scenePrincipal);
+            stage.setTitle("Inicio sesion");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
@@ -77,6 +80,8 @@ public class CEleccionCafeteriaController implements Initializable {
             controlador.recibirParametros(tipoUsuario, consumidor, null, cbCafeteria.getValue().getIdCafeteria());
             Stage stagePadre = (Stage) btnContinuar.getScene().getWindow();
             stagePadre.close();
+            stageHijo.setTitle("Productos");
+            stageHijo.setResizable(false);
             stageHijo.show();
         }
     }

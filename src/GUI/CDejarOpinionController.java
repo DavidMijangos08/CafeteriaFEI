@@ -2,11 +2,10 @@
 /* Archivo: CDejarOpinionController.java                            */
 /* Programador: Maria Elena                                         */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  10/Jun/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa la ventana              */
 /*              "Dejar opinion" con sus metodos                     */
 /********************************************************************/
-
 
 package GUI;
 
@@ -14,9 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import Dominio.Consumidor;
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioProducto;
@@ -62,7 +58,8 @@ public class CDejarOpinionController implements Initializable {
     @FXML
     private RadioButton rbCalif5;
     @FXML
-            private ImageView imgImagen;
+    private ImageView imgImagen;
+    
     FileChooser fc = new FileChooser();
     int idProducto;
     int idCafeteria;
@@ -70,10 +67,9 @@ public class CDejarOpinionController implements Initializable {
     ServicioProducto servicioProducto = new ServicioProducto();
     ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
     Consumidor consumidor;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-
     }    
 
     @FXML
@@ -94,20 +90,25 @@ public class CDejarOpinionController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             Scene scene = null;
             Stage stage = new Stage();
+            String titulo = "Cafeterías UV";
             if(idProducto > 0){
                 fxmlLoader.setLocation(getClass().getResource("/GUI/GInicioProductos.fxml"));
                 scene = new Scene(fxmlLoader.load());
                 stage.setScene(scene);
+                titulo = "Productos";
                 GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
                 controlador.recibirParametros(4, consumidor, null, idCafeteria);
             }else if(idCafeteria > 1){
                 fxmlLoader.setLocation(getClass().getResource("/GUI/GVerCafeteria.fxml"));
                 scene = new Scene(fxmlLoader.load());
                 stage.setScene(scene);
+                titulo = "Ver cafeteria";
                 GVerCafeteriaController controlador = (GVerCafeteriaController) fxmlLoader.getController();
                 controlador.recibirParametros(4, consumidor, null, idCafeteria, 3);
             }
             cerrarVentana();
+            stage.setTitle(titulo);
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -130,7 +131,6 @@ public class CDejarOpinionController implements Initializable {
         try {
             Stage stage = (Stage) btnRegresar.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(ruta)));
-
             stage.setScene(scenePrincipal);
             stage.show();
         } catch (IOException ex) {

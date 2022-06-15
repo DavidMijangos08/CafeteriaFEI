@@ -2,7 +2,7 @@
 /* Archivo: RCAgregarProductoController.java                        */
 /* Programador: Eder Ivan                                           */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa la ventana              */
 /*              "Agregar producto" con sus metodos                  */
 /********************************************************************/
@@ -12,8 +12,6 @@ package GUI;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import Dominio.Consumidor;
 import Dominio.PersonalCafeteria;
 import Servicios.ServicioProducto;
 import javafx.event.ActionEvent;
@@ -51,18 +49,18 @@ public class RCAgregarProductoController implements Initializable {
     private Label lblNombreVentana1;
     @FXML
     private TextField txfNombre;
+    
     private int idCafeteria;
     private int idProducto;
     PersonalCafeteria personalCafeteria;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
 
     @FXML
     private void clicAñadirImagen(ActionEvent event) {
     }
-
 
     @FXML
     private void clicCancelar(ActionEvent event) {
@@ -132,6 +130,8 @@ public class RCAgregarProductoController implements Initializable {
             GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
             controlador.recibirParametros(3, null, personalCafeteria, idCafeteria);
             cerrarVentana();
+            stage.setTitle("Productos");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -2,7 +2,7 @@
 /* Archivo: RSVerPersonalController.java                            */
 /* Programador: David Alexander                                     */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa la ventana              */
 /*              "Ver personal" con sus metodos                      */
 /********************************************************************/
@@ -12,16 +12,12 @@ package GUI;
 import Dominio.PersonalCafeteria;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import Dominio.Producto;
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioPersonalCafeteria;
-import Servicios.ServicioProducto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -41,6 +37,7 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 public class RSVerPersonalController implements Initializable{
+    
     @FXML
     private Button btnModificarCuenta;
     @FXML
@@ -59,13 +56,11 @@ public class RSVerPersonalController implements Initializable{
     private ComboBox<String> cmbCargoAñadir;
     @FXML
     private Button btnAceptar;
-
-    private MyListenerPersonal myListener;
-    //private List<PersonalCafeteria> lPersonal = new ArrayList<>();
-
+    @FXML
     private Label lblNombrePersonal;
     @FXML
     private Label lblCurpPersonal;
+    @FXML
     private Label lblCorreoPersonal;
     @FXML
     private Label lblCargoPersonal;
@@ -83,14 +78,16 @@ public class RSVerPersonalController implements Initializable{
     private TextArea txaCorreoPersonal;
     @FXML
     private Button btnVerProductos;
-    PersonalCafeteria personalCafeteria = new PersonalCafeteria();
     @FXML
     private TextArea txaTituloCafeteria;
 
+    PersonalCafeteria personalCafeteria = new PersonalCafeteria();
+    private MyListenerPersonal myListener;
+    //private List<PersonalCafeteria> lPersonal = new ArrayList<>();
     private int idCafeteria;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
     }
 
     private void obtenerPersonal(int idCafeteria) {
@@ -107,7 +104,6 @@ public class RSVerPersonalController implements Initializable{
                     }
                 };
             }
-
             int fila = 0;
             for(int i = 0; i < lPersonal.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -150,6 +146,8 @@ public class RSVerPersonalController implements Initializable{
             GModificarCuentaController controlador = (GModificarCuentaController) fxmlLoader.getController();
             controlador.recibirParametros(2, null, personalCafeteria,idCafeteria, 15);
             cerrarVentana();
+            stage.setTitle("Modificar cuenta");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -162,7 +160,8 @@ public class RSVerPersonalController implements Initializable{
             Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/GInicioSesion.fxml")));
             stage.setScene(scenePrincipal);
-            stage.setTitle("Inicio");
+            stage.setTitle("Iniciar sesion");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
@@ -190,6 +189,8 @@ public class RSVerPersonalController implements Initializable{
             GVerCafeteriaController controlador = (GVerCafeteriaController) fxmlLoader.getController();
             controlador.recibirParametros(2,null, personalCafeteria, idCafeteria, 15);
             cerrarVentana();
+            stage.setTitle("Ver cafetería");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -260,11 +261,16 @@ public class RSVerPersonalController implements Initializable{
             stage.setScene(scene);
             GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
             controlador.recibirParametros(2, null, personalCafeteria, idCafeteria);
-
             cerrarVentana();
+            stage.setTitle("Productos");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    private void clicAñadirPersonal(ActionEvent event) {
     }
 }

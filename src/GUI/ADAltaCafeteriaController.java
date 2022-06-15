@@ -2,7 +2,7 @@
 /* Archivo: ADAltaCafeteriaController.java                          */
 /* Programador: Maria Elena                                         */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa la ventana              */
 /*              "Alta de cafeteria"                                 */
 /********************************************************************/
@@ -47,6 +47,9 @@ public class ADAltaCafeteriaController implements Initializable {
     private ComboBox<String> cbMinutoFin;
     @FXML
     private Button btnCancelar;
+    @FXML
+    private Button btnRegistrar;
+    
     private Administrador administrador = new Administrador();
 
     @Override
@@ -77,6 +80,7 @@ public class ADAltaCafeteriaController implements Initializable {
                 if(respuesta == 201){
                     mensajeAlerta.mostrarAlertaGuardado("La cafetería se registró con éxito");
                     //REGRESA A LA VENTANA ANTERIOR
+                    //ANTES DEL stage.show poner esto stage.setResizable(false);
                 }else if(respuesta == 400){
                     mensajeAlerta.mostrarAlertaInformacionInvalida("Datos existentes, verifica el nombre de la cafetería");
                 }
@@ -156,6 +160,8 @@ public class ADAltaCafeteriaController implements Initializable {
             ADInicioController controlador = (ADInicioController) fxmlLoader.getController();
             controlador.recibirParametros(administrador);
             cerrarVentana();
+            stage.setTitle("Cafeterías UV");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

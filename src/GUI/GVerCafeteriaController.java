@@ -2,7 +2,7 @@
 /* Archivo: VerCafeteriasController.java                            */
 /* Programador: Maria Elena                                         */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa la ventana              */
 /*              "Ver cafeteria" con sus metodos                     */
 /********************************************************************/
@@ -13,12 +13,10 @@ import Dominio.*;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioReseñasCafeteria;
 import javafx.event.ActionEvent;
@@ -41,6 +39,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GVerCafeteriaController implements Initializable {
+    
     @FXML
     private Label lblNombreUsuario;
     @FXML
@@ -65,24 +64,22 @@ public class GVerCafeteriaController implements Initializable {
     private Button btnRegresar;
     @FXML
     private ScrollPane scpReseñasCafeteria;
-    private int tipoUsuario;
-    //private List<ReseñaCafeteria> reseñas = new ArrayList<>();
-
     @FXML
     private GridPane gdReseñas;
     @FXML
     private Button btnDejarOpinion;
+    
+    private int tipoUsuario;
+    //private List<ReseñaCafeteria> reseñas = new ArrayList<>();
     private int idCafeteria;
     private int idProducto;
     private int idVentanaOrigen;
-
     Consumidor consumidor = new Consumidor();
     PersonalCafeteria personalCafeteria = new PersonalCafeteria();
     ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
     }    
 
     @FXML
@@ -102,6 +99,8 @@ public class GVerCafeteriaController implements Initializable {
                 controlador.recibirParametros(tipoUsuario, consumidor, null, idCafeteria, 9);
             }
             cerrarVentana();
+            stage.setTitle("Modificar cuenta");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -115,12 +114,16 @@ public class GVerCafeteriaController implements Initializable {
     @FXML
     private void clicRegresar(ActionEvent event) {
         String ruta ="";
+        String titulo = "Cafeterías UV";
         if(idVentanaOrigen == 5){
             ruta = "GInicioProductos.fxml";
+            titulo = "Productos";
         }else if(idVentanaOrigen == 8){
             ruta = "GReseñasProducto.fxml";
+            titulo = "Reseñas producto";
         }else if(idVentanaOrigen == 15){
             ruta = "RSVerPersonal.fxml";
+            titulo = "Ver personal";
         }
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -139,8 +142,9 @@ public class GVerCafeteriaController implements Initializable {
                 RSVerPersonalController controlador = (RSVerPersonalController) fxmlLoader.getController();
                 controlador.recibirParametros(personalCafeteria, personalCafeteria.getIdCafeteria());
             }
-
             cerrarVentana();
+            stage.setTitle(titulo);
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -161,6 +165,8 @@ public class GVerCafeteriaController implements Initializable {
                 controlador.recibirParametros(consumidor, -1, idCafeteria, 2);
             }
             cerrarVentana();
+            stage.setTitle("Dejar opinión");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

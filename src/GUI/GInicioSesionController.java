@@ -2,7 +2,7 @@
 /* Archivo: GInicioSesionController.java                            */
 /* Programador: Maria Elena                                         */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  10/Jun/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa la ventana              */
 /*              "Inicio sesion" con sus metodos                     */
 /********************************************************************/
@@ -53,14 +53,17 @@ public class GInicioSesionController implements Initializable {
     private Button btnCrearCuenta;
     @FXML
     private Button btnIniciarSesion;
+    @FXML
+    private Button btnSolicitarCodigo;
+    
     private String codigoEnviado = "";
     private int tipoUsuario;
     private PersonalCafeteria personalCafeteria = new PersonalCafeteria();
     private Administrador administrador = new Administrador();
     private Consumidor consumidor = new Consumidor();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
 
     @FXML
@@ -104,6 +107,8 @@ public class GInicioSesionController implements Initializable {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/ADInicio.fxml")));
             stage.setScene(scenePrincipal);
+            stage.setTitle("Cafeterías UV");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -115,6 +120,8 @@ public class GInicioSesionController implements Initializable {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/CEleccionCafeteria.fxml")));
             stage.setScene(scenePrincipal);
+            stage.setTitle("Cafeterías UV");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
             Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -126,6 +133,8 @@ public class GInicioSesionController implements Initializable {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/GInicioProductos.fxml")));
             stage.setScene(scenePrincipal);
+            stage.setTitle("Productos");
+            stage.setResizable(false);
             stage.show();
             System.out.println("El personal es " + personalCafeteria.getNombre() + " y es " + personalCafeteria.getCargo());
         } catch (IOException ex) {
@@ -138,6 +147,8 @@ public class GInicioSesionController implements Initializable {
             Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/CEleccionCafeteria.fxml")));
             stage.setScene(scenePrincipal);
+            stage.setTitle("Cafeterías UV");
+            stage.setResizable(false);
             stage.show();
             System.out.println("El personal es " + personalCafeteria.getNombre() + " y es " + personalCafeteria.getCargo());
         } catch (IOException ex) {
@@ -287,6 +298,8 @@ public class GInicioSesionController implements Initializable {
             controlador.recibirParametros(tipoUsuario, consumidor);
         }
         cerrarVentana();
+        stage.setTitle("Cafeterías UV");
+        stage.setResizable(false);
         stage.show();
     }
 }

@@ -28,7 +28,7 @@
    <left>
       <AnchorPane prefHeight="300.0" prefWidth="200.0" styleClass="primary-color" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="31.0" layoutY="146.0" text="Cafetería UV" textFill="#3d3d3d">
+            <Label layoutX="31.0" layoutY="146.0" text="Cafeterías UV" textFill="#3d3d3d">
                <font>
                   <Font size="25.0" />
                </font>

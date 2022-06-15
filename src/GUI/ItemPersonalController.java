@@ -2,7 +2,7 @@
 /* Archivo: ItemPersonalController.java                             */
 /* Programador: Maria Elena                                         */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa la visualizacion        */
 /*              de los datos del personal                           */
 /********************************************************************/
@@ -33,7 +33,6 @@ public class ItemPersonalController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }
     
     public void setPersonal(PersonalCafeteria p, MyListenerPersonal lp){

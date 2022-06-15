@@ -2,7 +2,7 @@
 /* Archivo: GInicioProductosController.java                         */
 /* Programador: Maria Elena                                         */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa la ventana              */
 /*              "Cafeteria" con sus metodos                         */
 /********************************************************************/
@@ -10,14 +10,12 @@
 package GUI;
 
 import Dominio.*;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioProducto;
 import javafx.event.ActionEvent;
@@ -82,6 +80,7 @@ public class GInicioProductosController implements Initializable {
     private Button btnAñadirProducto;
     @FXML
     private Button btnVerPersonal;
+    
     private int tipoUsuario;
     private int idCafeteria;
     private int idProductoElegido;
@@ -91,7 +90,6 @@ public class GInicioProductosController implements Initializable {
     ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
     ServicioProducto servicioProducto = new ServicioProducto();
     
-
     public void recibirParametros(int tipoUsuario1, Consumidor c, PersonalCafeteria p, int idCafeteria1){
         try {
             this.consumidor = c;
@@ -130,7 +128,6 @@ public class GInicioProductosController implements Initializable {
         try {
             ServicioProducto servicioProducto = new ServicioProducto();
             List<Producto> productos = servicioProducto.obtenerProductosDeCafeteria(idCafeteria1);
-
             if(productos.size()>0){
                 setProductoElegido(productos.get(0));
                 myListener = new MyListenerProducto(){
@@ -185,7 +182,6 @@ public class GInicioProductosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //productos.addAll(obtenerProductos());
-
     }
     
     @FXML
@@ -202,6 +198,8 @@ public class GInicioProductosController implements Initializable {
                 controlador.recibirParametros(consumidor, idProductoElegido, idCafeteria, 1);
             }
             cerrarVentana();
+            stage.setTitle("Dejar opinión");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -215,6 +213,8 @@ public class GInicioProductosController implements Initializable {
             Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("GInicioSesion.fxml")));
             stage.setScene(scenePrincipal);
+            stage.setTitle("Inicio sesion");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
@@ -238,6 +238,8 @@ public class GInicioProductosController implements Initializable {
                 controlador.recibirParametros(tipoUsuario, consumidor, null,  idCafeteria, 5);
             }
             cerrarVentana();
+            stage.setTitle("Modificar cuenta");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -262,6 +264,8 @@ public class GInicioProductosController implements Initializable {
                 controlador.recibirParametros(tipoUsuario, consumidor, personalCafeteria, idCafeteria, idProductoElegido);
             }
             cerrarVentana();
+            stage.setTitle("Reseñas producto");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -303,6 +307,8 @@ public class GInicioProductosController implements Initializable {
                 controlador.recibirParametros(tipoUsuario, consumidor, null, idCafeteria, 5);
             }
             cerrarVentana();
+            stage.setTitle("Ver cafetería");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -327,6 +333,8 @@ public class GInicioProductosController implements Initializable {
                 controlador.recibirParametros(personalCafeteria, idCafeteria, idProductoElegido);
             }
             cerrarVentana();
+            stage.setTitle("Modificar producto");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -347,6 +355,8 @@ public class GInicioProductosController implements Initializable {
                 controlador.recibirParametros(personalCafeteria, idCafeteria, -1);
             }
             cerrarVentana();
+            stage.setTitle("Agregar producto");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -394,6 +404,8 @@ public class GInicioProductosController implements Initializable {
             RSVerPersonalController controlador = (RSVerPersonalController) fxmlLoader.getController();
             controlador.recibirParametros(personalCafeteria, idCafeteria);
             cerrarVentana();
+            stage.setTitle("Ver personal");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

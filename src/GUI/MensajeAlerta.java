@@ -2,7 +2,7 @@
 /* Archivo: MensajeAlerta.java                                      */
 /* Programador: Eder Ivan                                           */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  30/May/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa los mensajes de alerta  */
 /********************************************************************/
 
@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 
 public class MensajeAlerta {
+    
     @FXML
     public  void mostrarAlertaInformacionInvalida(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

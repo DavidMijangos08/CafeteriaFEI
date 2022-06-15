@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class ADInicioController {
@@ -18,6 +17,7 @@ public class ADInicioController {
     private Button btnAltaResponsable;
     @FXML
     private Button btnCerrarSesion;
+    
     private Administrador administrador;
     
     @FXML
@@ -32,6 +32,8 @@ public class ADInicioController {
             ADAltaCafeteriaController controlador = (ADAltaCafeteriaController) fxmlLoader.getController();
             controlador.recibirParametros(administrador);
             cerrarVentana();
+            stage.setTitle("Alta cafetería");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -50,6 +52,8 @@ public class ADInicioController {
             ADAltaResponsableController controlador = (ADAltaResponsableController) fxmlLoader.getController();
             controlador.recibirParametros(administrador);
             cerrarVentana();
+            stage.setTitle("Alta responsable");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -62,6 +66,8 @@ public class ADInicioController {
             Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("GInicioSesion.fxml")));
             stage.setScene(scenePrincipal);
+            stage.setTitle("Inicio sesion");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
             System.err.println(ex.getMessage());

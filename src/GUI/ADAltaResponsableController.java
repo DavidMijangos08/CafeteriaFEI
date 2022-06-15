@@ -2,7 +2,7 @@
 /* Archivo: ADAltaResponsableController.java                        */
 /* Programador: Maria Elena                                         */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa la ventana              */
 /*              "Alta responsable" con sus metodos                  */
 /********************************************************************/
@@ -42,6 +42,9 @@ public class ADAltaResponsableController implements Initializable {
     private TextField txfCurp;
     @FXML
     private Button btnCancelar;
+    @FXML
+    private Button btnRegistrar;
+    
     private Administrador administrador;
     
     @Override
@@ -139,6 +142,8 @@ public class ADAltaResponsableController implements Initializable {
             ADInicioController controlador = (ADInicioController) fxmlLoader.getController();
             controlador.recibirParametros(administrador);
             cerrarVentana();
+            stage.setTitle("Cafeterías UV");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);

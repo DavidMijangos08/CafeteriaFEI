@@ -2,7 +2,7 @@
 /* Archivo: GModificarCuentaController.java                         */
 /* Programador: Maria Elena                                         */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa la ventana              */
 /*              "Modificar cuenta" con sus metodos                  */
 /********************************************************************/
@@ -12,9 +12,6 @@ package GUI;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import Dominio.Consumidor;
 import Dominio.PersonalCafeteria;
 import Servicios.ServicioCafeteria;
@@ -46,6 +43,7 @@ public class GModificarCuentaController implements Initializable {
     private PasswordField pfConfContraseniaConf;
     @FXML
     private TextField txfCodigoVerificacion;
+    
     private int tipoUsuario;
     private int idCafeteria;
     private int idVentana;
@@ -53,22 +51,27 @@ public class GModificarCuentaController implements Initializable {
     Consumidor consumidor = new Consumidor();
     PersonalCafeteria personalCafeteria = new PersonalCafeteria();
     ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }     
 
     @FXML
     private void clicRegresar(ActionEvent event) {
         String ruta ="";
+        String titulo = "Cafeterías UV";
         if(idVentana == 5){
             ruta = "GInicioProductos.fxml";
+            titulo = "Productos";
         }else if(idVentana == 8){
             ruta = "GReseñasProducto.fxml";
+            titulo = "Reseñas producto";
         }else if(idVentana == 9) {
             ruta = "GVerCafeteria.fxml";
+            titulo = "Ver cafetería";
         }else if(idVentana == 15){
             ruta = "RSVerPersonal.fxml";
+            titulo = "Ver personal";
         }
         System.out.println("idventana regresar modifcuenta " + idVentana);
         try {
@@ -105,6 +108,8 @@ public class GModificarCuentaController implements Initializable {
                 }
             }
             cerrarVentana();
+            stage.setTitle(titulo);
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -122,6 +127,7 @@ public class GModificarCuentaController implements Initializable {
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(ruta)));
             stage.setScene(scenePrincipal);
             stage.setTitle("Productos");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
@@ -166,6 +172,7 @@ public class GModificarCuentaController implements Initializable {
         Stage stage = (Stage) btnRegresar.getScene().getWindow();
         stage.close();
     }
+    
     private void iniciarVentana(int tipoUsuario1, Consumidor c, PersonalCafeteria p, int idCafeteria1, int idVentana1, int idProducto1){
         this.tipoUsuario = tipoUsuario1;
         this.consumidor = c;
@@ -174,6 +181,7 @@ public class GModificarCuentaController implements Initializable {
         this.idVentana = idVentana1;
         this.idProducto = idProducto1;
     }
+    
     public void recibirParametros(int tipoUsuario1, Consumidor c, PersonalCafeteria p,  int idCafeteria1, int idVentana1){
         if(p != null){
             txfNombre.setText(p.getNombre());
@@ -184,6 +192,7 @@ public class GModificarCuentaController implements Initializable {
         }
         iniciarVentana(tipoUsuario1, c, p, idCafeteria1, idVentana1, -1);
     }
+    
     public void recibirParametrosProducto(int tipoUsuario1, Consumidor c, PersonalCafeteria p,  int idCafeteria1, int idVentana1, int idProducto1){
         if(p != null){
             txfNombre.setText(p.getNombre());
@@ -194,5 +203,4 @@ public class GModificarCuentaController implements Initializable {
         }
         iniciarVentana(tipoUsuario1, c, p, idCafeteria1, idVentana1, idProducto1);
     }
-
 }

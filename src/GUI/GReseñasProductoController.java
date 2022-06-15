@@ -2,7 +2,7 @@
 /* Archivo: GReseñasProductosController.java                        */
 /* Programador: Eder Ivan                                           */
 /* Fecha de creación: 30/May/2022                                   */
-/* Fecha modificación:  02/Jun/2022                                 */
+/* Fecha modificación:  15/Jun/2022                                 */
 /* Descripción: Archivo donde se inicializa la ventana              */
 /*              "Reseñas productos" con sus metodos                 */
 /********************************************************************/
@@ -11,19 +11,15 @@ package GUI;
 
 import Dominio.Consumidor;
 import Dominio.PersonalCafeteria;
-import Dominio.ReseñaCafeteria;
 import Dominio.ReseñaProducto;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioProducto;
-import Servicios.ServicioReseñasCafeteria;
 import Servicios.ServicioReseñasProducto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -75,8 +71,8 @@ public class GReseñasProductoController implements Initializable {
     @FXML
     private GridPane gdReseñas;
     @FXML
-
     private Button btnDejarOpinion;
+    
     //private List<ReseñaProducto> reseñaProductos = new ArrayList<>();
     ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
     private int tipoUsuario = 0;
@@ -90,7 +86,6 @@ public class GReseñasProductoController implements Initializable {
             ServicioReseñasProducto servicioReseñas = new ServicioReseñasProducto();
             List<ReseñaProducto> reseñas = servicioReseñas.obtenerReseñasDeProducto(idProducto1);
             int fila = 1;
-
             try {
                 for(int i = 0; i < reseñas.size(); i++){
                     FXMLLoader fxmlLoader = new FXMLLoader();
@@ -156,6 +151,8 @@ public class GReseñasProductoController implements Initializable {
             GVerCafeteriaController controlador = (GVerCafeteriaController) fxmlLoader.getController();
             controlador.recibirParametrosProducto(tipoUsuario, consumidor, personalCafeteria, idCafeteria,idProducto, 8);
             cerrarVentana();
+            stage.setTitle("Ver cafetería");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -174,6 +171,8 @@ public class GReseñasProductoController implements Initializable {
             GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
             controlador.recibirParametros(tipoUsuario, consumidor, personalCafeteria, idCafeteria);
             cerrarVentana();
+            stage.setTitle("Inicio sesion");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -192,6 +191,8 @@ public class GReseñasProductoController implements Initializable {
             GModificarCuentaController controlador = (GModificarCuentaController) fxmlLoader.getController();
             controlador.recibirParametrosProducto(tipoUsuario, consumidor, personalCafeteria, idCafeteria, 8, idProducto);
             cerrarVentana();
+            stage.setTitle("Modificar cuenta");
+            stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -204,8 +205,8 @@ public class GReseñasProductoController implements Initializable {
 
     @FXML
     void clicDejarOpinion(ActionEvent event) {
-
     }
+    
     public void recibirParametros(int tipoUsuario1, Consumidor c, PersonalCafeteria p, int idCafeteria1, int idProducto1){
         try {
             if(p != null){
