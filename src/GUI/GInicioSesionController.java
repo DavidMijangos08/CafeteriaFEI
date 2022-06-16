@@ -74,26 +74,29 @@ public class GInicioSesionController implements Initializable {
             ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
             String correoElectronico = txfCorreoInicio.getText();
             String contrasenia = pfContraseniaInicio.getText();
-            if(servicioAdministrador.enviarCredencialesAdministrador(correoElectronico, contrasenia) == 200){
-                cambiarVentana("/GUI/ADInicio.fxml");
-                tipoUsuario = 1;
-            }else if(servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia) != null){
-                personalCafeteria = servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia);
-                if(personalCafeteria.getCargo().equals("Responsable")){
-                    tipoUsuario = 2;
-                    cambiarVentana("GInicioProductos.fxml");
+            if(!existenCamposVaciosInicioSesion()){
+                if(servicioAdministrador.enviarCredencialesAdministrador(correoElectronico, contrasenia) == 200){
+                    cambiarVentana("/GUI/ADInicio.fxml");
+                    tipoUsuario = 1;
+                }else if(servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia) != null){
+                    personalCafeteria = servicioPersonal.obtenerPersonalPorCredencial(correoElectronico, contrasenia);
+                    if(personalCafeteria.getCargo().equals("Responsable")){
+                        tipoUsuario = 2;
+                        cambiarVentana("GInicioProductos.fxml");
+                    }else{
+                        tipoUsuario = 3;
+                        cambiarVentana("GInicioProductos.fxml");
+                    }
+                }else if (servicioConsumidor.obtenerConsumidorPorCredencial(correoElectronico,contrasenia) != null){
+                    consumidor = servicioConsumidor.obtenerConsumidorPorCredencial(correoElectronico,contrasenia);
+                    tipoUsuario = 4;
+                    cambiarVentana("CEleccionCafeteria.fxml");
                 }else{
-                    tipoUsuario = 3;
-                    cambiarVentana("GInicioProductos.fxml");
+                    MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                    mensajeAlerta.mostrarAlertaInformacionInvalida("Credenciales incorrectas");
                 }
-            }else if (servicioConsumidor.obtenerConsumidorPorCredencial(correoElectronico,contrasenia) != null){
-                consumidor = servicioConsumidor.obtenerConsumidorPorCredencial(correoElectronico,contrasenia);
-                tipoUsuario = 4;
-                cambiarVentana("CEleccionCafeteria.fxml");
-            }else{
-                MensajeAlerta mensajeAlerta = new MensajeAlerta();
-                mensajeAlerta.mostrarAlertaInformacionInvalida("Credenciales incorrectas");
             }
+
         } catch (IOException ex) {
             Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
@@ -101,61 +104,6 @@ public class GInicioSesionController implements Initializable {
             cerrarVentana();
         }
     }
-    
-    private void enviarAVentanaAdministrador(){
-        try {
-            Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/ADInicio.fxml")));
-            stage.setScene(scenePrincipal);
-            stage.setTitle("Cafeterías UV");
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    private void enviarAVentanaConsumidor(Consumidor consumidor){
-        try {
-            Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/CEleccionCafeteria.fxml")));
-            stage.setScene(scenePrincipal);
-            stage.setTitle("Cafeterías UV");
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException ex) {
-            Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    private void enviarAVentanaResponsable(PersonalCafeteria personalCafeteria){
-        try {
-            Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/GInicioProductos.fxml")));
-            stage.setScene(scenePrincipal);
-            stage.setTitle("Productos");
-            stage.setResizable(false);
-            stage.show();
-            System.out.println("El personal es " + personalCafeteria.getNombre() + " y es " + personalCafeteria.getCargo());
-        } catch (IOException ex) {
-            Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    private void enviarAVentanaRecepcionista(PersonalCafeteria personalCafeteria){
-        try {
-            Stage stage = (Stage) btnIniciarSesion.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("/GUI/CEleccionCafeteria.fxml")));
-            stage.setScene(scenePrincipal);
-            stage.setTitle("Cafeterías UV");
-            stage.setResizable(false);
-            stage.show();
-            System.out.println("El personal es " + personalCafeteria.getNombre() + " y es " + personalCafeteria.getCargo());
-        } catch (IOException ex) {
-            Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     @FXML
     private void clicEnviarCodigo(ActionEvent event) {
         if(!existenCamposInvalidosEnviarCodigo()){
@@ -182,8 +130,8 @@ public class GInicioSesionController implements Initializable {
                 String nombre = txfNombreCrear.getText();
                 String correo = txfCorreoCrear.getText();
                 String contrasenia = pfContraseniaCrear.getText();
-                Consumidor consumidor = new Consumidor(nombre, correo, contrasenia);
-                int respuesta = servicioConsumidor.agregarNuevoConsumidor(consumidor);
+                Consumidor nuevoconsumidor = new Consumidor(nombre, correo, contrasenia);
+                int respuesta = servicioConsumidor.agregarNuevoConsumidor(nuevoconsumidor);
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
                 if(respuesta == 201){
                     mensajeAlerta.mostrarAlertaGuardado("Tu cuenta ha sido registrada con éxito, por favor inicia sesión");
@@ -287,10 +235,7 @@ public class GInicioSesionController implements Initializable {
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = new Stage();
         stage.setScene(scene);
-
-        if(tipoUsuario == 1){
-            //aqui falta
-        }else if (tipoUsuario == 2 || tipoUsuario == 3){
+        if (tipoUsuario == 2 || tipoUsuario == 3){
             GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
             controlador.recibirParametros(tipoUsuario, consumidor, personalCafeteria, personalCafeteria.getIdCafeteria());
         }else if(tipoUsuario == 4){

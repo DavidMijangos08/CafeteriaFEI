@@ -119,10 +119,6 @@ public class CDejarOpinionController implements Initializable {
     private void clicAceptar(ActionEvent event) {
         int calificacion;
         if (validarCampos()){
-            System.out.println(idCafeteria);
-            System.out.println(idProducto);
-            System.out.println(tipoOpinion);
-            System.out.println("todo olrigt ventana dejar op");
             calificacion = obtenerCalificacion();
 
         }

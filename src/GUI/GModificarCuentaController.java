@@ -73,7 +73,6 @@ public class GModificarCuentaController implements Initializable {
             ruta = "RSVerPersonal.fxml";
             titulo = "Ver personal";
         }
-        System.out.println("idventana regresar modifcuenta " + idVentana);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource(ruta));
