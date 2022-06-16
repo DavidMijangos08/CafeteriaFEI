@@ -166,7 +166,6 @@ public class GInicioProductosController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //productos.addAll(obtenerProductos());
     }
     
     @FXML
@@ -193,7 +192,6 @@ public class GInicioProductosController implements Initializable {
 
     @FXML
     private void clicCerrarSesion(ActionEvent event) {
-        //cambiarVentana("/GUI/GInicioSesion.fxml", "Inicio de sesión");
         try {
             Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
             Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("GInicioSesion.fxml")));

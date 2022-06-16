@@ -28,7 +28,7 @@ public class ServicioConsumidor {
     public int agregarNuevoConsumidor(Consumidor consumidor) throws IOException{
         int respuesta = 0;
         try{
-            URL url = new URL("http://127.0.0.1:7000/consumidores");
+            URL url = new URL("http://127.0.0.1:9090/consumidores");
             HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
             conexion.setRequestMethod("POST");
             String datos = "{" + 

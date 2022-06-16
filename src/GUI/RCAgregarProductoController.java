@@ -9,10 +9,17 @@
 
 package GUI;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import Dominio.Cafeteria;
 import Dominio.PersonalCafeteria;
+import Dominio.Producto;
+import Servicios.ServicioCafeteria;
 import Servicios.ServicioProducto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,6 +32,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class RCAgregarProductoController implements Initializable {
@@ -49,10 +57,11 @@ public class RCAgregarProductoController implements Initializable {
     private Label lblNombreVentana1;
     @FXML
     private TextField txfNombre;
-    
     private int idCafeteria;
     private int idProducto;
+    private String rutaImagen;
     PersonalCafeteria personalCafeteria;
+    File file;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -60,6 +69,17 @@ public class RCAgregarProductoController implements Initializable {
 
     @FXML
     private void clicAñadirImagen(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Selecciona una imagen");
+        fc.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg"));
+        file = fc.showOpenDialog(null);
+        if (file != null){
+            System.out.println(file.getAbsolutePath());
+            Image img = new Image(getClass().getResourceAsStream(file.getAbsolutePath()));
+            this.imgProducto.setImage(img);
+            this.rutaImagen = file.getAbsolutePath();
+        }
     }
 
     @FXML
@@ -69,14 +89,39 @@ public class RCAgregarProductoController implements Initializable {
 
     @FXML
     private void clicAceptar(ActionEvent event) {
-        cambiarVentana();
+        try {
+            if(!existenCamposInvalidos()){
+                String nombreProducto = txfNombre.getText();
+                int precioProducto = Integer.parseInt(txfPrecio.getText());
+                int tiempoAproximado = Integer.parseInt(txfTiempoAproximado.getText());
+                String descripcion = txfDescripcion.getText();
+                Producto p = new Producto(nombreProducto, descripcion, rutaImagen, precioProducto, tiempoAproximado);
+                ServicioProducto servicioProducto = new ServicioProducto();
+                int respuesta = servicioProducto.agregarNuevoProducto(p, idCafeteria);
+
+                MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                if(respuesta == 201){
+                    mensajeAlerta.mostrarAlertaGuardado("El producto se registró con éxito");
+                    cambiarVentana();
+                    //REGRESA A LA VENTANA ANTERIOR
+                    //ANTES DEL stage.show poner esto stage.setResizable(false);
+                }else if(respuesta == 400){
+                    mensajeAlerta.mostrarAlertaInformacionInvalida("Datos existentes, verifica el nombre del producto");
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
+        }
     }  
     
     private boolean existenCamposInvalidos(){
         boolean existe = false;
         MensajeAlerta mensajeAlerta = new MensajeAlerta();
         Validacion validacion = new Validacion();
-        if(txfNombre.getText().isEmpty() || txfPrecio.getText().isEmpty() || txfDescripcion.getText().isEmpty()){
+        if(txfNombre.getText().isEmpty() || txfPrecio.getText().isEmpty() || txfDescripcion.getText().isEmpty() || file.getAbsolutePath().isEmpty()){
             existe = true;
             mensajeAlerta.mostrarAlertaInformacionInvalida("Existen campos vacíos");
         }

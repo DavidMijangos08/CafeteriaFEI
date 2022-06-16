@@ -22,13 +22,6 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(String nombreProducto, String descripcionProducto, String rutaI, int precioProducto){
-        this.precio = precioProducto;
-        this.nombre = nombreProducto;
-        this.rutaImagen = rutaI;
-        this.descripcion = descripcionProducto;
-    }
-
     public Producto(String nombreProducto, String descripcionProducto, String rutaI, int precioProducto, int tiempoRealizacion){
         this.precio = precioProducto;
         this.nombre = nombreProducto;

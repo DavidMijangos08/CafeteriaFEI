@@ -72,8 +72,7 @@ public class GReseñasProductoController implements Initializable {
     private GridPane gdReseñas;
     @FXML
     private Button btnDejarOpinion;
-    
-    //private List<ReseñaProducto> reseñaProductos = new ArrayList<>();
+
     ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
     private int tipoUsuario = 0;
     private int idCafeteria;
@@ -222,23 +221,6 @@ public class GReseñasProductoController implements Initializable {
             this.consumidor = c;
             this.personalCafeteria = p;
             this.idProducto =  idProducto1;
-            obtenerReseñas(idProducto1);
-            obtenerInfoProducto(idProducto1);
-        } catch (IOException ex) {
-            Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
-            MensajeAlerta mensajeAlerta = new MensajeAlerta();
-            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
-        }
-    }
-
-    public void recibirParametrosPersonal(int tipoUsuario1, PersonalCafeteria p, int idProducto1){
-        try {
-            lblNombreUsuario.setText(p.getNombre());
-            txaNombreCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(p.getIdCafeteria()).getNombreCafeteria());
-            this.tipoUsuario = tipoUsuario1;
-            this.idCafeteria = p.getIdCafeteria();
-            this.personalCafeteria = p;
             obtenerReseñas(idProducto1);
             obtenerInfoProducto(idProducto1);
         } catch (IOException ex) {

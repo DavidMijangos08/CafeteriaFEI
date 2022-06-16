@@ -43,12 +43,6 @@ public class GVerCafeteriaController implements Initializable {
     @FXML
     private Label lblNombreUsuario;
     @FXML
-    private Button btnModificarCuenta;
-    @FXML
-    private ImageView imgPregunta;
-    @FXML
-    private VBox vbCafeteria;
-    @FXML
     private TextArea txaTituloCafeteria;
     @FXML
     private TextArea txaTituloCafeteriaEncab;
@@ -70,7 +64,6 @@ public class GVerCafeteriaController implements Initializable {
     private Button btnDejarOpinion;
     
     private int tipoUsuario;
-    //private List<ReseñaCafeteria> reseñas = new ArrayList<>();
     private int idCafeteria;
     private int idProducto;
     private int idVentanaOrigen;
@@ -80,31 +73,6 @@ public class GVerCafeteriaController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }    
-
-    @FXML
-    private void clicModificarCuenta(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("GModificarCuenta.fxml"));
-            Scene scene = null;
-            scene = new Scene(fxmlLoader.load());
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            if (tipoUsuario == 2 || tipoUsuario == 3){
-                GModificarCuentaController controlador = (GModificarCuentaController) fxmlLoader.getController();
-                controlador.recibirParametros(tipoUsuario,null, personalCafeteria,personalCafeteria.getIdCafeteria(), 9);
-            }else if(tipoUsuario == 4){
-                GModificarCuentaController controlador = (GModificarCuentaController) fxmlLoader.getController();
-                controlador.recibirParametros(tipoUsuario, consumidor, null, idCafeteria, 9);
-            }
-            cerrarVentana();
-            stage.setTitle("Modificar cuenta");
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @FXML
