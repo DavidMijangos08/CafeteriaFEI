@@ -98,13 +98,13 @@ public class CDejarOpinionController implements Initializable {
                 titulo = "Productos";
                 GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
                 controlador.recibirParametros(4, consumidor, null, idCafeteria);
-            }else if(idCafeteria > 1){
+            }else if(idCafeteria > 0){
                 fxmlLoader.setLocation(getClass().getResource("/GUI/GVerCafeteria.fxml"));
                 scene = new Scene(fxmlLoader.load());
                 stage.setScene(scene);
                 titulo = "Ver cafeteria";
                 GVerCafeteriaController controlador = (GVerCafeteriaController) fxmlLoader.getController();
-                controlador.recibirParametros(4, consumidor, null, idCafeteria, 3);
+                controlador.recibirParametros(4, consumidor, null, idCafeteria, 5);
             }
             cerrarVentana();
             stage.setTitle(titulo);
@@ -127,16 +127,6 @@ public class CDejarOpinionController implements Initializable {
 
         }
     }
-    private void cambiarVentana(String ruta){
-        try {
-            Stage stage = (Stage) btnRegresar.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(ruta)));
-            stage.setScene(scenePrincipal);
-            stage.show();
-        } catch (IOException ex) {
-            System.err.println(ex.getMessage());
-        }
-    }
 
     private void cargarDatos(Consumidor c, int idProducto1, int idCafeteria1, int tipoOpinion1){
         try {
@@ -153,7 +143,6 @@ public class CDejarOpinionController implements Initializable {
                 Image img = new Image(getClass().getResourceAsStream(servicioProducto.obtenerProductoPorId(idProducto).getRutaImagen()));
                 this.imgImagen.setImage(img);
             }else if(idCafeteria > 0){
-                System.out.println("idcaf dejar op "+idCafeteria);
                 lblNombre.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria).getNombreCafeteria());
                 txaDescripcion.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria).getDireccion());
             }

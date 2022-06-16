@@ -92,12 +92,12 @@ public class GInicioProductosController implements Initializable {
     
     public void recibirParametros(int tipoUsuario1, Consumidor c, PersonalCafeteria p, int idCafeteria1){
         try {
-            this.consumidor = c;
-            this.personalCafeteria = p;
             if(c != null){
+                this.consumidor = c;
                 lblNombreUsuario.setText(c.getNombre());
             }
             if(p != null){
+                this.personalCafeteria = p;
                 lblNombreUsuario.setText(p.getNombre());
             }
             txaTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria1).getNombreCafeteria());
@@ -105,21 +105,6 @@ public class GInicioProductosController implements Initializable {
             iniciarVentana(tipoUsuario1);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    public void recibirParametrosPersonal(int tipoUsuario, PersonalCafeteria p){
-        try {
-            personalCafeteria = p;
-            lblNombreUsuario.setText(p.getNombre());
-            txaTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(p.getIdCafeteria()).getNombreCafeteria());
-            obtenerProductos(p.getIdCafeteria());
-            iniciarVentana(tipoUsuario);
-        } catch (IOException ex) {
-            Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
-            MensajeAlerta mensajeAlerta = new MensajeAlerta();
-            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
         }
     }
 
