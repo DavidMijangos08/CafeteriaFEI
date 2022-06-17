@@ -30,6 +30,15 @@ public class Producto {
         this.descripcion = descripcionProducto;
     }
 
+    public Producto(String nombreProducto, String descripcionProducto, String rutaI, int precioProducto, int tiempoRealizacion, int idCafeteria){
+        this.precio = precioProducto;
+        this.nombre = nombreProducto;
+        this.rutaImagen = rutaI;
+        this.tiempoAproximado = tiempoRealizacion;
+        this.descripcion = descripcionProducto;
+        this.idCafeteria = idCafeteria;
+    }
+
     public Producto(int idProducto, String nombreProducto, String descripcionProducto, String rutaI, int precioProducto, int tiempoRealizacion, int idCafeteria){
         this.idProducto = idProducto;
         this.precio = precioProducto;

@@ -96,14 +96,10 @@ public class RCAgregarProductoController implements Initializable {
                 int precioProducto = Integer.parseInt(txfPrecio.getText());
                 int tiempoAproximado = Integer.parseInt(txfTiempoAproximado.getText());
                 String descripcion = txfDescripcion.getText();
-                System.out.println("Se va a modif un produc");
-                System.out.println(txfNombre.getText());
-                System.out.println(txfPrecio.getText());
-                System.out.println(txfTiempoAproximado.getText());
-                System.out.println(txfDescripcion.getText());
+
                 try {
-                    Producto p = new Producto(nombreProducto, descripcion, rutaImagen, precioProducto, tiempoAproximado);
-                    int respuesta = servicioProducto.modificarProducto(p, idCafeteria);
+                    Producto p = new Producto(nombreProducto, descripcion, rutaImagen, precioProducto, tiempoAproximado, idCafeteria);
+                    int respuesta = servicioProducto.modificarProducto(p, idProducto);
                     if(respuesta == 200){
                         mensajeAlerta.mostrarAlertaGuardado("El producto se modificó con éxito");
                         cambiarVentana();
