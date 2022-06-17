@@ -29,10 +29,10 @@ public class ServicioProductoTest {
     @Test
     public void agregarNuevoProductoTest() throws IOException{
         ServicioProducto servicioProducto = new ServicioProducto();
-        Producto producto = new Producto("Torta de milanesa", "Rica torta de milanesa de pollo acompañada de vegetales", 
-                                         "c://users//david//imagenes//tortaMilanesa.png", 20, 6);
+        Producto producto = new Producto("Chocomilk", "Refrescante chocomilk servido en vaso mediano", 
+                                         "C:/Users/david/Documents/Sexto semestre/Desarrollo de sistemas en red/CafeteriaFEI/src/img/Productos/chocomilk.jpg", 30, 10);
         int respuestaEsperada = 201;
-        int respuestaObtenida = servicioProducto.agregarNuevoProducto(producto, 1);
+        int respuestaObtenida = servicioProducto.agregarNuevoProducto(producto, 3);
         assertEquals(respuestaEsperada, respuestaObtenida);
     }
     
@@ -59,7 +59,7 @@ public class ServicioProductoTest {
     public void eliminarProductoTest() throws IOException{
         ServicioProducto servicioProducto = new ServicioProducto();
         int respuestaEseperada = 200;
-        int respuestaObtenida = servicioProducto.eliminarProducto(4);
+        int respuestaObtenida = servicioProducto.eliminarProducto(27);
         assertEquals(respuestaEseperada, respuestaObtenida);
     }
 }

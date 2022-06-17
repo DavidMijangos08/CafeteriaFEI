@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/eder_/GitHub/CafeteriaFEI/src/GUI/GInicioSesionController.java</file>
-            <file>file:/C:/Users/eder_/GitHub/CafeteriaFEI/src/GUI/RSVerPersonalController.java</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/RCAgregarProductoController.java</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/Servicios/ServicioProducto.java</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/Dominio/Producto.java</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/test/ServicioProductoTest.java</file>
         </group>
     </open-files>
 </project-private>

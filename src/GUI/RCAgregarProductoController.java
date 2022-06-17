@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import Dominio.PersonalCafeteria;
 import Dominio.Producto;;
 import Servicios.ServicioProducto;
+import java.nio.file.Paths;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +34,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import java.nio.*;
 
 public class RCAgregarProductoController implements Initializable {
 
@@ -192,9 +192,12 @@ public class RCAgregarProductoController implements Initializable {
     }
 
     private void copiarImagen() throws IOException {
-        Path origen = Path.of(rutaOrigen);
-        Path destino = Path.of("C:\\Users\\marie\\IdeaProjects\\CafeteriaFEI\\src\\img\\Productos");
+      //  Path origen = Path.of(rutaOrigen);
+       // Path destino = Path.of("C:\\Users\\david\\Documents\\Sexto semestre\\Desarrollo de sistemas en red\\CafeteriaFEI\\src\\img\\Productos");
 
+        Path origen = Paths.get(rutaOrigen);
+        Path destino = Paths.get("C:\\Users\\david\\Documents\\Sexto semestre\\Desarrollo de sistemas en red\\CafeteriaFEI\\src\\img\\Productos");
+       
         Path copiar = Files.copy(origen, destino.resolve(origen.getFileName()), StandardCopyOption.REPLACE_EXISTING);
         System.out.println("Se copio a "+destino);
         System.out.println("Se copio a "+copiar.getFileName());
