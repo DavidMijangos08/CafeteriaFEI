@@ -33,11 +33,14 @@ public class ItemReseñaCafeteriaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     }   
     
-    public void setReseña(ReseñaCafeteria p){
-        this.res = p;
+    public void setReseña(ReseñaCafeteria rc){
+        this.res = rc;
         lblTitulo.setText(res.getTitulo());
         txaDescripcion.setText(res.getOpinion());
-        Image img = new Image(getClass().getResourceAsStream(res.getRutaImagen()));
-        imgReseña.setImage(img);
+        if(res.getRutaImagen() != "" || res.getRutaImagen() != null){
+            Image img = new Image(getClass().getResourceAsStream(res.getRutaImagen()));
+            imgReseña.setImage(img);
+        }
+
     }
 }

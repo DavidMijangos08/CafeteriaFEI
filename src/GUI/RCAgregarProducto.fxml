@@ -22,7 +22,7 @@
    ventana "Agregar producto"
 -->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RCAgregarProductoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RCAgregarProductoController">
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
@@ -39,6 +39,9 @@
                      </font>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </VBox>
             <HBox prefHeight="50.0" prefWidth="200.0">
                <children>
@@ -100,7 +103,7 @@
             </HBox>
             <HBox prefHeight="30.0" prefWidth="400.0">
                <children>
-                  <Label text="Tiempo de entrega aproximado:" textFill="#3d3d3d">
+                  <Label text="Tiempo aproximado de preparación:" textFill="#3d3d3d">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -145,15 +148,17 @@
                </VBox.margin></TextArea>
             <Button fx:id="btnAñadirImagen" mnemonicParsing="false" onAction="#clicAñadirImagen" prefHeight="20.0" styleClass="btn-gris" stylesheets="@style.css" text="Añadir Imágen" textFill="#3d3d3d">
                <VBox.margin>
-                  <Insets top="5.0" />
+                  <Insets top="15.0" />
                </VBox.margin>
             </Button>
-            <ImageView fx:id="imgProducto" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+            <HBox alignment="CENTER" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="imgProducto" fitHeight="150.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
                <VBox.margin>
-                  <Insets top="5.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
-            </ImageView>
-            <Label fx:id="lblruta" text="Label" />
+            </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="400.0" spacing="20.0">
                <children>
                   <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="30.0" prefWidth="80.0" stylesheets="@style.css" text="Cancelar">

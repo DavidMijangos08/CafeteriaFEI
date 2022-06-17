@@ -64,7 +64,7 @@ public class ServicioProducto {
 
     public int agregarNuevoProducto(Producto producto, int idCafeteria) throws IOException{
         int respuesta = 0;
-        producto.setRutaImagen(modificarRutaImagen(producto.getRutaImagen()));
+        //producto.setRutaImagen(modificarRutaImagen(producto.getRutaImagen()));
         try{
             URL url = new URL("http://127.0.0.1:9090/productos/" + idCafeteria);
             HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
@@ -168,10 +168,10 @@ public class ServicioProducto {
         return respuesta;
     }
     
-    private String modificarRutaImagen(String rutaActual){
+    /*private String modificarRutaImagen(String rutaActual){
         String rutaNueva = rutaActual.replaceAll("\\\\", "/" );
         String partes[] = rutaNueva.split("src");
         return partes[1];
-    }
+    }*/
     
 }

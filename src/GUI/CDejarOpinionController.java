@@ -12,10 +12,22 @@ package GUI;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import Dominio.Consumidor;
+import Dominio.Producto;
+import Dominio.ReseñaCafeteria;
+import Dominio.ReseñaProducto;
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioProducto;
+import Servicios.ServicioReseñasCafeteria;
+import Servicios.ServicioReseñasProducto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,6 +76,7 @@ public class CDejarOpinionController implements Initializable {
     int idProducto;
     int idCafeteria;
     int tipoOpinion;
+    private String rutaImagen;
     ServicioProducto servicioProducto = new ServicioProducto();
     ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
     Consumidor consumidor;
@@ -74,53 +87,73 @@ public class CDejarOpinionController implements Initializable {
 
     @FXML
     private void clicAgregarImagen(ActionEvent event) {
-        fc.setTitle("Selecciona una imagen");
-        fc.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg"));
-        File file = fc.showOpenDialog(null);
-        if (file != null){
-            txaRutaImagen.setText(file.getAbsolutePath());
-        }
-
-    }
-
-    @FXML
-    private void clicRegresar(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Scene scene = null;
-            Stage stage = new Stage();
-            String titulo = "Cafeterías UV";
-            if(idProducto > 0){
-                fxmlLoader.setLocation(getClass().getResource("/GUI/GInicioProductos.fxml"));
-                scene = new Scene(fxmlLoader.load());
-                stage.setScene(scene);
-                titulo = "Productos";
-                GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
-                controlador.recibirParametros(4, consumidor, null, idCafeteria);
-            }else if(idCafeteria > 0){
-                fxmlLoader.setLocation(getClass().getResource("/GUI/GVerCafeteria.fxml"));
-                scene = new Scene(fxmlLoader.load());
-                stage.setScene(scene);
-                titulo = "Ver cafeteria";
-                GVerCafeteriaController controlador = (GVerCafeteriaController) fxmlLoader.getController();
-                controlador.recibirParametros(4, consumidor, null, idCafeteria, 5);
+            fc.setTitle("Selecciona una imagen");
+            fc.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg"));
+            File file = fc.showOpenDialog(null);
+            if (file != null){
+                txaRutaImagen.setText(file.getAbsolutePath());
+                String rutaAnterior = null;
+                rutaAnterior = copiarImagen(txaRutaImagen.getText());
+                rutaImagen = modificarRutaImagen(rutaAnterior);
             }
-            cerrarVentana();
-            stage.setTitle(titulo);
-            stage.setResizable(false);
-            stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @FXML
-    private void clicAceptar(ActionEvent event) {
-        int calificacion;
-        if (validarCampos()){
-            calificacion = obtenerCalificacion();
+    private void clicRegresar(ActionEvent event) {
+        cambiarVentana();
+    }
 
+    @FXML
+    private void clicAceptar(ActionEvent event) {
+        if(validarCampos()){
+
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            String tituloOpinion = txfTituloOpinion.getText();
+            String opinion = txaOpinion.getText();
+            int calificacion = obtenerCalificacion();
+            if(rutaImagen == null){
+                rutaImagen = "";
+            }
+            if(idProducto > 0){
+                //Reseña Producto
+                try {
+                    ServicioReseñasProducto servicioReseñasProducto = new ServicioReseñasProducto();
+                    ReseñaProducto rp = new ReseñaProducto(tituloOpinion, opinion, calificacion, rutaImagen, idProducto);
+                    int respuesta = servicioReseñasProducto.agregarNuevaReseñaProducto(rp, idProducto);
+                    if(respuesta == 201){
+                        mensajeAlerta.mostrarAlertaGuardado("La reseña se registró con éxito");
+                        cambiarVentana();
+                    }else if(respuesta == 400){
+                        mensajeAlerta.mostrarAlertaInformacionInvalida("Datos existentes, verifica la información de la reseña");
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(CDejarOpinionController.class.getName()).log(Level.SEVERE, null, ex);
+                    mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+                    cerrarVentana();
+                }
+            }else if(idCafeteria > 0){
+                //Reseña Cafeteria
+                try {
+                    ServicioReseñasCafeteria servicioReseñasCafeteria = new ServicioReseñasCafeteria();
+                    ReseñaCafeteria rc = new ReseñaCafeteria(tituloOpinion, opinion, calificacion, rutaImagen, idCafeteria);
+                    int respuesta = servicioReseñasCafeteria.agregarNuevaReseñaCafeteria(rc, idCafeteria);
+                    if(respuesta == 201){
+                        mensajeAlerta.mostrarAlertaGuardado("La reseña se registró con éxito");
+                        //cambiarVentana();
+                    }else if(respuesta == 400){
+                        mensajeAlerta.mostrarAlertaInformacionInvalida("Datos existentes, verifica la información de la reseña");
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+                    mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+                    cerrarVentana();
+                }
+            }
         }
     }
 
@@ -167,6 +200,20 @@ public class CDejarOpinionController implements Initializable {
         }
     }
 
+    private String copiarImagen(String rutaOrigen) throws IOException {
+        Path origen = Paths.get(rutaOrigen);
+        Path destino = Paths.get("src\\img\\Productos");
+
+        Path copiar = Files.copy(origen, destino.resolve(origen.getFileName()), StandardCopyOption.REPLACE_EXISTING);
+        return destino +"\\"+copiar.getFileName();
+    }
+
+    private String modificarRutaImagen(String rutaActual){
+        String rutaNueva = rutaActual.replaceAll("\\\\", "/" );
+        String partes[] = rutaNueva.split("src");
+        return partes[1];
+    }
+
     private int obtenerCalificacion(){
         if(rbCalif1.isSelected()){
             return 1;
@@ -182,7 +229,40 @@ public class CDejarOpinionController implements Initializable {
             return -1;
         }
     }
-    
+
+
+    private void cambiarVentana(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Scene scene = null;
+            Stage stage = new Stage();
+            String titulo = "Cafeterías UV";
+            if(idProducto > 0){
+                fxmlLoader.setLocation(getClass().getResource("/GUI/GInicioProductos.fxml"));
+                scene = new Scene(fxmlLoader.load());
+                stage.setScene(scene);
+                titulo = "Productos";
+                GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
+                controlador.recibirParametros(4, consumidor, null, idCafeteria);
+            }else if(idCafeteria > 0){
+                fxmlLoader.setLocation(getClass().getResource("/GUI/GVerCafeteria.fxml"));
+                scene = new Scene(fxmlLoader.load());
+                stage.setScene(scene);
+                titulo = "Ver cafeteria";
+                GVerCafeteriaController controlador = (GVerCafeteriaController) fxmlLoader.getController();
+                controlador.recibirParametros(4, consumidor, null, idCafeteria, 5);
+            }
+            idCafeteria = 0;
+            idProducto = 0;
+            cerrarVentana();
+            stage.setTitle(titulo);
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void cerrarVentana(){
         Stage stage = (Stage) btnRegresar.getScene().getWindow();
         stage.close();

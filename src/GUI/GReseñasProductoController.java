@@ -210,7 +210,6 @@ public class GReseñasProductoController implements Initializable {
         try {
             if(p != null){
                 btnDejarOpinion.setVisible(false);
-                System.out.println(p.getNombre());
                 this.lblNombreUsuario.setText(p.getNombre());
             }else{
                 lblNombreUsuario.setText(c.getNombre());

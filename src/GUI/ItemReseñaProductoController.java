@@ -37,7 +37,7 @@ public class ItemReseñaProductoController implements Initializable {
         this.res = p;
         lblTitulo.setText(res.getTitulo());
         txaDescripcion.setText(res.getOpinion());
-        if(res.getRutaImagen() != ""){
+        if(res.getRutaImagen() != "" || res.getRutaImagen() != null){
             Image img = new Image(getClass().getResourceAsStream(res.getRutaImagen()));
             imgReseña.setImage(img);
         }

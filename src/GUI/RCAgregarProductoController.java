@@ -54,14 +54,11 @@ public class RCAgregarProductoController implements Initializable {
     @FXML
     private Label lblNombreVentana;
     @FXML
-    private Label lblruta;
-    @FXML
     private Label lblNombreVentana1;
     @FXML
     private TextField txfNombre;
     private int idCafeteria;
     private int idProducto;
-    private String rutaOrigen;
     private String rutaImagen ="";
     PersonalCafeteria personalCafeteria;
     FileChooser fc = new FileChooser();
@@ -77,13 +74,10 @@ public class RCAgregarProductoController implements Initializable {
                 new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg"));
         File file = fc.showOpenDialog(null);
         if (file != null){
-            lblruta.setText(file.getAbsolutePath());
-            rutaOrigen = file.getAbsolutePath();
-            copiarImagen();
-
-            System.out.println("rutaimagen copiar "+rutaImagen);
-            //Image img = new Image(getClass().getResourceAsStream(rutaImagen));
-            //this.imgProducto.setImage(img);
+            String rutaAnterior = copiarImagen(file.getAbsolutePath());
+            rutaImagen = modificarRutaImagen(rutaAnterior);
+            Image img = new Image(getClass().getResourceAsStream(rutaImagen));
+            this.imgProducto.setImage(img);
         }
     }
 
@@ -94,44 +88,67 @@ public class RCAgregarProductoController implements Initializable {
 
     @FXML
     private void clicAceptar(ActionEvent event) {
-        try {
-            if(!existenCamposInvalidos()){
+        if(!existenCamposInvalidos()){
+            ServicioProducto servicioProducto = new ServicioProducto();
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            if(idProducto > 0){
                 String nombreProducto = txfNombre.getText();
                 int precioProducto = Integer.parseInt(txfPrecio.getText());
                 int tiempoAproximado = Integer.parseInt(txfTiempoAproximado.getText());
                 String descripcion = txfDescripcion.getText();
-                Producto p = new Producto(nombreProducto, descripcion, rutaImagen, precioProducto, tiempoAproximado);
-                ServicioProducto servicioProducto = new ServicioProducto();
-                int respuesta = servicioProducto.agregarNuevoProducto(p, idCafeteria);
-                MensajeAlerta mensajeAlerta = new MensajeAlerta();
-                if(respuesta == 201){
-                    mensajeAlerta.mostrarAlertaGuardado("El producto se registró con éxito");
-                    cambiarVentana();
-                    //REGRESA A LA VENTANA ANTERIOR
-                    //ANTES DEL stage.show poner esto stage.setResizable(false);
-                }else if(respuesta == 400){
-                    System.out.println(p.getNombre());
-                    System.out.println(p.getRutaImagen());
-                    System.out.println(p.getDescripcion());
-                    System.out.println(p.getTiempoAproximado());
-                    mensajeAlerta.mostrarAlertaInformacionInvalida("Datos existentes, verifica el nombre del producto");
+                System.out.println("Se va a modif un produc");
+                System.out.println(txfNombre.getText());
+                System.out.println(txfPrecio.getText());
+                System.out.println(txfTiempoAproximado.getText());
+                System.out.println(txfDescripcion.getText());
+                try {
+                    Producto p = new Producto(nombreProducto, descripcion, rutaImagen, precioProducto, tiempoAproximado);
+                    int respuesta = servicioProducto.modificarProducto(p, idCafeteria);
+                    if(respuesta == 200){
+                        mensajeAlerta.mostrarAlertaGuardado("El producto se modificó con éxito");
+                        cambiarVentana();
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+                    mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+                    cerrarVentana();
+                }
+            }else if(idCafeteria > 0){
+                String nombreProducto = txfNombre.getText();
+                int precioProducto = Integer.parseInt(txfPrecio.getText());
+                int tiempoAproximado = Integer.parseInt(txfTiempoAproximado.getText());
+                String descripcion = txfDescripcion.getText();
+                try {
+                    Producto p = new Producto(nombreProducto, descripcion, rutaImagen, precioProducto, tiempoAproximado);
+                    int respuesta = servicioProducto.agregarNuevoProducto(p, idCafeteria);
+                    if(respuesta == 201){
+                        mensajeAlerta.mostrarAlertaGuardado("El producto se registró con éxito");
+                        cambiarVentana();
+                    }else if(respuesta == 400){
+                        mensajeAlerta.mostrarAlertaInformacionInvalida("Datos existentes, verifica el nombre del producto");
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(RCAgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);
+                    mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+                    cerrarVentana();
                 }
             }
-        } catch (IOException ex) {
-            Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
-            MensajeAlerta mensajeAlerta = new MensajeAlerta();
-            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
         }
-    }  
+    }
+
+
     
     private boolean existenCamposInvalidos(){
         boolean existe = false;
+
         MensajeAlerta mensajeAlerta = new MensajeAlerta();
         Validacion validacion = new Validacion();
-        if(txfNombre.getText().isEmpty() || txfPrecio.getText().isEmpty() || txfDescripcion.getText().isEmpty() || rutaImagen.isEmpty()){
+        if(txfNombre.getText().isEmpty() || txfPrecio.getText().isEmpty() || txfDescripcion.getText().isEmpty()) {
             existe = true;
             mensajeAlerta.mostrarAlertaInformacionInvalida("Existen campos vacíos");
+        }else if(rutaImagen.isEmpty()){
+            existe = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("Por favor agrega una imagen");
         }
         if(validacion.existeCampoInvalido(txfNombre.getText()) || validacion.existeCampoInvalido(txfPrecio.getText()) 
                 || validacion.existeCampoInvalido(txfDescripcion.getText())){
@@ -157,7 +174,8 @@ public class RCAgregarProductoController implements Initializable {
                 this.txfPrecio.setText(Integer.toString(servicioProducto.obtenerProductoPorId(idProducto).getPrecio()));
                 this.txfTiempoAproximado.setText(Integer.toString(servicioProducto.obtenerProductoPorId(idProducto).getTiempoAproximado()));
                 this.txfDescripcion.setText(servicioProducto.obtenerProductoPorId(idProducto).getDescripcion());
-                Image img = new Image(getClass().getResourceAsStream(servicioProducto.obtenerProductoPorId(idProducto1).getRutaImagen()));
+                rutaImagen = servicioProducto.obtenerProductoPorId(idProducto1).getRutaImagen();
+                Image img = new Image(getClass().getResourceAsStream(rutaImagen));
                 this.imgProducto.setImage(img);
             }
 
@@ -191,16 +209,17 @@ public class RCAgregarProductoController implements Initializable {
         }
     }
 
-    private void copiarImagen() throws IOException {
-      //  Path origen = Path.of(rutaOrigen);
-       // Path destino = Path.of("C:\\Users\\david\\Documents\\Sexto semestre\\Desarrollo de sistemas en red\\CafeteriaFEI\\src\\img\\Productos");
-
+    private String copiarImagen(String rutaOrigen) throws IOException {
         Path origen = Paths.get(rutaOrigen);
-        Path destino = Paths.get("C:\\Users\\david\\Documents\\Sexto semestre\\Desarrollo de sistemas en red\\CafeteriaFEI\\src\\img\\Productos");
+        Path destino = Paths.get("src\\img\\Productos");
        
         Path copiar = Files.copy(origen, destino.resolve(origen.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-        System.out.println("Se copio a "+destino);
-        System.out.println("Se copio a "+copiar.getFileName());
-        rutaImagen = destino +"\\"+copiar.getFileName();
+        return destino +"\\"+copiar.getFileName();
+    }
+
+    private String modificarRutaImagen(String rutaActual){
+        String rutaNueva = rutaActual.replaceAll("\\\\", "/" );
+        String partes[] = rutaNueva.split("src");
+        return partes[1];
     }
 }
