@@ -9,17 +9,16 @@
 
 package GUI;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import Dominio.Cafeteria;
 import Dominio.PersonalCafeteria;
-import Dominio.Producto;
-import Servicios.ServicioCafeteria;
+import Dominio.Producto;;
 import Servicios.ServicioProducto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,6 +33,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import java.nio.*;
 
 public class RCAgregarProductoController implements Initializable {
 
@@ -54,31 +54,36 @@ public class RCAgregarProductoController implements Initializable {
     @FXML
     private Label lblNombreVentana;
     @FXML
+    private Label lblruta;
+    @FXML
     private Label lblNombreVentana1;
     @FXML
     private TextField txfNombre;
     private int idCafeteria;
     private int idProducto;
-    private String rutaImagen;
+    private String rutaOrigen;
+    private String rutaImagen ="";
     PersonalCafeteria personalCafeteria;
-    File file;
+    FileChooser fc = new FileChooser();
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    
 
     @FXML
-    private void clicAñadirImagen(ActionEvent event) {
-        FileChooser fc = new FileChooser();
+    private void clicAñadirImagen(ActionEvent event) throws IOException {
         fc.setTitle("Selecciona una imagen");
         fc.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg"));
-        file = fc.showOpenDialog(null);
+        File file = fc.showOpenDialog(null);
         if (file != null){
-            System.out.println(file.getAbsolutePath());
-            Image img = new Image(getClass().getResourceAsStream(file.getAbsolutePath()));
-            this.imgProducto.setImage(img);
-            this.rutaImagen = file.getAbsolutePath();
+            lblruta.setText(file.getAbsolutePath());
+            rutaOrigen = file.getAbsolutePath();
+            copiarImagen();
+
+            System.out.println("rutaimagen copiar "+rutaImagen);
+            //Image img = new Image(getClass().getResourceAsStream(rutaImagen));
+            //this.imgProducto.setImage(img);
         }
     }
 
@@ -98,7 +103,6 @@ public class RCAgregarProductoController implements Initializable {
                 Producto p = new Producto(nombreProducto, descripcion, rutaImagen, precioProducto, tiempoAproximado);
                 ServicioProducto servicioProducto = new ServicioProducto();
                 int respuesta = servicioProducto.agregarNuevoProducto(p, idCafeteria);
-
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
                 if(respuesta == 201){
                     mensajeAlerta.mostrarAlertaGuardado("El producto se registró con éxito");
@@ -106,6 +110,10 @@ public class RCAgregarProductoController implements Initializable {
                     //REGRESA A LA VENTANA ANTERIOR
                     //ANTES DEL stage.show poner esto stage.setResizable(false);
                 }else if(respuesta == 400){
+                    System.out.println(p.getNombre());
+                    System.out.println(p.getRutaImagen());
+                    System.out.println(p.getDescripcion());
+                    System.out.println(p.getTiempoAproximado());
                     mensajeAlerta.mostrarAlertaInformacionInvalida("Datos existentes, verifica el nombre del producto");
                 }
             }
@@ -121,7 +129,7 @@ public class RCAgregarProductoController implements Initializable {
         boolean existe = false;
         MensajeAlerta mensajeAlerta = new MensajeAlerta();
         Validacion validacion = new Validacion();
-        if(txfNombre.getText().isEmpty() || txfPrecio.getText().isEmpty() || txfDescripcion.getText().isEmpty() || file.getAbsolutePath().isEmpty()){
+        if(txfNombre.getText().isEmpty() || txfPrecio.getText().isEmpty() || txfDescripcion.getText().isEmpty() || rutaImagen.isEmpty()){
             existe = true;
             mensajeAlerta.mostrarAlertaInformacionInvalida("Existen campos vacíos");
         }
@@ -181,5 +189,15 @@ public class RCAgregarProductoController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void copiarImagen() throws IOException {
+        Path origen = Path.of(rutaOrigen);
+        Path destino = Path.of("C:\\Users\\marie\\IdeaProjects\\CafeteriaFEI\\src\\img\\Productos");
+
+        Path copiar = Files.copy(origen, destino.resolve(origen.getFileName()), StandardCopyOption.REPLACE_EXISTING);
+        System.out.println("Se copio a "+destino);
+        System.out.println("Se copio a "+copiar.getFileName());
+        rutaImagen = destino +"\\"+copiar.getFileName();
     }
 }

@@ -153,6 +153,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
             </ImageView>
+            <Label fx:id="lblruta" text="Label" />
             <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="400.0" spacing="20.0">
                <children>
                   <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#clicCancelar" prefHeight="30.0" prefWidth="80.0" stylesheets="@style.css" text="Cancelar">
