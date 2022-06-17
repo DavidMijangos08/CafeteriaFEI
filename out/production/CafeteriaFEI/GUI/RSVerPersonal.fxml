@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -33,7 +27,7 @@
    ventana "Ver personal"
 -->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RSVerPersonalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="950.0" styleClass="white-color" stylesheets="@style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RSVerPersonalController">
     <left>
         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="250.0" styleClass="white-color" stylesheets="@style.css" BorderPane.alignment="TOP_CENTER">
             <children>
@@ -64,9 +58,9 @@
                     </children>
                 </VBox>
                 <Pane prefHeight="15.0" />
-                <VBox alignment="CENTER" prefHeight="300.0" styleClass="item-seleccionado" stylesheets="@style.css">
+                <VBox alignment="CENTER" prefHeight="318.0" prefWidth="240.0" styleClass="item-seleccionado" stylesheets="@style.css">
                     <children>
-                        <Label text="Nombre completo:" textFill="#3d3d3d">
+                        <Label prefHeight="26.0" prefWidth="222.0" text="Nombre:" textFill="#3d3d3d">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -74,8 +68,11 @@
                                 <Insets />
                             </VBox.margin>
                         </Label>
-                  <TextArea fx:id="txaNombrePersonal" editable="false" prefHeight="43.0" prefWidth="240.0" styleClass="centeredTextArea" stylesheets="@style.css" wrapText="true" />
-                        <Label text="CURP:" textFill="#3d3d3d">
+                  <TextArea fx:id="txaNombrePersonal" editable="false" prefHeight="30.0" prefWidth="240.0" styleClass="centeredTextArea" stylesheets="@style.css" wrapText="true">
+                     <font>
+                        <Font size="15.0" />
+                     </font></TextArea>
+                        <Label prefHeight="26.0" prefWidth="230.0" text="CURP:" textFill="#3d3d3d">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -83,12 +80,12 @@
                                 <Insets top="5.0" />
                             </VBox.margin>
                         </Label>
-                        <Label fx:id="lblCurpPersonal" alignment="CENTER" prefHeight="21.0" prefWidth="242.0" textFill="#3d3d3d">
+                        <Label fx:id="lblCurpPersonal" alignment="CENTER" prefHeight="25.0" prefWidth="242.0" textFill="#3d3d3d">
                             <font>
                                 <Font size="15.0" />
                             </font>
                         </Label>
-                        <Label text="Correo Electrónico:" textFill="#3d3d3d">
+                        <Label prefHeight="26.0" prefWidth="238.0" text="Correo Electrónico:" textFill="#3d3d3d">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -96,8 +93,8 @@
                                 <Insets top="5.0" />
                             </VBox.margin>
                         </Label>
-                  <TextArea fx:id="txaCorreoPersonal" editable="false" prefHeight="15.0" prefWidth="240.0" styleClass="centeredTextArea" stylesheets="@style.css" />
-                        <Label text="Cargo:" textFill="#3d3d3d">
+                  <TextArea fx:id="txaCorreoPersonal" editable="false" prefHeight="25.0" prefWidth="240.0" styleClass="centeredTextArea" stylesheets="@style.css" />
+                        <Label prefHeight="26.0" prefWidth="226.0" text="Cargo:" textFill="#3d3d3d">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -105,12 +102,12 @@
                                 <Insets top="5.0" />
                             </VBox.margin>
                         </Label>
-                        <Label fx:id="lblCargoPersonal" alignment="CENTER" prefHeight="21.0" prefWidth="246.0" textFill="#3d3d3d">
+                        <Label fx:id="lblCargoPersonal" alignment="CENTER" prefHeight="25.0" prefWidth="246.0" textFill="#3d3d3d">
                             <font>
                                 <Font size="15.0" />
                             </font>
                         </Label>
-                        <Button fx:id="btnEliminarPersonal" mnemonicParsing="false" onAction="#clicModificarPersonal" prefHeight="30.0" prefWidth="110.0" stylesheets="@style.css" text="Eliminar">
+                        <Button fx:id="btnEliminarPersonal" mnemonicParsing="false" onAction="#clicEliminarPersonal" prefHeight="30.0" prefWidth="110.0" stylesheets="@style.css" text="Eliminar">
 
                             <VBox.margin>
                                 <Insets top="5.0" />
@@ -128,12 +125,14 @@
                         <Insets left="10.0" />
                     </VBox.margin>
                 </VBox>
-                <Pane prefHeight="15.0" />
                 <Button fx:id="btnCerrarSesion" mnemonicParsing="false" onAction="#clicCerrarSesion" prefHeight="30.0" prefWidth="100.0" styleClass="btn-gris" stylesheets="@style.css" text="Cerrar Sesión" textFill="#3d3d3d">
 
                     <font>
                         <Font size="13.0" />
                     </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
                 </Button>
             </children>
             <BorderPane.margin>
@@ -260,7 +259,7 @@
                                 <Insets left="5.0" />
                             </VBox.margin>
                         </HBox>
-                        <Button fx:id="btnAceptar" mnemonicParsing="false" onAction="#clicAceptar" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: baffc9; -fx-background-radius: 30;" text="Aceptar">
+                        <Button fx:id="btnAceptar" mnemonicParsing="false" onAction="#clicAceptar" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: baffc9; -fx-background-radius: 30;" text="Aceptar">
                             <VBox.margin>
                                 <Insets top="5.0" />
                             </VBox.margin>

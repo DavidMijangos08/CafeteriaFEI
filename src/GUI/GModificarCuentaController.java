@@ -83,7 +83,6 @@ public class GModificarCuentaController implements Initializable {
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
                 if(respuesta == 200){
                     mensajeAlerta.mostrarAlertaGuardado("Tu cuenta ha sido modificada con éxito.");
-                    //limpiarCamposRegistro();
                     cambiarVentana();
                 }
             } catch (IOException ex) {

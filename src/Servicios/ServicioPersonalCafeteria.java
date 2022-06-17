@@ -152,41 +152,6 @@ public class ServicioPersonalCafeteria {
         } 
         return personalCafeteria;
     }
-
-    public ArrayList<PersonalCafeteria> obtenerListaPersonal(int idCafeteria) throws IOException{
-        ArrayList<PersonalCafeteria> personalCafeteria = new ArrayList<PersonalCafeteria>();
-        try{
-            URL url = new URL("http://127.0.0.1:9090/personalCafeteria/" + idCafeteria);
-            HttpURLConnection conexion = (HttpURLConnection) url.openConnection();
-            conexion.setRequestMethod("GET");
-            if(conexion.getResponseCode() == 200){
-                BufferedReader entrada = new BufferedReader(
-                        new InputStreamReader(conexion.getInputStream()));
-                String linea;
-                StringBuilder respuesta = new StringBuilder();
-                while((linea = entrada.readLine()) != null){
-                    respuesta.append(linea);
-                }
-                entrada.close();
-                JSONArray arregloDatos = new JSONArray(respuesta.toString());
-                for(int i = 0; i < arregloDatos.length(); i++){
-                    JSONObject personal = arregloDatos.getJSONObject(i);
-                    String nombre = personal.getString("nombre");
-                    String CURP = personal.getString("CURP");
-                    String correoElectronico = personal.getString("correoElectronico");
-                    String cargo = personal.getString("cargo");
-                    PersonalCafeteria personalCafe = new PersonalCafeteria(nombre, CURP, correoElectronico, cargo);
-                    personalCafeteria.add(personalCafe);
-                }
-            }
-
-        }catch (MalformedURLException ex) {
-            Logger.getLogger(ServicioPersonalCafeteria.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException | JSONException ex) {
-            throw new IOException();
-        }
-        return personalCafeteria;
-    }
     
     public int agregarNuevoPersonalCafeteria(int idCafeteria, PersonalCafeteria personalCafeteria) throws IOException{
         int respuesta = 0;

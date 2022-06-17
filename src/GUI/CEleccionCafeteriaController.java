@@ -92,18 +92,6 @@ public class CEleccionCafeteriaController implements Initializable {
         llenarCafeteriasDeFacultad(facultadPerteneciente);
     }
     
-    private void cambiarVentana(String ruta, String titulo){
-        try {
-            Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(ruta)));
-            stage.setScene(scenePrincipal);
-            stage.setTitle(titulo);
-            stage.show();
-        } catch (IOException ex) {
-            System.err.println(ex.getMessage());
-        }
-    }
-    
     private void llenarComboBoxFacultades(){
         ObservableList<String> facultades = FXCollections.observableArrayList("Facultad de Estadística e Informática", 
                                                                               "Facultad de Medicina", 

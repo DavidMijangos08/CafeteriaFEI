@@ -18,23 +18,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioPersonalCafeteria;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import java.util.regex.Matcher;
 
 public class RSVerPersonalController implements Initializable{
     
@@ -80,11 +79,11 @@ public class RSVerPersonalController implements Initializable{
     private Button btnVerProductos;
     @FXML
     private TextArea txaTituloCafeteria;
-
     PersonalCafeteria personalCafeteria = new PersonalCafeteria();
     private MyListenerPersonal myListener;
-    //private List<PersonalCafeteria> lPersonal = new ArrayList<>();
     private int idCafeteria;
+    private PersonalCafeteria personalElegido = new PersonalCafeteria();
+    private int idPersonalElegido;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -92,9 +91,8 @@ public class RSVerPersonalController implements Initializable{
 
     private void obtenerPersonal(int idCafeteria) {
         try {
-            ServicioPersonalCafeteria servicioProducto = new ServicioPersonalCafeteria();
-            List<PersonalCafeteria> lPersonal = servicioProducto.obtenerListaPersonal(idCafeteria);
-            //lPersonal.addAll(obtenerPersonal(idCafeteria));
+            ServicioPersonalCafeteria servicioPersonal= new ServicioPersonalCafeteria();
+            List<PersonalCafeteria> lPersonal = servicioPersonal.obtenerPersonalDeCafeteria(idCafeteria);
             if(lPersonal.size()>0){
                 setPersonalElegido(lPersonal.get(0));
                 myListener = new MyListenerPersonal(){
@@ -105,15 +103,13 @@ public class RSVerPersonalController implements Initializable{
                 };
             }
             int fila = 0;
+            gdPersonal.getChildren().clear();
             for(int i = 0; i < lPersonal.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("ItemPersonal.fxml"));
-
                 AnchorPane acp = fxmlLoader.load();
-
                 ItemPersonalController pc = fxmlLoader.getController();
                 pc.setPersonal(lPersonal.get(i), myListener);
-
                 gdPersonal.add(acp,0,fila++);
 
                 //Ajustar el ancho del grid
@@ -167,12 +163,6 @@ public class RSVerPersonalController implements Initializable{
             System.err.println(ex.getMessage());
         }
     }
-
-    @FXML
-    private void clicModificarPersonal(ActionEvent event) {
-
-    }
-
     @FXML
     private void clicPreguntas(MouseEvent event) {
     }
@@ -199,9 +189,34 @@ public class RSVerPersonalController implements Initializable{
 
     @FXML
     private void clicAceptar(ActionEvent event) {
+        if(!existenCamposInvalidos()){
+            try {
+                ServicioPersonalCafeteria servicioPersonalCafeteria = new ServicioPersonalCafeteria();
+                String nombre = txfNombreAñadir.getText();
+                String correo = txfCorreoAñadir.getText();
+                String curp = txfCurpAñadir.getText();
+                PersonalCafeteria nuevoPersonal = new PersonalCafeteria(nombre, curp, correo, cmbCargoAñadir.getValue());
+                int respuesta = servicioPersonalCafeteria.agregarNuevoPersonalCafeteria(personalCafeteria.getIdCafeteria(),nuevoPersonal);
+                MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                if(respuesta == 201){
+                    mensajeAlerta.mostrarAlertaGuardado("El personal ha sido registrado con éxito");
+                    desactivarBotonesAgregar();
+                    obtenerPersonal(personalCafeteria.getIdCafeteria());
+                }else if(respuesta == 400){
+                    mensajeAlerta.mostrarAlertaInformacionInvalida("Datos ya registrados, es probable que el nombre o correo electrónico del personal ya se encuentren en el sistema");
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
+                MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+                cerrarVentana();
+            }
+        }
     }
 
     private void setPersonalElegido(PersonalCafeteria p){
+        this.personalElegido = p;
+        this.idPersonalElegido = p.getIdPersonal();
         this.txaNombrePersonal.setText(p.getNombre());
         this.lblCurpPersonal.setText(p.getCURP());
         this.txaCorreoPersonal.setText(p.getCorreoElectronico());
@@ -213,7 +228,7 @@ public class RSVerPersonalController implements Initializable{
         MensajeAlerta mensajeAlerta = new MensajeAlerta();
         Validacion validacion = new Validacion();
 
-        if(txfNombreAñadir.getText().isEmpty() || txfCurpAñadir.getText().isEmpty() || txfCorreoAñadir.getText().isEmpty() || cmbCargoAñadir.getSelectionModel().getSelectedItem().isEmpty()){
+        if(txfNombreAñadir.getText().isEmpty() || txfCurpAñadir.getText().isEmpty() || txfCorreoAñadir.getText().isEmpty() || cmbCargoAñadir.getValue() == null){
             existen = true;
             mensajeAlerta.mostrarAlertaInformacionInvalida("Existen campos vacíos");
         }
@@ -233,6 +248,7 @@ public class RSVerPersonalController implements Initializable{
     
     public void recibirParametros(PersonalCafeteria p, int idCafeteria1){
         try {
+            desactivarBotonesAgregar();
             ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
             this.personalCafeteria = p;
             this.idCafeteria = idCafeteria1;
@@ -248,6 +264,25 @@ public class RSVerPersonalController implements Initializable{
     private void cerrarVentana(){
         Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
         stage.close();
+    }
+
+    private void desactivarBotonesAgregar(){
+        txfNombreAñadir.setText("");
+        txfCurpAñadir.setText("");
+        txfCorreoAñadir.setText("");
+        txfNombreAñadir.setVisible(false);
+        txfCorreoAñadir.setVisible(false);
+        txfCurpAñadir.setVisible(false);
+        cmbCargoAñadir.setVisible(false);
+        btnAceptar.setVisible(false);
+    }
+
+    private void activarBotones(){
+        txfNombreAñadir.setVisible(true);
+        txfCorreoAñadir.setVisible(true);
+        txfCurpAñadir.setVisible(true);
+        cmbCargoAñadir.setVisible(true);
+        btnAceptar.setVisible(true);
     }
 
     @FXML
@@ -272,5 +307,45 @@ public class RSVerPersonalController implements Initializable{
 
     @FXML
     private void clicAñadirPersonal(ActionEvent event) {
+        activarBotones();
+        llenarComboBoxPersonal();
     }
+
+    private void llenarComboBoxPersonal(){
+        ObservableList<String> personal = FXCollections.observableArrayList("Recepcionista");
+        cmbCargoAñadir.setItems(personal);
+    }
+
+    @FXML
+    private void clicEliminarPersonal(ActionEvent event) {
+        ButtonType cancelar = new ButtonType("Cancelar");
+        ButtonType aceptar = new ButtonType("Aceptar");
+        Alert a = new Alert(Alert.AlertType.NONE, "¿Deseas eliminar a este personal?", cancelar, aceptar);
+        a.setTitle("Confirmacion");
+        a.setHeaderText("Confirmación");
+        a.setResizable(true);
+        a.setContentText("¿Deseas eliminar a este personal?");
+        a.showAndWait().ifPresent(response -> {
+            if (response == aceptar) {
+                try {
+                    ServicioPersonalCafeteria servicioPersonalCafeteria = new ServicioPersonalCafeteria();
+                    int respuesta = 0;
+                    respuesta = servicioPersonalCafeteria.eliminarPersonalCafeteria(personalElegido.getIdPersonal());
+                    MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                    if(respuesta == 200){
+                        obtenerPersonal(personalCafeteria.getIdCafeteria());
+                        mensajeAlerta.mostrarAlertaGuardado("El personal ha sido eliminado con éxito");
+                    }
+                } catch (IOException e) {
+                    Logger.getLogger(RSVerPersonalController.class.getName()).log(Level.SEVERE, null, e);
+                    MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                    mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+                    cerrarVentana();
+                }
+            }
+        });
+
+
+    }
+
 }
