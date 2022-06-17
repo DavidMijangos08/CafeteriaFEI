@@ -69,23 +69,19 @@ public class GModificarCuentaController implements Initializable {
 
     @FXML
     private void clicAceptar(ActionEvent event) {
-        //cambiarVentana("/GUI/GInicioProductos.fxml");
         if(!existenCamposInvalidosEnviarCodigo() && !existenCamposInvalidosModificar()){
             try {
-                System.out.println("entre a aceptar");
                 ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
                 String nombre = txfNombre.getText();
                 String correo = txfCorreoElectronico.getText();
                 String contrasenia = pfContrasenia.getText();
                 Consumidor nuevoconsumidor = new Consumidor(nombre, correo, contrasenia);
                 nuevoconsumidor.setIdConsumidor(consumidor.getIdConsumidor());
-                System.out.println("se creo nuevo consumidor "+ consumidor.getIdConsumidor());
+                nuevoconsumidor.setToken(consumidor.getToken());
+                consumidor = nuevoconsumidor;
                 int respuesta = servicioConsumidor.modificarConsumidor(nuevoconsumidor, consumidor.getIdConsumidor());
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
-                System.out.println("codigoresp "+ respuesta);
                 if(respuesta == 200){
-                    System.out.println("todo olright");
-                    System.out.println("codigo resp if "+ respuesta);
                     mensajeAlerta.mostrarAlertaGuardado("Tu cuenta ha sido modificada con éxito.");
                     //limpiarCamposRegistro();
                     cambiarVentana();
@@ -155,19 +151,6 @@ public class GModificarCuentaController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
-
-        /*try {
-            Stage stage = (Stage) btnRegresar.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(ruta)));
-            stage.setScene(scenePrincipal);
-            stage.setTitle("Productos");
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException ex) {
-            System.err.println(ex.getMessage());
-        }*/
     }
      
    private boolean existenCamposPrimariosInvalidos(){
@@ -225,7 +208,6 @@ public class GModificarCuentaController implements Initializable {
     private void iniciarVentana(int tipoUsuario1, Consumidor c, PersonalCafeteria p, int idCafeteria1, int idVentana1, int idProducto1){
         this.tipoUsuario = tipoUsuario1;
         this.consumidor = c;
-        System.out.println("id usuario recibido" + c.getIdConsumidor());
         this.personalCafeteria = p;
         this.idCafeteria = idCafeteria1;
         this.idVentana = idVentana1;
