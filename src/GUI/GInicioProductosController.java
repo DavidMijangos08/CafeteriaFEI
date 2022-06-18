@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Servicios.ServicioCafeteria;
+import Servicios.ServicioPersonalCafeteria;
 import Servicios.ServicioProducto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,10 +25,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -108,6 +106,7 @@ public class GInicioProductosController implements Initializable {
 
     private void obtenerProductos(int idCafeteria1){
         this.idCafeteria = idCafeteria1;
+        gdProductos.getChildren().clear();
         try {
             ServicioProducto servicioProducto = new ServicioProducto();
             List<Producto> productos = servicioProducto.obtenerProductosDeCafeteria(idCafeteria1);
@@ -276,7 +275,32 @@ public class GInicioProductosController implements Initializable {
     }
     @FXML
     void clicEliminarProducto(ActionEvent event) {
-
+        ButtonType cancelar = new ButtonType("Cancelar");
+        ButtonType aceptar = new ButtonType("Aceptar");
+        Alert a = new Alert(Alert.AlertType.NONE, "¿Deseas eliminar este producto?", cancelar, aceptar);
+        a.setTitle("Confirmacion");
+        a.setHeaderText("Confirmación");
+        a.setResizable(true);
+        a.setContentText("¿Deseas eliminar este producto?");
+        a.showAndWait().ifPresent(response -> {
+            if (response == aceptar) {
+                try {
+                    ServicioProducto servicioProducto1 = new ServicioProducto();
+                    int respuesta = 0;
+                    respuesta = servicioProducto1.eliminarProducto(idProductoElegido);
+                    MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                    if(respuesta == 200){
+                        obtenerProductos(idCafeteria);
+                        mensajeAlerta.mostrarAlertaGuardado("El producto ha sido eliminado con éxito");
+                    }
+                } catch (IOException e) {
+                    Logger.getLogger(RSVerPersonalController.class.getName()).log(Level.SEVERE, null, e);
+                    MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                    mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+                    cerrarVentana();
+                }
+            }
+        });
     }
 
     @FXML
@@ -332,18 +356,12 @@ public class GInicioProductosController implements Initializable {
                 btnEliminarProducto.setVisible(false);
                 if (idProductoElegido < 1){
                     btnVerOpiniones.setVisible(false);
-                    MensajeAlerta mensajeAlerta = new MensajeAlerta();
-                    mensajeAlerta.mostrarAlertaError("No hay productos en esta cafeteria.");
                 }
                 break;
             case 3:
                 btnVerCafeteria.setVisible(false);
                 btnVerOpiniones.setVisible(false);
                 btnVerPersonal.setVisible(false);
-                if (idProductoElegido < 1){
-                    MensajeAlerta mensajeAlerta = new MensajeAlerta();
-                    mensajeAlerta.mostrarAlertaError("No hay productos en esta cafeteria");
-                }
                 break;
             case 4:
                 if (idProductoElegido < 0){

@@ -136,9 +136,6 @@ public class RSVerPersonalController implements Initializable{
 
                     GridPane.setMargin(acp, new Insets(10));
                 }
-            }else{
-                MensajeAlerta mensajeAlerta = new MensajeAlerta();
-                mensajeAlerta.mostrarAlertaError("No hay personal en esta cafeteria.");
             }
         } catch (IOException ex) {
             Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
@@ -366,8 +363,6 @@ public class RSVerPersonalController implements Initializable{
                 }
             }
         });
-
-
     }
 
 }
