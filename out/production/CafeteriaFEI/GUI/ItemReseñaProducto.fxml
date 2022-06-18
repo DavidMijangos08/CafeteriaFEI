@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.ImageView?>
@@ -18,24 +17,23 @@
    visualizacion de los datos de las reseñas
 -->
 
-
-<AnchorPane id="AnchorPane" prefHeight="50.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ItemReseñaProductoController">
+<AnchorPane id="AnchorPane" prefHeight="50.0" style="-fx-border-radius: 1,1,1,1; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ItemReseñaProductoController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="625.0">
          <children>
-            <ImageView fx:id="imgReseña" fitHeight="50.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </ImageView>
-            <VBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="495.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="495.0">
                <children>
                   <Label fx:id="lblTitulo" prefHeight="20.0" prefWidth="490.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="txaDescripcion" prefHeight="30.0" prefWidth="490.0" stylesheets="@style.css" />
+                  <TextArea fx:id="txaDescripcion" editable="false" prefHeight="30.0" prefWidth="490.0" stylesheets="@style.css" wrapText="true" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fx:id="imgReseña" fitHeight="65.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
          </children>

@@ -94,7 +94,7 @@ public class RSVerPersonalController implements Initializable{
             ServicioPersonalCafeteria servicioPersonal= new ServicioPersonalCafeteria();
             List<PersonalCafeteria> lPersonal = servicioPersonal.obtenerPersonalDeCafeteria(idCafeteria);
             if(lPersonal.size()>0){
-                setPersonalElegido(lPersonal.get(0));
+                setPersonalElegido(lPersonal.get(1));
                 myListener = new MyListenerPersonal(){
                     @Override
                     public void onClickListener(PersonalCafeteria p){
@@ -104,14 +104,15 @@ public class RSVerPersonalController implements Initializable{
             }
             int fila = 0;
             gdPersonal.getChildren().clear();
-            for(int i = 0; i < lPersonal.size(); i++){
+            for(int i = 1; i < lPersonal.size(); i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("ItemPersonal.fxml"));
                 AnchorPane acp = fxmlLoader.load();
                 ItemPersonalController pc = fxmlLoader.getController();
                 pc.setPersonal(lPersonal.get(i), myListener);
                 gdPersonal.add(acp,0,fila++);
-
+                acp.setPrefHeight(10);
+                acp.setMaxHeight(10);
                 //Ajustar el ancho del grid
                 gdPersonal.setMinWidth(Region.USE_COMPUTED_SIZE);
                 gdPersonal.setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -122,7 +123,7 @@ public class RSVerPersonalController implements Initializable{
                 gdPersonal.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 gdPersonal.setMaxHeight(Region.USE_COMPUTED_SIZE);
 
-                GridPane.setMargin(acp, new Insets(  10));
+                GridPane.setMargin(acp, new Insets(10));
             }
         } catch (IOException ex) {
             Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
@@ -241,6 +242,11 @@ public class RSVerPersonalController implements Initializable{
         if(validacion.existeCorreoInvalido(txfCorreoAñadir.getText())){
             existen = true;
             mensajeAlerta.mostrarAlertaInformacionInvalida("Existen caracteres inválidos en el correo electrónico");
+        }
+
+        if(validacion.existeCurpInvalida(txfCurpAñadir.getText())){
+            existen = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("Existen caracteres inválidos en el CURP");
         }
 
         return existen;

@@ -144,7 +144,7 @@ public class CDejarOpinionController implements Initializable {
                     int respuesta = servicioReseñasCafeteria.agregarNuevaReseñaCafeteria(rc, idCafeteria);
                     if(respuesta == 201){
                         mensajeAlerta.mostrarAlertaGuardado("La reseña se registró con éxito");
-                        //cambiarVentana();
+                        cambiarVentana();
                     }else if(respuesta == 400){
                         mensajeAlerta.mostrarAlertaInformacionInvalida("Datos existentes, verifica la información de la reseña");
                     }

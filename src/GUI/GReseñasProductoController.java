@@ -65,7 +65,7 @@ public class GReseñasProductoController implements Initializable {
     @FXML
     private Button btnModificarCuenta;
     @FXML
-    private ImageView imgPregunta;
+    private ImageView imgReloj;
     @FXML
     private ScrollPane scpReseñas;
     @FXML
@@ -89,30 +89,28 @@ public class GReseñasProductoController implements Initializable {
                 for(int i = 0; i < reseñas.size(); i++){
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("ItemReseñaProducto.fxml"));
-
                     AnchorPane acp = fxmlLoader.load();
+                    acp.setPrefHeight(10);
+                    acp.setMaxHeight(10);
+                    acp.setPrefWidth(610);
+                    acp.setMaxWidth(610);
 
                     ItemReseñaProductoController reseñaController = fxmlLoader.getController();
                     reseñaController.setReseña(reseñas.get(i));
-
                     gdReseñas.add(acp,0,fila++);
-
                     //Ajustar el ancho del grid
                     gdReseñas.setMinWidth(Region.USE_COMPUTED_SIZE);
                     gdReseñas.setPrefWidth(Region.USE_COMPUTED_SIZE);
                     gdReseñas.setMaxWidth(Region.USE_COMPUTED_SIZE);
-
                     //Ajustar el alto del grid
                     gdReseñas.setMinHeight(Region.USE_COMPUTED_SIZE);
                     gdReseñas.setPrefHeight(Region.USE_COMPUTED_SIZE);
                     gdReseñas.setMaxHeight(Region.USE_COMPUTED_SIZE);
-
                     GridPane.setMargin(acp, new Insets(10));
                 }
             } catch (IOException ex) {
                 Logger.getLogger(GReseñasProductoController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -125,10 +123,12 @@ public class GReseñasProductoController implements Initializable {
             ServicioProducto p = new ServicioProducto();
             this.lblNombreProducto.setText(p.obtenerProductoPorId(idProducto).getNombre());
             this.lblPrecioProducto.setText("$" + p.obtenerProductoPorId(idProducto).getPrecio());
-            this.lblTiempoAprox.setText(Integer.toString(p.obtenerProductoPorId(idProducto).getTiempoAproximado()));
+            this.lblTiempoAprox.setText(Integer.toString(p.obtenerProductoPorId(idProducto).getTiempoAproximado()) + " min");
             this.txaDescripcionProducto.setText(p.obtenerProductoPorId(idProducto).getDescripcion());
             Image img = new Image(getClass().getResourceAsStream(p.obtenerProductoPorId(idProducto).getRutaImagen()));
             imgProducto.setImage(img);
+            Image imgR = new Image(getClass().getResourceAsStream("/img/reloj.png"));
+            imgReloj.setImage(imgR);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -202,9 +202,6 @@ public class GReseñasProductoController implements Initializable {
     private void clicPreguntas(MouseEvent event) {
     }
 
-    @FXML
-    void clicDejarOpinion(ActionEvent event) {
-    }
     
     public void recibirParametros(int tipoUsuario1, Consumidor c, PersonalCafeteria p, int idCafeteria1, int idProducto1){
         try {

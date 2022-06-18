@@ -59,7 +59,7 @@ public class GInicioProductosController implements Initializable {
     @FXML
     private Button btnVerOpiniones;
     @FXML
-    private ImageView imgPregunta;
+    private ImageView imgReloj;
     @FXML
     private Button btnVerCafeteria;
     @FXML
@@ -160,6 +160,8 @@ public class GInicioProductosController implements Initializable {
         this.lblPrecioEscogido.setText("$" + Float.toString(p.getPrecio()));
         Image img = new Image(getClass().getResourceAsStream(p.getRutaImagen()));
         this.imgProductoEscogido.setImage(img);
+        Image imgReloj = new Image(getClass().getResourceAsStream("/img/reloj.png"));
+        this.imgReloj.setImage(imgReloj);
         this.txaDescripcionEscogido.setText(p.getDescripcion());
         lblTiempoAprox.setText(Integer.toString(p.getTiempoAproximado()) + " min");
     }
@@ -260,12 +262,11 @@ public class GInicioProductosController implements Initializable {
         //cambiarVentana("/GUI/FXMLPreguntasFrecuentes.fxml", "Preguntas Frecuentes");
     }
     
-    private void cambiarVentana(String ruta, String titulo){
+    private void cambiarVentanaEleccion(){
         try {
             Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
-            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource(ruta)));
+            Scene scenePrincipal = new Scene(FXMLLoader.load(getClass().getResource("CEleccionCafeteria.fxml")));
             stage.setScene(scenePrincipal);
-            stage.setTitle(titulo);
             stage.show();
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
@@ -348,26 +349,33 @@ public class GInicioProductosController implements Initializable {
 
     private void iniciarVentana(int tipoUsuario1){
         tipoUsuario = tipoUsuario1;
-        switch (tipoUsuario1) {
-            case 2:
-                btnAñadirProducto.setVisible(false);
-                btnModificarProducto.setVisible(false);
-                btnEliminarProducto.setVisible(false);
-                btnDejarOpinion.setVisible(false);
-                break;
-            case 3:
-                btnVerCafeteria.setVisible(false);
-                btnVerOpiniones.setVisible(false);
-                btnDejarOpinion.setVisible(false);
-                btnVerPersonal.setVisible(false);
-                break;
-            case 4:
-                btnAñadirProducto.setVisible(false);
-                btnModificarProducto.setVisible(false);
-                btnEliminarProducto.setVisible(false);
-                btnVerPersonal.setVisible(false);
-                break;
+        if(idProductoElegido > 0){
+            switch (tipoUsuario1) {
+                case 2:
+                    btnAñadirProducto.setVisible(false);
+                    btnModificarProducto.setVisible(false);
+                    btnEliminarProducto.setVisible(false);
+                    btnDejarOpinion.setVisible(false);
+                    break;
+                case 3:
+                    btnVerCafeteria.setVisible(false);
+                    btnVerOpiniones.setVisible(false);
+                    btnDejarOpinion.setVisible(false);
+                    btnVerPersonal.setVisible(false);
+                    break;
+                case 4:
+                    btnAñadirProducto.setVisible(false);
+                    btnModificarProducto.setVisible(false);
+                    btnEliminarProducto.setVisible(false);
+                    btnVerPersonal.setVisible(false);
+                    break;
+            }
+        }else{
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            cambiarVentanaEleccion();
+            mensajeAlerta.mostrarAlertaError("No hay productos en esta cafeteria, selecciona otra por favor");
         }
+
     }
 
     private void cerrarVentana(){
