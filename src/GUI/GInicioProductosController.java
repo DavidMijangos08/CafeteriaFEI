@@ -369,6 +369,7 @@ public class GInicioProductosController implements Initializable {
                     mensajeAlerta.mostrarAlertaError("No hay productos en esta cafeteria, selecciona otra por favor");
                     cambiarVentanaEleccion();
                 }else{
+                    btnVerOpiniones.setVisible(false);
                     btnAñadirProducto.setVisible(false);
                     btnModificarProducto.setVisible(false);
                     btnEliminarProducto.setVisible(false);

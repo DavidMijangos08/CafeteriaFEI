@@ -111,7 +111,6 @@ public class CDejarOpinionController implements Initializable {
     @FXML
     private void clicAceptar(ActionEvent event) {
         if(validarCampos()){
-
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             String tituloOpinion = txfTituloOpinion.getText();
             String opinion = txaOpinion.getText();
