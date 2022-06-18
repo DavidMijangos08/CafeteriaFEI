@@ -325,30 +325,39 @@ public class GInicioProductosController implements Initializable {
 
     private void iniciarVentana(int tipoUsuario1){
         tipoUsuario = tipoUsuario1;
-        if(idProductoElegido > 0){
-            switch (tipoUsuario1) {
-                case 2:
-                    btnAñadirProducto.setVisible(false);
-                    btnModificarProducto.setVisible(false);
-                    btnEliminarProducto.setVisible(false);
-                    break;
-                case 3:
-                    btnVerCafeteria.setVisible(false);
+        switch (tipoUsuario1) {
+            case 2:
+                btnAñadirProducto.setVisible(false);
+                btnModificarProducto.setVisible(false);
+                btnEliminarProducto.setVisible(false);
+                if (idProductoElegido < 1){
                     btnVerOpiniones.setVisible(false);
-                    btnVerPersonal.setVisible(false);
-                    break;
-                case 4:
+                    MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                    mensajeAlerta.mostrarAlertaError("No hay productos en esta cafeteria.");
+                }
+                break;
+            case 3:
+                btnVerCafeteria.setVisible(false);
+                btnVerOpiniones.setVisible(false);
+                btnVerPersonal.setVisible(false);
+                if (idProductoElegido < 1){
+                    MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                    mensajeAlerta.mostrarAlertaError("No hay productos en esta cafeteria");
+                }
+                break;
+            case 4:
+                if (idProductoElegido < 0){
+                    MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                    mensajeAlerta.mostrarAlertaError("No hay productos en esta cafeteria, selecciona otra por favor");
+                    cambiarVentanaEleccion();
+                }else{
                     btnAñadirProducto.setVisible(false);
                     btnModificarProducto.setVisible(false);
                     btnEliminarProducto.setVisible(false);
                     btnVerPersonal.setVisible(false);
-                    break;
+                }
+                break;
             }
-        }else{
-            MensajeAlerta mensajeAlerta = new MensajeAlerta();
-            cambiarVentanaEleccion();
-            mensajeAlerta.mostrarAlertaError("No hay productos en esta cafeteria, selecciona otra por favor");
-        }
 
     }
 

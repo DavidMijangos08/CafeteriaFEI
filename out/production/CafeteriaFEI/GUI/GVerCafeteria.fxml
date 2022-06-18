@@ -179,7 +179,7 @@
                <children>
                   <Button fx:id="btnRegresar" mnemonicParsing="false" onAction="#clicRegresar" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css" text="Regresar" textFill="#3d3d3d">
                      <styleClass>
-                        <String fx:value="btn-gris" />
+                        <String fx:value="btn-naranja" />
                         <String fx:value="shadow" />
                      </styleClass>
                      <font>

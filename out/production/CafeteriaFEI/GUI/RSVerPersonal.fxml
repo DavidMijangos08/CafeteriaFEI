@@ -60,7 +60,7 @@
                 <Pane prefHeight="15.0" />
                 <VBox alignment="CENTER" prefHeight="320.0" prefWidth="240.0" styleClass="item-seleccionado" stylesheets="@style.css">
                     <children>
-                        <Label prefHeight="26.0" prefWidth="260.0" text="Nombre:" textFill="#3d3d3d">
+                        <Label fx:id="lblEtiquetaNombre" prefHeight="26.0" prefWidth="260.0" text="Nombre:" textFill="#3d3d3d">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -75,7 +75,7 @@
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin></TextArea>
-                        <Label prefHeight="26.0" prefWidth="279.0" text="CURP:" textFill="#3d3d3d">
+                        <Label fx:id="lblEtiquetaCurp" prefHeight="26.0" prefWidth="279.0" text="CURP:" textFill="#3d3d3d">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -94,7 +94,7 @@
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                         </Label>
-                        <Label prefHeight="26.0" prefWidth="273.0" text="Correo Electrónico:" textFill="#3d3d3d">
+                        <Label fx:id="lblEtiquetaCorreo" prefHeight="26.0" prefWidth="273.0" text="Correo Electrónico:" textFill="#3d3d3d">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>
@@ -109,7 +109,7 @@
                      <VBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </VBox.margin></TextArea>
-                        <Label prefHeight="26.0" prefWidth="305.0" text="Cargo:" textFill="#3d3d3d">
+                        <Label fx:id="lblEtiquetaCargo" prefHeight="26.0" prefWidth="305.0" text="Cargo:" textFill="#3d3d3d">
                             <font>
                                 <Font name="System Bold" size="17.0" />
                             </font>

@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Dominio.Producto;
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioPersonalCafeteria;
 import javafx.collections.FXCollections;
@@ -45,6 +47,14 @@ public class RSVerPersonalController implements Initializable{
     private Button btnEliminarPersonal;
     @FXML
     private Label lblNombreUsuario;
+    @FXML
+    private Label lblEtiquetaNombre;
+    @FXML
+    private Label lblEtiquetaCurp;
+    @FXML
+    private Label lblEtiquetaCorreo;
+    @FXML
+    private Label lblEtiquetaCargo;
     @FXML
     private ImageView imgPregunta;
     @FXML
@@ -93,36 +103,42 @@ public class RSVerPersonalController implements Initializable{
         try {
             ServicioPersonalCafeteria servicioPersonal= new ServicioPersonalCafeteria();
             List<PersonalCafeteria> lPersonal = servicioPersonal.obtenerPersonalDeCafeteria(idCafeteria);
-            if(lPersonal.size()>0){
-                setPersonalElegido(lPersonal.get(1));
-                myListener = new MyListenerPersonal(){
-                    @Override
-                    public void onClickListener(PersonalCafeteria p){
-                        setPersonalElegido(p);
-                    }
-                };
-            }
-            int fila = 0;
-            gdPersonal.getChildren().clear();
-            for(int i = 1; i < lPersonal.size(); i++){
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("ItemPersonal.fxml"));
-                AnchorPane acp = fxmlLoader.load();
-                ItemPersonalController pc = fxmlLoader.getController();
-                pc.setPersonal(lPersonal.get(i), myListener);
-                gdPersonal.add(acp,0,fila++);
-                acp.setPrefHeight(10);
-                acp.setMaxHeight(10);
-                //Ajustar el ancho del grid
-                gdPersonal.setMinWidth(Region.USE_COMPUTED_SIZE);
-                gdPersonal.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                gdPersonal.setMaxWidth(Region.USE_COMPUTED_SIZE);
-                //Ajustar el alto del grid
-                gdPersonal.setMinHeight(Region.USE_COMPUTED_SIZE);
-                gdPersonal.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                gdPersonal.setMaxHeight(Region.USE_COMPUTED_SIZE);
+            if(lPersonal.size() > 1){
+                if(lPersonal.size()> 1){
+                    setPersonalElegido(lPersonal.get(1));
+                    myListener = new MyListenerPersonal(){
+                        @Override
+                        public void onClickListener(PersonalCafeteria p){
+                            setPersonalElegido(p);
+                        }
+                    };
+                }
 
-                GridPane.setMargin(acp, new Insets(10));
+                int fila = 0;
+                gdPersonal.getChildren().clear();
+                for(int i = 1; i < lPersonal.size(); i++){
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("ItemPersonal.fxml"));
+                    AnchorPane acp = fxmlLoader.load();
+                    ItemPersonalController pc = fxmlLoader.getController();
+                    pc.setPersonal(lPersonal.get(i), myListener);
+                    gdPersonal.add(acp,0,fila++);
+                    acp.setPrefHeight(10);
+                    acp.setMaxHeight(10);
+                    //Ajustar el ancho del grid
+                    gdPersonal.setMinWidth(Region.USE_COMPUTED_SIZE);
+                    gdPersonal.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                    gdPersonal.setMaxWidth(Region.USE_COMPUTED_SIZE);
+                    //Ajustar el alto del grid
+                    gdPersonal.setMinHeight(Region.USE_COMPUTED_SIZE);
+                    gdPersonal.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                    gdPersonal.setMaxHeight(Region.USE_COMPUTED_SIZE);
+
+                    GridPane.setMargin(acp, new Insets(10));
+                }
+            }else{
+                MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                mensajeAlerta.mostrarAlertaError("No hay personal en esta cafeteria.");
             }
         } catch (IOException ex) {
             Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);

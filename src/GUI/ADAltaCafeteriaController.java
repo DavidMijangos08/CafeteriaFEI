@@ -79,6 +79,7 @@ public class ADAltaCafeteriaController implements Initializable {
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
                 if(respuesta == 201){
                     mensajeAlerta.mostrarAlertaGuardado("La cafetería se registró con éxito");
+                    regresarVentana();
                 }else if(respuesta == 400){
                     mensajeAlerta.mostrarAlertaInformacionInvalida("Datos existentes, verifica el nombre de la cafetería");
                 }
