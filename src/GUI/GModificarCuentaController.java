@@ -20,6 +20,7 @@ import Dominio.PersonalCafeteria;
 import Dominio.Producto;
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioConsumidor;
+import Servicios.ServicioPersonalCafeteria;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -71,20 +72,35 @@ public class GModificarCuentaController implements Initializable {
     private void clicAceptar(ActionEvent event) {
         if(!existenCamposInvalidosEnviarCodigo() && !existenCamposInvalidosModificar()){
             try {
-                ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
                 String nombre = txfNombre.getText();
                 String correo = txfCorreoElectronico.getText();
                 String contrasenia = pfContrasenia.getText();
-                Consumidor nuevoconsumidor = new Consumidor(nombre, correo, contrasenia);
-                nuevoconsumidor.setIdConsumidor(consumidor.getIdConsumidor());
-                nuevoconsumidor.setToken(consumidor.getToken());
-                consumidor = nuevoconsumidor;
-                int respuesta = servicioConsumidor.modificarConsumidor(nuevoconsumidor, consumidor.getIdConsumidor());
-                MensajeAlerta mensajeAlerta = new MensajeAlerta();
-                if(respuesta == 200){
-                    mensajeAlerta.mostrarAlertaGuardado("Tu cuenta ha sido modificada con éxito.");
-                    cambiarVentana();
+                if(tipoUsuario == 2 || tipoUsuario == 3){
+                    ServicioPersonalCafeteria servicioPersonalCafeteria = new ServicioPersonalCafeteria();
+                    PersonalCafeteria pc = new PersonalCafeteria(nombre, correo, contrasenia, personalCafeteria.getCargo());
+                    pc.setIdPersonal(personalCafeteria.getIdCafeteria());
+                    pc.setToken(personalCafeteria.getToken());
+                    personalCafeteria = pc;
+                    int respuesta = servicioPersonalCafeteria.modificarPersonalCafeteria(pc, personalCafeteria.getIdPersonal());
+                    MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                    if(respuesta == 200){
+                        mensajeAlerta.mostrarAlertaGuardado("Tu cuenta ha sido modificada con éxito.");
+                        cambiarVentana();
+                    }
+                }else if(tipoUsuario == 4){
+                    ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
+                    Consumidor nuevoconsumidor = new Consumidor(nombre, correo, contrasenia);
+                    nuevoconsumidor.setIdConsumidor(consumidor.getIdConsumidor());
+                    nuevoconsumidor.setToken(consumidor.getToken());
+                    consumidor = nuevoconsumidor;
+                    int respuesta = servicioConsumidor.modificarConsumidor(nuevoconsumidor, consumidor.getIdConsumidor());
+                    MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                    if(respuesta == 200){
+                        mensajeAlerta.mostrarAlertaGuardado("Tu cuenta ha sido modificada con éxito.");
+                        cambiarVentana();
+                    }
                 }
+
             } catch (IOException ex) {
                 Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
