@@ -364,12 +364,12 @@ public class GInicioProductosController implements Initializable {
                 btnVerPersonal.setVisible(false);
                 break;
             case 4:
-                if (idProductoElegido < 0){
+                if (idProductoElegido < 1){
                     MensajeAlerta mensajeAlerta = new MensajeAlerta();
                     mensajeAlerta.mostrarAlertaError("No hay productos en esta cafeteria, selecciona otra por favor");
                     cambiarVentanaEleccion();
-                }else{
                     btnVerOpiniones.setVisible(false);
+                }else{
                     btnAñadirProducto.setVisible(false);
                     btnModificarProducto.setVisible(false);
                     btnEliminarProducto.setVisible(false);

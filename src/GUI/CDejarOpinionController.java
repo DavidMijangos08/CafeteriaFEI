@@ -188,10 +188,10 @@ public class CDejarOpinionController implements Initializable {
         if (obtenerCalificacion() == -1) {
             mensajeAlerta.mostrarAlertaInformacionInvalida("Existen campos vacíos");
             return false;
-        }else if(txfTituloOpinion.getText() == ""){
+        }else if(txfTituloOpinion.getText().isEmpty()){
             mensajeAlerta.mostrarAlertaInformacionInvalida("Existen campos vacíos");
             return false;
-        }else if(txaOpinion.getText() == ""){
+        }else if(txaOpinion.getText().isEmpty()){
             mensajeAlerta.mostrarAlertaInformacionInvalida("Existen campos vacíos");
             return false;
         }else{
