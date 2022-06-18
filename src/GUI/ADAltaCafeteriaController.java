@@ -161,6 +161,7 @@ public class ADAltaCafeteriaController implements Initializable {
             stage.setTitle("Cafeterías UV");
             stage.setResizable(false);
             stage.show();
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

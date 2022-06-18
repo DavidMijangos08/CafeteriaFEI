@@ -119,15 +119,6 @@
                               <String fx:value="shadow" />
                            </styleClass>
                         </Button>
-                        <Button fx:id="btnDejarOpinion" mnemonicParsing="false" onAction="#clicDejarOpinion" prefHeight="30.0" prefWidth="110.0" stylesheets="@style.css" text="Dejar Opinión">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <styleClass>
-                              <String fx:value="btn-blanco" />
-                              <String fx:value="shadow" />
-                           </styleClass>
-                        </Button>
                         <HBox alignment="CENTER" prefHeight="37.0" prefWidth="270.0" spacing="10.0">
                            <children>
                               <Button fx:id="btnModificarProducto" mnemonicParsing="false" onAction="#clicModificarProducto" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css" text="Modificar">

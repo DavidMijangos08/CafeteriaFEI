@@ -117,7 +117,6 @@ public class RSVerPersonalController implements Initializable{
                 gdPersonal.setMinWidth(Region.USE_COMPUTED_SIZE);
                 gdPersonal.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 gdPersonal.setMaxWidth(Region.USE_COMPUTED_SIZE);
-
                 //Ajustar el alto del grid
                 gdPersonal.setMinHeight(Region.USE_COMPUTED_SIZE);
                 gdPersonal.setPrefHeight(Region.USE_COMPUTED_SIZE);
@@ -197,6 +196,7 @@ public class RSVerPersonalController implements Initializable{
                 String correo = txfCorreoAñadir.getText();
                 String curp = txfCurpAñadir.getText();
                 PersonalCafeteria nuevoPersonal = new PersonalCafeteria(nombre, curp, correo, cmbCargoAñadir.getValue());
+                nuevoPersonal.setContrasenia(curp);
                 int respuesta = servicioPersonalCafeteria.agregarNuevoPersonalCafeteria(personalCafeteria.getIdCafeteria(),nuevoPersonal);
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
                 if(respuesta == 201){

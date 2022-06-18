@@ -47,8 +47,6 @@ public class GInicioProductosController implements Initializable {
     @FXML
     private GridPane gdProductos;
     @FXML
-    private Button btnDejarOpinion;
-    @FXML
     private Button btnCerrarSesion;
     @FXML
     private Label lblNombreUsuario;
@@ -168,28 +166,6 @@ public class GInicioProductosController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }
-    
-    @FXML
-    private void clicDejarOpinion(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/GUI/CDejarOpinion.fxml"));
-            Scene scene = null;
-            scene = new Scene(fxmlLoader.load());
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            if (tipoUsuario == 4) {
-                CDejarOpinionController controlador = (CDejarOpinionController) fxmlLoader.getController();
-                controlador.recibirParametros(consumidor, idProductoElegido, idCafeteria, 1);
-            }
-            cerrarVentana();
-            stage.setTitle("Dejar opinión");
-            stage.setResizable(false);
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     @FXML
@@ -355,12 +331,10 @@ public class GInicioProductosController implements Initializable {
                     btnAñadirProducto.setVisible(false);
                     btnModificarProducto.setVisible(false);
                     btnEliminarProducto.setVisible(false);
-                    btnDejarOpinion.setVisible(false);
                     break;
                 case 3:
                     btnVerCafeteria.setVisible(false);
                     btnVerOpiniones.setVisible(false);
-                    btnDejarOpinion.setVisible(false);
                     btnVerPersonal.setVisible(false);
                     break;
                 case 4:

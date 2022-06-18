@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -17,22 +19,66 @@
    visualizacion de los datos de las reseñas
 -->
 
-<AnchorPane id="AnchorPane" prefHeight="50.0" style="-fx-border-radius: 1,1,1,1; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ItemReseñaProductoController">
+<AnchorPane id="AnchorPane" prefHeight="100.0" style="-fx-border-radius: 1,1,1,1; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ItemReseñaProductoController">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="625.0">
+      <HBox alignment="CENTER_LEFT" prefHeight="96.0" prefWidth="600.0">
          <children>
-            <VBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="495.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="76.0" prefWidth="480.0">
                <children>
                   <Label fx:id="lblTitulo" prefHeight="20.0" prefWidth="490.0">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="16.0" />
                      </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
                   </Label>
-                  <TextArea fx:id="txaDescripcion" editable="false" prefHeight="30.0" prefWidth="490.0" stylesheets="@style.css" wrapText="true" />
+                  <TextArea fx:id="txaDescripcion" editable="false" prefHeight="53.0" prefWidth="475.0" stylesheets="@style.css" wrapText="true">
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding></TextArea>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="imgEstrella5" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/estrella.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgEstrella4" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/estrella.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgEstrella3" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/estrella.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgEstrella2" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/estrella.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgEstrella1" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/estrella.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets right="5.0" />
+                     </VBox.margin>
+                  </HBox>
                   <ImageView fx:id="imgReseña" fitHeight="65.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>

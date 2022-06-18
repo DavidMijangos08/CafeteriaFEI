@@ -82,6 +82,7 @@ public class GReseñasProductoController implements Initializable {
     
     private void obtenerReseñas(int idProducto1){
         try {
+            gdReseñas.getChildren().clear();
             ServicioReseñasProducto servicioReseñas = new ServicioReseñasProducto();
             List<ReseñaProducto> reseñas = servicioReseñas.obtenerReseñasDeProducto(idProducto1);
             int fila = 1;
@@ -92,8 +93,8 @@ public class GReseñasProductoController implements Initializable {
                     AnchorPane acp = fxmlLoader.load();
                     acp.setPrefHeight(10);
                     acp.setMaxHeight(10);
-                    acp.setPrefWidth(610);
-                    acp.setMaxWidth(610);
+                    acp.setPrefWidth(580);
+                    acp.setMaxWidth(600);
 
                     ItemReseñaProductoController reseñaController = fxmlLoader.getController();
                     reseñaController.setReseña(reseñas.get(i));
@@ -114,8 +115,6 @@ public class GReseñasProductoController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
     private void obtenerInfoProducto(int idProducto){
@@ -208,7 +207,9 @@ public class GReseñasProductoController implements Initializable {
             if(p != null){
                 btnDejarOpinion.setVisible(false);
                 this.lblNombreUsuario.setText(p.getNombre());
-            }else{
+            }
+            if (c!= null){
+                btnDejarOpinion.setVisible(true);
                 lblNombreUsuario.setText(c.getNombre());
             }
             txaNombreCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria1).getNombreCafeteria());
@@ -230,5 +231,26 @@ public class GReseñasProductoController implements Initializable {
     private void cerrarVentana(){
         Stage stage = (Stage) btnRegresar.getScene().getWindow();
         stage.close();
+    }
+
+    public void clicDejarOpinion(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/GUI/CDejarOpinion.fxml"));
+            Scene scene = null;
+            scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            if (tipoUsuario == 4) {
+                CDejarOpinionController controlador = (CDejarOpinionController) fxmlLoader.getController();
+                controlador.recibirParametros(consumidor, idProducto, idCafeteria, 1);
+            }
+            cerrarVentana();
+            stage.setTitle("Dejar opinión");
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -30,10 +30,13 @@
          <children>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="300.0" spacing="2.0" styleClass="header-titulo" stylesheets="@style.css">
                <children>
-                  <ImageView fitHeight="84.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="90.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/CafeteriaLogo.png" />
                      </image>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </ImageView>
                   <TextArea fx:id="txaTituloCafeteriaEncab" editable="false" prefHeight="44.0" prefWidth="280.0" styleClass="centeredTextArea" stylesheets="@style.css" wrapText="true">
                      <font>
@@ -45,12 +48,24 @@
                   </TextArea>
                </children>
             </VBox>
-            <VBox fx:id="vbCafeteria" alignment="CENTER_LEFT" prefHeight="326.0" prefWidth="285.0" spacing="5.0" styleClass="item-seleccionado" stylesheets="@style.css">
+            <VBox fx:id="vbCafeteria" prefHeight="326.0" prefWidth="285.0" styleClass="item-seleccionado" stylesheets="@style.css">
                <children>
-                  <TextArea fx:id="txaTituloCafeteria" editable="false" prefHeight="44.0" prefWidth="280.0" styleClass="centeredTextArea" stylesheets="@style.css" wrapText="true">
+                  <HBox alignment="CENTER" prefHeight="66.0" prefWidth="267.0">
+                     <children>
+                        <ImageView fitHeight="92.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/Cafeteria.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <TextArea fx:id="txaTituloCafeteria" editable="false" prefHeight="30.0" prefWidth="290.0" styleClass="centeredTextArea" stylesheets="@style.css" wrapText="true">
                      <font>
-                        <Font size="22.0" />
+                        <Font size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
                   </TextArea>
                   <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="300.0">
                      <children>
@@ -59,7 +74,7 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblHoraInicio" text="Label">
+                        <Label fx:id="lblHoraInicio">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -72,7 +87,7 @@
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
                         </Label>
-                        <Label fx:id="lblHoraFinal" text="Label">
+                        <Label fx:id="lblHoraFinal">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -90,7 +105,7 @@
                         <Insets left="15.0" right="15.0" />
                      </VBox.margin>
                   </Label>
-                  <TextArea fx:id="txaFacultad" editable="false" prefHeight="100.0" prefWidth="300.0" wrapText="true">
+                  <TextArea fx:id="txaFacultad" editable="false" prefHeight="31.0" prefWidth="260.0" wrapText="true">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" />
                      </VBox.margin>
@@ -103,26 +118,23 @@
                         <Insets left="15.0" right="15.0" />
                      </VBox.margin>
                   </Label>
-                  <TextArea fx:id="txaDireccion" editable="false" prefWidth="100.0" wrapText="true">
+                  <TextArea fx:id="txaDireccion" editable="false" prefHeight="37.0" prefWidth="260.0" wrapText="true">
                      <VBox.margin>
                         <Insets left="15.0" right="15.0" />
                      </VBox.margin>
                   </TextArea>
                </children>
                <VBox.margin>
-                  <Insets left="15.0" top="15.0" />
+                  <Insets left="10.0" top="15.0" />
                </VBox.margin>
             </VBox>
-            <Button fx:id="btnRegresar" mnemonicParsing="false" onAction="#clicRegresar" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css" text="Regresar" textFill="#3d3d3d">
+            <Button fx:id="btnDejarOpinion" mnemonicParsing="false" onAction="#clicDejarOpinion" prefHeight="30.0" stylesheets="@style.css" text="Dejar Opinión">
                <styleClass>
-                  <String fx:value="btn-gris" />
+                  <String fx:value="btn-naranja" />
                   <String fx:value="shadow" />
                </styleClass>
-               <font>
-                  <Font size="13.0" />
-               </font>
                <VBox.margin>
-                  <Insets top="7.0" />
+                  <Insets top="5.0" />
                </VBox.margin>
             </Button>
          </children>
@@ -146,11 +158,6 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="imgPregunta" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#clicPreguntas" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/pregunta.png" />
-                     </image>
-                  </ImageView>
                </children>
                <VBox.margin>
                   <Insets left="5.0" right="10.0" top="10.0" />
@@ -170,11 +177,14 @@
             </ScrollPane>
             <HBox alignment="CENTER_RIGHT" prefHeight="90.0" prefWidth="650.0">
                <children>
-                  <Button fx:id="btnDejarOpinion" mnemonicParsing="false" onAction="#clicDejarOpinion" prefHeight="30.0" stylesheets="@style.css" text="Dejar Opinión">
+                  <Button fx:id="btnRegresar" mnemonicParsing="false" onAction="#clicRegresar" prefHeight="30.0" prefWidth="100.0" stylesheets="@style.css" text="Regresar" textFill="#3d3d3d">
                      <styleClass>
                         <String fx:value="btn-naranja" />
                         <String fx:value="shadow" />
                      </styleClass>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
                   </Button>
                </children>
                <padding>

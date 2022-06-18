@@ -25,6 +25,17 @@ public class ItemReseñaCafeteriaController implements Initializable {
     @FXML
     private ImageView imgReseña;
     @FXML
+    private ImageView imgEstrella1;
+    @FXML
+    private ImageView imgEstrella2;
+    @FXML
+    private ImageView imgEstrella3;
+    @FXML
+    private ImageView imgEstrella4;
+    @FXML
+    private ImageView imgEstrella5;
+
+    @FXML
     private Label lblTitulo;
     @FXML
     private TextArea txaDescripcion;
@@ -41,6 +52,25 @@ public class ItemReseñaCafeteriaController implements Initializable {
             Image img = new Image(getClass().getResourceAsStream(res.getRutaImagen()));
             imgReseña.setImage(img);
         }
-
+        switch (res.getCalificacion()){
+            case 1:
+                imgEstrella2.setVisible(false);
+                imgEstrella3.setVisible(false);
+                imgEstrella4.setVisible(false);
+                imgEstrella5.setVisible(false);
+                break;
+            case 2:
+                imgEstrella3.setVisible(false);
+                imgEstrella4.setVisible(false);
+                imgEstrella5.setVisible(false);
+                break;
+            case 3:
+                imgEstrella4.setVisible(false);
+                imgEstrella5.setVisible(false);
+                break;
+            case 4:
+                imgEstrella5.setVisible(false);
+                break;
+        }
     }
 }
