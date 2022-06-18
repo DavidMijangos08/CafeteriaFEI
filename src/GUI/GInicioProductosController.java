@@ -365,16 +365,12 @@ public class GInicioProductosController implements Initializable {
                 break;
             case 4:
                 if (idProductoElegido < 1){
-                    MensajeAlerta mensajeAlerta = new MensajeAlerta();
-                    mensajeAlerta.mostrarAlertaError("No hay productos en esta cafeteria, selecciona otra por favor");
-                    cambiarVentanaEleccion();
                     btnVerOpiniones.setVisible(false);
-                }else{
-                    btnAñadirProducto.setVisible(false);
-                    btnModificarProducto.setVisible(false);
-                    btnEliminarProducto.setVisible(false);
-                    btnVerPersonal.setVisible(false);
                 }
+                btnAñadirProducto.setVisible(false);
+                btnModificarProducto.setVisible(false);
+                btnEliminarProducto.setVisible(false);
+                btnVerPersonal.setVisible(false);
                 break;
             }
 

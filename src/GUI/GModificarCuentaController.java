@@ -77,8 +77,7 @@ public class GModificarCuentaController implements Initializable {
                 String contrasenia = pfContrasenia.getText();
                 if(tipoUsuario == 2 || tipoUsuario == 3){
                     ServicioPersonalCafeteria servicioPersonalCafeteria = new ServicioPersonalCafeteria();
-                    PersonalCafeteria pc = new PersonalCafeteria(nombre, correo, contrasenia, personalCafeteria.getCargo());
-                    pc.setIdPersonal(personalCafeteria.getIdCafeteria());
+                    PersonalCafeteria pc = new PersonalCafeteria(personalCafeteria.getIdPersonal(), nombre, personalCafeteria.getCURP(), correo, personalCafeteria.getCargo(), contrasenia, personalCafeteria.getIdCafeteria());
                     pc.setToken(personalCafeteria.getToken());
                     personalCafeteria = pc;
                     int respuesta = servicioPersonalCafeteria.modificarPersonalCafeteria(pc, personalCafeteria.getIdPersonal());

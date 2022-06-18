@@ -48,6 +48,16 @@ public class PersonalCafeteria {
         this.idCafeteria = idCafeteria;
     }
 
+    public PersonalCafeteria(int idPersonal, String nombre, String CURP, String correoElectronico, String cargo, String contrasenia, int idCafeteria) {
+        this.idPersonal = idPersonal;
+        this.nombre = nombre;
+        this.CURP = CURP;
+        this.correoElectronico = correoElectronico;
+        this.cargo = cargo;
+        this.contrasenia = contrasenia;
+        this.idCafeteria = idCafeteria;
+    }
+
     public String getNombre() {
         return nombre;
     }

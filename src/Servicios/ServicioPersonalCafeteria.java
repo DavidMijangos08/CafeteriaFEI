@@ -195,7 +195,7 @@ public class ServicioPersonalCafeteria {
                             "\"correoElectronico\":"+ " " + "\"" + personalCafeteria.getCorreoElectronico() + "\"" + ", " +
                             "\"cargo\":"+ " " + "\"" + personalCafeteria.getCargo() + "\"" + ", " +
                             "\"idCafeteria\":" + personalCafeteria.getIdCafeteria() + ", " +
-                            "\"contrasenia\":" + personalCafeteria.getContrasenia() + ", " +
+                            "\"contrasenia\":" + " " + "\"" + personalCafeteria.getContrasenia() + "\"" + ", " +
                             "\"token\":"+ " " + "\"" + personalCafeteria.getToken() + "\"" + 
                             "}";
             conexion.setRequestProperty("Content-Type", "application/json");
@@ -204,7 +204,7 @@ public class ServicioPersonalCafeteria {
             output.write(datos.getBytes("UTF-8"));
             output.flush();
             output.close();
-            respuesta = conexion.getResponseCode(); 
+            respuesta = conexion.getResponseCode();
         }catch (MalformedURLException ex) {
             Logger.getLogger(ServicioAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
