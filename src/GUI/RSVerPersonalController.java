@@ -36,6 +36,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import java.util.regex.Matcher;
+import javafx.application.Platform;
 
 public class RSVerPersonalController implements Initializable{
     
@@ -141,7 +142,7 @@ public class RSVerPersonalController implements Initializable{
             Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
         
     }
@@ -162,7 +163,7 @@ public class RSVerPersonalController implements Initializable{
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
@@ -176,7 +177,7 @@ public class RSVerPersonalController implements Initializable{
             stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
-            System.err.println(ex.getMessage());
+            cerrarVentana();
         }
     }
     @FXML
@@ -199,7 +200,7 @@ public class RSVerPersonalController implements Initializable{
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
@@ -226,7 +227,7 @@ public class RSVerPersonalController implements Initializable{
                 Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
                 mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                cerrarVentana();
+                cerrarVentanaPorExcepcion();
             }
         }
     }
@@ -282,7 +283,7 @@ public class RSVerPersonalController implements Initializable{
             Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
     }
     
@@ -326,7 +327,7 @@ public class RSVerPersonalController implements Initializable{
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
@@ -365,10 +366,13 @@ public class RSVerPersonalController implements Initializable{
                     Logger.getLogger(RSVerPersonalController.class.getName()).log(Level.SEVERE, null, e);
                     MensajeAlerta mensajeAlerta = new MensajeAlerta();
                     mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                    cerrarVentana();
+                    cerrarVentanaPorExcepcion();
                 }
             }
         });
     }
-
+    
+    private void cerrarVentanaPorExcepcion(){
+        Platform.exit();
+    }
 }

@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioProducto;
 import Servicios.ServicioReseñasProducto;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -113,13 +114,13 @@ public class GReseñasProductoController implements Initializable {
                 Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
                 mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                cerrarVentana();
+                cerrarVentanaPorExcepcion();
             }
         } catch (IOException ex) {
             Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
     }
 
@@ -138,7 +139,7 @@ public class GReseñasProductoController implements Initializable {
             Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
 
     }
@@ -162,7 +163,7 @@ public class GReseñasProductoController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
@@ -182,7 +183,7 @@ public class GReseñasProductoController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
@@ -202,7 +203,7 @@ public class GReseñasProductoController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
@@ -233,7 +234,7 @@ public class GReseñasProductoController implements Initializable {
             Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
     }
 
@@ -259,7 +260,11 @@ public class GReseñasProductoController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
+    }
+    
+    private void cerrarVentanaPorExcepcion(){
+        Platform.exit();
     }
 }

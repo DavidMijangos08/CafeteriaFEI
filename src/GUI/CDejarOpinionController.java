@@ -28,6 +28,7 @@ import Servicios.ServicioCafeteria;
 import Servicios.ServicioProducto;
 import Servicios.ServicioReseñasCafeteria;
 import Servicios.ServicioReseñasProducto;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -133,7 +134,7 @@ public class CDejarOpinionController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(CDejarOpinionController.class.getName()).log(Level.SEVERE, null, ex);
                     mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                    cerrarVentana();
+                    cerrarVentanaPorExcepcion();
                 }
             }else if(idCafeteria > 0){
                 //Reseña Cafeteria
@@ -150,7 +151,7 @@ public class CDejarOpinionController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
                     mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                    cerrarVentana();
+                    cerrarVentanaPorExcepcion();
                 }
             }
         }
@@ -178,7 +179,7 @@ public class CDejarOpinionController implements Initializable {
             Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
     }
 
@@ -261,12 +262,16 @@ public class CDejarOpinionController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
     private void cerrarVentana(){
         Stage stage = (Stage) btnRegresar.getScene().getWindow();
         stage.close();
+    }
+    
+    private void cerrarVentanaPorExcepcion(){
+        Platform.exit();
     }
 }

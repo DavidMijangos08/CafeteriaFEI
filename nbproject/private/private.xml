@@ -12,11 +12,14 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/cafeteriafei/CafeteriaFEI.java</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/RSVerPersonalController.java</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/RCAgregarProductoController.java</file>
             <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/GInicioProductosController.java</file>
             <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/CEleccionCafeteriaController.java</file>
-            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/CDejarOpinionController.java</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/GVerCafeteriaController.java</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/Servicios/ServicioCafeteria.java</file>
             <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/GModificarCuentaController.java</file>
+            <file>file:/C:/Users/david/Documents/Sexto%20semestre/Desarrollo%20de%20sistemas%20en%20red/CafeteriaFEI/src/GUI/GReseñasProductoController.java</file>
         </group>
     </open-files>
 </project-private>

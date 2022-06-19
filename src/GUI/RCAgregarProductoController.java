@@ -21,6 +21,7 @@ import Dominio.PersonalCafeteria;
 import Dominio.Producto;;
 import Servicios.ServicioProducto;
 import java.nio.file.Paths;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -107,7 +108,7 @@ public class RCAgregarProductoController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
                     mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                    cerrarVentana();
+                    cerrarVentanaPorExcepcion();
                 }
             }else if(idCafeteria > 0){
                 String nombreProducto = txfNombre.getText();
@@ -126,7 +127,7 @@ public class RCAgregarProductoController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(RCAgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);
                     mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                    cerrarVentana();
+                    cerrarVentanaPorExcepcion();
                 }
             }
         }
@@ -179,7 +180,7 @@ public class RCAgregarProductoController implements Initializable {
             Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
 
     }
@@ -204,7 +205,7 @@ public class RCAgregarProductoController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
@@ -220,5 +221,9 @@ public class RCAgregarProductoController implements Initializable {
         String rutaNueva = rutaActual.replaceAll("\\\\", "/" );
         String partes[] = rutaNueva.split("src");
         return partes[1];
+    }
+    
+    private void cerrarVentanaPorExcepcion(){
+        Platform.exit();
     }
 }

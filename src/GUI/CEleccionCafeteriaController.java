@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -65,25 +66,30 @@ public class CEleccionCafeteriaController implements Initializable {
             Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
     }
 
     @FXML
-    private void clicContinuar(ActionEvent event) throws IOException {
+    private void clicContinuar(ActionEvent event) {
         if (!existenCamposVacios()){
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/GUI/GInicioProductos.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stageHijo = new Stage();
-            stageHijo.setScene(scene);
-            GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
-            controlador.recibirParametros(tipoUsuario, consumidor, null, cbCafeteria.getValue().getIdCafeteria());
-            Stage stagePadre = (Stage) btnContinuar.getScene().getWindow();
-            stagePadre.close();
-            stageHijo.setTitle("Productos");
-            stageHijo.setResizable(false);
-            stageHijo.show();
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/GUI/GInicioProductos.fxml"));
+                Scene scene = new Scene(fxmlLoader.load());
+                Stage stageHijo = new Stage();
+                stageHijo.setScene(scene);
+                GInicioProductosController controlador = (GInicioProductosController) fxmlLoader.getController();
+                controlador.recibirParametros(tipoUsuario, consumidor, null, cbCafeteria.getValue().getIdCafeteria());
+                Stage stagePadre = (Stage) btnContinuar.getScene().getWindow();
+                stagePadre.close();
+                stageHijo.setTitle("Productos");
+                stageHijo.setResizable(false);
+                stageHijo.show();
+            } catch (IOException ex) {
+                Logger.getLogger(CEleccionCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+                cerrarVentanaPorExcepcion();
+            }
         }
     }
     
@@ -112,7 +118,7 @@ public class CEleccionCafeteriaController implements Initializable {
             Logger.getLogger(CEleccionCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
     }
     
@@ -136,5 +142,9 @@ public class CEleccionCafeteriaController implements Initializable {
     public void recibirParametros(int tipoUsuario1, Consumidor consumidor1){
         tipoUsuario = tipoUsuario1;
         consumidor = consumidor1;
+    }
+    
+    private void cerrarVentanaPorExcepcion(){
+        Platform.exit();
     }
 }

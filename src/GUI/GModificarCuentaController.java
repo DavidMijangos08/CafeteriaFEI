@@ -21,6 +21,7 @@ import Dominio.Producto;
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioConsumidor;
 import Servicios.ServicioPersonalCafeteria;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -104,7 +105,7 @@ public class GModificarCuentaController implements Initializable {
                 Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
                 mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                cerrarVentana();
+                cerrarVentanaPorExcepcion();
             }
         }
     }
@@ -163,7 +164,7 @@ public class GModificarCuentaController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
      
@@ -209,7 +210,7 @@ public class GModificarCuentaController implements Initializable {
                 Logger.getLogger(GInicioSesionController.class.getName()).log(Level.SEVERE, null, ex);
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
                 mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                cerrarVentana();
+                cerrarVentanaPorExcepcion();
             }
 
         }
@@ -300,5 +301,9 @@ public class GModificarCuentaController implements Initializable {
         }
 
         return existe;
+    }
+    
+    private void cerrarVentanaPorExcepcion(){
+        Platform.exit();
     }
 }

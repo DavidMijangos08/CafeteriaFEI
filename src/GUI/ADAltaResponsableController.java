@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -80,7 +81,7 @@ public class ADAltaResponsableController implements Initializable {
             }catch(IOException ex){
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
                 mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                cerrarVentana();
+                cerrarVentanaPorExcepcion();
             }
         }
     }
@@ -94,7 +95,7 @@ public class ADAltaResponsableController implements Initializable {
         } catch (IOException ex) {
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
     }
     
@@ -153,5 +154,9 @@ public class ADAltaResponsableController implements Initializable {
     private void cerrarVentana(){
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
+    }
+    
+    private void cerrarVentanaPorExcepcion(){
+        Platform.exit();
     }
 }

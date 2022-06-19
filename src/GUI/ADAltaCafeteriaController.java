@@ -17,6 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -87,7 +88,7 @@ public class ADAltaCafeteriaController implements Initializable {
                 Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
                 MensajeAlerta mensajeAlerta = new MensajeAlerta();
                 mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                cerrarVentana();
+                cerrarVentanaPorExcepcion();
             }
         }
     }
@@ -167,8 +168,13 @@ public class ADAltaCafeteriaController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+    
     private void cerrarVentana(){
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
+    }
+    
+    private void cerrarVentanaPorExcepcion(){
+        Platform.exit();
     }
 }

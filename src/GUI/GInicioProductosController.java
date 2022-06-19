@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioPersonalCafeteria;
 import Servicios.ServicioProducto;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -103,7 +104,7 @@ public class GInicioProductosController implements Initializable {
             Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
     }
 
@@ -153,7 +154,7 @@ public class GInicioProductosController implements Initializable {
             Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
     }
 
@@ -183,7 +184,7 @@ public class GInicioProductosController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
-            System.err.println(ex.getMessage());
+            cerrarVentana();
         }
     }
 
@@ -208,7 +209,7 @@ public class GInicioProductosController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
@@ -234,7 +235,7 @@ public class GInicioProductosController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
@@ -250,7 +251,7 @@ public class GInicioProductosController implements Initializable {
             stage.setScene(scenePrincipal);
             stage.show();
         } catch (IOException ex) {
-            System.err.println(ex.getMessage());
+            cerrarVentana();
         }
     }
 
@@ -276,7 +277,7 @@ public class GInicioProductosController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
     @FXML
@@ -303,7 +304,7 @@ public class GInicioProductosController implements Initializable {
                     Logger.getLogger(RSVerPersonalController.class.getName()).log(Level.SEVERE, null, e);
                     MensajeAlerta mensajeAlerta = new MensajeAlerta();
                     mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                    cerrarVentana();
+                    cerrarVentanaPorExcepcion();
                 }
             }
         });
@@ -327,7 +328,7 @@ public class GInicioProductosController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
@@ -349,7 +350,7 @@ public class GInicioProductosController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
@@ -386,6 +387,10 @@ public class GInicioProductosController implements Initializable {
         Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
         stage.close();
     }
+    
+    private void cerrarVentanaPorExcepcion(){
+        Platform.exit();
+    }
 
     @FXML
     private void clicVerPersonal(ActionEvent event) {
@@ -403,7 +408,7 @@ public class GInicioProductosController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
     

@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Servicios.ServicioCafeteria;
 import Servicios.ServicioReseñasCafeteria;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -115,7 +116,7 @@ public class GVerCafeteriaController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
@@ -137,18 +138,25 @@ public class GVerCafeteriaController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            cerrarVentana();
         }
     }
 
-    private void obtenerInfoCafeteria(int idCafeteria) throws IOException {
-        ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
-        Cafeteria c = servicioCafeteria.obtenerCafeteriaPorId(idCafeteria);
-        txaTituloCafeteria.setText(c.getNombreCafeteria());
-        lblHoraInicio.setText(c.getHoraInicio());
-        lblHoraFinal.setText(c.getHoraFin());
-        txaFacultad.setText(c.getFacultadPerteneciente());
-        txaDireccion.setText(c.getDireccion());
+    private void obtenerInfoCafeteria(int idCafeteria){
+        try {
+            ServicioCafeteria servicioCafeteria = new ServicioCafeteria();
+            Cafeteria c = servicioCafeteria.obtenerCafeteriaPorId(idCafeteria);
+            txaTituloCafeteria.setText(c.getNombreCafeteria());
+            lblHoraInicio.setText(c.getHoraInicio());
+            lblHoraFinal.setText(c.getHoraFin());
+            txaFacultad.setText(c.getFacultadPerteneciente());
+            txaDireccion.setText(c.getDireccion());
+        } catch (IOException ex) {
+            Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentanaPorExcepcion();
+        }
     }
 
     private void obtenerReseñasCafe(int idCafeteria){
@@ -188,7 +196,7 @@ public class GVerCafeteriaController implements Initializable {
             Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
     }
 
@@ -220,7 +228,7 @@ public class GVerCafeteriaController implements Initializable {
             Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
     }
 
@@ -241,12 +249,16 @@ public class GVerCafeteriaController implements Initializable {
             Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentana();
+            cerrarVentanaPorExcepcion();
         }
     }
 
     private void cerrarVentana(){
         Stage stage = (Stage) btnRegresar.getScene().getWindow();
         stage.close();
+    }
+    
+    private void cerrarVentanaPorExcepcion(){
+        Platform.exit();
     }
 }
