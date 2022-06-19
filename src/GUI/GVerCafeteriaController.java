@@ -185,7 +185,10 @@ public class GVerCafeteriaController implements Initializable {
                 GridPane.setMargin(acp, new Insets(10));
             }
         } catch (IOException ex) {
-            Logger.getLogger(GVerCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
         }
     }
 

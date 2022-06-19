@@ -174,8 +174,11 @@ public class CDejarOpinionController implements Initializable {
                 lblNombre.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria).getNombreCafeteria());
                 txaDescripcion.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria).getDireccion());
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ex) {
+            Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
         }
     }
 

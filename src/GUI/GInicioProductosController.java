@@ -99,8 +99,11 @@ public class GInicioProductosController implements Initializable {
             txaTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria1).getNombreCafeteria());
             obtenerProductos(idCafeteria1);
             iniciarVentana(tipoUsuario1);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ex) {
+            Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
         }
     }
 
@@ -147,7 +150,10 @@ public class GInicioProductosController implements Initializable {
                 GridPane.setMargin(acp, new Insets(5));
             }
         } catch (IOException ex) {
-            Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
         }
     }
 
@@ -400,5 +406,5 @@ public class GInicioProductosController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
+    
 }

@@ -110,10 +110,16 @@ public class GReseñasProductoController implements Initializable {
                     GridPane.setMargin(acp, new Insets(10));
                 }
             } catch (IOException ex) {
-                Logger.getLogger(GReseñasProductoController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+                MensajeAlerta mensajeAlerta = new MensajeAlerta();
+                mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+                cerrarVentana();
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ex) {
+            Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
         }
     }
 
@@ -128,8 +134,11 @@ public class GReseñasProductoController implements Initializable {
             imgProducto.setImage(img);
             Image imgR = new Image(getClass().getResourceAsStream("/img/reloj.png"));
             imgReloj.setImage(imgR);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ex) {
+            Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
         }
 
     }

@@ -175,8 +175,11 @@ public class RCAgregarProductoController implements Initializable {
                 this.imgProducto.setImage(img);
             }
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ex) {
+            Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
         }
 
     }

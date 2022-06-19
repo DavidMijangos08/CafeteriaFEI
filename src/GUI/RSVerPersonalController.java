@@ -138,7 +138,10 @@ public class RSVerPersonalController implements Initializable{
                 }
             }
         } catch (IOException ex) {
-            Logger.getLogger(GInicioProductosController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
         }
         
     }
@@ -275,8 +278,11 @@ public class RSVerPersonalController implements Initializable{
             txaTituloCafeteria.setText(servicioCafeteria.obtenerCafeteriaPorId(idCafeteria1).getNombreCafeteria());
             obtenerPersonal(idCafeteria1);
             //iniciarVentana(tipoUsuario1);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (IOException ex) {
+            Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
+            cerrarVentana();
         }
     }
     

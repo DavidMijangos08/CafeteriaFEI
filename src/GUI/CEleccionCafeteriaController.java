@@ -62,6 +62,7 @@ public class CEleccionCafeteriaController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException ex) {
+            Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
             cerrarVentana();
