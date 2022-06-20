@@ -19,6 +19,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -51,6 +53,7 @@ public class ADAltaResponsableController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         llenarComboBoxCafeterias();
+        fijarTamanoMaximo();
     }    
 
     @FXML
@@ -60,7 +63,7 @@ public class ADAltaResponsableController implements Initializable {
 
     @FXML
     private void clicRegistrar(ActionEvent event) {
-        if(!existenCamposInvalidos()){
+        if(!existenCamposInvalidos() && longitudCamposRequerida()){
             int idCafeteria = cbCafeteria.getValue().getIdCafeteria();
             String nombre = txfNombre.getText();
             String correo = txfCorreo.getText();
@@ -158,5 +161,49 @@ public class ADAltaResponsableController implements Initializable {
     
     private void cerrarVentanaPorExcepcion(){
         Platform.exit();
+    }
+
+    public void fijarTamanoMaximo() {
+        txfNombre.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number valorAnterior, Number valorActual) {
+                if (valorActual.intValue() > valorAnterior.intValue()) {
+                    if (txfNombre.getText().length() >= 70) {
+                        txfNombre.setText(txfNombre.getText().substring(0, 70));
+                    }
+                }
+            }
+        });
+
+        txfCorreo.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (txfCorreo.getText().length() >= 70) {
+                        txfCorreo.setText(txfCorreo.getText().substring(0, 70));
+                    }
+                }
+            }
+        });
+
+        txfCurp.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (txfCurp.getText().length() >= 18) {
+                        txfCurp.setText(txfCurp.getText().substring(0, 18));
+                    }
+                }
+            }
+        });
+    }
+
+    private boolean longitudCamposRequerida(){
+        if(txfNombre.getText().length() < 15 || txfCorreo.getText().length() < 10 || txfCurp.getText().length() < 18){
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Longitud mínima requerida no válida, revisa la información.");
+            return false;
+        }
+        return true;
     }
 }

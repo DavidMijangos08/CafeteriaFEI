@@ -22,6 +22,8 @@ import Servicios.ServicioCafeteria;
 import Servicios.ServicioConsumidor;
 import Servicios.ServicioPersonalCafeteria;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -62,6 +64,7 @@ public class GModificarCuentaController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        fijarTamanoMaximo();
     }     
 
     @FXML
@@ -71,7 +74,7 @@ public class GModificarCuentaController implements Initializable {
 
     @FXML
     private void clicAceptar(ActionEvent event) {
-        if(!existenCamposInvalidosEnviarCodigo() && !existenCamposInvalidosModificar()){
+        if(!existenCamposInvalidosEnviarCodigo() && !existenCamposInvalidosModificar() && longitudCamposRequerida()){
             try {
                 String nombre = txfNombre.getText();
                 String correo = txfCorreoElectronico.getText();
@@ -305,5 +308,69 @@ public class GModificarCuentaController implements Initializable {
     
     private void cerrarVentanaPorExcepcion(){
         Platform.exit();
+    }
+    public void fijarTamanoMaximo() {
+        txfNombre.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (txfNombre.getText().length() >= 70) {
+                        txfNombre.setText(txfNombre.getText().substring(0, 70));
+                    }
+                }
+            }
+        });
+
+        txfCorreoElectronico.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (txfCorreoElectronico.getText().length() >= 70) {
+                        txfCorreoElectronico.setText(txfCorreoElectronico.getText().substring(0, 70));
+                    }
+                }
+            }
+        });
+
+        pfContrasenia.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (pfContrasenia.getText().length() >= 40) {
+                        pfContrasenia.setText(pfContrasenia.getText().substring(0, 40));
+                    }
+                }
+            }
+        });
+
+        pfConfContrasenia.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (pfConfContrasenia.getText().length() >= 40) {
+                        pfConfContrasenia.setText(pfConfContrasenia.getText().substring(0, 40));
+                    }
+                }
+            }
+        });
+
+        txfCodigoVerificacion.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (txfCodigoVerificacion.getText().length() >= 6) {
+                        txfCodigoVerificacion.setText(txfCodigoVerificacion.getText().substring(0, 6));
+                    }
+                }
+            }
+        });
+    }
+    private boolean longitudCamposRequerida(){
+        if(txfNombre.getText().length() < 15 || txfCorreoElectronico.getText().length() < 10 || pfContrasenia.getText().length() < 8 || pfConfContrasenia.getText().length() < 8 || txfCodigoVerificacion.getText().length() < 6){
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Longitud mínima requerida no válida, revisa la información.");
+            return false;
+        }
+        return true;
     }
 }

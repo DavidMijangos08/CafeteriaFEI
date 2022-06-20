@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -28,7 +22,7 @@
    ventana "Alta de Responsable de Cafetería"  
 -->
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ADAltaResponsableController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ADAltaResponsableController">
    <left>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" styleClass="primary-color" stylesheets="@style.css" BorderPane.alignment="CENTER">
          <children>
@@ -96,7 +90,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txfNombre" prefHeight="25.0" prefWidth="290.0" stylesheets="@style.css">
+                  <TextField fx:id="txfNombre" prefHeight="25.0" prefWidth="290.0" promptText="(Máximo 70 caracteres)" stylesheets="@style.css">
                      <styleClass>
                         <String fx:value="transparent" />
                         <String fx:value="input" />
@@ -114,7 +108,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txfCorreo" prefHeight="25.0" prefWidth="290.0" stylesheets="@style.css">
+                  <TextField fx:id="txfCorreo" prefHeight="25.0" prefWidth="290.0" promptText="(Máximo 100 caracteres)" stylesheets="@style.css">
                      <styleClass>
                         <String fx:value="transparent" />
                         <String fx:value="input" />
@@ -132,7 +126,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txfCurp" prefHeight="25.0" prefWidth="290.0" stylesheets="@style.css">
+                  <TextField fx:id="txfCurp" prefHeight="25.0" prefWidth="290.0" promptText="(18 caracteres requeridos)" stylesheets="@style.css">
                      <styleClass>
                         <String fx:value="transparent" />
                         <String fx:value="input" />

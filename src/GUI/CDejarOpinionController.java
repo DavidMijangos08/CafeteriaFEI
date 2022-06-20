@@ -29,6 +29,8 @@ import Servicios.ServicioProducto;
 import Servicios.ServicioReseñasCafeteria;
 import Servicios.ServicioReseñasProducto;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -84,6 +86,7 @@ public class CDejarOpinionController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        fijarTamanoMaximo();
     }    
 
     @FXML
@@ -273,5 +276,29 @@ public class CDejarOpinionController implements Initializable {
     
     private void cerrarVentanaPorExcepcion(){
         Platform.exit();
+    }
+
+    public void fijarTamanoMaximo() {
+        txfTituloOpinion.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number valorAnterior, Number valorActual) {
+                if (valorActual.intValue() > valorAnterior.intValue()) {
+                    if (txfTituloOpinion.getText().length() >= 60) {
+                        txfTituloOpinion.setText(txfTituloOpinion.getText().substring(0, 60));
+                    }
+                }
+            }
+        });
+
+        txaOpinion.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (txaOpinion.getText().length() >= 500) {
+                        txaOpinion.setText(txaOpinion.getText().substring(0, 500));
+                    }
+                }
+            }
+        });
     }
 }

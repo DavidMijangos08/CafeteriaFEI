@@ -9,6 +9,7 @@
 
 package GUI;
 
+import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
@@ -21,7 +22,9 @@ import Dominio.PersonalCafeteria;
 import Dominio.Producto;;
 import Servicios.ServicioProducto;
 import java.nio.file.Paths;
-import javafx.application.Platform;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +36,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -63,10 +67,11 @@ public class RCAgregarProductoController implements Initializable {
     private String rutaImagen ="";
     PersonalCafeteria personalCafeteria;
     FileChooser fc = new FileChooser();
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }    
+        fijarTamanoMaximo();
+    }
 
     @FXML
     private void clicAñadirImagen(ActionEvent event) throws IOException {
@@ -89,14 +94,14 @@ public class RCAgregarProductoController implements Initializable {
 
     @FXML
     private void clicAceptar(ActionEvent event) {
-        if(!existenCamposInvalidos()){
+        if(!existenCamposInvalidos() || longitudCamposRequerida()){
             ServicioProducto servicioProducto = new ServicioProducto();
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             if(idProducto > 0){
                 String nombreProducto = txfNombre.getText();
-                int precioProducto = Integer.parseInt(txfPrecio.getText());
                 int tiempoAproximado = Integer.parseInt(txfTiempoAproximado.getText());
                 String descripcion = txfDescripcion.getText();
+                int precioProducto = Integer.parseInt(txfPrecio.getText());
 
                 try {
                     Producto p = new Producto(nombreProducto, descripcion, rutaImagen, precioProducto, tiempoAproximado, idCafeteria);
@@ -108,7 +113,7 @@ public class RCAgregarProductoController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
                     mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                    cerrarVentanaPorExcepcion();
+                    cerrarVentana();
                 }
             }else if(idCafeteria > 0){
                 String nombreProducto = txfNombre.getText();
@@ -127,14 +132,12 @@ public class RCAgregarProductoController implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(RCAgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);
                     mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-                    cerrarVentanaPorExcepcion();
+                    cerrarVentana();
                 }
             }
         }
     }
 
-
-    
     private boolean existenCamposInvalidos(){
         boolean existe = false;
 
@@ -147,7 +150,18 @@ public class RCAgregarProductoController implements Initializable {
             existe = true;
             mensajeAlerta.mostrarAlertaInformacionInvalida("Por favor agrega una imagen");
         }
-        if(validacion.existeCampoInvalido(txfNombre.getText()) || validacion.existeCampoInvalido(txfPrecio.getText()) 
+        int preciop = 0;
+        int tiempop = 0;
+        try{
+            preciop = Integer.parseInt(txfPrecio.getText());
+            tiempop = Integer.parseInt(txfTiempoAproximado.getText());
+        }catch(NumberFormatException e){
+            existe = true;
+            mensajeAlerta.mostrarAlertaInformacionInvalida("Existen caracteres inválidos en el precio o tiempo ingresados");
+        }
+
+
+        if(validacion.existeCampoInvalido(txfNombre.getText()) || validacion.existeCampoInvalido(txfPrecio.getText())
                 || validacion.existeCampoInvalido(txfDescripcion.getText())){
             existe = true;
             mensajeAlerta.mostrarAlertaInformacionInvalida("Existen caracteres inválidos");
@@ -180,7 +194,7 @@ public class RCAgregarProductoController implements Initializable {
             Logger.getLogger(ADAltaCafeteriaController.class.getName()).log(Level.SEVERE, null, ex);
             MensajeAlerta mensajeAlerta = new MensajeAlerta();
             mensajeAlerta.mostrarAlertaError("Ocurrió un error en el servidor, intenta más tarde");
-            cerrarVentanaPorExcepcion();
+            cerrarVentana();
         }
 
     }
@@ -205,14 +219,14 @@ public class RCAgregarProductoController implements Initializable {
             stage.setResizable(false);
             stage.show();
         } catch (IOException e) {
-            cerrarVentana();
+            throw new RuntimeException(e);
         }
     }
 
     private String copiarImagen(String rutaOrigen) throws IOException {
         Path origen = Paths.get(rutaOrigen);
         Path destino = Paths.get("src\\img\\Productos");
-       
+
         Path copiar = Files.copy(origen, destino.resolve(origen.getFileName()), StandardCopyOption.REPLACE_EXISTING);
         return destino +"\\"+copiar.getFileName();
     }
@@ -222,8 +236,59 @@ public class RCAgregarProductoController implements Initializable {
         String partes[] = rutaNueva.split("src");
         return partes[1];
     }
-    
-    private void cerrarVentanaPorExcepcion(){
-        Platform.exit();
+
+    public void fijarTamanoMaximo() {
+        txfNombre.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number valorAnterior, Number valorActual) {
+                if (valorActual.intValue() > valorAnterior.intValue()) {
+                    if (txfNombre.getText().length() >= 40) {
+                        txfNombre.setText(txfNombre.getText().substring(0, 40));
+                    }
+                }
+            }
+        });
+
+        txfDescripcion.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (txfDescripcion.getText().length() >= 200) {
+                        txfDescripcion.setText(txfDescripcion.getText().substring(0, 200));
+                    }
+                }
+            }
+        });
+
+        txfPrecio.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (txfPrecio.getText().length() >= 3) {
+                        txfPrecio.setText(txfPrecio.getText().substring(0, 3));
+                    }
+                }
+            }
+        });
+
+        txfTiempoAproximado.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (txfTiempoAproximado.getText().length() >= 2) {
+                        txfTiempoAproximado.setText(txfTiempoAproximado.getText().substring(0, 2));
+                    }
+                }
+            }
+        });
+    }
+
+    private boolean longitudCamposRequerida(){
+        if(txfNombre.getText().length() < 3 || txfPrecio.getText().length() < 1 || txfTiempoAproximado.getText().length() < 1 || txfDescripcion.getText().length() < 10){
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Longitud mínima requerida no válida, revisa la información.");
+            return false;
+        }
+        return true;
     }
 }

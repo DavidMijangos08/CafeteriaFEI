@@ -183,7 +183,7 @@
                         </Label>
                         <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="300.0" spacing="10.0">
                            <children>
-                              <TextField fx:id="pfCodigoCrear" alignment="CENTER" blendMode="ADD" prefHeight="26.0" prefWidth="270.0" stylesheets="@style.css">
+                              <TextField fx:id="pfCodigoCrear" alignment="CENTER" blendMode="ADD" prefHeight="26.0" prefWidth="270.0" promptText="(6 caracteres)" stylesheets="@style.css">
                                  <styleClass>
                                     <String fx:value="transparent" />
                                     <String fx:value="input" />

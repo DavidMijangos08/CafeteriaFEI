@@ -92,6 +92,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: transparent;
 }
 
+.text-area .scroll-bar:vertical {
+    -fx-pref-width: 0.5;
+    -fx-opacity: 0.8;
+}
+.text-area .scroll-bar:horizontal {
+    -fx-pref-height: 1;
+    -fx-opacity: 0.8;
+}
+
 .scroll-pane > .viewport {  //not .scrollpane but .scroll-pane
    -fx-background-color: transparent;
 }

@@ -20,6 +20,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,6 +67,7 @@ public class GInicioSesionController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        fijarTamanoMaximo();
     }
 
     @FXML
@@ -124,7 +128,7 @@ public class GInicioSesionController implements Initializable {
 
     @FXML
     private void clicCrearCuenta(ActionEvent event){
-        if(!existenCamposInvalidosEnviarCodigo() && !existenCamposInvalidosRegistrar()){
+        if(!existenCamposInvalidosEnviarCodigo() && !existenCamposInvalidosRegistrar() || longitudCamposRequerida()){
             try {
                 ServicioConsumidor servicioConsumidor = new ServicioConsumidor();
                 String nombre = txfNombreCrear.getText();
@@ -246,5 +250,93 @@ public class GInicioSesionController implements Initializable {
         stage.setTitle("Cafeterías UV");
         stage.setResizable(false);
         stage.show();
+    }
+
+    public void fijarTamanoMaximo() {
+        txfCorreoInicio.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number valorAnterior, Number valorActual) {
+                if (valorActual.intValue() > valorAnterior.intValue()) {
+                    if (txfCorreoInicio.getText().length() >= 70) {
+                        txfCorreoInicio.setText(txfCorreoInicio.getText().substring(0, 70));
+                    }
+                }
+            }
+        });
+
+        pfContraseniaInicio.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (pfContraseniaInicio.getText().length() >= 40) {
+                        pfContraseniaInicio.setText(pfContraseniaInicio.getText().substring(0, 40));
+                    }
+                }
+            }
+        });
+
+        txfCorreoCrear.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (txfCorreoCrear.getText().length() >= 70) {
+                        txfCorreoCrear.setText(txfCorreoCrear.getText().substring(0, 70));
+                    }
+                }
+            }
+        });
+
+        txfNombreCrear.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (txfNombreCrear.getText().length() >= 70) {
+                        txfNombreCrear.setText(txfNombreCrear.getText().substring(0, 70));
+                    }
+                }
+            }
+        });
+
+        pfContraseniaCrear.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (pfContraseniaCrear.getText().length() >= 40) {
+                        pfContraseniaCrear.setText(pfContraseniaCrear.getText().substring(0, 40));
+                    }
+                }
+            }
+        });
+
+        pfConfContraseniaCrear.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (pfConfContraseniaCrear.getText().length() >= 40) {
+                        pfConfContraseniaCrear.setText(pfConfContraseniaCrear.getText().substring(0, 40));
+                    }
+                }
+            }
+        });
+
+        pfCodigoCrear.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (pfCodigoCrear.getText().length() >= 6) {
+                        pfCodigoCrear.setText(pfCodigoCrear.getText().substring(0, 6));
+                    }
+                }
+            }
+        });
+    }
+
+    private boolean longitudCamposRequerida(){
+        if(txfNombreCrear.getText().length() < 15 || txfCorreoCrear.getText().length() < 10 || pfContraseniaCrear.getText().length() < 8 || pfConfContraseniaCrear.getText().length() < 8 || pfCodigoCrear.getText().length() < 6){
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Longitud mínima requerida no válida, revisa la información.");
+            return false;
+        }
+        return true;
     }
 }

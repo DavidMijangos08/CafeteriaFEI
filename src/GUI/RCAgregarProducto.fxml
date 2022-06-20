@@ -55,7 +55,7 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="txfNombre" prefHeight="26.0" prefWidth="163.0" stylesheets="@style.css">
+                        <TextField fx:id="txfNombre" prefHeight="26.0" prefWidth="163.0" promptText="(Máximo 40 caracteres)" stylesheets="@style.css">
                            <styleClass>
                               <String fx:value="input" />
                               <String fx:value="transparent" />
@@ -142,7 +142,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </HBox>
-            <TextArea fx:id="txfDescripcion" prefHeight="50.0" prefWidth="360.0" styleClass="inputtext" stylesheets="@style.css" wrapText="true">
+            <TextArea fx:id="txfDescripcion" prefHeight="50.0" prefWidth="360.0" promptText="(Máximo 200 caracteres)" styleClass="inputtext" stylesheets="@style.css" wrapText="true">
                <VBox.margin>
                   <Insets left="15.0" right="10.0" />
                </VBox.margin></TextArea>

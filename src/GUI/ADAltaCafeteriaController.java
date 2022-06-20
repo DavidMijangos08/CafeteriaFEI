@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -57,6 +59,7 @@ public class ADAltaCafeteriaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         llenarComboBoxHoras();
         llenarComboBoxFacultades();
+        fijarTamanoMaximo();
     }    
     
     @FXML
@@ -66,7 +69,7 @@ public class ADAltaCafeteriaController implements Initializable {
 
     @FXML
     private void clicRegistrar(ActionEvent event) { 
-        if(!existenCamposInvalidos()){
+        if(!existenCamposInvalidos() && longitudCamposRequerida()){
             try {
                 String nombreCafeteria = txfNombreCafeteria.getText();
                 String facultadPerteneciente = cbFacultad.getValue();
@@ -176,5 +179,38 @@ public class ADAltaCafeteriaController implements Initializable {
     
     private void cerrarVentanaPorExcepcion(){
         Platform.exit();
+    }
+
+    public void fijarTamanoMaximo() {
+        txfNombreCafeteria.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number valorAnterior, Number valorActual) {
+                if (valorActual.intValue() > valorAnterior.intValue()) {
+                    if (txfNombreCafeteria.getText().length() >= 30) {
+                        txfNombreCafeteria.setText(txfNombreCafeteria.getText().substring(0, 30));
+                    }
+                }
+            }
+        });
+
+        txfDireccion.lengthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (newValue.intValue() > oldValue.intValue()) {
+                    if (txfDireccion.getText().length() >= 200) {
+                        txfDireccion.setText(txfDireccion.getText().substring(0, 200));
+                    }
+                }
+            }
+        });
+    }
+
+    private boolean longitudCamposRequerida(){
+        if(txfNombreCafeteria.getText().length() < 3 || txfDireccion.getText().length() < 20){
+            MensajeAlerta mensajeAlerta = new MensajeAlerta();
+            mensajeAlerta.mostrarAlertaError("Longitud mínima requerida no válida, revisa la información.");
+            return false;
+        }
+        return true;
     }
 }
